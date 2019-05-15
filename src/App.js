@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router'
+import WebNav from './Components/WebNav'
+import AppNav from './Components/AppNav'
+import Home from './Containers/Home'
+import LandingPage from './Containers/LandingPage'
+import Login from './Containers/Login'
+import Signup from './Containers/Signup'
+import Memories from './Containers/Memories'
+import AccountSettings from './Containers/AccountSettings'
+// import logo from './logo.svg';
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// Adapter pattern
+import adapter from './adapter.js'
+const userEndpoint = "http://localhost:3000/api/v1/users"
+const memoryEndpoint = "http://localhost:3000/api/v1/memories"
+const emotionMemoryEndpoint = "http://localhost:3000/api/v1/emotion_memories"
+const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
+
+const userAdapter = adapter(userEndpoint)
+const memoryAdapter = adapter(memoryEndpoint)
+const emotionAdapter = adapter(emotionMemoryEndpoint)
+const thoughtAdapter = adapter(thoughtMemoryEndpoint)
+
+
+
+export default class App extends Component {
+  render() {
+
+    return (
+      <div className="App">
+        {localStorage.user_id ? <AppNav handleLogout={this.handleLogout} /> : <WebNav/> }
+        <Switch>
+          <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+          <Route path='/signup' render={(routeProps) => <Signup  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
+          <Route path='/home' render={(props) => <Home/>}/>
+          <Route path='/memories' render={(props) => <Memories/>}/>        
+          <Route path='/account-settings' render={() =>  <AccountSettings />}/>
+          <Route path='/' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+        </Switch>
+      </div>
+    )
+  }
 }
-
-export default App;
