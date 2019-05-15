@@ -26,30 +26,33 @@ export default class Login extends React.Component {
       You can do same with CSS, the main idea is that all the elements up to the `Grid`
       below must have a height of 100%.
     */}
-    <style>{`
+    {/* <style>{`
       body > div,
       body > div > div,
       body > div > div > div.login-form {
         height: 100%;
       }
     `}
-    </style>
+    </style> */}
 
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h2' color='yellow' textAlign='center'>
-      {/* put logo here */}
-          Access your mind
+      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
+      <Header as='h1' color='blue' textAlign='center'>
+          pocket mind
+        </Header>
+        <Header as='h3' color='blue' textAlign='center'>
+          keep your head in the cloud
         </Header>
         <Form size='large'>
-          <Segment stacked>
+          {/* <Segment stacked> */}
             <Form.Input fluid name="username" icon='user' iconPosition='left' placeholder='username' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-            <Button color='blue' fluid size='large' onClick={(e) => this.props.handleLoginSubmit(e, this.state)}>
+            <Button color='teal' fluid size='large' onClick={(e) => this.props.handleLoginSubmit(e, this.state)}>
               Login
             </Button>
-          </Segment>
+          {/* </Segment> */}
         </Form>
         <Message>
           New to us? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Sign up</Button>
