@@ -23,16 +23,21 @@ const thoughtAdapter = adapter(thoughtMemoryEndpoint)
 
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome to Pocket Mind Bitches!
-        </p>
-      </header>
-    </div>
-  );
-}
+export default class App extends Component {
+  render() {
 
-export default App;
+    return (
+      <div className="App">
+        {localStorage.user_id ? <header><Nav handleLogout={this.handleLogout} /></header> : null }
+        <Switch>
+          <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+          <Route path='/signup' render={(routeProps) => <SignUp  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
+          <Route path='/my-trumpets' render={(props) => <MyTrumpets {...props} getTrumpets={this.getTrumpets} myTrumpets={this.getUserTrumpets()} myReactedTrumpets={this.getUsersReactedTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>}/>
+          <Route path='/community-trumpets' render={(props) => <CommunityTrumpets {...props} trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>}/>        
+          <Route path='/account-settings' render={() =>  <AccountSettings />}/>
+          <Route path='/' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+        </Switch>
+      </div>
+    )
+  }
+}
