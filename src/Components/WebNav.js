@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 export default class WebNav extends Component {
@@ -14,16 +14,14 @@ export default class WebNav extends Component {
   return (
       <div>
         <Menu pointing secondary>
-          {/* Put logo here */}
+          <Image src={require('../pmlogo.jpeg')} as='a' href='/landing-page' style={{width: '50px', height: 'auto', margin: '10px'}} floated="left" circular/>
+
           <Menu.Menu position='right'>
-          <Menu.Item as={NavLink} name='Pocket Mind' to='/landing-page' active={activeItem === 'Pocket Mind'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='About' to='/about' active={activeItem === 'About'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='Blog' to='/blog' active={activeItem === 'Blog'} onClick={this.handleItemClick} />
-          <Menu.Item            
-            name='logout'
-            active={activeItem === 'logout'}
-            onClick={this.props.handleLogout} 
-            />
+          <Menu.Item as={NavLink} name='POCKET MIND' to='/landing-page' active={activeItem === 'POCKET MIND'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='ABOUT' to='/about' active={activeItem === 'ABOUT'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='BLOG' to='/blog' active={activeItem === 'BLOG'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='LOG IN' to='/login' active={activeItem === 'LOG IN'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='SIGN UP FREE' to='/register' active={activeItem === 'SIGN UP FREE'} onClick={this.handleItemClick} />
           </Menu.Menu>
         </Menu>
       </div>
