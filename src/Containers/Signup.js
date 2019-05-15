@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 
-export default class Signu      p extends React.Component {
+export default class Signup extends React.Component {
 
   state =  {
     userId: "",

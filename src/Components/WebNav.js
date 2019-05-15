@@ -6,19 +6,19 @@ export default class WebNav extends Component {
 
 //   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-//   state = { activeItem: 'login' }
+  state = { activeItem: 'login' }
 
   render() {
-//   const { activeItem } = this.state
+  const { activeItem } = this.state
 
   return (
       <div>
         <Menu pointing secondary>
           {/* Put logo here */}
           <Menu.Menu position='right'>
-          <Menu.Item as={NavLink} name='Pocket Mind' to='/LandingPage' active={activeItem === 'Pocket Mind'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='About' to='/About' active={activeItem === 'About'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='Blog' to='/Blog' active={activeItem === 'Blog'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='Pocket Mind' to='/landing-page' active={activeItem === 'Pocket Mind'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='About' to='/about' active={activeItem === 'About'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='Blog' to='/blog' active={activeItem === 'Blog'} onClick={this.handleItemClick} />
           <Menu.Item            
             name='logout'
             active={activeItem === 'logout'}
