@@ -23,18 +23,11 @@ import { Form } from 'semantic-ui-react'
     render() {
       return (
         <Form onSubmit={(event, newMemory) => this.props.handleSubmitNew(event, this.state)}>
-          <Form.Group widths='equal'>
-            <Form.Input onChange={this.handleChange} fluid label='Summary' placeholder='Summary' name="summary" value={this.state.summary ? this.state.summary : ""} />
-            {/* Figure out selection value */}
-            <Form.Input onChange={this.handleSelect} fluid label='Type' placeholder='Type' name="trumpet_type" value={this.state.trumpet_type ? this.state.trumpet_type : ""} />
-          </Form.Group>
-          <Form.Group widths='equal'>
-          <Form.Input onChange={this.handleChange} fluid label='Website URL' placeholder='Website URL' name="url" value={this.state.url ? this.state.url : ""} />
-            <Form.Input onChange={this.handleChange} fluid label='Root Url' placeholder='Root Url' name="root_url" value={this.state.root_url ? this.state.root_url : ""} />
-          </Form.Group>
-          <Form.TextArea onChange={this.handleChange} label='Content' placeholder='Tell us more about you...' name="content" value={this.state.content} />
+        <Form.TextArea onChange={this.handleChange} label='Thought Content' placeholder='What are you thinking?' name="Thought Content" value={this.state.content} />
+            <Form.Input onChange={this.handleChange} fluid label='Thought Reason' placeholder='I think so because...' name="Thought Reason" value={this.state.summary ? this.state.summary : ""} />
+            <Form.Input onChange={this.handleSelect} fluid label='Thought Object' placeholder='[blank] makes me think that' name="Thought Object" value={this.state.trumpet_type ? this.state.trumpet_type : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
-          <Form.Button >Create</Form.Button>
+          <Form.Button >Submit</Form.Button>
         </Form>
       )
     }
