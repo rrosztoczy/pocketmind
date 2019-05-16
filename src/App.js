@@ -38,7 +38,7 @@ export default class App extends Component {
           <Route path='/home' render={(props) => <Home/>}/>
           <Route path='/memories' render={(props) => <Memories/>}/>        
           <Route path='/account-settings' render={() =>  <AccountSettings />}/>
-          <Route path='/' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+          <Route path='/' render={(routeProps) => <LandingPage {...routeProps} />}/>
         </Switch>
       </div>
     )
