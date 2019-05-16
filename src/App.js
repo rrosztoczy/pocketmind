@@ -9,6 +9,9 @@ import Signup from './Containers/Signup'
 import Blog from './Containers/Blog'
 import About from './Containers/About'
 import Memories from './Containers/Memories'
+import LeftBrain from './Containers/LeftBrain'
+import RightBrain from './Containers/RightBrain'
+import Tools from './Containers/Tools'
 import AccountSettings from './Containers/AccountSettings'
 // import logo from './logo.svg';
 import './App.css'
@@ -52,7 +55,10 @@ export default class App extends Component {
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' render={(props) => <Home/>}/>
-          <Route path='/memories' render={(props) => <Memories/>}/>        
+          <Route path='/memories' render={(props) => <Memories/>}/>   
+          <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
+          <Route path='/right-brain' render={(props) => <RightBrain/>}/>      
+          <Route path='/tools' render={(props) => <Tools/>}/>           
           <Route path='/account-settings' render={() =>  <AccountSettings />}/>
           <Route path='/' render={(routeProps) => <LandingPage {...routeProps} />}/>
         </Switch>
