@@ -14,7 +14,7 @@ class NewStressMemoryForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addStressMemory(this.state)
+        this.props.dispatch({type: 'ADD_STRESS_MEMORY', payload: this.state})
     }
 
     render() {
@@ -29,12 +29,13 @@ class NewStressMemoryForm extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    console.log('about to send finction')
-    return {
-        addStressMemory: newStressMemory => dispatch({type: 'ADD_STRESS_MEMORY', payload: newStressMemory })
-    };
-};
+// const mapDispatchToProps = dispatch => {
+//     console.log('about to send finction')
+//     return {
+//         addStressMemory: newStressMemory => dispatch({type: 'ADD_STRESS_MEMORY', payload: newStressMemory })
+//     };
+// };
+// Took out mapdispatch...addd dispatch in place of addStresetc to handlesubmit
 
 
-export default connect(null, mapDispatchToProps)(NewStressMemoryForm)
+export default connect()(NewStressMemoryForm)
