@@ -16,7 +16,7 @@ import { Form } from 'semantic-ui-react'
 
     render() {
       return (
-        <Form onSubmit={(event, newMemory) => this.props.handleSubmitNew(event, this.state)}>
+        <Form onSubmit={(event) => this.props.submitThoughtMemory(event, this.state)}>
         <Form.TextArea onChange={this.handleChange} label='Thought Content' placeholder='What are you thinking?' name="thoughtContent" value={this.state.thoughtContent} />
             <Form.Input onChange={this.handleChange} fluid label='Thought Reason' placeholder='I think so because...' name="thoughtReason" value={this.state.thoughtReason ? this.state.thoughtReason : ""} />
             <Form.Input onChange={this.handleChange} fluid label='Thought Object' placeholder='[blank] makes me think that' name="thoughtObject" value={this.state.thoughtObject ? this.state.thoughtObject : ""} />

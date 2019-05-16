@@ -41,27 +41,32 @@ class Memories extends React.Component {
         anxiety: false
     }
 
-    createEmotionMemory = (event, emotionMemory) => {
+    submitEmotionMemory = (event, emotionMemory) => {
+        event.preventDefault()
         console.log("creating emotion memory", event.target.value)
         this.setState(prevState => ({emotionMemories: [...prevState.emotionMemories, emotionMemory]}))
     }
 
-    createThoughtMemory = (event, thoughtMemory) => {
+    submitThoughtMemory = (event, thoughtMemory) => {
+        event.preventDefault()
         console.log("creating thought memory", event.target.value)
         this.setState(prevState => ({thoughtMemories: [...prevState.thoughtMemories, thoughtMemory]}))
     }
 
-    updateStress = (event) => {
+    submitStressMemory = (event) => {
+        event.preventDefault()
         console.log("updating stress", event.target.value)
         this.setState({memory: {...this.state.memory, stressLevel: event.target.value}})
     }
 
-    updateAnxiety = (event) => {
+    submitAnxietyMemory = (event) => {
+        event.preventDefault()
         console.log("updating stress", event.target.value)
         this.setState({memory: {...this.state.memory, anxietyLevel: event.target.value}})
     }
 
-    createMemory = () => {
+    submitMemory = (event) => {
+        event.preventDefault()
         console.log("creating memory!", this.state)
     }
 
@@ -86,23 +91,23 @@ class Memories extends React.Component {
     }
 
     renderNewMemoryForm() {
-        return <NewMemoryForm handleSelectMemoryType={this.handleSelectMemoryType} />
+        return <NewMemoryForm submitMemory={this.submitMemory} handleSelectMemoryType={this.handleSelectMemoryType} />
     }
 
     renderNewEmotionMemoryForm() {
-        return <NewEmotionMemoryForm createEmotionMemory={this.createEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
+        return <NewEmotionMemoryForm submitEmotionMemory={this.submitEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
     renderNewThoughtMemoryForm() {
-        return <NewThoughtMemoryForm createThoughtMemory={this.createThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
+        return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
     renderNewStressMemoryForm() {
-        return <NewStressMemoryForm updateStress={this.updateStress} handleSubmitNew={this.handleSubmitNew} />
+        return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
     renderNewAnxietyMemoryForm() {
-        return <NewAnxietyMemoryForm updateAnxiety={this.updateAnxiety} handleSubmitNew={this.handleSubmitNew} />
+        return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
 

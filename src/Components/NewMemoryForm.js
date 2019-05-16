@@ -98,7 +98,7 @@ import { Card, Button } from 'semantic-ui-react'
               Anxiety
             </Button>
           </div>
-          <Button basic color='grey' onClick={event => this.createMemory()} value='remember'>
+          <Button basic color='grey' onClick={event => this.submitMemory(event)} value='remember'>
               Remember
             </Button>
         </Card.Content>

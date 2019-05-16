@@ -16,7 +16,7 @@ import { Form } from 'semantic-ui-react'
 
     render() {
       return (
-        <Form onSubmit={(event, newMemory) => this.props.handleSubmitNew(event, this.state)}>
+        <Form onSubmit={(event) => this.props.submitEmotionMemory(event, this.state)}>
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Emotion' placeholder='Emotion' name="emotion" value={this.state.emotion ? this.state.emotion : ""} />
             {/* Figure out selection value */}
