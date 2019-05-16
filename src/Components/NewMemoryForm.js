@@ -31,11 +31,11 @@ import { Card, Button } from 'semantic-ui-react'
         </Card.Content>
         <Card.Content extra>
           <div className='ui two buttons'>
-            <Button basic color='teal'>
+            <Button basic color='teal' onClick={event => this.props.handleSelectMemoryType(event)} value='emotion'>
               Emotion
             </Button>
             <Button.Or />
-            <Button basic color='blue'>
+            <Button basic color='blue' onClick={event => this.props.handleSelectMemoryType(event)} value='thought'>
               Thought
             </Button>
           </div>
@@ -43,11 +43,11 @@ import { Card, Button } from 'semantic-ui-react'
             Are you feeling any
           </Card.Description>
           <div className='ui two buttons'>
-            <Button basic color='teal'>
+            <Button basic color='teal' onClick={event => this.props.handleSelectMemoryType(event)} value='stress'>
               Stress
             </Button>
             <Button.Or />
-            <Button basic color='blue'>
+            <Button basic color='blue' onClick={event => this.props.handleSelectMemoryType(event)} value='anxiety'>
               Anxiety
             </Button>
           </div>

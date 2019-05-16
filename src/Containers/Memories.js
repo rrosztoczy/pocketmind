@@ -15,10 +15,10 @@ class Memories extends React.Component {
     state = {
         memories: [],
         new: false,
-        emotion_selected: false,
-        thought_selected: false,
-        stress_selected: false,
-        anxiety_selected: false
+        emotion: false,
+        thought: false,
+        stress: false,
+        anxiety: false
     }
 
     getMemories = async () => {
@@ -34,8 +34,15 @@ class Memories extends React.Component {
         this.setState(prevState => ({new: !prevState.new}))
     }
 
+    handleSelectMemoryType = (event) => {
+        event.persist()
+        console.log("event value", event.target.value)
+        this.setState(prevState => ({[event.target.value]: !prevState[event.target.value]}))
+        console.log("state set")
+    }
+
     renderNewMemoryForm() {
-        return <NewMemoryForm handleSubmitNew={this.handleSubmitNew} />
+        return <NewMemoryForm handleSelectMemoryType={this.handleSelectMemoryType} />
     }
 
     renderNewEmotionMemoryForm() {
@@ -74,10 +81,10 @@ class Memories extends React.Component {
               ADD A NEW MEMORY
             </Button>
             <div>{this.state.new ? this.renderNewMemoryForm() : null}</div>
-            <div>{this.state.emotion_selected ? this.renderNewEmotionMemoryForm() : null}</div>
-            <div>{this.state.thought_selected ? this.renderNewThoughtMemoryForm() : null}</div>
-            <div>{this.state.stress_selected ? this.renderNewStressMemoryForm() : null}</div>
-            <div>{this.state.anxiety_selected ? this.renderNewAnxietyMemoryForm() : null}</div>
+            <div>{this.state.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
+            <div>{this.state.thought ? this.renderNewThoughtMemoryForm() : null}</div>
+            <div>{this.state.stress ? this.renderNewStressMemoryForm() : null}</div>
+            <div>{this.state.anxiety ? this.renderNewAnxietyMemoryForm() : null}</div>
       </Grid.Column>
     </Grid.Row>
 
