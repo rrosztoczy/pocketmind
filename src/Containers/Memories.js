@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Grid, Image, Button, Header } from 'semantic-ui-react'
 // Remove into redux
 import adapter from '../adapter.js'
+import NewMemoryForm from '../Components/NewMemoryForm'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
+import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
+import NewStressMemoryForm from '../Components/NewStressMemoryForm'
+import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const memoryAdapter = adapter(memoryEndpoint)
 
@@ -30,20 +34,25 @@ class Memories extends React.Component {
         this.setState(prevState => ({new: !prevState.new}))
     }
 
+    renderNewMemoryForm() {
+        return <NewMemoryForm handleSubmitNew={this.handleSubmitNew} />
+    }
+
     renderNewEmotionMemoryForm() {
         return <NewEmotionMemoryForm handleSubmitNew={this.handleSubmitNew} />
     }
 
-    // handleSubmitNew = (e, newTrumpet) => {
-    //     e.preventDefault();
-    //     const userTrumpet = {...newTrumpet, user_id: parseInt(localStorage.getItem("user_id"))};
-    //     (async () => {
-    //     const newTrumpet = await this.props.trumpetAdapter.create(userTrumpet)
-    //     const trumpets = await this.props.getTrumpets()
-    //     this.setState(prevState => ({new: !prevState.new}))
-    // })();
-    // };
+    renderNewThoughtMemoryForm() {
+        return <NewThoughtMemoryForm handleSubmitNew={this.handleSubmitNew} />
+    }
 
+    renderNewStressMemoryForm() {
+        return <NewStressMemoryForm handleSubmitNew={this.handleSubmitNew} />
+    }
+
+    renderNewAnxietyMemoryForm() {
+        return <NewAnxietyMemoryForm handleSubmitNew={this.handleSubmitNew} />
+    }
 
 
 

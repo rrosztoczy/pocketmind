@@ -26,7 +26,7 @@ import { Form } from 'semantic-ui-react'
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Summary' placeholder='Summary' name="summary" value={this.state.summary ? this.state.summary : ""} />
             {/* Figure out selection value */}
-            <Form.Select onChange={this.handleSelect} fluid label='Type' options={options} placeholder='Type' name="trumpet_type" value={this.state.trumpet_type ? this.state.trumpet_type : ""} />
+            <Form.Input onChange={this.handleSelect} fluid label='Type' placeholder='Type' name="trumpet_type" value={this.state.trumpet_type ? this.state.trumpet_type : ""} />
           </Form.Group>
           <Form.Group widths='equal'>
           <Form.Input onChange={this.handleChange} fluid label='Website URL' placeholder='Website URL' name="url" value={this.state.url ? this.state.url : ""} />
@@ -38,3 +38,4 @@ import { Form } from 'semantic-ui-react'
         </Form>
       )
     }
+}
