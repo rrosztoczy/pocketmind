@@ -29,11 +29,23 @@ const thoughtAdapter = adapter(thoughtMemoryEndpoint)
 
 
 export default class App extends Component {
+
+  state = {logged_in: false}
+
+  // fake login for design
+  handleLoginSubmit = () => {
+   this.setState({logged_in: true}, () => console.log('logged in!', this.state))
+  }
+
+  handleLogout = () => {
+    this.setState({logged_in: false}, () => console.log('logged in!', this.state))
+   }
+
   render() {
 
     return (
       <div className="App">
-        {localStorage.user_id ? <AppNav handleLogout={this.handleLogout} /> : <WebNav/> }
+        {this.state.logged_in ? <AppNav handleLogout={this.handleLogout} /> : <WebNav/> }
         <Switch>
           <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
           <Route path='/signup' render={(routeProps) => <Signup  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
