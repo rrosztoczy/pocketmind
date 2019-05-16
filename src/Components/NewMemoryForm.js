@@ -16,9 +16,36 @@ import { Card, Button } from 'semantic-ui-react'
     //      "root_url": "http://cnn.com"
     //     }
     // }
-    state = {}
 
-    // handleChange = (event) => this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state))
+    state = {
+        memory: {
+            stressLevel: 0,
+            anxietyLevel: 0,
+            timeOfMemory: null,
+            "default_stress_level_value": true,
+            "default_anxiety_level_value": true,
+        },
+        emotionMemory: {
+            userId: null,
+            memoryId: null,
+            emotion: "",
+            intensity: 5,
+            pleasure: 5 
+        },
+    thoughtMemory: {
+        userId: null,
+        memoryId: null,
+        thoughtContent: "",
+        thoughtObject: "",
+        thoughtReason: ""
+    }
+    }
+
+    //Memory creation flow:
+    // When remember is hit:
+    // Create a memory with appropriate memory data
+    // Fetch that memories id and assign it to the other memory types
+    // Create the other types that have data
 
     render() {
       return (
