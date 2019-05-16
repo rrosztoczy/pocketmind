@@ -17,29 +17,49 @@ import { Card, Button } from 'semantic-ui-react'
     //     }
     // }
 
-    state = {
-        memory: {
-            stressLevel: 0,
-            anxietyLevel: 0,
-            timeOfMemory: null,
-            "default_stress_level_value": true,
-            "default_anxiety_level_value": true,
-        },
-        emotionMemory: {
-            userId: null,
-            memoryId: null,
-            emotion: "",
-            intensity: 5,
-            pleasure: 5 
-        },
-    thoughtMemory: {
-        userId: null,
-        memoryId: null,
-        thoughtContent: "",
-        thoughtObject: "",
-        thoughtReason: ""
-    }
-    }
+    // state = {
+    //     memory: {
+    //         stressLevel: 0,
+    //         anxietyLevel: 0,
+    //         timeOfMemory: null,
+    //         "default_stress_level_value": true,
+    //         "default_anxiety_level_value": true,
+    //     },
+    //     emotionMemories: [{
+    //         userId: null,
+    //         memoryId: null,
+    //         emotion: "",
+    //         intensity: 5,
+    //         pleasure: 5 
+    //     }],
+    // thoughtMemories: [{
+    //     userId: null,
+    //     memoryId: null,
+    //     thoughtContent: "",
+    //     thoughtObject: "",
+    //     thoughtReason: ""
+    // }]
+    // }
+
+    // createEmotionMemory = (emotionMemory) => {
+    //     this.setState(prevState => ({emotionMemories: [...prevState.emotionMemories, emotionMemory]}))
+    // }
+
+    // createThoughtMemory = (thoughtMemory) => {
+    //     this.setState(prevState => ({thoughtMemories: [...prevState.thoughtMemories, thoughtMemory]}))
+    // }
+
+    // updateStress = (event) => {
+    //     this.setState({memory.stressLevel: event.target.value})
+    // }
+
+    // updateAnxiety = (event) => {
+    //     this.setState({memory.anxietyLevel: event.target.value})
+    // }
+
+    // createMemory = () => {
+
+    // }
 
     //Memory creation flow:
     // When remember is hit:
@@ -78,7 +98,7 @@ import { Card, Button } from 'semantic-ui-react'
               Anxiety
             </Button>
           </div>
-          <Button basic color='grey' onClick={event => this.props.handleSelectMemoryType(event)} value='remember'>
+          <Button basic color='grey' onClick={event => this.createMemory()} value='remember'>
               Remember
             </Button>
         </Card.Content>
