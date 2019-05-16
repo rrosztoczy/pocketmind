@@ -12,7 +12,7 @@ import { Form } from 'semantic-ui-react'
 
     render() {
       return (
-        <Form onSubmit={(event) => this.props.submitAnxietyMemory(event, this.state)}>
+        <Form onSubmit={(event) => this.props.submitAnxietyMemory(event, this.state.anxietyLevel)}>
             <Form.Input onChange={this.handleChange} fluid label='Anxiety Level' placeholder='Anxiety Level' name="anxietyLevel" value={this.state.anxietyLevel ? this.state.anxietyLevel : ""} />
           <Form.Button >Submit</Form.Button>
         </Form>

@@ -42,27 +42,30 @@ class Memories extends React.Component {
     }
 
     submitEmotionMemory = (event, emotionMemory) => {
+        event.persist()
         event.preventDefault()
-        console.log("creating emotion memory", event.target.value)
-        this.setState(prevState => ({emotionMemories: [...prevState.emotionMemories, emotionMemory]}))
+        console.log("creating emotion memory", emotionMemory)
+        this.setState(prevState => ({emotionMemories: prevState.emotionMemories.push(emotionMemory)}, () => console.log(this.state)))
     }
 
     submitThoughtMemory = (event, thoughtMemory) => {
         event.preventDefault()
-        console.log("creating thought memory", event.target.value)
-        this.setState(prevState => ({thoughtMemories: [...prevState.thoughtMemories, thoughtMemory]}))
+        console.log("creating thought memory", thoughtMemory)
+        this.setState(prevState => ({thoughtMemories: prevState.thoughtMemories.push(thoughtMemory)}, () => console.log(this.state)))
     }
 
-    submitStressMemory = (event) => {
+    submitStressMemory = (event, stressLevel) => {
+        event.persist()
         event.preventDefault()
-        console.log("updating stress", event.target.value)
-        this.setState({memory: {...this.state.memory, stressLevel: event.target.value}})
+        console.log("updating stress", stressLevel)
+        this.setState({memory: {...this.state.memory, stressLevel: stressLevel}}, () => console.log(this.state))
     }
 
-    submitAnxietyMemory = (event) => {
+    submitAnxietyMemory = (event, anxietyLevel) => {
+        event.persist()
         event.preventDefault()
-        console.log("updating stress", event.target.value)
-        this.setState({memory: {...this.state.memory, anxietyLevel: event.target.value}})
+        console.log("updating stress", anxietyLevel)
+        this.setState({memory: {...this.state.memory, anxietyLevel: anxietyLevel}}, () => console.log(this.state))
     }
 
     submitMemory = (event) => {

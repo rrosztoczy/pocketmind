@@ -12,7 +12,7 @@ import { Form } from 'semantic-ui-react'
 
     render() {
       return (
-        <Form onSubmit={(event) => this.props.submitStressMemory(event, this.state)}>
+        <Form onSubmit={(event) => this.props.submitStressMemory(event, this.state.stressLevel)}>
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Stress Level' placeholder='Stress Level' name="stressLevel" value={this.state.stressLevel ? this.state.stressLevel : ""} />
           </Form.Group>
