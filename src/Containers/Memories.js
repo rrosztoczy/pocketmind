@@ -12,6 +12,7 @@ const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const memoryAdapter = adapter(memoryEndpoint)
 
 class Memories extends React.Component {
+    //TODO: Set this state in redux store
     state = {
         new: false,
         emotion: false,
