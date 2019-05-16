@@ -53,25 +53,23 @@ export default class Signup extends React.Component {
       {/* } */}
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='yellow' textAlign='center'>
+            <Header as='h2' color='blue' textAlign='center'>
             {/* Add logo */}
-              Sign up today!
+              sign up now
             </Header>
             <Form size='large'>
-              <Segment stacked>
                 <Form.Input fluid name="first_name" placeholder='First name' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="username" placeholder='username' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-                <Button color='blue' fluid size='large' onClick={() => this.props.createNewUser(this.state)}>
-                  Sign Up
+                <Button color='teal' fluid size='large' onClick={() => this.props.createNewUser(this.state)}>
+                  sign up
                 </Button>
-              </Segment>
             </Form>
             <Message>
-              Already have an account? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Log in</Button>
+              already have an account? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>log in</Button>
             </Message>
           </Grid.Column>
         </Grid>
