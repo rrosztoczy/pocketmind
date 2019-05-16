@@ -13,59 +13,11 @@ const memoryAdapter = adapter(memoryEndpoint)
 
 class Memories extends React.Component {
     state = {
-        memory: {
-            stressLevel: 0,
-            anxietyLevel: 0,
-            timeOfMemory: null,
-            "default_stress_level_value": true,
-            "default_anxiety_level_value": true,
-        },
-        emotionMemories: [{
-            userId: null,
-            memoryId: null,
-            emotion: "",
-            intensity: 5,
-            pleasure: 5 
-        }],
-    thoughtMemories: [{
-        userId: null,
-        memoryId: null,
-        thoughtContent: "",
-        thoughtObject: "",
-        thoughtReason: ""
-    }],
         new: false,
         emotion: false,
         thought: false,
         stress: false,
         anxiety: false
-    }
-
-    submitEmotionMemory = (event, emotionMemory) => {
-        event.persist()
-        event.preventDefault()
-        console.log("creating emotion memory", emotionMemory)
-        this.setState(prevState => ({emotionMemories: prevState.emotionMemories.push(emotionMemory)}, () => console.log(this.state)))
-    }
-
-    submitThoughtMemory = (event, thoughtMemory) => {
-        event.preventDefault()
-        console.log("creating thought memory", thoughtMemory)
-        this.setState(prevState => ({thoughtMemories: prevState.thoughtMemories.push(thoughtMemory)}, () => console.log(this.state)))
-    }
-
-    submitStressMemory = (event, stressLevel) => {
-        event.persist()
-        event.preventDefault()
-        console.log("updating stress", stressLevel)
-        this.setState({memory: {...this.state.memory, stressLevel: stressLevel}}, () => console.log(this.state))
-    }
-
-    submitAnxietyMemory = (event, anxietyLevel) => {
-        event.persist()
-        event.preventDefault()
-        console.log("updating stress", anxietyLevel)
-        this.setState({memory: {...this.state.memory, anxietyLevel: anxietyLevel}}, () => console.log(this.state))
     }
 
     submitMemory = (event) => {

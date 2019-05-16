@@ -1,40 +1,34 @@
 
 const initialState = {
-    memories: [{
-        "id": 3,
-        "user": {
-          "userId": 1,
-          "firstName": "admin",
-          "lastName": "admin"
-        },
-        "thought_memories": [
-          {
-            "thoughtContent": "Atque qui ut quisquam voluptatem aut.",
-            "thoughtObject": "Nicky",
-            "reason": "voluptates"
-          }
-        ],
-        "emotion_memories": [
-          {
-            "emotion": "grief",
-            "intensity": 8,
-            "pleasure": 8
-          }
-        ],
-        "stress_level": 7,
-        "anxiety_level": 1,
-        "created_at": "2019-05-15T19:07:46.770Z",
-        "time_of_memory": null
-      }],
+    memory: {},
+    emotionMemories: [],
+    thoughtMemories: [],
+    new: false,
+    emotion: false,
+    thought: false,
+    stress: false,
+    anxiety: false,
     logged_in: false
 }
 
 function memoryReducer(state = initialState, action) {
     console.log('about ot hit case!')
     switch (action.type) {
-        case 'NEW_MEMORY':
-        console.log('adding! hit add')
+        case 'ADD_MEMORY':
+        console.log('adding memory! hit add')
             return action.payload
+        case 'ADD_STRESS_MEMORY':
+          console.log('adding stress! hit add')
+          return {...state, memory: {...state.memory, ...action.payload}}
+        case 'ADD_ANXIETY_MEMORY':
+        console.log('adding anxiety! hit add')
+          return {...state, memory: {...state.memory, ...action.payload}}
+        case 'ADD_EMOTION_MEMORY':
+        console.log('adding emotion! hit add')
+        return {...state, emotionMemories: [...state.emotionMemories, action.payload]}
+        case 'ADD_THOUGHT_MEMORY':
+        console.log('adding thought! hit add')
+        return {...state, thoughtMemories: [...state.thoughtMemories, action.payload]}
         default: 
         console.log('hit default')
           return state;
