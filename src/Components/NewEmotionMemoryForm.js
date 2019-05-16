@@ -1,8 +1,9 @@
 
 import React from 'react'
+import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react'
 
-  export default class NewEmotionMemoryForm extends React.Component {
+class NewEmotionMemoryForm extends React.Component {
 
 
     state = {
@@ -12,11 +13,16 @@ import { Form } from 'semantic-ui-react'
     }
     // TODO: Set state to have the data for a new emotion memory
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.addEmotionMemory(this.state)
+    }
+
     handleChange = (event) => this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state))
 
     render() {
       return (
-        <Form onSubmit={(event) => this.props.submitEmotionMemory(event, this.state)}>
+        <Form onSubmit={(event) => this.handleSubmit(event)}>
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Emotion' placeholder='Emotion' name="emotion" value={this.state.emotion ? this.state.emotion : ""} />
             {/* Figure out selection value */}
@@ -30,3 +36,14 @@ import { Form } from 'semantic-ui-react'
       )
     }
 }
+
+ 
+const mapDispatchToProps = dispatch => {
+    console.log('about to send finction')
+    return {
+        addEmotionMemory: newEmotionMemory => dispatch({type: 'ADD_EMOTION_MEMORY', payload: newEmotionMemory })
+    };
+};
+
+
+export default connect(null, mapDispatchToProps)(NewEmotionMemoryForm)

@@ -42,4 +42,20 @@ import { Card, Button } from 'semantic-ui-react'
       </Card>
       )
     }
+
+    // const mapStateToProps = state => {
+    //     console.log("new state", state)
+    //     return {
+    //         memories: state.memories,
+    //         logged_in: state.logged_in
+    //     };
+    // };
+     
+    // const mapDispatchToProps = dispatch => {
+    //     console.log('about to send finction')
+    //     return {
+    //         addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {} })
+    //     };
+    // };
+
 }
