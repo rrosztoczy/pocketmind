@@ -2,14 +2,18 @@ import React from 'react'
 import { Grid, Image, Button, Header } from 'semantic-ui-react'
 
 const LandingPage = () => (
-  <Grid divided='vertically'>
+  <Grid padded relaxed stackable>
+      <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
+
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
-      <Header as='h1' color='blue' textAlign='center'>
+      <Header size='huge' color='blue' textAlign='center'>
           pocket mind
         </Header>
-        <Header as='h3' color='blue' textAlign='center'>
+        <Header size='medium' color='blue' textAlign='center'>
           keep your head in the cloud
         </Header>
       </Grid.Column>
@@ -17,7 +21,17 @@ const LandingPage = () => (
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large'>
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1} divided>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1}>
+      <Grid.Column>
+      <Button color='teal' size='massive' circular>
               SIGN UP FOR FREE
             </Button>
       </Grid.Column>
@@ -25,18 +39,30 @@ const LandingPage = () => (
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large'>
+      <Button color='teal' size='massive' circular>
               GET THE APP NOW
             </Button>
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={2}>
+    <Grid.Row columns={1} divided>
       <Grid.Column>
-      <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
       </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1} divided>
       <Grid.Column>
-      <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1}>
+      <Grid.Column>
+      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1} divided>
+      <Grid.Column>
       </Grid.Column>
     </Grid.Row>
   </Grid>
