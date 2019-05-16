@@ -2,7 +2,7 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
 
-  export default class NewThoughtMemoryForm extends React.Component {
+  export default class NewStressMemoryForm extends React.Component {
 
     // console.log("object", trumpet)
     // console.log("content", trumpet.content)
