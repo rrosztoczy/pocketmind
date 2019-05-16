@@ -1,11 +1,43 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Grid, Image, Button, Header } from 'semantic-ui-react'
+// Remove into redux
+import adapter from '../adapter.js'
+const memoryEndpoint = "http://localhost:3000/api/v1/memories"
+const memoryAdapter = adapter(memoryEndpoint)
 
-const Memories = () => (
+export default class Memories extends React.Component {
+    state = {
+        memories: []
+    }
+
+    getMemories = async () => {
+        const memoriesFromApi = await memoryAdapter.getAll()
+        this.setState({memories: memoriesFromApi}, () => console.log("state:", this.state))
+    };
+
+    componentDidMount() {
+        this.getMemories()
+    }
+
+
+    // const mapStateToProps = state => {
+    //     return {
+    //         items: state.items
+    //     };
+    // };
+     
+    // const mapDispatchToProps = dispatch => {
+    //     return {
+    //         increaseCount: () => dispatch({ type: 'INCREASE_COUNT' })
+    //     };
+    // };
+
+    render() {
+        return(
   <Grid divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
       <Header as='h1' color='blue' textAlign='center'>
           YOU ARE IN YOUR MEMORIES
         </Header>
@@ -15,28 +47,29 @@ const Memories = () => (
     <Grid.Row columns={1}>
       <Grid.Column>
       <Button color='teal' fluid size='large'>
-              SIGN UP FOR FREE
+              ADD A NEW MEMORY
             </Button>
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large'>
-              GET THE APP NOW
-            </Button>
+      <Header color='teal' size='huge'>
+              Memories
+            </Header>
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={2}>
+    <Grid.Row columns={1}>
       <Grid.Column>
-      <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
-      <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+      {/* Fetch memories, put them in a container in this bottom grid... */}
+      {/* First thing is first - fetch them and put them in state here... then get into redux */}
+{/* Memory list here */}
       </Grid.Column>
     </Grid.Row>
   </Grid>
-)
+  )
+}
+}
 
-export default Memories
+// export default connect(mapStateToProps, mapDispatchToProps)(Memories);
