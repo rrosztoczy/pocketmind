@@ -17,7 +17,7 @@ class NewThoughtMemoryForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addThoughtMemory(this.state)
+        this.props.dispatch({type: 'ADD_THOUGHT_MEMORY', payload: this.state})
     }
 
     render() {
@@ -33,12 +33,4 @@ class NewThoughtMemoryForm extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    console.log('about to send finction')
-    return {
-        addThoughtMemory: newThoughtMemory => dispatch({type: 'ADD_THOUGHT_MEMORY', payload: newThoughtMemory })
-    };
-};
-
-
-export default connect(null, mapDispatchToProps)(NewThoughtMemoryForm)
+export default connect()(NewThoughtMemoryForm)

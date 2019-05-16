@@ -22,10 +22,13 @@ function memoryReducer(state = initialState, action) {
           return {...state, memory: {...state.memory, ...action.payload}}
         case 'ADD_ANXIETY_MEMORY':
         console.log('adding anxiety! hit add')
-            return action.payload
+          return {...state, memory: {...state.memory, ...action.payload}}
         case 'ADD_EMOTION_MEMORY':
         console.log('adding emotion! hit add')
         return {...state, emotionMemories: [...state.emotionMemories, action.payload]}
+        case 'ADD_THOUGHT_MEMORY':
+        console.log('adding thought! hit add')
+        return {...state, thoughtMemories: [...state.thoughtMemories, action.payload]}
         default: 
         console.log('hit default')
           return state;

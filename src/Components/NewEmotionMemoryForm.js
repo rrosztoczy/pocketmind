@@ -15,7 +15,7 @@ class NewEmotionMemoryForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addEmotionMemory(this.state)
+        this.props.dispatch({type: 'ADD_EMOTION_MEMORY', payload: this.state })
     }
 
     handleChange = (event) => this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state))
@@ -37,13 +37,4 @@ class NewEmotionMemoryForm extends React.Component {
     }
 }
 
- 
-const mapDispatchToProps = dispatch => {
-    console.log('about to send finction')
-    return {
-        addEmotionMemory: newEmotionMemory => dispatch({type: 'ADD_EMOTION_MEMORY', payload: newEmotionMemory })
-    };
-};
-
-
-export default connect(null, mapDispatchToProps)(NewEmotionMemoryForm)
+export default connect()(NewEmotionMemoryForm)

@@ -34,5 +34,5 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-
+// Keep as mapDispatch to show both methods
 export default connect(null, mapDispatchToProps)(NewAnxietyMemoryForm)
