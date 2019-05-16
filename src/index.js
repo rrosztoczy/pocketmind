@@ -4,21 +4,22 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'; 
-// TODO: Create and input storeimport shoppingListItemReducer from './reducers/shoppingListItemReducer.js';
+import memoryReducer from './Reducers/memoryReducer.js';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 
-// TODO: update with yoru store const store = createStore(shoppingListItemReducer); 
+const store = createStore(memoryReducer); 
+console.log(store.getState)
 
 ReactDOM.render(
-    // <Provider store={store}>
-    // {' '}
+    <Provider store={store}>
+    {' '}
       <Router>
          <Route path="/" component={ App }/>
-      </Router>, document.getElementById('root')
-    // </Provider> put , document.get here
+      </Router>
+    </Provider>, document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
