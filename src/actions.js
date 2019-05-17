@@ -17,6 +17,8 @@ export function toggleForm(event) {
     return { type: TOGGLE_FORM, payload: event.target.value}
 }
 
+
+// Async action creators
 export function fetchMemories() {
   return dispatch => memoryAdapter.getAll(dispatch, ADD_ALL_MEMORIES)
 }
