@@ -30,6 +30,9 @@ function memoryReducer(state = initialState, action) {
         case  GET_ALL_MEMORIES:
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, ...action.payload]}
+        case  DESTROY_MEMORY:
+        console.log('destroying memory! hit destroy')
+        return {...state, memories: state.memories.filter(memory => memory.id != action.payload)}
         case 'ADD_MEMORY':
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, action.payload]}

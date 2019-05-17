@@ -2,6 +2,7 @@ import adapter from './adapter'
 
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const memoryAdapter = adapter(memoryEndpoint)
+
 // action types
 export const TOGGLE_FORM = 'TOGGLE_Form'
 // Async types

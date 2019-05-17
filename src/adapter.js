@@ -67,7 +67,7 @@ const adapter = (url) => {
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url + "/" + id, postConfig)
             // const jsonData = await resp.json()
-            // dispatch({type: action, payload: jsonData})
+            dispatch({type: action, payload: id})
         })();
     }
 
