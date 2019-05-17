@@ -27,7 +27,7 @@ class Memories extends React.Component {
 
     componentDidMount() {
         console.log('about to get memories!')
-        this.props.fetchMemories()
+        this.props.getAllMemories()
         // memoryAdapter.getAll()
         // this.getMemories()
         // this.props.getAllMemories()

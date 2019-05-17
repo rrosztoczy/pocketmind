@@ -1,6 +1,11 @@
 import {
     TOGGLE_FORM,
-    ADD_ALL_MEMORIES
+    // Asynch types
+    GET_ALL_MEMORIES,
+    GET_MEMORY,
+    CREATE_MEMORY,
+    UPDATE_MEMORY,
+    DESTROY_MEMORY
 } from '../actions'
 
 const initialState = {
@@ -22,7 +27,7 @@ const initialState = {
 function memoryReducer(state = initialState, action) {
     console.log('about ot hit case!')
     switch (action.type) {
-        case  ADD_ALL_MEMORIES:
+        case  GET_ALL_MEMORIES:
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, ...action.payload]}
         case 'ADD_MEMORY':
