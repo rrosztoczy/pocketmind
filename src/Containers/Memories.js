@@ -12,14 +12,6 @@ const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const memoryAdapter = adapter(memoryEndpoint)
 
 class Memories extends React.Component {
-    //TODO: Set this state in redux store
-    state = {
-        new: false,
-        emotion: false,
-        thought: false,
-        stress: false,
-        anxiety: false
-    }
 
     submitMemory = (event) => {
         event.preventDefault()
@@ -27,6 +19,7 @@ class Memories extends React.Component {
     }
 
     getMemories = async () => {
+         // TODO: change to dispatch after reviewing fetch
         const memoriesFromApi = await memoryAdapter.getAll()
         this.setState({memories: memoriesFromApi}, () => console.log("state:", this.state))
     };
@@ -35,14 +28,17 @@ class Memories extends React.Component {
         this.getMemories()
     }
 
-    onClickNew = () => {
-        this.setState(prevState => ({new: !prevState.new}))
+    onClickNew = (event) => {
+         // change to dispatch?
+         event.persist()
+        this.props.toggleForm(event)
     }
 
     handleSelectMemoryType = (event) => {
+        // change to dispatch?
         event.persist()
         console.log("event value", event.target.value)
-        this.setState(prevState => ({[event.target.value]: !prevState[event.target.value]}))
+        this.props.toggleForm(event)
         console.log("state set")
     }
 
@@ -82,14 +78,14 @@ class Memories extends React.Component {
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large' onClick={this.onClickNew}>
+      <Button color='teal' fluid size='large' value='new' onClick={event => this.onClickNew(event)}>
               ADD A NEW MEMORY
             </Button>
-            <div>{this.state.new ? this.renderNewMemoryForm() : null}</div>
-            <div>{this.state.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
-            <div>{this.state.thought ? this.renderNewThoughtMemoryForm() : null}</div>
-            <div>{this.state.stress ? this.renderNewStressMemoryForm() : null}</div>
-            <div>{this.state.anxiety ? this.renderNewAnxietyMemoryForm() : null}</div>
+            <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
+            <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
+            <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : null}</div>
+            <div>{this.props.stress ? this.renderNewStressMemoryForm() : null}</div>
+            <div>{this.props.anxiety ? this.renderNewAnxietyMemoryForm() : null}</div>
       </Grid.Column>
     </Grid.Row>
 
@@ -117,14 +113,20 @@ class Memories extends React.Component {
         console.log("new state", state)
         return {
             memories: state.memories,
+            new: state.new,
+            emotion: state.emotion,
+            thought: state.thought,
+            stress: state.stress,
+            anxiety: state.anxiety,
             logged_in: state.logged_in
         };
     };
      
     const mapDispatchToProps = dispatch => {
-        console.log('about to send finction')
+        console.log('about to send function')
         return {
-            addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {} })
+            // addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {}}),
+            toggleForm: (event) => { dispatch({type: 'TOGGLE_FORM', payload: event.target.value}) }
         };
     };
 
