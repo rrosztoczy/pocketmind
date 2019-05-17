@@ -6,22 +6,23 @@ const adapter = (url) => {
         'Accept': 'application/json'
       }
 
-    const getAll = async (user, handleUser) => {
-        const resp = await fetch(url)
-        const jsonData = await resp.json()
-        console.log("json resp", jsonData)
-        user ? console.log("entered un", user.username, "entered pw", user.password) : console.log("hehe")
-        const userForLogin = user ? jsonData.find(userFromBe => (userFromBe.username === user.username && userFromBe.password === user.password)) : null
-        user ? console.log("found user", userForLogin.id) : console.log("hi")
-        userForLogin && handleUser ? handleUser(userForLogin) : console.log("hi")
-        return jsonData
-    }
+    const getAll = async (dispatch, action) => {
+        console.log('in the async... dispatch is', dispatch);
+        (async () => {
+            dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
+            console.log('started getting all data!')
+            const resp = await fetch(url)
+            const jsonData = await resp.json()
+            console.log('data from api', jsonData)
+            dispatch({type: action, payload: jsonData})
+        })();
+    };
 
     const getOne = async (id) => {
         const resp = await fetch(url + "/" + id)
         const jsonData = await resp.json()
         return jsonData
-    }
+    };
 
     const create = async (postBody, handleUser) => {
         const postConfig = {

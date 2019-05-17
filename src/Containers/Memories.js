@@ -8,6 +8,7 @@ import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
 import NewStressMemoryForm from '../Components/NewStressMemoryForm'
 import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
+import * as actions from '../actions'
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const memoryAdapter = adapter(memoryEndpoint)
 
@@ -18,32 +19,28 @@ class Memories extends React.Component {
         console.log("creating memory!", this.state)
     }
 
-    getMemories = async () => {
-         // TODO: change to dispatch after reviewing fetch
-        const memoriesFromApi = await memoryAdapter.getAll()
-        this.setState({memories: memoriesFromApi}, () => console.log("state:", this.state))
-    };
+    // getMemories = async () => {
+    //      // TODO: change to dispatch after reviewing fetch
+
+        // this.setState({memories: memoriesFromApi}, () => console.log("state:", this.state))
+    // };
 
     componentDidMount() {
-        this.getMemories()
+        console.log('about to get memories!')
+        this.props.fetchMemories()
+        // memoryAdapter.getAll()
+        // this.getMemories()
+        // this.props.getAllMemories()
     }
 
-    onClickNew = (event) => {
+    onFormButtonClick = (event) => {
          // change to dispatch?
-         event.persist()
-        this.props.toggleForm(event)
-    }
-
-    handleSelectMemoryType = (event) => {
-        // change to dispatch?
         event.persist()
-        console.log("event value", event.target.value)
         this.props.toggleForm(event)
-        console.log("state set")
     }
 
     renderNewMemoryForm() {
-        return <NewMemoryForm submitMemory={this.submitMemory} handleSelectMemoryType={this.handleSelectMemoryType} />
+        return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
     }
 
     renderNewEmotionMemoryForm() {
@@ -78,7 +75,7 @@ class Memories extends React.Component {
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large' value='new' onClick={event => this.onClickNew(event)}>
+      <Button color='teal' fluid size='large' value='new' onClick={event => this.onFormButtonClick(event)}>
               ADD A NEW MEMORY
             </Button>
             <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
@@ -122,12 +119,13 @@ class Memories extends React.Component {
         };
     };
      
-    const mapDispatchToProps = dispatch => {
-        console.log('about to send function')
-        return {
-            // addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {}}),
-            toggleForm: (event) => { dispatch({type: 'TOGGLE_FORM', payload: event.target.value}) }
-        };
-    };
+    // const mapDispatchToProps = dispatch => {
+    //     console.log('about to send function')
+    //     return {
+    //         // addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {}}),
+   
+    //         // getAllMemories: (dispatch) => {  memoryAdapter.getAll(dispatch) }
+    //     };
+    // };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Memories);
+export default connect(mapStateToProps, actions)(Memories);
