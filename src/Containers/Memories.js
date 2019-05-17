@@ -55,16 +55,51 @@ class Memories extends React.Component {
         return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
+    renderMemoryHeaders() {
+        return (<Grid.Row columns={6}>
+            <Grid.Column>
+            <p>Memory Id</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Time of Memory</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Emotions</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Thoughts</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Stress Level</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Anxiety Level</p>
+            </Grid.Column>
+          </Grid.Row>)
+    }
+
     renderMemories() {
+        // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
         console.log("in DA FUNK")
         return this.props.memories.map(memory => {
-            console.log("in DA FUNK")
-            return (<Grid.Row columns={2}>
+            return (<Grid.Row key={memory.id} columns={6}>
               <Grid.Column>
-              <p>{memory.id}</p>
+              <p>[this is memory]{memory.id}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.timeOfMemory}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.emotionMemories.map(emotionMemory => emotionMemory.emotion)}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent)}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{memory.stressLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.anxietyLevel}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -112,6 +147,7 @@ class Memories extends React.Component {
             </Header>
       </Grid.Column>
     </Grid.Row>
+    {this.renderMemoryHeaders()}
     {this.renderMemories()}
   </Grid>
   )
