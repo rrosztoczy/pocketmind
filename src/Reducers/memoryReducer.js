@@ -1,3 +1,12 @@
+import {
+    TOGGLE_FORM,
+    // Asynch types
+    GET_ALL_MEMORIES,
+    GET_MEMORY,
+    CREATE_MEMORY,
+    UPDATE_MEMORY,
+    DESTROY_MEMORY
+} from '../actions'
 
 const initialState = {
     // Data from DB
@@ -18,6 +27,9 @@ const initialState = {
 function memoryReducer(state = initialState, action) {
     console.log('about ot hit case!')
     switch (action.type) {
+        case  GET_ALL_MEMORIES:
+        console.log('adding memory! hit add')
+        return {...state, memories: [...state.memories, ...action.payload]}
         case 'ADD_MEMORY':
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, action.payload]}
@@ -33,7 +45,7 @@ function memoryReducer(state = initialState, action) {
         case 'ADD_THOUGHT_MEMORY':
         console.log('adding thought! hit add')
         return {...state, thoughtMemories: [...state.thoughtMemories, action.payload]}
-        case 'TOGGLE_FORM':
+        case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}
         default: 
