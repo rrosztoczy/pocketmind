@@ -26,11 +26,7 @@ class Memories extends React.Component {
     // };
 
     componentDidMount() {
-        console.log('about to get memories!')
         this.props.getAllMemories()
-        // memoryAdapter.getAll()
-        // this.getMemories()
-        // this.props.getAllMemories()
     }
 
     onFormButtonClick = (event) => {
@@ -58,6 +54,29 @@ class Memories extends React.Component {
     renderNewAnxietyMemoryForm() {
         return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
     }
+
+    renderMemories() {
+        console.log("in DA FUNK")
+        return this.props.memories.map(memory => {
+            console.log("in DA FUNK")
+            return (<Grid.Row columns={2}>
+              <Grid.Column>
+              <p>{memory.id}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.stressLevel}</p>
+              </Grid.Column>
+            </Grid.Row>)
+        })
+
+    }
+//     <Grid.Row columns={1}>
+//     <Grid.Column>
+//     {/* Fetch memories, put them in a container in this bottom grid... */}
+//     {/* First thing is first - fetch them and put them in state here... then get into redux */}
+// {/* Memory list here */}
+//     </Grid.Column>
+//   </Grid.Row>
 
 
 
@@ -93,14 +112,7 @@ class Memories extends React.Component {
             </Header>
       </Grid.Column>
     </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      {/* Fetch memories, put them in a container in this bottom grid... */}
-      {/* First thing is first - fetch them and put them in state here... then get into redux */}
-{/* Memory list here */}
-      </Grid.Column>
-    </Grid.Row>
+    {this.renderMemories()}
   </Grid>
   )
 }
