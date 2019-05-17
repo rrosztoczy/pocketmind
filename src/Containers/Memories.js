@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Grid, Image, Button, Header } from 'semantic-ui-react'
+import { Grid, Image, Button, Header, Icon } from 'semantic-ui-react'
 // Remove into redux
 import adapter from '../adapter.js'
 import NewMemoryForm from '../Components/NewMemoryForm'
@@ -55,8 +55,13 @@ class Memories extends React.Component {
         return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
+    destroyMemory(memoryId) {
+        console.log("clicked!")
+        this.props.destroyMemory(memoryId)
+    }
+
     renderMemoryHeaders() {
-        return (<Grid.Row columns={6}>
+        return (<Grid.Row columns={8}>
             <Grid.Column>
             <p>Memory Id</p>
             </Grid.Column>
@@ -75,14 +80,19 @@ class Memories extends React.Component {
             <Grid.Column>
             <p>Anxiety Level</p>
             </Grid.Column>
+            <Grid.Column>
+              <p>Edit</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>Delete</p>
+              </Grid.Column>
           </Grid.Row>)
     }
 
     renderMemories() {
         // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
-        console.log("in DA FUNK")
         return this.props.memories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={6}>
+            return (<Grid.Row key={memory.id} columns={8}>
               <Grid.Column>
               <p>[this is memory]{memory.id}</p>
               </Grid.Column>
@@ -100,6 +110,12 @@ class Memories extends React.Component {
               </Grid.Column>
               <Grid.Column>
               <p>{memory.anxietyLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+                <Button icon='edit outline'/>
+              </Grid.Column>
+              <Grid.Column>
+              <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
