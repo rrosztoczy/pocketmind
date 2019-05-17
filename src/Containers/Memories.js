@@ -2,15 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Image, Button, Header, Icon } from 'semantic-ui-react'
 // Remove into redux
-import adapter from '../adapter.js'
+// import adapter from '../adapter.js'
 import NewMemoryForm from '../Components/NewMemoryForm'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
 import NewStressMemoryForm from '../Components/NewStressMemoryForm'
 import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import * as actions from '../actions'
-const memoryEndpoint = "http://localhost:3000/api/v1/memories"
-const memoryAdapter = adapter(memoryEndpoint)
+// const memoryEndpoint = "http://localhost:3000/api/v1/memories"
+// const memoryAdapter = adapter(memoryEndpoint)
 
 class Memories extends React.Component {
 
@@ -100,10 +100,10 @@ class Memories extends React.Component {
               <p>{memory.timeOfMemory}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.emotionMemories.map(emotionMemory => emotionMemory.emotion)}</p>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent)}</p>
+              <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{memory.stressLevel}</p>

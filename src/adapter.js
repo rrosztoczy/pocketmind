@@ -34,6 +34,7 @@ const adapter = (url) => {
                 headers: headers,
                 body: JSON.stringify(postBody)
             }
+            console.log("post body", postBody)
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, postConfig)

@@ -1,8 +1,15 @@
 
 import React from 'react'
+import { connect } from 'react-redux';
 import { Card, Button } from 'semantic-ui-react'
+import * as actions from '../actions'
 
-  export default class NewMemoryForm extends React.Component {
+class NewMemoryForm extends React.Component {
+
+    createMemory(memory) {
+        console.log("About to create memory!", memory)
+        this.props.createMemory(memory)
+    }
 
     render() {
       return (
@@ -35,7 +42,7 @@ import { Card, Button } from 'semantic-ui-react'
               Anxiety
             </Button>
           </div>
-          <Button basic color='grey' onClick={event => this.props.submitMemory(event)} value='remember'>
+          <Button basic color='grey' onClick={() => this.createMemory(this.props.memory)} value='remember'>
               Remember
             </Button>
         </Card.Content>
@@ -43,19 +50,15 @@ import { Card, Button } from 'semantic-ui-react'
       )
     }
 
-    // const mapStateToProps = state => {
-    //     console.log("new state", state)
-    //     return {
-    //         memories: state.memories,
-    //         logged_in: state.logged_in
-    //     };
-    // };
-     
-    // const mapDispatchToProps = dispatch => {
-    //     console.log('about to send finction')
-    //     return {
-    //         addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {} })
-    //     };
-    // };
-
 }
+
+const mapStateToProps = state => {
+    console.log("new state", state)
+    return {
+        memories: state.memories,
+        memory: state.memory,
+        logged_in: state.logged_in
+    };
+};
+
+export default connect(mapStateToProps, actions)(NewMemoryForm)
