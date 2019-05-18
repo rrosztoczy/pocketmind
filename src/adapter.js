@@ -8,6 +8,7 @@ const adapter = (url) => {
 
     const getAll = async (dispatch, action) => {
         (async () => {
+            console.log("in the async")
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url)
@@ -33,6 +34,7 @@ const adapter = (url) => {
                 headers: headers,
                 body: JSON.stringify(postBody)
             }
+            console.log("post body", postBody)
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, postConfig)
@@ -65,8 +67,8 @@ const adapter = (url) => {
             }
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url + "/" + id, postConfig)
-            const jsonData = await resp.json()
-            dispatch({type: action, payload: jsonData})
+            // const jsonData = await resp.json()
+            dispatch({type: action, payload: id})
         })();
     }
 

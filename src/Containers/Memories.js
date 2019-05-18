@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Grid, Image, Button, Header } from 'semantic-ui-react'
+import { Grid, Image, Button, Header, Icon } from 'semantic-ui-react'
 // Remove into redux
-import adapter from '../adapter.js'
+// import adapter from '../adapter.js'
 import NewMemoryForm from '../Components/NewMemoryForm'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
 import NewStressMemoryForm from '../Components/NewStressMemoryForm'
 import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import * as actions from '../actions'
-const memoryEndpoint = "http://localhost:3000/api/v1/memories"
-const memoryAdapter = adapter(memoryEndpoint)
+// const memoryEndpoint = "http://localhost:3000/api/v1/memories"
+// const memoryAdapter = adapter(memoryEndpoint)
 
 class Memories extends React.Component {
 
@@ -55,16 +55,67 @@ class Memories extends React.Component {
         return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
-    renderMemories() {
-        console.log("in DA FUNK")
-        return this.props.memories.map(memory => {
-            console.log("in DA FUNK")
-            return (<Grid.Row columns={2}>
+    destroyMemory(memoryId) {
+        console.log("clicked!")
+        this.props.destroyMemory(memoryId)
+    }
+
+    renderMemoryHeaders() {
+        return (<Grid.Row columns={8}>
+            <Grid.Column>
+            <p>Memory Id</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Time of Memory</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Emotions</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Thoughts</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Stress Level</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Anxiety Level</p>
+            </Grid.Column>
+            <Grid.Column>
+              <p>Edit</p>
+              </Grid.Column>
               <Grid.Column>
-              <p>{memory.id}</p>
+              <p>Delete</p>
+              </Grid.Column>
+          </Grid.Row>)
+    }
+
+    renderMemories() {
+        // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
+        return this.props.memories.map(memory => {
+            return (<Grid.Row key={memory.id} columns={8}>
+              <Grid.Column>
+              <p>[this is memory]{memory.id}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.timeOfMemory}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{memory.stressLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.anxietyLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+                <Button icon='edit outline'/>
+              </Grid.Column>
+              <Grid.Column>
+              <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -112,6 +163,7 @@ class Memories extends React.Component {
             </Header>
       </Grid.Column>
     </Grid.Row>
+    {this.renderMemoryHeaders()}
     {this.renderMemories()}
   </Grid>
   )
