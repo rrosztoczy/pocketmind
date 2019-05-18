@@ -32,7 +32,7 @@ const adapter = (url) => {
             const postConfig = {
                 method: "POST",
                 headers: headers,
-                body: JSON.stringify(postBody)
+                body: JSON.stringify({...postBody, userId: 1})
             }
             console.log("post body", postBody)
             // Should i do a loading or something on this?

@@ -6,7 +6,15 @@ import * as actions from '../actions'
 
 class NewMemoryForm extends React.Component {
 
+    formatNestedAttributes(memory) {
+        console.log("hash before", memory)
+        let nestedFormatMemory = {...memory}
+        // turn array into nested hash here
+        console.log("hash after", nestedFormatMemory)
+    }
+
     createMemory(memory) {
+        // transform arrays of has_many records to hashes for ruby
         console.log("About to create memory!", memory)
         this.props.createMemory(memory)
     }
