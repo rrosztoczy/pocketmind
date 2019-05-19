@@ -29,12 +29,21 @@ const adapter = (url) => {
 
     const create = async (dispatch, action, postBody) => {
         (async () => {
+
+            // format emotion and thought memories in the post body
+            // create a copy of the body, replace the thought and emotion memory keys with hashes built from their arrays
+            // const jsonPostBody = {...postBody}
+            // const jsonEmotionMemories = jsonPostBody.emotionMemories.forEach((emotionMemory, index) => {[index]: emotionMemory})
+            // const jsonThoughtMemories = jsonPostBody.thoughtMemories.forEach((thoughtMemory, index) => {[index]: thoughtMemory})
+            // {...jsonPostBody, emotionMemories: jsonEmotionMemories}
+            // {...jsonPostBody, thoughtMemories: jsonThoughtMemories}
             const postConfig = {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify({...postBody, userId: 1})
             }
             console.log("post body", postBody)
+            console.log("json post body", postBody)
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, postConfig)
