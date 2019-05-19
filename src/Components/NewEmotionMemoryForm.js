@@ -7,7 +7,7 @@ class NewEmotionMemoryForm extends React.Component {
 
 
     state = {
-            emotion: "",
+            emotion_id: "",
             intensity: 5,
             pleasure: 5 
     }
@@ -24,7 +24,7 @@ class NewEmotionMemoryForm extends React.Component {
       return (
         <Form onSubmit={(event) => this.handleSubmit(event)}>
           <Form.Group widths='equal'>
-            <Form.Input onChange={this.handleChange} fluid label='Emotion' placeholder='Emotion' name="emotion" value={this.state.emotion ? this.state.emotion : ""} />
+            <Form.Input onChange={this.handleChange} fluid label='Emotion' placeholder='Emotion' name="emotion_id" value={this.state.emotion_id ? this.state.emotion_id : ""} />
             {/* Figure out selection value */}
             <Form.Input onChange={this.handleChange} fluid label='Intensity' placeholder='Intensity' name="intensity" value={this.state.intensity ? this.state.intensity : ""} />
           </Form.Group>
