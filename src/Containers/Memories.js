@@ -35,6 +35,11 @@ class Memories extends React.Component {
         this.props.toggleForm(event)
     }
 
+    onEditButtonClick = (event) => {
+        event.persist()
+        this.props.toggleForm(event)
+    }
+
     renderNewMemoryForm() {
         return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
     }
@@ -61,7 +66,7 @@ class Memories extends React.Component {
     }
 
     renderMemoryHeaders() {
-        return (<Grid.Row columns={8}>
+        return (<Grid.Row columns={7}>
             <Grid.Column>
             <p>Memory Id</p>
             </Grid.Column>
@@ -80,9 +85,6 @@ class Memories extends React.Component {
             <Grid.Column>
             <p>Anxiety Level</p>
             </Grid.Column>
-            <Grid.Column>
-              <p>Edit</p>
-              </Grid.Column>
               <Grid.Column>
               <p>Delete</p>
               </Grid.Column>
@@ -92,7 +94,7 @@ class Memories extends React.Component {
     renderMemories() {
         // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
         return this.props.memories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={8}>
+            return (<Grid.Row key={memory.id} columns={7}>
               <Grid.Column>
               <p>[this is memory]{memory.id}</p>
               </Grid.Column>
@@ -112,7 +114,34 @@ class Memories extends React.Component {
               <p>{memory.anxietyLevel}</p>
               </Grid.Column>
               <Grid.Column>
-                <Button icon='edit outline'/>
+              <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
+              </Grid.Column>
+            </Grid.Row>)
+        })
+
+    }
+
+    renderEditForms() {
+        // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
+        return this.props.memories.map(memory => {
+            return (<Grid.Row key={memory.id} columns={7}>
+              <Grid.Column>
+              <p>Editing{memory.id}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.timeOfMemory}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.stressLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.anxietyLevel}</p>
               </Grid.Column>
               <Grid.Column>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
@@ -145,8 +174,11 @@ class Memories extends React.Component {
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large' value='new' onClick={event => this.onFormButtonClick(event)}>
+      <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
               ADD A NEW MEMORY
+            </Button>
+            <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
+              EDIT A NEW MEMORY
             </Button>
             <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
             <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
@@ -164,7 +196,7 @@ class Memories extends React.Component {
       </Grid.Column>
     </Grid.Row>
     {this.renderMemoryHeaders()}
-    {this.renderMemories()}
+    {this.props.edit ? this.renderEditForms() : this.renderMemories()}
   </Grid>
   )
 }

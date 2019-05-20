@@ -6,8 +6,20 @@ import * as actions from '../actions'
 
 class NewMemoryForm extends React.Component {
 
+    // formatNestedAttributes(memory) {
+    //     const jsonPostBody = {...memory}
+    //     const jsonEmotionMemories = jsonPostBody.emotionMemories.forEach((emotionMemory, index) => {[index]: emotionMemory})
+    //     const jsonThoughtMemories = jsonPostBody.thoughtMemories.forEach((thoughtMemory, index) => {[index]: thoughtMemory})
+    //     {...jsonPostBody, emotionMemories: jsonEmotionMemories}
+    //     {...jsonPostBody, thoughtMemories: jsonThoughtMemories}
+    //     console.log("memory", memory)
+    //     console.log("formatted memory", jsonPostBody)
+    // }
+
     createMemory(memory) {
-        console.log("About to create memory!", memory)
+        // transform arrays of has_many records to hashes for ruby
+        // console.log("About to create memory!", memory)
+        // const formattedMemory = this.formatNestedAttributes(memory)
         this.props.createMemory(memory)
     }
 
