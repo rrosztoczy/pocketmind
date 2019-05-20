@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Grid, Image, Button, Header, Icon } from 'semantic-ui-react'
+import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 // Remove into redux
 // import adapter from '../adapter.js'
 import NewMemoryForm from '../Components/NewMemoryForm'
@@ -121,16 +121,33 @@ class Memories extends React.Component {
 
     }
 
+
+    state = {
+        memoryId: "",
+        timeOfMemory: "",
+        stressLevel: 5,
+        anxietyLevel: 5 
+}
+// TODO: Set state to have the data for a new emotion memory
+
+handleSubmitEdit = (event) => {
+    event.preventDefault()
+    this.props.dispatch({type: 'EDIT_MEMORY', payload: this.state })
+}
+
+handleChange = (event) => this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state))
+
     renderEditForms() {
-        // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
+        // Need to toggle input jsx filled with value form state, fully controlled
         return this.props.memories.map(memory => {
             return (<Grid.Row key={memory.id} columns={7}>
               <Grid.Column>
               <p>Editing{memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.timeOfMemory}</p>
+              <Input focus value={memory.timeOfMemory} name='timeOfMemory' onChange={this.handleChange}/>
               </Grid.Column>
+              {/* Edit emotions and thoughts in their own sections */}
               <Grid.Column>
               <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
               </Grid.Column>
@@ -138,10 +155,10 @@ class Memories extends React.Component {
               <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.stressLevel}</p>
+              <Input focus value={memory.stressLevel} name='stressLevel' onChange={this.handleChange}/>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.anxietyLevel}</p>
+              <Input focus value={memory.anxietyLevel} name='anxietyLevel' onChange={this.handleChange}/>
               </Grid.Column>
               <Grid.Column>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
@@ -158,7 +175,17 @@ class Memories extends React.Component {
 //     </Grid.Column>
 //   </Grid.Row>
 
+    renderEditButton() {
+        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
+        EDIT A NEW MEMORY
+      </Button>
+    }
 
+    renderSubmitEditButton() {
+        return <Button color='teal' fluid size='large' value='submitEdit' name='submitEdit' onClick={event => this.handleSubmitEdit(event)}>
+        SUBMIT EDITS
+      </Button>
+    }
 
     render() {
         console.log("props", this.props)
@@ -177,9 +204,7 @@ class Memories extends React.Component {
       <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
               ADD A NEW MEMORY
             </Button>
-            <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
-              EDIT A NEW MEMORY
-            </Button>
+            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
             <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
             <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
             <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : null}</div>
