@@ -17,6 +17,7 @@ const initialState = {
     thoughtMemoriesAttributes: [],
     // For displaying forms
     new: false,
+    edit: false,
     emotion: false,
     thought: false,
     stress: false,
