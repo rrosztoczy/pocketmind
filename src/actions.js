@@ -27,6 +27,14 @@ export function addEmotionMemory(payload) {
 export function addThoughtMemory(payload) {
     return {type: 'ADD_THOUGHT_MEMORY', payload: payload}
 }
+
+export function addStressToMemory(payload) {
+    return {type: 'ADD_STRESS_TO_MEMORY', payload: payload}
+}
+
+export function addAnxietyToMemory(payload) {
+    return {type: 'ADD_ANXIETY_TO_MEMORY', payload: payload}
+}
  
 // export function handleSubmitEdit(event, payload) {
 //     event.preventDefault()

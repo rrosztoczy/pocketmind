@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react'
+import * as actions from '../actions'
 
 class NewAnxietyMemoryForm extends React.Component {
 
@@ -14,7 +15,8 @@ class NewAnxietyMemoryForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addAnxietyMemory(this.state)
+        this.props.addAnxietyToMemory(this.state)
+        this.props.toggleForm({target: {value: 'anxiety'}})
     }
 
     render() {
@@ -27,12 +29,7 @@ class NewAnxietyMemoryForm extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    console.log('about to send finction')
-    return {
-        addAnxietyMemory: newAnxietyMemory => dispatch({type: 'ADD_ANXIETY_MEMORY', payload: newAnxietyMemory })
-    };
-};
+
 
 // Keep as mapDispatch to show both methods
-export default connect(null, mapDispatchToProps)(NewAnxietyMemoryForm)
+export default connect(null, actions)(NewAnxietyMemoryForm)
