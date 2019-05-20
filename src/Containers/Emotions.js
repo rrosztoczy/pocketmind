@@ -3,16 +3,11 @@ import { connect } from 'react-redux';
 import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 // Remove into redux
 // import adapter from '../adapter.js'
-import NewMemoryForm from '../Components/NewMemoryForm'
-import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
-import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
-import NewStressMemoryForm from '../Components/NewStressMemoryForm'
-import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import * as actions from '../actions'
 // const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 // const memoryAdapter = adapter(memoryEndpoint)
 
-class Memories extends React.Component {
+class Emotions extends React.Component {
 
     submitMemory = (event) => {
         event.preventDefault()
@@ -273,4 +268,4 @@ handleMultiEditChange = (event, memoryId) => {
     //     };
     // };
 
-export default connect(mapStateToProps, actions)(Memories);
+export default connect(mapStateToProps, actions)(Emotions);

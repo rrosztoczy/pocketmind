@@ -3,97 +3,50 @@ import { connect } from 'react-redux';
 import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 // Remove into redux
 // import adapter from '../adapter.js'
-import NewMemoryForm from '../Components/NewMemoryForm'
-import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
-import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
-import NewStressMemoryForm from '../Components/NewStressMemoryForm'
-import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import * as actions from '../actions'
 // const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 // const memoryAdapter = adapter(memoryEndpoint)
 
-class Memories extends React.Component {
+class ThoughtsMemories extends React.Component {
 
-    submitMemory = (event) => {
-        event.preventDefault()
-        console.log("creating memory!", this.state)
-    }
-
-    // getMemories = async () => {
-    //      // TODO: change to dispatch after reviewing fetch
-
-        // this.setState({memories: memoriesFromApi}, () => console.log("state:", this.state))
-    // };
 
     componentDidMount() {
-        this.props.getAllMemories()
+        this.props.getAllThoughts()
     }
 
-    onFormButtonClick = (event) => {
-         // change to dispatch?
-        event.persist()
-        this.props.toggleForm(event)
-    }
 
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
     }
 
-    renderNewMemoryForm() {
-        return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
-    }
-
-    renderNewEmotionMemoryForm() {
-        return <NewEmotionMemoryForm submitEmotionMemory={this.submitEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    renderNewThoughtMemoryForm() {
-        return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    renderNewStressMemoryForm() {
-        return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    renderNewAnxietyMemoryForm() {
-        return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    destroyMemory(memoryId) {
+    destroyThoughtMemory(thoughtMemoryId) {
         console.log("clicked!")
-        this.props.destroyMemory(memoryId)
+        this.props.destroyThoughtMemory(memoryId)
     }
 
-    renderMemoryHeaders() {
-        return (<Grid.Row columns={6}>
-            <Grid.Column>
-            <p>Memory Id</p>
-            </Grid.Column>
+    renderThoughtHeaders() {
+        return (<Grid.Row columns={4}>
             <Grid.Column>
             <p>Time</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Emotions</p>
+            <p>Thought Content</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Thoughts</p>
+            <p>Thought Reason</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Stress Level</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Anxiety Level</p>
+            <p>Thought Object</p>
             </Grid.Column>
           </Grid.Row>)
     }
 
-    renderMemories() {
-        // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
-        const sortedMemories = [...this.props.memories].sort(function(a,b) {
+    renderThoughts() {
+        const sortedThoughtMemories = [...this.props.thoughtMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
-        return sortedMemories.map(memory => {
+        return sortedThoughtMemories.map(memory => {
             return (<Grid.Row key={memory.id} columns={6}>
               <Grid.Column>
               <p>[this is memory]{memory.id}</p>
@@ -253,14 +206,8 @@ handleMultiEditChange = (event, memoryId) => {
     const mapStateToProps = state => {
         console.log("new state", state)
         return {
-            memories: state.memories,
-            edit: state.edit,
-            new: state.new,
-            emotion: state.emotion,
-            thought: state.thought,
-            stress: state.stress,
-            anxiety: state.anxiety,
-            logged_in: state.logged_in
+            thoughtMemories: state.thoughtMemories,
+            editThoughts: state.editThoughts
         };
     };
      
@@ -273,4 +220,4 @@ handleMultiEditChange = (event, memoryId) => {
     //     };
     // };
 
-export default connect(mapStateToProps, actions)(Memories);
+export default connect(mapStateToProps, actions)(ThoughtMemories);

@@ -12,7 +12,8 @@ import {
 const initialState = {
     // Data from DB
     memories: [],
-    emotions: [],
+    emotionMemories: [],
+    thoughtMemories: [],
     // For CRUD
     memory: {    
         emotionMemoriesAttributes: [],
@@ -26,6 +27,8 @@ const initialState = {
     thought: false,
     stress: false,
     anxiety: false,
+    editThoughts: false,
+    editEmotions: false,
     logged_in: false
 }
 
