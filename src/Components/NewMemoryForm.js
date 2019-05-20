@@ -37,11 +37,11 @@ class NewMemoryForm extends React.Component {
         <Card.Content extra>
           <div className='ui two buttons'>
             <Button basic color='teal' onClick={event => this.props.onFormButtonClick(event)} value='emotion'>
-              Emotion
+              Add an Emotion
             </Button>
             <Button.Or />
             <Button basic color='blue' onClick={event => this.props.onFormButtonClick(event)} value='thought'>
-              Thought
+              Add a Thought
             </Button>
           </div>
           <Card.Description>
@@ -49,15 +49,15 @@ class NewMemoryForm extends React.Component {
           </Card.Description>
           <div className='ui two buttons'>
             <Button basic color='teal' onClick={event => this.props.onFormButtonClick(event)} value='stress'>
-              Stress
+              Add Stress
             </Button>
             <Button.Or />
             <Button basic color='blue' onClick={event => this.props.onFormButtonClick(event)} value='anxiety'>
-              Anxiety
+              Add Anxiety
             </Button>
           </div>
           <Button basic color='grey' onClick={(event) => this.createMemory(event, this.props.memory)} value='new'>
-              Remember
+              Save These Memories!
             </Button>
         </Card.Content>
       </Card>

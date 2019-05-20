@@ -23,6 +23,10 @@ export function toggleForm(event) {
 export function addEmotionMemory(payload) {
     return {type: 'ADD_EMOTION_MEMORY', payload: payload}
 }
+
+export function addThoughtMemory(payload) {
+    return {type: 'ADD_THOUGHT_MEMORY', payload: payload}
+}
  
 // export function handleSubmitEdit(event, payload) {
 //     event.preventDefault()

@@ -32,7 +32,7 @@ class NewEmotionMemoryForm extends React.Component {
 
     render() {
       return (
-        <Form onSubmit={(event) => this.handleSubmit(event)} value='emotion'>
+        <Form onSubmit={(event) => this.handleSubmit(event)}>
           <Form.Group widths='equal'>
           <EmotionSelector onChange={this.handleSelect} emotions={this.props.emotions} fluid label='Emotion' placeholder='Emotion' name="emotion_id" value={this.state.emotion_id ? this.state.emotion_id : ""} />
             {/* Figure out selection value */}

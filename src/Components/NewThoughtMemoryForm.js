@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react'
+import * as actions from '../actions'
 
 class NewThoughtMemoryForm extends React.Component {
 
@@ -17,7 +18,8 @@ class NewThoughtMemoryForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.dispatch({type: 'ADD_THOUGHT_MEMORY', payload: this.state})
+        this.props.addThoughtMemory(this.state)
+        this.props.toggleForm({target: {value: 'thought'}})
     }
 
     render() {
@@ -33,4 +35,4 @@ class NewThoughtMemoryForm extends React.Component {
     }
 }
 
-export default connect()(NewThoughtMemoryForm)
+export default connect(null, actions)(NewThoughtMemoryForm)

@@ -14,7 +14,9 @@ const initialState = {
     memories: [],
     emotions: [],
     // For CRUD
-    memory: {},
+    memory: {    
+        emotionMemoriesAttributes: [],
+        thoughtMemoriesAttributes: []},
     emotionMemoriesAttributes: [],
     thoughtMemoriesAttributes: [],
     // For displaying forms
@@ -62,10 +64,10 @@ function memoryReducer(state = initialState, action) {
           return {...state, memory: {...state.memory, ...action.payload}}
         case 'ADD_EMOTION_MEMORY':
         console.log('adding emotion! hit add')
-        return {...state, memory: {...state.memory, emotionMemoriesAttributes: [...state.emotionMemoriesAttributes, action.payload]}}
+        return {...state, memory: {...state.memory, emotionMemoriesAttributes: [...state.memory.emotionMemoriesAttributes, action.payload]}}
         case 'ADD_THOUGHT_MEMORY':
         console.log('adding thought! hit add')
-        return {...state, memory: {...state.memory, thoughtMemoriesAttributes: [...state.thoughtMemoriesAttributes, action.payload]}}
+        return {...state, memory: {...state.memory, thoughtMemoriesAttributes: [...state.memory.thoughtMemoriesAttributes, action.payload]}}
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}
