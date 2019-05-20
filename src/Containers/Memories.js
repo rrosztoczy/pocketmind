@@ -66,12 +66,12 @@ class Memories extends React.Component {
     }
 
     renderMemoryHeaders() {
-        return (<Grid.Row columns={7}>
+        return (<Grid.Row columns={6}>
             <Grid.Column>
             <p>Memory Id</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Time of Memory</p>
+            <p>Time</p>
             </Grid.Column>
             <Grid.Column>
             <p>Emotions</p>
@@ -85,21 +85,21 @@ class Memories extends React.Component {
             <Grid.Column>
             <p>Anxiety Level</p>
             </Grid.Column>
-              <Grid.Column>
-              <p>Delete</p>
-              </Grid.Column>
           </Grid.Row>)
     }
 
     renderMemories() {
         // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
-        return this.props.memories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={7}>
+        const sortedMemories = [...this.props.memories].sort(function(a,b) {
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        });
+        return sortedMemories.map(memory => {
+            return (<Grid.Row key={memory.id} columns={6}>
               <Grid.Column>
               <p>[this is memory]{memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.timeOfMemory}</p>
+              <p>{memory.createdAt}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
@@ -112,9 +112,6 @@ class Memories extends React.Component {
               </Grid.Column>
               <Grid.Column>
               <p>{memory.anxietyLevel}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -147,13 +144,16 @@ handleMultiEditChange = (event, memoryId) => {
 
     renderEditForms() {
         // Need to toggle input jsx filled with value form state, fully controlled
-        return this.props.memories.map(memory => {
+        const sortedMemories = [...this.props.memories].sort(function(a,b) {
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        });
+        return sortedMemories.map(memory => {
             return (<Grid.Row key={memory.id} columns={7}>
               <Grid.Column>
               <p>Editing{memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].timeOfMemory ? this.state.editedMemories[memory.id].timeOfMemory : memory.timeOfMemory} name='timeOfMemory' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].createdAt ? this.state.editedMemories[memory.id].createdAt : memory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               {/* Edit emotions and thoughts in their own sections */}
               <Grid.Column>
