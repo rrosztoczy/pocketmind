@@ -42,10 +42,10 @@ function memoryReducer(state = initialState, action) {
         // Go through memories and change the values of each updated on based on id
         // Find the index of the memory to be updated
         // Replace that memory with the payload edited memory
-        const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.memoryId)
+        const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.id)
         // const memoryForUpdate = state.memories[memoryForUpdateIndex]
         // const updatedMemory = {...memoryForUpdate, action.payload.}
-        // console.log('memory id is', action.payload.memoryId,' and index is', memoryForUpdateIndex)
+        console.log('memory id is', action.payload.id,' and index is', memoryForUpdateIndex)
         
         return {...state, memories: [...state.memories.slice(0, memoryForUpdateIndex), action.payload, ...state.memories.slice(memoryForUpdateIndex + 1)]}
         case 'ADD_MEMORY':
