@@ -47,7 +47,7 @@ function memoryReducer(state = initialState, action) {
         // const updatedMemory = {...memoryForUpdate, action.payload.}
         // console.log('memory id is', action.payload.memoryId,' and index is', memoryForUpdateIndex)
         
-        return {...state, memories: [...state.memories.slice(memoryForUpdateIndex), action.payload, ...state.memories.slice(memoryForUpdateIndex + 1, -1)]}
+        return {...state, memories: [...state.memories.slice(0, memoryForUpdateIndex), action.payload, ...state.memories.slice(memoryForUpdateIndex + 1)]}
         case 'ADD_MEMORY':
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, action.payload]}

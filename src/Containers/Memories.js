@@ -190,10 +190,11 @@ handleMultiEditChange = (event, memoryId) => {
       </Button>
     }
 
-    handleSubmitEdit() {
+    handleSubmitEdit = () => {
         // Need to go thorugh state and hit update_memory for each memory that was changed
-        const editedMemoryArray = this.props.editedMemories.keys()
-        editedMemoryArray.forEach(editedMemoryId => this.props.updateMemory(editedMemoryId, this.props.editedMemories[editedMemoryId]))
+        console.log("state", this.state)
+        const editedMemoryArray = Object.keys(this.state.editedMemories)
+        editedMemoryArray.forEach(editedMemoryId => this.props.updateMemory(editedMemoryId, this.state.editedMemories[editedMemoryId]))
     }
 
     renderSubmitEditButton() {
