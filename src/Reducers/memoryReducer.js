@@ -2,6 +2,7 @@ import {
     TOGGLE_FORM,
     // Asynch types
     GET_ALL_MEMORIES,
+    GET_ALL_EMOTIONS,
     GET_MEMORY,
     CREATE_MEMORY,
     UPDATE_MEMORY,
@@ -11,6 +12,7 @@ import {
 const initialState = {
     // Data from DB
     memories: [],
+    emotions: [],
     // For CRUD
     memory: {},
     emotionMemoriesAttributes: [],
@@ -28,8 +30,9 @@ const initialState = {
 function memoryReducer(state = initialState, action) {
     console.log('about ot hit case!')
     switch (action.type) {
+        case  GET_ALL_EMOTIONS:
+        return {...state, emotions: [...state.emotions, ...action.payload]}
         case  GET_ALL_MEMORIES:
-        console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, ...action.payload]}
         case  DESTROY_MEMORY:
         console.log('destroying memory! hit destroy')

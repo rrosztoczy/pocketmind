@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react'
+import EmotionSelector from './EmotionSelector'
 
 class NewEmotionMemoryForm extends React.Component {
 
@@ -25,6 +26,7 @@ class NewEmotionMemoryForm extends React.Component {
         <Form onSubmit={(event) => this.handleSubmit(event)}>
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Emotion' placeholder='Emotion' name="emotion_id" value={this.state.emotion_id ? this.state.emotion_id : ""} />
+            <EmotionSelector onChange={this.handleChange} fluid label='Emotion' placeholder='Emotion' name="emotion_id" value={this.state.emotion_id ? this.state.emotion_id : ""} />
             {/* Figure out selection value */}
             <Form.Input onChange={this.handleChange} fluid label='Intensity' placeholder='Intensity' name="intensity" value={this.state.intensity ? this.state.intensity : ""} />
           </Form.Group>
