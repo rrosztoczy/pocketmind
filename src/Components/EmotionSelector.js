@@ -11,9 +11,10 @@ componentDidMount() {
 }
     
 render() {
-    const emotionOptions = this.props.emotions.map((emotion) => ({key: emotion.emotion, value: emotion.emotion, flag: emotion.emotion, text: emotion.emotion}))
+    const emotionOptions = this.props.emotions.map((emotion) => ({key: emotion.id, value: emotion.id, flag: emotion.emotion, text: emotion.emotion}))
     return (
         <Dropdown
+        onChange={this.props.onChange}
         placeholder='How are you feeling?'
         fluid
         search
@@ -24,10 +25,6 @@ render() {
 }
 
 }
-  const mapStateToProps = state => {
-    return {
-        emotions: state.emotions
-    }
-}
+
   
-  export default connect(mapStateToProps, actions)(EmotionSelector)
+  export default connect(null, actions)(EmotionSelector)

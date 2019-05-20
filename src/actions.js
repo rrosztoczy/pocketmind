@@ -20,6 +20,10 @@ export function toggleForm(event) {
     return { type: TOGGLE_FORM, payload: event.target.value}
 }
 
+export function addEmotionMemory(payload) {
+    return {type: 'ADD_EMOTION_MEMORY', payload: payload}
+}
+ 
 // export function handleSubmitEdit(event, payload) {
 //     event.preventDefault()
 //     return {type: UPDATE_MEMORY, payload: payload }

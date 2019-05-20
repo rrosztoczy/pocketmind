@@ -91,7 +91,7 @@ class Memories extends React.Component {
     renderMemories() {
         // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
         const sortedMemories = [...this.props.memories].sort(function(a,b) {
-            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedMemories.map(memory => {
             return (<Grid.Row key={memory.id} columns={6}>
@@ -145,7 +145,7 @@ handleMultiEditChange = (event, memoryId) => {
     renderEditForms() {
         // Need to toggle input jsx filled with value form state, fully controlled
         const sortedMemories = [...this.props.memories].sort(function(a,b) {
-            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedMemories.map(memory => {
             return (<Grid.Row key={memory.id} columns={7}>
