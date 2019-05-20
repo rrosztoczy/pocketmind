@@ -206,6 +206,7 @@ class Memories extends React.Component {
         console.log("new state", state)
         return {
             memories: state.memories,
+            edit: state.edit,
             new: state.new,
             emotion: state.emotion,
             thought: state.thought,
