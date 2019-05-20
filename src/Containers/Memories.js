@@ -135,9 +135,14 @@ state = {
 }
 
 handleMultiEditChange = (event, memoryId) => {
+    // TODO: How to think about form state vs. app state when whole app is a form
+    // Current issue... when out of input into another it rerenders it as the old value
     event.persist()
     console.log('hanlding change!')
-    this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {[event.target.name]: event.target.value}}}), () => console.log('editing memories!', this.state))
+    // currently overwriting the full id dont want to waht to use the old one...
+    // if there is an id hash, copy it and add the new key or update it
+    // if no id hash, add it
+    this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {[event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
 
     renderEditForms() {
