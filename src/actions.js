@@ -17,6 +17,11 @@ export function toggleForm(event) {
     return { type: TOGGLE_FORM, payload: event.target.value}
 }
 
+// export function handleSubmitEdit(event, payload) {
+//     event.preventDefault()
+//     return {type: UPDATE_MEMORY, payload: payload }
+// }
+
 // Async action creators
 export function getAllMemories() {
   return dispatch => memoryAdapter.getAll(dispatch, GET_ALL_MEMORIES)

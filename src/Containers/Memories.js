@@ -122,20 +122,23 @@ class Memories extends React.Component {
     }
 
 
-    state = {
-        memoryId: "",
-        timeOfMemory: "",
-        stressLevel: 5,
-        anxietyLevel: 5 
-}
+
 // TODO: Set state to have the data for a new emotion memory
 
-handleSubmitEdit = (event) => {
-    event.preventDefault()
-    this.props.dispatch({type: 'EDIT_MEMORY', payload: this.state })
+// handleSubmitEdit = (event) => {
+//     event.preventDefault()
+//     this.props.dispatch({type: 'EDIT_MEMORY', payload: this.state })
+// }
+
+state = {
+    editedMemories: {}
 }
 
-handleChange = (event) => this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state))
+handleMultiEditChange = (event, memoryId) => {
+    event.persist()
+    console.log('hanlding change!')
+    this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {[event.target.name]: event.target.value}}}), () => console.log('editing memories!', this.state))
+}
 
     renderEditForms() {
         // Need to toggle input jsx filled with value form state, fully controlled
@@ -145,7 +148,7 @@ handleChange = (event) => this.setState({[event.target.name]: event.target.value
               <p>Editing{memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={memory.timeOfMemory} name='timeOfMemory' onChange={this.handleChange}/>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].timeOfMemory ? this.state.editedMemories[memory.id].timeOfMemory : memory.timeOfMemory} name='timeOfMemory' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               {/* Edit emotions and thoughts in their own sections */}
               <Grid.Column>
@@ -155,10 +158,10 @@ handleChange = (event) => this.setState({[event.target.name]: event.target.value
               <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={memory.stressLevel} name='stressLevel' onChange={this.handleChange}/>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].stressLevel ? this.state.editedMemories[memory.id].stressLevel : memory.stressLevel}  name='stressLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={memory.anxietyLevel} name='anxietyLevel' onChange={this.handleChange}/>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].anxietyLevel ? this.state.editedMemories[memory.id].anxietyLevel : memory.anxietyLevel}  name='anxietyLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               <Grid.Column>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
@@ -175,14 +178,20 @@ handleChange = (event) => this.setState({[event.target.name]: event.target.value
 //     </Grid.Column>
 //   </Grid.Row>
 
+
     renderEditButton() {
         return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
         EDIT A NEW MEMORY
       </Button>
     }
 
+    handleSubmitEdit() {
+        // Need to go thorugh state and hit update_memory for each memory that was changed
+        this.props.editedMemories.forEach(editedMemory => this.props.updateMemory(editedMemory.id, editedMemory))
+    }
+
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='submitEdit' name='submitEdit' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' fluid size='large' value='submitEdit' name='submitEdit' onClick={this.handleSubmitEdit}>
         SUBMIT EDITS
       </Button>
     }
