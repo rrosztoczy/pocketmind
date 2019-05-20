@@ -142,7 +142,7 @@ handleMultiEditChange = (event, memoryId) => {
     // currently overwriting the full id dont want to waht to use the old one...
     // if there is an id hash, copy it and add the new key or update it
     // if no id hash, add it
-    this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {[event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
+    this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...this.props.memories.find(memory => memory.id === memoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
 
     renderEditForms() {
@@ -192,7 +192,8 @@ handleMultiEditChange = (event, memoryId) => {
 
     handleSubmitEdit() {
         // Need to go thorugh state and hit update_memory for each memory that was changed
-        this.props.editedMemories.forEach(editedMemory => this.props.updateMemory(editedMemory.id, editedMemory))
+        const editedMemoryArray = this.props.editedMemories.keys()
+        editedMemoryArray.forEach(editedMemoryId => this.props.updateMemory(editedMemoryId, this.props.editedMemories[editedMemoryId]))
     }
 
     renderSubmitEditButton() {
