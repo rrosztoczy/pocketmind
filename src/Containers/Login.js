@@ -1,10 +1,12 @@
 
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { withRouter, Redirect } from 'react-router'
+import { connect } from 'react-redux'
+import { loginUser } from '../actions'
 
-export default class Login extends React.Component {
-    state =  { userId: "",
-    username: "",
+class Login extends React.Component {
+    state =  {
     password: "",
     first_name: "",
     last_name: "",
@@ -17,10 +19,17 @@ export default class Login extends React.Component {
     })
   }
 
+  handleLoginSubmit = (e) => { //semantic forms preventDefault for you
+    // e.preventDefault()
+    this.props.loginUser(this.state.email, this.state.password) //comes from mapDispatchToProps
+    this.setState({ email: '', password: '' }) //reset form to initial state
+  }
+
 
   render() {
-  return(
-  <div className='login-form'>
+  return this.props.loggedIn ? (
+    <Redirect to="/profile"/>>
+  ) : (<div className='login-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.
       You can do same with CSS, the main idea is that all the elements up to the `Grid`
@@ -63,3 +72,14 @@ export default class Login extends React.Component {
 )
 }
 }
+
+const mapStateToProps = state => {
+  return {
+      loggedIn: state.loggedIn,
+      authenticatingUser: state.authenticatingUser,
+      error: state.error,
+      failedLogin: reduxStoreState.usersReducer.failedLogin
+  };
+};
+
+export default withRouter(connect(mapStateToProps, { loginUser })(Login))

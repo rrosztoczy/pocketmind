@@ -38,8 +38,12 @@ const initialState = {
     anxiety: false,
     editThoughtMemories: false,
     editEmotionMemories: false,
+    authenticatingUser: "",
+    loggedIn: false,
+    failedLogin: false,
+    error: null,
     logged_in: false,
-    user: {}
+    user: null
 }
 
 function memoryReducer(state = initialState, action) {
@@ -101,6 +105,21 @@ function memoryReducer(state = initialState, action) {
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}
+          // *****************************************************************Auth***********************************************************
+          case 'SET_CURRENT_USER':
+          //action.payload { username: 'Chandler Bing', bio: 'my user bio', avatar: 'some image url' }
+          return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
+        case 'AUTHENTICATING_USER': //tells the app we're fetching
+          return { ...state, authenticatingUser: true }
+        case 'AUTHENTICATED_USER':
+          return { ...state, authenticatingUser: false }
+        case 'FAILED_LOGIN': //for error handling
+          return {
+            ...state,
+            failedLogin: true,
+            error: action.payload,
+            authenticatingUser: false
+          }
         default: 
         console.log('hit default')
           return state;

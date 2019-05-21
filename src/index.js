@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux'; 
-import thunk from 'redux-thunk'
+// import { composeWithDevTools } from 'redux-devtools-extension'; must also add around middleware below
+import thunk from 'redux-thunk';
 import memoryReducer from './Reducers/memoryReducer.js';
 import './index.css';
 import App from './App';
