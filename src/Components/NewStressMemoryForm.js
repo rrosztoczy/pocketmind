@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react'
+import * as actions from '../actions'
 
 class NewStressMemoryForm extends React.Component {
 
@@ -14,7 +15,8 @@ class NewStressMemoryForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.dispatch({type: 'ADD_STRESS_MEMORY', payload: this.state})
+        this.props.addStressToMemory(this.state)
+        this.props.toggleForm({target: {value: 'stress'}})
     }
 
     render() {
@@ -38,4 +40,4 @@ class NewStressMemoryForm extends React.Component {
 // Took out mapdispatch...addd dispatch in place of addStresetc to handlesubmit
 
 
-export default connect()(NewStressMemoryForm)
+export default connect(null, actions)(NewStressMemoryForm)

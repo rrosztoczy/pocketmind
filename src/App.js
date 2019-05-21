@@ -9,25 +9,14 @@ import Signup from './Containers/Signup'
 import Blog from './Containers/Blog'
 import About from './Containers/About'
 import Memories from './Containers/Memories'
+import ThoughtMemories from './Containers/ThoughtMemories'
+import EmotionMemories from './Containers/EmotionMemories'
 import LeftBrain from './Containers/LeftBrain'
 import RightBrain from './Containers/RightBrain'
 import Tools from './Containers/Tools'
 import AccountSettings from './Containers/AccountSettings'
 // import logo from './logo.svg';
 import './App.css'
-
-
-// Adapter pattern
-import adapter from './adapter.js'
-const userEndpoint = "http://localhost:3000/api/v1/users"
-const memoryEndpoint = "http://localhost:3000/api/v1/memories"
-const emotionMemoryEndpoint = "http://localhost:3000/api/v1/emotion_memories"
-const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
-
-const userAdapter = adapter(userEndpoint)
-const memoryAdapter = adapter(memoryEndpoint)
-const emotionAdapter = adapter(emotionMemoryEndpoint)
-const thoughtAdapter = adapter(thoughtMemoryEndpoint)
 
 
 
@@ -55,7 +44,9 @@ export default class App extends Component {
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' render={(props) => <Home/>}/>
-          <Route path='/memories' render={(props) => <Memories/>}/>   
+          <Route path='/memories' render={(props) => <Memories/>}/>
+          <Route path='/thoughtmemories' render={(props) => <ThoughtMemories/>}/>   
+          <Route path='/emotionmemories' render={(props) => <EmotionMemories/>}/>   
           <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
           <Route path='/right-brain' render={(props) => <RightBrain/>}/>      
           <Route path='/tools' render={(props) => <Tools/>}/>           

@@ -16,11 +16,13 @@ class NewMemoryForm extends React.Component {
     //     console.log("formatted memory", jsonPostBody)
     // }
 
-    createMemory(memory) {
+    createMemory(event, memory) {
         // transform arrays of has_many records to hashes for ruby
         // console.log("About to create memory!", memory)
         // const formattedMemory = this.formatNestedAttributes(memory)
+        event.persist()
         this.props.createMemory(memory)
+        this.props.toggleForm(event)
     }
 
     render() {
@@ -35,11 +37,11 @@ class NewMemoryForm extends React.Component {
         <Card.Content extra>
           <div className='ui two buttons'>
             <Button basic color='teal' onClick={event => this.props.onFormButtonClick(event)} value='emotion'>
-              Emotion
+              Add an Emotion
             </Button>
             <Button.Or />
             <Button basic color='blue' onClick={event => this.props.onFormButtonClick(event)} value='thought'>
-              Thought
+              Add a Thought
             </Button>
           </div>
           <Card.Description>
@@ -47,15 +49,15 @@ class NewMemoryForm extends React.Component {
           </Card.Description>
           <div className='ui two buttons'>
             <Button basic color='teal' onClick={event => this.props.onFormButtonClick(event)} value='stress'>
-              Stress
+              Add Stress
             </Button>
             <Button.Or />
             <Button basic color='blue' onClick={event => this.props.onFormButtonClick(event)} value='anxiety'>
-              Anxiety
+              Add Anxiety
             </Button>
           </div>
-          <Button basic color='grey' onClick={() => this.createMemory(this.props.memory)} value='remember'>
-              Remember
+          <Button basic color='grey' onClick={(event) => this.createMemory(event, this.props.memory)} value='new'>
+              Save These Memories!
             </Button>
         </Card.Content>
       </Card>

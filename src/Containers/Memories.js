@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Grid, Image, Button, Header, Icon } from 'semantic-ui-react'
+import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 // Remove into redux
 // import adapter from '../adapter.js'
 import NewMemoryForm from '../Components/NewMemoryForm'
@@ -66,12 +66,12 @@ class Memories extends React.Component {
     }
 
     renderMemoryHeaders() {
-        return (<Grid.Row columns={7}>
+        return (<Grid.Row columns={6}>
             <Grid.Column>
             <p>Memory Id</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Time of Memory</p>
+            <p>Time</p>
             </Grid.Column>
             <Grid.Column>
             <p>Emotions</p>
@@ -85,63 +85,88 @@ class Memories extends React.Component {
             <Grid.Column>
             <p>Anxiety Level</p>
             </Grid.Column>
-              <Grid.Column>
-              <p>Delete</p>
-              </Grid.Column>
           </Grid.Row>)
     }
 
     renderMemories() {
         // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
-        return this.props.memories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={7}>
+        const sortedMemories = [...this.props.memories].sort(function(a,b) {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        });
+        return sortedMemories.map(memory => {
+            return (<Grid.Row key={memory.id} columns={6}>
               <Grid.Column>
               <p>[this is memory]{memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.timeOfMemory}</p>
+              <p>{memory.createdAt}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
+              <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{memory.stressLevel}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{memory.anxietyLevel}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
 
     }
 
+
+
+// TODO: Set state to have the data for a new emotion memory
+
+// handleSubmitEdit = (event) => {
+//     event.preventDefault()
+//     this.props.dispatch({type: 'EDIT_MEMORY', payload: this.state })
+// }
+
+state = {
+    editedMemories: {}
+}
+
+handleMultiEditChange = (event, memoryId) => {
+    // TODO: How to think about form state vs. app state when whole app is a form
+    // Current issue... when out of input into another it rerenders it as the old value
+    event.persist()
+    console.log('hanlding change!')
+    // currently overwriting the full id dont want to waht to use the old one...
+    // if there is an id hash, copy it and add the new key or update it
+    // if no id hash, add it
+    this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...this.props.memories.find(memory => memory.id === memoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
+}
+
     renderEditForms() {
-        // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
-        return this.props.memories.map(memory => {
+        // Need to toggle input jsx filled with value form state, fully controlled
+        const sortedMemories = [...this.props.memories].sort(function(a,b) {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        });
+        return sortedMemories.map(memory => {
             return (<Grid.Row key={memory.id} columns={7}>
               <Grid.Column>
               <p>Editing{memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.timeOfMemory}</p>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].createdAt ? this.state.editedMemories[memory.id].createdAt : memory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
+              </Grid.Column>
+              {/* Edit emotions and thoughts in their own sections */}
+              <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map(emotionMemory => emotionMemory.emotion) : "No emotion memories"}</p>
+              <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.thoughtMemories ? memory.thoughtMemories.map(thoughtMemory => thoughtMemory.thoughtContent) : "No thought memories"}</p>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].stressLevel ? this.state.editedMemories[memory.id].stressLevel : memory.stressLevel}  name='stressLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.stressLevel}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.anxietyLevel}</p>
+              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].anxietyLevel ? this.state.editedMemories[memory.id].anxietyLevel : memory.anxietyLevel}  name='anxietyLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               <Grid.Column>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
@@ -159,6 +184,25 @@ class Memories extends React.Component {
 //   </Grid.Row>
 
 
+    renderEditButton() {
+        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
+        EDIT MEMORY DATA
+      </Button>
+    }
+
+    handleSubmitEdit = (event) => {
+        // Need to go thorugh state and hit update_memory for each memory that was changed
+        console.log("state", this.state)
+        const editedMemoryArray = Object.keys(this.state.editedMemories)
+        editedMemoryArray.forEach(editedMemoryId => this.props.updateMemory(editedMemoryId, this.state.editedMemories[editedMemoryId]))
+        this.onEditButtonClick(event)
+    }
+
+    renderSubmitEditButton() {
+        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
+        SUBMIT EDITS
+      </Button>
+    }
 
     render() {
         console.log("props", this.props)
@@ -177,8 +221,12 @@ class Memories extends React.Component {
       <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
               ADD A NEW MEMORY
             </Button>
-            <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
-              EDIT A NEW MEMORY
+            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
+            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
+              GO TO EMOTIONS
+            </Button>
+            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
+              GO TO THOUGHTS
             </Button>
             <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
             <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
@@ -206,6 +254,7 @@ class Memories extends React.Component {
         console.log("new state", state)
         return {
             memories: state.memories,
+            edit: state.edit,
             new: state.new,
             emotion: state.emotion,
             thought: state.thought,
