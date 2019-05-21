@@ -22,12 +22,12 @@ class ThoughtMemories extends React.Component {
     }
 
     renderThoughtHeaders() {
-        return (<Grid.Row columns={4}>
-            <Grid.Column>
-            <p>Time</p>
-            </Grid.Column>
+        return (<Grid.Row columns={7}>
             <Grid.Column>
             <p>Go to Memory</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Time</p>
             </Grid.Column>
             <Grid.Column>
             <p>Thought Type</p>
@@ -47,29 +47,32 @@ class ThoughtMemories extends React.Component {
           </Grid.Row>)
     }
 
-    renderThoughts() {
+    renderThoughtMemories() {
         const sortedThoughtMemories = [...this.props.thoughtMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
-        return sortedThoughtMemories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={6}>
+        return sortedThoughtMemories.map(thoughtMemory => {
+            return (<Grid.Row key={thoughtMemory.id} columns={7}>
               <Grid.Column>
-              <p>[this is memory]{memory.id}</p>
+              <p>{thoughtMemory.memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.createdAt}</p>
+              <p>{thoughtMemory.createdAt}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
+              <p>{thoughtMemory.content}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
+              <p>{thoughtMemory.type}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.stressLevel}</p>
+              <p>{thoughtMemory.object}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.anxietyLevel}</p>
+              <p>{thoughtMemory.reason}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{thoughtMemory.time_orientation}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -77,82 +80,62 @@ class ThoughtMemories extends React.Component {
     }
 
 
-
-// TODO: Set state to have the data for a new emotion memory
-
-// handleSubmitEdit = (event) => {
-//     event.preventDefault()
-//     this.props.dispatch({type: 'EDIT_MEMORY', payload: this.state })
-// }
-
 state = {
-    editedMemories: {}
+    editedThoughtMemories: {}
 }
 
-handleMultiEditChange = (event, memoryId) => {
-    // TODO: How to think about form state vs. app state when whole app is a form
-    // Current issue... when out of input into another it rerenders it as the old value
+handleMultiEditChange = (event, thoughtMemoryId) => {
     event.persist()
     console.log('hanlding change!')
-    // currently overwriting the full id dont want to waht to use the old one...
-    // if there is an id hash, copy it and add the new key or update it
-    // if no id hash, add it
-    this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...this.props.memories.find(memory => memory.id === memoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
+    this.state.editedThoughtMemories[thoughtMemoryId] ? this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...prevState.editedThoughtMemories[thoughtMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second thought memories!', this.state)) : this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...this.props.thoughtMemories.find(thoughtMemory => thoughtMemory.id === thoughtMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
 
     renderEditForms() {
-        // Need to toggle input jsx filled with value form state, fully controlled
-        const sortedMemories = [...this.props.memories].sort(function(a,b) {
+        const sortedThoughtMemories = [...this.props.thoughtMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
-        return sortedMemories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={7}>
+        return sortedThoughtMemories.map(thoughtMemory => {
+            return (<Grid.Row key={thoughtMemory.id} columns={7}>
               <Grid.Column>
-              <p>Editing{memory.id}</p>
+              <p>{thoughtMemory.memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].createdAt ? this.state.editedMemories[memory.id].createdAt : memory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].createdAt ? this.state.editedThoughtMemories[thoughtMemory.id].createdAt : thoughtMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               {/* Edit emotions and thoughts in their own sections */}
               <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].thought_content ? this.state.editedThoughtMemories[thoughtMemory.id].thought_content : thoughtMemory.thought_content}  name='thought_content' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].thought_object ? this.state.editedThoughtMemories[thoughtMemory.id].thought_object : thoughtMemory.thought_object}  name='thought_object' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].stressLevel ? this.state.editedMemories[memory.id].stressLevel : memory.stressLevel}  name='stressLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].reason ? this.state.editedThoughtMemories[thoughtMemory.id].reason : thoughtMemory.reason}  name='reason' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].anxietyLevel ? this.state.editedMemories[memory.id].anxietyLevel : memory.anxietyLevel}  name='anxietyLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].thought_type ? this.state.editedThoughtMemories[thoughtMemory.id].thought_type : thoughtMemory.thought_type}  name='thought_type' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].time_orientation ? this.state.editedThoughtMemories[thoughtMemory.id].time_orientation : thoughtMemory.time_orientation}  name='time_orientation' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
 
     }
-//     <Grid.Row columns={1}>
-//     <Grid.Column>
-//     {/* Fetch memories, put them in a container in this bottom grid... */}
-//     {/* First thing is first - fetch them and put them in state here... then get into redux */}
-// {/* Memory list here */}
-//     </Grid.Column>
-//   </Grid.Row>
 
 
     renderEditButton() {
         return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
-        EDIT MEMORY DATA
+        EDIT THOUGHT MEMORY DATA
       </Button>
     }
 
     handleSubmitEdit = (event) => {
         // Need to go thorugh state and hit update_memory for each memory that was changed
         console.log("state", this.state)
-        const editedMemoryArray = Object.keys(this.state.editedMemories)
-        editedMemoryArray.forEach(editedMemoryId => this.props.updateMemory(editedMemoryId, this.state.editedMemories[editedMemoryId]))
+        const editedThoughtMemoryArray = Object.keys(this.state.editedThoughtMemories)
+        editedThoughtMemoryArray.forEach(editedThoughtMemoryId => this.props.updateThoughtMemory(editedThoughtMemoryId, this.state.editedThoughtMemories[editedThoughtMemoryId]))
         this.onEditButtonClick(event)
     }
 
@@ -169,35 +152,27 @@ handleMultiEditChange = (event, memoryId) => {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE IN YOUR MEMORIES
+          YOU ARE IN YOUR THOUGHT MEMORIES
         </Header>
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              ADD A NEW MEMORY
-            </Button>
             {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
+            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
+              GO TO MEMORIES
+            </Button>
             <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
               GO TO EMOTIONS
             </Button>
-            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              GO TO THOUGHTS
-            </Button>
-            <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
-            <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
-            <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : null}</div>
-            <div>{this.props.stress ? this.renderNewStressMemoryForm() : null}</div>
-            <div>{this.props.anxiety ? this.renderNewAnxietyMemoryForm() : null}</div>
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header color='teal' size='huge'>
-              Memories
+              Thought Memories
             </Header>
       </Grid.Column>
     </Grid.Row>
@@ -212,17 +187,9 @@ handleMultiEditChange = (event, memoryId) => {
         console.log("new state", state)
         return {
             thoughtMemories: state.thoughtMemories,
-            editThoughts: state.editThoughts
+            editThoughtMemories: state.editThoughtMemories
         };
     };
      
-    // const mapDispatchToProps = dispatch => {
-    //     console.log('about to send function')
-    //     return {
-    //         // addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {}}),
-   
-    //         // getAllMemories: (dispatch) => {  memoryAdapter.getAll(dispatch) }
-    //     };
-    // };
 
 export default connect(mapStateToProps, actions)(ThoughtMemories);
