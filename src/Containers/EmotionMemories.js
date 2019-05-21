@@ -5,18 +5,16 @@ import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
 
-
     componentDidMount() {
         this.props.getAllEmotionMemories()
     }
-
 
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
     }
 
-    renderemotionMemoryHeaders() {
+    renderEmotionMemoryHeaders() {
         return (<Grid.Row columns={5}>
             <Grid.Column>
             <p>Go to Memory</p>
@@ -59,9 +57,7 @@ class EmotionMemories extends React.Component {
               </Grid.Column>
             </Grid.Row>)
         })
-
     }
-
 
 state = {
     editedEmotionMemories: {}
@@ -73,6 +69,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
 }
 
     renderEditForms() {
+        console.log('rendering edit forms!')
         const sortedEmotionMemories = [...this.props.emotionMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
@@ -93,16 +90,19 @@ handleMultiEditChange = (event, emotionMemoryId) => {
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].intensity ? this.state.editedEmotionMemories[emotionMemory.id].intensity : emotionMemory.intensity}  name='intensity' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
-              <Button onClick={() => this.props.destroyemotionMemory(emotionMemory.id)} icon='trash alternate outline'/>
+              <Button onClick={() => this.props.destroyEmotionMemory(emotionMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
 
     }
-
+    onEditButtonClick = (event) => {
+        event.persist()
+        this.props.toggleForm(event)
+    }
 
     renderEditButton() {
-        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
+        return <Button color='teal' fluid size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
         EDIT EMOTION MEMORY DATA
       </Button>
     }
@@ -116,7 +116,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' fluid size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
         SUBMIT EDITS
       </Button>
     }
@@ -135,7 +135,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
 
     <Grid.Row columns={1}>
       <Grid.Column>
-            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
+            {this.props.editEmotionMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
             <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
               GO TO MEMORIES
             </Button>
@@ -153,7 +153,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
       </Grid.Column>
     </Grid.Row>
     {this.renderEmotionMemoryHeaders()}
-    {this.props.edit ? this.renderEditForms() : this.renderEmotionMemories()}
+    {this.props.editEmotionMemories ? this.renderEditForms() : this.renderEmotionMemories()}
   </Grid>
   )
 }

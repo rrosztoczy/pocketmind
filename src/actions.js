@@ -19,7 +19,11 @@ export const GET_ALL_EMOTION_MEMORIES = 'GET_ALL_EMOTION_MEMORIES'
 export const GET_MEMORY = 'GET_MEMORY'
 export const CREATE_MEMORY = 'CREATE_MEMORY'
 export const UPDATE_MEMORY = 'UPDATE_MEMORY'
+export const UPDATE_EMOTION_MEMORY = 'UPDATE_EMOTION_MEMORY'
+export const UPDATE_THOUGHT_MEMORY = 'UPDATE_THOUGHT_MEMORY'
 export const DESTROY_MEMORY = 'DESTROY_MEMORY'
+export const DESTROY_THOUGHT_MEMORY = 'DESTROY_THOUGHT_MEMORY'
+export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
 
 // action creators
 export function toggleForm(event) {
@@ -78,7 +82,23 @@ export function getAllThoughtMemories() {
     return dispatch => thoughtMemoryAdapter.getAll(dispatch, GET_ALL_THOUGHT_MEMORIES)
   }
 
+  export function updateThoughtMemory(thoughtMemoryId, thoughtMemory) {
+    return dispatch => thoughtMemoryAdapter.update(dispatch, UPDATE_THOUGHT_MEMORY, thoughtMemoryId, thoughtMemory)
+}
+
+  export function destroyThoughtMemory(thoughtMemoryId) {
+    return dispatch => thoughtMemoryAdapter.destroy(dispatch, DESTROY_THOUGHT_MEMORY, thoughtMemoryId)
+}
+
     // Emotion Memories Adapter
 export function getAllEmotionMemories() {
     return dispatch => emotionMemoryAdapter.getAll(dispatch, GET_ALL_EMOTION_MEMORIES)
   }
+
+  export function updateEmotionMemory(emotionMemoryId, emotionMemory) {
+    return dispatch => emotionMemoryAdapter.update(dispatch, UPDATE_EMOTION_MEMORY, emotionMemoryId, emotionMemory)
+}
+
+  export function destroyEmotionMemory(emotionMemoryId) {
+    return dispatch => emotionMemoryAdapter.destroy(dispatch, DESTROY_EMOTION_MEMORY, emotionMemoryId)
+}
