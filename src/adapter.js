@@ -40,7 +40,7 @@ const adapter = (url) => {
             const postConfig = {
                 method: "POST",
                 headers: headers,
-                body: JSON.stringify({...postBody, userId: 1})
+                body: JSON.stringify(postBody)
             }
             console.log("post body", postBody)
             console.log("json post body", postBody)

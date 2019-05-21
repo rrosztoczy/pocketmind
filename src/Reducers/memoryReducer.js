@@ -19,14 +19,16 @@ import {
 const initialState = {
     // Data from DB
     memories: [],
+    emotions: [],
     thoughtMemories: [],
     emotionMemories: [],
-    // For CRUD
     memory: {    
         emotionMemoriesAttributes: [],
-        thoughtMemoriesAttributes: []},
-    emotionMemoriesAttributes: [],
-    thoughtMemoriesAttributes: [],
+        thoughtMemoriesAttributes: [],
+        userId: 1
+      },
+    // emotionMemoriesAttributes: [],
+    // thoughtMemoriesAttributes: [],
     // For displaying forms
     new: false,
     edit: false,
