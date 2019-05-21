@@ -28,7 +28,7 @@ class Login extends React.Component {
 
   render() {
   return this.props.loggedIn ? (
-    <Redirect to="/memories"/>
+    <Redirect to="/profile"/>
   ) : (<div className='login-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.

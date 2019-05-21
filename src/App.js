@@ -19,6 +19,7 @@ import AccountSettings from './Containers/AccountSettings'
 import './App.css'
 import { connect } from 'react-redux';
 import { logout } from './actions';
+import withAuth from '../src/hocs/withAuth';
 
 
 
@@ -46,8 +47,7 @@ class App extends Component {
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' render={(props) => <Home/>}/>
-          <Route path='/profile' render={(props) => <Memories/>}/>
-          <Route path='/memories' render={(props) => <Memories/>}/>
+          <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' render={(props) => <ThoughtMemories/>}/>   
           <Route path='/emotionmemories' render={(props) => <EmotionMemories/>}/>   
           <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
