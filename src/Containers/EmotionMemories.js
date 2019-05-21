@@ -81,8 +81,8 @@ handleMultiEditChange = (event, emotionMemoryId) => {
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].createdAt ? this.state.editedEmotionMemories[emotionMemory.id].createdAt : emotionMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
-              {/* Edit emotions and Emotions in their own sections */}
               <Grid.Column>
+              {/* update this to be the drop down select */}
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion.emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion.emotion : emotionMemory.emotion.emotion}  name='emotion' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>

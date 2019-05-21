@@ -121,7 +121,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
 
 
     renderEditButton() {
-        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
+        return <Button color='teal' fluid size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>
         EDIT THOUGHT MEMORY DATA
       </Button>
     }
@@ -135,7 +135,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' fluid size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
         SUBMIT EDITS
       </Button>
     }
@@ -154,7 +154,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
 
     <Grid.Row columns={1}>
       <Grid.Column>
-            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
+            {this.props.editThoughtMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
             <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
               GO TO MEMORIES
             </Button>
@@ -172,7 +172,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
       </Grid.Column>
     </Grid.Row>
     {this.renderThoughtMemoryHeaders()}
-    {this.props.edit ? this.renderEditForms() : this.renderThoughtMemories()}
+    {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>
   )
 }
