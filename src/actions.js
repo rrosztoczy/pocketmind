@@ -1,5 +1,7 @@
 import adapter from './adapter'
 
+const userEndpoint = "http://localhost:3000/api/v1/users"
+// const loginEndpoint = "http://localhost:3000/api/v1/memories"
 const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
@@ -8,6 +10,7 @@ const emotionAdapter = adapter(emotionEndpoint)
 const memoryAdapter = adapter(memoryEndpoint)
 const thoughtMemoryAdapter = adapter(thoughtMemoryEndpoint)
 const emotionMemoryAdapter = adapter(emotionMemoryEndpoint)
+const userAdapter = adapter(userEndpoint)
 
 // action types
 export const TOGGLE_FORM = 'TOGGLE_Form'
@@ -24,6 +27,7 @@ export const UPDATE_THOUGHT_MEMORY = 'UPDATE_THOUGHT_MEMORY'
 export const DESTROY_MEMORY = 'DESTROY_MEMORY'
 export const DESTROY_THOUGHT_MEMORY = 'DESTROY_THOUGHT_MEMORY'
 export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
+export const CREATE_USER = 'CREATE_USER'
 
 // action creators
 export function toggleForm(event) {
@@ -101,4 +105,10 @@ export function getAllEmotionMemories() {
 
   export function destroyEmotionMemory(emotionMemoryId) {
     return dispatch => emotionMemoryAdapter.destroy(dispatch, DESTROY_EMOTION_MEMORY, emotionMemoryId)
+}
+
+// User and Auth Actions
+
+export function createUser(user) {
+    return dispatch => userAdapter.create(dispatch, CREATE_USER, user)
 }

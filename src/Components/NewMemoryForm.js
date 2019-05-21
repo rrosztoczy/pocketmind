@@ -56,7 +56,7 @@ class NewMemoryForm extends React.Component {
               Add Anxiety
             </Button>
           </div>
-          <Button basic color='grey' onClick={(event) => this.createMemory(event, this.props.memory)} value='new'>
+          <Button basic color='grey' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} value='new'>
               Save These Memories!
             </Button>
         </Card.Content>

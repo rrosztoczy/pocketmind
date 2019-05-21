@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 
-export default class Signup extends React.Component {
+class Signup extends React.Component {
 
   state =  {
-    userId: "",
-    username: "",
     password: "",
     first_name: "",
     last_name: "",
@@ -36,21 +36,6 @@ export default class Signup extends React.Component {
         `}
         </style>
 
-            {/* // User input to login or sign up forms (reusable for more forms?)
-      handleFormChange = e => {
-        this.setState({
-          [e.target.name]: e.target.value
-        })
-      } */}
-
-            {/* // TODO: Set this based on logged in user eventually
-        { userId: "",
-        username: "",
-        password: "",
-        trumpets: [],
-        first_name: "",
-        last_name: ""
-      {/* } */}
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='blue' textAlign='center'>
@@ -60,11 +45,10 @@ export default class Signup extends React.Component {
             <Form size='large'>
                 <Form.Input fluid name="first_name" placeholder='First name' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => this.handleFormChange(e)} />
-                <Form.Input fluid name="username" placeholder='username' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-                <Button color='teal' fluid size='large' onClick={() => this.props.createNewUser(this.state)}>
+                <Button color='teal' fluid size='large' onClick={() => this.props.createUser({user: this.state})}>
                   sign up
                 </Button>
             </Form>
@@ -77,3 +61,11 @@ export default class Signup extends React.Component {
     )
   }
 }
+
+// const mapStateToProps = state => {
+//   return {
+//       user: state.user
+//   };
+// };
+
+export default connect(null, actions)(Signup)
