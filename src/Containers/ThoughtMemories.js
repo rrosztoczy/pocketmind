@@ -1,13 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
-// Remove into redux
-// import adapter from '../adapter.js'
+import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import * as actions from '../actions'
-// const memoryEndpoint = "http://localhost:3000/api/v1/memories"
-// const memoryAdapter = adapter(memoryEndpoint)
 
-class ThoughtsMemories extends React.Component {
+class ThoughtMemories extends React.Component {
 
 
     componentDidMount() {
@@ -22,7 +18,7 @@ class ThoughtsMemories extends React.Component {
 
     destroyThoughtMemory(thoughtMemoryId) {
         console.log("clicked!")
-        this.props.destroyThoughtMemory(memoryId)
+        this.props.destroyThoughtMemory(thoughtMemoryId)
     }
 
     renderThoughtHeaders() {
@@ -31,13 +27,22 @@ class ThoughtsMemories extends React.Component {
             <p>Time</p>
             </Grid.Column>
             <Grid.Column>
+            <p>Go to Memory</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Thought Type</p>
+            </Grid.Column>
+            <Grid.Column>
             <p>Thought Content</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Thought Object</p>
             </Grid.Column>
             <Grid.Column>
             <p>Thought Reason</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Thought Object</p>
+            <p>Time Orientation</p>
             </Grid.Column>
           </Grid.Row>)
     }
