@@ -186,6 +186,12 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
     type: 'FAILED_LOGIN',
     payload: errorMsg
   })
+
+    
+  export const logout = () => ({
+    type: 'LOGOUT',
+    // payload: errorMsg
+  })
   
   // tell our app we're currently fetching
   export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })

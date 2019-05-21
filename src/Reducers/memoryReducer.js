@@ -27,9 +27,6 @@ const initialState = {
         emotionMemoriesAttributes: [],
         thoughtMemoriesAttributes: []
       },
-    // emotionMemoriesAttributes: [],
-    // thoughtMemoriesAttributes: [],
-    // For displaying forms
     new: false,
     edit: false,
     emotion: false,
@@ -115,6 +112,8 @@ function memoryReducer(state = initialState, action) {
           return { ...state, authenticatingUser: true }
         case 'AUTHENTICATED_USER':
           return { ...state, authenticatingUser: false }
+          case 'LOGOUT':
+          return { ...state, loggedIn: false }
         case 'FAILED_LOGIN': //for error handling
           return {
             ...state,
