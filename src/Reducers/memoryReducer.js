@@ -2,6 +2,7 @@ import {
     TOGGLE_FORM,
     // Asynch types
     GET_ALL_MEMORIES,
+    GET_ALL_USER_MEMORIES,
     GET_ALL_EMOTIONS,
     GET_ALL_THOUGHT_MEMORIES,
     GET_ALL_EMOTION_MEMORIES,
@@ -53,6 +54,8 @@ function memoryReducer(state = initialState, action) {
         return {...state, emotions: [...state.emotions, ...action.payload]}
         case  GET_ALL_MEMORIES:
         return {...state, memories: [...state.memories, ...action.payload]}
+        case  GET_ALL_USER_MEMORIES:
+        return {...state, memories: [...state.memories, ...action.payload.memories]}
         case  GET_ALL_THOUGHT_MEMORIES:
         return {...state, thoughtMemories: [...state.thoughtMemories, ...action.payload]}
         case  GET_ALL_EMOTION_MEMORIES:

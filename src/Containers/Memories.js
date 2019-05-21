@@ -26,7 +26,7 @@ class Memories extends React.Component {
     // };
 
     componentDidMount() {
-        this.props.getAllMemories()
+        this.props.getAllUserMemories()
     }
 
     onFormButtonClick = (event) => {

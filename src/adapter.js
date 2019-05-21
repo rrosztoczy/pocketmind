@@ -18,6 +18,18 @@ const adapter = (url) => {
         })();
     };
 
+
+    const getProfile = async (dispatch, action) => {
+        (async () => {
+            console.log("in the async")
+            // Should i do a loading or something on this?
+            dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
+            const resp = await fetch(url, { headers: headers })
+            const jsonData = await resp.json()
+            dispatch({type: action, payload: jsonData})
+        })();
+    };
+
     const getOne = async (dispatch, action, id) => {
         (async () => {
             // Should i do a loading or something on this?
@@ -85,6 +97,7 @@ const adapter = (url) => {
 
     return {
         getAll,
+        getProfile,
         getOne,
         create,
         update,

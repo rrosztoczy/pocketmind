@@ -1,6 +1,7 @@
 import adapter from './adapter'
 
 const userEndpoint = "http://localhost:3000/api/v1/users"
+const profileEndpoint = "http://localhost:3000/api/v1/profile"
 // const loginEndpoint = "http://localhost:3000/api/v1/memories"
 const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
@@ -11,11 +12,13 @@ const memoryAdapter = adapter(memoryEndpoint)
 const thoughtMemoryAdapter = adapter(thoughtMemoryEndpoint)
 const emotionMemoryAdapter = adapter(emotionMemoryEndpoint)
 const userAdapter = adapter(userEndpoint)
+const profileAdapter = adapter(profileEndpoint)
 
 // action types
 export const TOGGLE_FORM = 'TOGGLE_Form'
 // Async types
 export const GET_ALL_MEMORIES = 'GET_ALL_MEMORIES'
+export const GET_ALL_USER_MEMORIES = 'GET_ALL_USER_MEMORIES'
 export const GET_ALL_EMOTIONS = 'GET_ALL_EMOTIONS'
 export const GET_ALL_THOUGHT_MEMORIES = 'GET_ALL_THOUGHT_MEMORIES'
 export const GET_ALL_EMOTION_MEMORIES = 'GET_ALL_EMOTION_MEMORIES'
@@ -59,6 +62,10 @@ export function addAnxietyToMemory(payload) {
 export function getAllMemories() {
   return dispatch => memoryAdapter.getAll(dispatch, GET_ALL_MEMORIES)
 }
+
+export function getAllUserMemories() {
+    return dispatch => profileAdapter.getProfile(dispatch, GET_ALL_USER_MEMORIES)
+  }
 
 export function getMemory(memoryId) {
     return dispatch => memoryAdapter.getOne(dispatch, GET_MEMORY, memoryId)
@@ -159,7 +166,7 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
     return (dispatch) => {
       dispatch(authenticatingUser()) //tells the app we are fetching
     //   switch back to ${process.env.REACT_APP_API_ENDPOINT}/api/v1/profile
-      fetch(`http://localhost:3000//api/v1/memories`, {
+      fetch(`http://localhost:3000//api/v1/profile`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`

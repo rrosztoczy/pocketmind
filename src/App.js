@@ -44,6 +44,7 @@ export default class App extends Component {
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' render={(props) => <Home/>}/>
+          <Route path='/profile' render={(props) => <Memories/>}/>
           <Route path='/memories' render={(props) => <Memories/>}/>
           <Route path='/thoughtmemories' render={(props) => <ThoughtMemories/>}/>   
           <Route path='/emotionmemories' render={(props) => <EmotionMemories/>}/>   
