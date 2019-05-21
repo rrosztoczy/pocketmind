@@ -25,8 +25,7 @@ const initialState = {
     emotionMemories: [],
     memory: {    
         emotionMemoriesAttributes: [],
-        thoughtMemoriesAttributes: [],
-        userId: 1
+        thoughtMemoriesAttributes: []
       },
     // emotionMemoriesAttributes: [],
     // thoughtMemoriesAttributes: [],
