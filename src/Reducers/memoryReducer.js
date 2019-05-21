@@ -2,6 +2,7 @@ import {
     TOGGLE_FORM,
     // Asynch types
     GET_ALL_MEMORIES,
+    GET_ALL_USER_MEMORIES,
     GET_ALL_EMOTIONS,
     GET_ALL_THOUGHT_MEMORIES,
     GET_ALL_EMOTION_MEMORIES,
@@ -12,21 +13,20 @@ import {
     UPDATE_THOUGHT_MEMORY,
     DESTROY_MEMORY,
     DESTROY_EMOTION_MEMORY,
-    DESTROY_THOUGHT_MEMORY
+    DESTROY_THOUGHT_MEMORY,
+    CREATE_USER
 } from '../actions'
 
 const initialState = {
     // Data from DB
     memories: [],
+    emotions: [],
     thoughtMemories: [],
     emotionMemories: [],
-    // For CRUD
     memory: {    
         emotionMemoriesAttributes: [],
-        thoughtMemoriesAttributes: []},
-    emotionMemoriesAttributes: [],
-    thoughtMemoriesAttributes: [],
-    // For displaying forms
+        thoughtMemoriesAttributes: []
+      },
     new: false,
     edit: false,
     emotion: false,
@@ -35,7 +35,12 @@ const initialState = {
     anxiety: false,
     editThoughtMemories: false,
     editEmotionMemories: false,
-    logged_in: false
+    authenticatingUser: "",
+    loggedIn: false,
+    failedLogin: false,
+    error: null,
+    logged_in: false,
+    user: null
 }
 
 function memoryReducer(state = initialState, action) {
@@ -45,6 +50,8 @@ function memoryReducer(state = initialState, action) {
         return {...state, emotions: [...state.emotions, ...action.payload]}
         case  GET_ALL_MEMORIES:
         return {...state, memories: [...state.memories, ...action.payload]}
+        case  GET_ALL_USER_MEMORIES:
+        return {...state, memories: [...state.memories, ...action.payload.memories]}
         case  GET_ALL_THOUGHT_MEMORIES:
         return {...state, thoughtMemories: [...state.thoughtMemories, ...action.payload]}
         case  GET_ALL_EMOTION_MEMORIES:
@@ -91,9 +98,30 @@ function memoryReducer(state = initialState, action) {
         case 'ADD_THOUGHT_MEMORY':
         console.log('adding thought! hit add')
         return {...state, memory: {...state.memory, thoughtMemoriesAttributes: [...state.memory.thoughtMemoriesAttributes, action.payload]}}
+        case  CREATE_USER:
+        console.log('creating user! hit create')
+        return {...state, user: {...state.user, ...action.payload}}
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}
+          // *****************************************************************Auth***********************************************************
+          case 'SET_CURRENT_USER':
+          //action.payload { username: 'Chandler Bing', bio: 'my user bio', avatar: 'some image url' }
+          return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
+        case 'AUTHENTICATING_USER': //tells the app we're fetching
+          return { ...state, authenticatingUser: true }
+        case 'AUTHENTICATED_USER':
+          return { ...state, authenticatingUser: false }
+          case 'LOGOUT':
+          localStorage.removeItem('jwt')
+          return { ...state, loggedIn: false }
+        case 'FAILED_LOGIN': //for error handling
+          return {
+            ...state,
+            failedLogin: true,
+            error: action.payload,
+            authenticatingUser: false
+          }
         default: 
         console.log('hit default')
           return state;

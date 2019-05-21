@@ -17,34 +17,37 @@ import Tools from './Containers/Tools'
 import AccountSettings from './Containers/AccountSettings'
 // import logo from './logo.svg';
 import './App.css'
+import { connect } from 'react-redux';
+import { logout } from './actions';
+import withAuth from '../src/hocs/withAuth';
 
 
 
-export default class App extends Component {
+class App extends Component {
 
   state = {logged_in: false}
 
   // fake login for design
-  handleLoginSubmit = () => {
-   this.setState({logged_in: true}, () => console.log('logged in!', this.state))
-  }
+  // handleLoginSubmit = () => {
+  //  this.setState({logged_in: true}, () => console.log('logged in!', this.state))
+  // }
 
-  handleLogout = () => {
-    this.setState({logged_in: false}, () => console.log('logged in!', this.state))
-   }
+  // handleLogout = () => {
+  //   this.setState({logged_in: false}, () => console.log('logged in!', this.state))
+  //  }
 
   render() {
 
     return (
       <div className="App">
-        {this.state.logged_in ? <AppNav handleLogout={this.handleLogout} /> : <WebNav/> }
+        {this.props.loggedIn ? <AppNav handleLogout={this.props.logout} /> : <WebNav/> }
         <Switch>
           <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
           <Route path='/signup' render={(routeProps) => <Signup  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' render={(props) => <Home/>}/>
-          <Route path='/memories' render={(props) => <Memories/>}/>
+          <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' render={(props) => <ThoughtMemories/>}/>   
           <Route path='/emotionmemories' render={(props) => <EmotionMemories/>}/>   
           <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
@@ -57,3 +60,12 @@ export default class App extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  console.log("new state", state)
+  return {
+      loggedIn: state.loggedIn
+  };
+};
+
+
+export default connect(mapStateToProps, { logout })(App)

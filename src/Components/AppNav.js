@@ -19,11 +19,11 @@ export default class AppNav extends Component {
           <Menu.Item as={NavLink} name='MEMORIES' to='/memories' active={activeItem === 'MEMORIES'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='THOUGHT MEMORIES' to='/thoughtmemories' active={activeItem === 'THOUGHT MEMORIES'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='EMOTION MEMORIES' to='/emotionmemories' active={activeItem === 'EMOTION MEMORIES'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='LEFT BRAIN' to='/left-brain' active={activeItem === 'LEFT BRAIN'} onClick={this.handleItemClick} />
+          {/* <Menu.Item as={NavLink} name='LEFT BRAIN' to='/left-brain' active={activeItem === 'LEFT BRAIN'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='RIGHT BRAIN' to='/right-brain' active={activeItem === 'RIGHT BRAIN'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='TOOLS' to='/tools' active={activeItem === 'TOOLS'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='TOOLS' to='/tools' active={activeItem === 'TOOLS'} onClick={this.handleItemClick} /> */}
           <Menu.Menu position='right'>
-          <Menu.Item as={NavLink} name='ACCOUNT SETTINGS' to='/account-settings' active={activeItem === 'Account Settings'} onClick={this.handleItemClick} />
+          {/* <Menu.Item as={NavLink} name='ACCOUNT SETTINGS' to='/account-settings' active={activeItem === 'Account Settings'} onClick={this.handleItemClick} /> */}
           <Menu.Item            
             name='LOGOUT'
             active={activeItem === 'LOGOUT'}

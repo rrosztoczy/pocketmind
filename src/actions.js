@@ -1,5 +1,8 @@
 import adapter from './adapter'
 
+const userEndpoint = "http://localhost:3000/api/v1/users"
+const profileEndpoint = "http://localhost:3000/api/v1/profile"
+// const loginEndpoint = "http://localhost:3000/api/v1/memories"
 const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
@@ -8,11 +11,14 @@ const emotionAdapter = adapter(emotionEndpoint)
 const memoryAdapter = adapter(memoryEndpoint)
 const thoughtMemoryAdapter = adapter(thoughtMemoryEndpoint)
 const emotionMemoryAdapter = adapter(emotionMemoryEndpoint)
+const userAdapter = adapter(userEndpoint)
+const profileAdapter = adapter(profileEndpoint)
 
 // action types
 export const TOGGLE_FORM = 'TOGGLE_Form'
 // Async types
 export const GET_ALL_MEMORIES = 'GET_ALL_MEMORIES'
+export const GET_ALL_USER_MEMORIES = 'GET_ALL_USER_MEMORIES'
 export const GET_ALL_EMOTIONS = 'GET_ALL_EMOTIONS'
 export const GET_ALL_THOUGHT_MEMORIES = 'GET_ALL_THOUGHT_MEMORIES'
 export const GET_ALL_EMOTION_MEMORIES = 'GET_ALL_EMOTION_MEMORIES'
@@ -24,6 +30,7 @@ export const UPDATE_THOUGHT_MEMORY = 'UPDATE_THOUGHT_MEMORY'
 export const DESTROY_MEMORY = 'DESTROY_MEMORY'
 export const DESTROY_THOUGHT_MEMORY = 'DESTROY_THOUGHT_MEMORY'
 export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
+export const CREATE_USER = 'CREATE_USER'
 
 // action creators
 export function toggleForm(event) {
@@ -55,6 +62,10 @@ export function addAnxietyToMemory(payload) {
 export function getAllMemories() {
   return dispatch => memoryAdapter.getAll(dispatch, GET_ALL_MEMORIES)
 }
+
+export function getAllUserMemories() {
+    return dispatch => profileAdapter.getProfile(dispatch, GET_ALL_USER_MEMORIES)
+  }
 
 export function getMemory(memoryId) {
     return dispatch => memoryAdapter.getOne(dispatch, GET_MEMORY, memoryId)
@@ -102,3 +113,88 @@ export function getAllEmotionMemories() {
   export function destroyEmotionMemory(emotionMemoryId) {
     return dispatch => emotionMemoryAdapter.destroy(dispatch, DESTROY_EMOTION_MEMORY, emotionMemoryId)
 }
+
+// User and Auth Actions
+
+export function createUser(user) {
+    return dispatch => userAdapter.create(dispatch, CREATE_USER, user)
+}
+
+// *******************************Auth*********************************************
+
+
+
+export const /*FUNCTION*/ loginUser = (email, password) => {
+    return /*FUNCTION*/ (dispatch) => { //thunk
+      // console.log(process.env.REACT_APP_API_ENDPOINT)
+      dispatch({ type: 'AUTHENTICATING_USER' })
+      // dispatch(authenticatingUser())
+      // fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/login`)
+      // adapter.loginUser(email, password)
+      // http://localhost:3000
+    //   TODO: Switch back to the end point below
+      fetch(`http://localhost:3000//api/v1/login`, { //TODO: move this to an adapter
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            email: email,
+            password: password
+          }
+        })
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            throw response
+          }
+        })
+        .then(JSONResponse => {
+          localStorage.setItem('jwt', JSONResponse.jwt) 
+          dispatch({ type: 'SET_CURRENT_USER', payload: JSONResponse.user })
+        })
+        .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+    }
+  }
+  
+  export const fetchCurrentUser = () => {
+    // takes the token in localStorage and finds out who it belongs to
+    return (dispatch) => {
+      dispatch(authenticatingUser()) //tells the app we are fetching
+    //   switch back to ${process.env.REACT_APP_API_ENDPOINT}/api/v1/profile
+      fetch(`http://localhost:3000//api/v1/profile`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+        .then(response => response.json())
+        .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.user)))
+    }
+  }
+  
+  export const setCurrentUser = (userData) => ({
+    type: 'SET_CURRENT_USER',
+    payload: userData
+  })
+  
+  export const failedLogin = (errorMsg) => ({
+    type: 'FAILED_LOGIN',
+    payload: errorMsg
+  })
+
+    
+  export const logout = () => ({
+    type: 'LOGOUT',
+    // payload: errorMsg
+  })
+  
+  // tell our app we're currently fetching
+  export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
+  // export const authenticatingUser = () => {
+  //   return { type: 'AUTHENTICATING_USER' }
+  // }
