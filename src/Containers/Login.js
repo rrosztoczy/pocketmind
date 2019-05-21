@@ -28,7 +28,7 @@ class Login extends React.Component {
 
   render() {
   return this.props.loggedIn ? (
-    <Redirect to="/profile"/>>
+    <Redirect to="/memories"/>
   ) : (<div className='login-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.
@@ -55,10 +55,10 @@ class Login extends React.Component {
         </Header>
         <Form size='large'>
           {/* <Segment stacked> */}
-            <Form.Input fluid name="username" placeholder='username' onChange={(e) => this.handleFormChange(e)} />
+            <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="password" placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={(e) => this.props.handleLoginSubmit(e, this.state)}>
+            <Button color='teal' fluid size='large' onClick={this.handleLoginSubmit}>
               Login
             </Button>
           {/* </Segment> */}
@@ -78,7 +78,7 @@ const mapStateToProps = state => {
       loggedIn: state.loggedIn,
       authenticatingUser: state.authenticatingUser,
       error: state.error,
-      failedLogin: reduxStoreState.usersReducer.failedLogin
+      failedLogin: state.failedLogin
   };
 };
 

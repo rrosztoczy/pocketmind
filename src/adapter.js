@@ -4,7 +4,7 @@ const adapter = (url) => {
     const headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        Authorization: `Bearer <token>`
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       }
 
     const getAll = async (dispatch, action) => {
@@ -12,7 +12,7 @@ const adapter = (url) => {
             console.log("in the async")
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
-            const resp = await fetch(url)
+            const resp = await fetch(url, { headers: headers })
             const jsonData = await resp.json()
             dispatch({type: action, payload: jsonData})
         })();
@@ -22,7 +22,7 @@ const adapter = (url) => {
         (async () => {
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
-            const resp = await fetch(url + "/" + id)
+            const resp = await fetch(url + "/" + id, { headers: headers })
             const jsonData = await resp.json()
             dispatch({type: action, payload: jsonData})
         })();
