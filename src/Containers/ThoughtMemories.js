@@ -7,7 +7,7 @@ class ThoughtMemories extends React.Component {
 
 
     componentDidMount() {
-        this.props.getAllThoughts()
+        this.props.getAllThoughtMemories()
     }
 
 
@@ -16,12 +16,7 @@ class ThoughtMemories extends React.Component {
         this.props.toggleForm(event)
     }
 
-    destroyThoughtMemory(thoughtMemoryId) {
-        console.log("clicked!")
-        this.props.destroyThoughtMemory(thoughtMemoryId)
-    }
-
-    renderThoughtHeaders() {
+    renderThoughtMemoryHeaders() {
         return (<Grid.Row columns={7}>
             <Grid.Column>
             <p>Go to Memory</p>
@@ -57,16 +52,16 @@ class ThoughtMemories extends React.Component {
               <p>{thoughtMemory.memory.id}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.createdAt}</p>
+              <p>{thoughtMemory.created_at}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.content}</p>
+              <p>{thoughtMemory.thought_content}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.type}</p>
+              <p>{thoughtMemory.thought_type}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.object}</p>
+              <p>{thoughtMemory.thought_object}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{thoughtMemory.reason}</p>
@@ -117,7 +112,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].time_orientation ? this.state.editedThoughtMemories[thoughtMemory.id].time_orientation : thoughtMemory.time_orientation}  name='time_orientation' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
-              <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
+              <Button onClick={() => this.props.destroyThoughtMemory(thoughtMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -176,15 +171,14 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
             </Header>
       </Grid.Column>
     </Grid.Row>
-    {this.renderMemoryHeaders()}
-    {this.props.edit ? this.renderEditForms() : this.renderMemories()}
+    {this.renderThoughtMemoryHeaders()}
+    {this.props.edit ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>
   )
 }
 }
 
     const mapStateToProps = state => {
-        console.log("new state", state)
         return {
             thoughtMemories: state.thoughtMemories,
             editThoughtMemories: state.editThoughtMemories

@@ -3,6 +3,8 @@ import {
     // Asynch types
     GET_ALL_MEMORIES,
     GET_ALL_EMOTIONS,
+    GET_ALL_THOUGHT_MEMORIES,
+    GET_ALL_EMOTION_MEMORIES,
     GET_MEMORY,
     CREATE_MEMORY,
     UPDATE_MEMORY,
@@ -12,8 +14,8 @@ import {
 const initialState = {
     // Data from DB
     memories: [],
-    emotionMemories: [],
     thoughtMemories: [],
+    emotionMemories: [],
     // For CRUD
     memory: {    
         emotionMemoriesAttributes: [],
@@ -39,6 +41,10 @@ function memoryReducer(state = initialState, action) {
         return {...state, emotions: [...state.emotions, ...action.payload]}
         case  GET_ALL_MEMORIES:
         return {...state, memories: [...state.memories, ...action.payload]}
+        case  GET_ALL_THOUGHT_MEMORIES:
+        return {...state, thoughtMemories: [...state.thoughtMemories, ...action.payload]}
+        case  GET_ALL_THOUGHT_MEMORIES:
+        return {...state, emotionMemories: [...state.emotionMemories, ...action.payload]}
         case  DESTROY_MEMORY:
         console.log('destroying memory! hit destroy')
         return {...state, memories: state.memories.filter(memory => memory.id != action.payload)}

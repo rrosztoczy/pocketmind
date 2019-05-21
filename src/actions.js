@@ -2,14 +2,20 @@ import adapter from './adapter'
 
 const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
+const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
+const emotionMemoryEndpoint = "http://localhost:3000/api/v1/emotion_memories"
 const emotionAdapter = adapter(emotionEndpoint)
 const memoryAdapter = adapter(memoryEndpoint)
+const thoughtMemoryAdapter = adapter(thoughtMemoryEndpoint)
+const emotionMemoryAdapter = adapter(emotionMemoryEndpoint)
 
 // action types
 export const TOGGLE_FORM = 'TOGGLE_Form'
 // Async types
 export const GET_ALL_MEMORIES = 'GET_ALL_MEMORIES'
 export const GET_ALL_EMOTIONS = 'GET_ALL_EMOTIONS'
+export const GET_ALL_THOUGHT_MEMORIES = 'GET_ALL_THOUGHT_MEMORIES'
+export const GET_ALL_EMOTION_MEMORIES = 'GET_ALL_EMOTION_MEMORIES'
 export const GET_MEMORY = 'GET_MEMORY'
 export const CREATE_MEMORY = 'CREATE_MEMORY'
 export const UPDATE_MEMORY = 'UPDATE_MEMORY'
@@ -65,4 +71,14 @@ export function destroyMemory(memoryId) {
 // Emotions adapter
 export function getAllEmotions() {
     return dispatch => emotionAdapter.getAll(dispatch, GET_ALL_EMOTIONS)
+  }
+
+  // Thought Memories Adapter
+export function getAllThoughtMemories() {
+    return dispatch => thoughtMemoryAdapter.getAll(dispatch, GET_ALL_THOUGHT_MEMORIES)
+  }
+
+    // Emotion Memories Adapter
+export function getAllEmotionMemories() {
+    return dispatch => emotionMemoryAdapter.getAll(dispatch, GET_ALL_EMOTION_MEMORIES)
   }
