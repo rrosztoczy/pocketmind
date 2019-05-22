@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router'
 import * as actions from '../actions'
 
 class Signup extends React.Component {
@@ -20,8 +21,9 @@ class Signup extends React.Component {
 
 
   render() {
-    return(
-      <div className='login-form'>
+    return this.props.loggedIn ? (
+      <Redirect to="/profile"/>
+    ) : ( <div className='login-form'>
         {/*
           Heads up! The styles below are necessary for the correct render of this example.
           You can do same with CSS, the main idea is that all the elements up to the `Grid`
@@ -48,7 +50,7 @@ class Signup extends React.Component {
                 <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-                <Button color='teal' fluid size='large' onClick={() => this.props.createUser({user: this.state})}>
+                <Button color='teal' fluid size='large' onClick={() => this.handleSignUp(this.state)}>
                   sign up
                 </Button>
             </Form>
@@ -60,12 +62,16 @@ class Signup extends React.Component {
       </div>
     )
   }
+
+  handleSignUp = (userdata) => {
+    this.props.createUser({user: userdata})
+  }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//       user: state.user
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+      loggedIn: state.loggedIn
+  };
+};
 
-export default connect(null, actions)(Signup)
+export default withRouter(connect(mapStateToProps, actions)(Signup))
