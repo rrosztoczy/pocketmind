@@ -125,36 +125,11 @@ render() {
       </Grid.Column>
     </Grid.Row>
 
-    {/* <Grid.Row columns={5}>
-      <Grid.Column width={6}>
-      </Grid.Column>
-      <Grid.Column width={1}>
-      😰
-      </Grid.Column>
-      <Grid.Column width={2}>
-      energy
-      </Grid.Column>
-      <Grid.Column width={1}>
-      😨
-      </Grid.Column>
-      <Grid.Column width={6}>
-      </Grid.Column>
-    </Grid.Row> */}
-
    
 
   {/* icons: sun (activity, weather or mood), book (journal), fork (nots ure but awesome), idea (lightbultb), dna, cloud upload, address book (social), 
   briefcase (work), coffee (break), bath (idk lol), different variations of commnet, mobile (soical media etc), headphones (entertainment), clock, hourglass, 
   adjust (mood), pencil alternate (thought), handshake, thumbs up, heartbeat, heart, medikit, beer, cloud, cog, circle, home, info circle, start, trophy, icycle, car or plane for travel, bed for relax  */}
-        
- 
-
-             
-        {/* Thought icons: record journal = book | question  = question circle?  | record idea = lightbulb | record quote = quote | Shielf for mental journal | alarm = worry */}
-
-              {/* Activity icons: type = bicycle or football, beer or martini, bed,, work, travel, learn */}
-
-        {/* Other things Iike: the rotate and movement reveals ... maybe use to reveal an input form for each icon circle*/}
 
 
     <Grid.Row columns={1}>

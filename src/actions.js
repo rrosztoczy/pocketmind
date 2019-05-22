@@ -34,6 +34,7 @@ export const CREATE_USER = 'CREATE_USER'
 
 // action creators
 export function toggleForm(event) {
+    console.log('button is', event.target.value)
     return { type: TOGGLE_FORM, payload: event.target.value}
 }
 

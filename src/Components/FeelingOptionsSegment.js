@@ -1,25 +1,51 @@
 import React from 'react'
-import { Header, Segment, Reveal, Button } from 'semantic-ui-react'
+import { Header, Segment, Reveal, Button, Icon } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
-const square = { width: 120, height: 120 }
-const smallSquare = { width: 100, height: 100 }
+const square = { width: 130, height: 130 }
+const largeSquare = { width: 135, height: 135 }
 
-const FeelingOptionsSegment = () => (
+class FeelingOptionsSegment extends React.Component {
+
+  onFormButtonClick = (event) => {
+   event.persist()
+   console.log(event.target, event.target.value)
+   this.props.toggleForm(event)
+  }
+
+  render() {
+    return (
     <Reveal animated='rotate left'>
       <Reveal.Content visible>
-        <Segment circular style={square}>
+        <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
             Feel
-            <Header.Subheader>+</Header.Subheader>
+            <Header.Subheader><Icon name="heart"/></Header.Subheader>
           </Header>
         </Segment>
       </Reveal.Content>
       <Reveal.Content hidden>
-      <Segment circular style={smallSquare} inverted color='purple' tertiary>
-        <Button circular size="massive" inverted icon='heart' />
+      <Segment circular style={largeSquare} inverted color='purple' value='emotion' tertiary>
+        <p>how do you feel?</p>
+        <Button compact circular size="massive" inverted name='emotion' value='emotion' onClick={this.onFormButtonClick} icon></Button>
         </Segment>
       </Reveal.Content>
     </Reveal>
-)
+    )
+    }
+}
 
-export default FeelingOptionsSegment
+const mapStateToProps = state => {
+  console.log("new state", state)
+  return {
+      memory: state.memory,
+      emotions: state.emotions,
+      emotion: state.emotion,
+      thought: state.thought,
+      stress: state.stress,
+      anxiety:state.anxiety,
+      logged_in: state.logged_in
+  };
+};
+export default connect(mapStateToProps, actions)(FeelingOptionsSegment)
