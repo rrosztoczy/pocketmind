@@ -68,7 +68,7 @@ render() {
   </Grid.Row>
   
     <Grid.Row columns={4} >
-      <Grid.Column width={2}>
+      <Grid.Column width={3}>
       </Grid.Column>
       <Grid.Column textAlign='center' width={4}>
       <FeelingOptionsSegment/>
@@ -104,12 +104,12 @@ render() {
         </Grid.Column>
       </>
       }
-      <Grid.Column width={2}>
+      <Grid.Column width={1}>
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={4}>
-      <Grid.Column width={2}>
+      <Grid.Column width={3}>
       </Grid.Column>
       <Grid.Column width={4}>
       <ThoughtOptionsSegment/>
@@ -140,13 +140,13 @@ render() {
         </Grid.Column>
       </>
       }
-      <Grid.Column width={2}>
+      <Grid.Column width={1}>
       </Grid.Column>
     </Grid.Row>
 
 
     <Grid.Row columns={4}>
-      <Grid.Column width={2}>
+      <Grid.Column width={3}>
       </Grid.Column>
       <Grid.Column width={4}>
       <ActivityOptionsSegment/>
@@ -177,7 +177,7 @@ render() {
         </Grid.Column>
       </>
       }
-      <Grid.Column width={2}>
+      <Grid.Column width={1}>
       </Grid.Column>
     </Grid.Row>
 
@@ -189,29 +189,27 @@ render() {
    
 
 
-  <Grid.Row columns={1}>
-      <Grid.Column>
-      </Grid.Column>
-  </Grid.Row>
+
 
   <Grid.Row columns={1}>
       <Grid.Column>
       </Grid.Column>
   </Grid.Row>
 
-  <Grid.Row columns={1}>
-      <Grid.Column>
-      </Grid.Column>
-  </Grid.Row>
 
-    <Grid.Row columns={1}>
+    <Grid.Row color='orange' columns={1}>
       <Grid.Column>
-      <Button animated color='pink' basic tertiary circular size='huge'>
+      <Button animated color='orange' inverted basic circular size='huge'>
               <Button.Content visible><h1>LOG MEMORY</h1></Button.Content>
               <Button.Content hidden><Icon name='arrow right' /></Button.Content>
             </Button>
       </Grid.Column>
     </Grid.Row>
+
+    <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+  </Grid.Row>
 
   <Grid.Row columns={1}>
       <Grid.Column>

@@ -53,6 +53,18 @@ class Memories extends React.Component {
         return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
+    renderNewEmotionMemoryForm() {
+        return <NewEmotionMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
+    }
+
+    renderNewThoughtMemoryForm() {
+        return <NewThoughtMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
+    }
+
+    renderNewMemoryForm() {
+        return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
+    }
+
     destroyMemory(memoryId) {
         console.log("clicked!")
         this.props.destroyMemory(memoryId)
@@ -243,6 +255,7 @@ handleMultiEditChange = (event, memoryId) => {
             memories: state.memories,
             edit: state.edit,
             new: state.new,
+            emotions: state.emotions,
             emotion: state.emotion,
             thought: state.thought,
             stress: state.stress,
