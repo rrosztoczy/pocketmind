@@ -48,7 +48,7 @@ class App extends Component {
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' render={(props) => <Home/>}/>
           <Route path='/profile' component={withAuth(Memories)}/>
-          <Route path='/thoughtmemories' render={(props) => <ThoughtMemories/>}/>   
+          <Route path='/thoughtmemories' component={withAuth(ThoughtMemories)}/>   
           <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/>   
           <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
           <Route path='/right-brain' render={(props) => <RightBrain/>}/>      

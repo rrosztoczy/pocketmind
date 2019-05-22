@@ -73,32 +73,39 @@ handleMultiEditChange = (event, emotionMemoryId) => {
 
     renderEditForms() {
         console.log('rendering edit forms!')
-        const sortedEmotionMemories = [...this.props.emotionMemories].sort(function(a,b) {
+        const userEmotionMemories = []
+        this.props.memories.forEach(memory => memory.emotionMemories.forEach(emotionMemory => userEmotionMemories.push(emotionMemory)))
+        const sortedEmotionMemories = [...userEmotionMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedEmotionMemories.map(emotionMemory => {
             return (<Grid.Row key={emotionMemory.id} columns={5}>
               <Grid.Column>
-              <p>{emotionMemory.memory.id}</p>
+              <p>{emotionMemory.memory_id}</p>
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].createdAt ? this.state.editedEmotionMemories[emotionMemory.id].createdAt : emotionMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
               {/* update this to be the drop down select */}
-              <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion.emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion.emotion : emotionMemory.emotion.emotion}  name='emotion' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
+              <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion : emotionMemory.emotion}  name='emotion' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].pleasure ? this.state.editedEmotionMemories[emotionMemory.id].pleasure : emotionMemory.pleasure}  name='pleasure' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].intensity ? this.state.editedEmotionMemories[emotionMemory.id].intensity : emotionMemory.intensity}  name='intensity' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
-              <Button onClick={() => this.props.destroyEmotionMemory(emotionMemory.id)} icon='trash alternate outline'/>
+              <Button onClick={() => this.destroyEmotionMemory(emotionMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
 
     }
+    destroyEmotionMemory(emotionMemoryId) {
+        this.props.destroyEmotionMemory(emotionMemoryId)
+        this.props.getAllUserMemories()
+    }
+
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
@@ -115,6 +122,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         console.log("state", this.state)
         const editedEmotionMemoryArray = Object.keys(this.state.editedEmotionMemories)
         editedEmotionMemoryArray.forEach(editedEmotionMemoryId => this.props.updateEmotionMemory(editedEmotionMemoryId, this.state.editedEmotionMemories[editedEmotionMemoryId]))
+        this.props.getAllUserMemories()
         this.onEditButtonClick(event)
     }
 
@@ -139,12 +147,6 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     <Grid.Row columns={1}>
       <Grid.Column>
             {this.props.editEmotionMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              GO TO MEMORIES
-            </Button>
-            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              GO TO EMOTIONS
-            </Button>
       </Grid.Column>
     </Grid.Row>
 
