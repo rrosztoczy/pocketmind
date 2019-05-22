@@ -3,6 +3,8 @@ import { Grid, Button, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
+import NewStressMemoryForm from '../Components/NewStressMemoryForm'
+import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
@@ -26,10 +28,13 @@ class AddMemoryContainer extends React.Component {
         return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
     }
 
-    // renderAdditionalMemoryDataForm() {
-    //     // stress, anxiety, energy
-    //     return <AdditionalMemoryDataMemoryForm submitMemory={this.submitMemory} handleSubmitNew={this.handleSubmitNew} />
-    // }
+    renderNewStressMemoryForm() {
+        return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
+    }
+
+    renderNewAnxietyMemoryForm() {
+        return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
+    }
 
 render() {
 
@@ -92,9 +97,44 @@ render() {
       </Grid.Column>
     </Grid.Row>
 
+    {/* <Grid.Row columns={5}>
+      <Grid.Column width={6}>
+      spacing column
+      </Grid.Column>
+      <Grid.Column width={1}>
+      😰
+      </Grid.Column>
+      <Grid.Column width={2}>
+      energy
+      </Grid.Column>
+      <Grid.Column width={1}>
+      😨
+      </Grid.Column>
+      <Grid.Column width={6}>
+      spacing column
+      </Grid.Column>
+    </Grid.Row> */}
+
+   
+        
+
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' circular size='large'>
+      {/* Have a button here for form rendering */}
+      Do you feel any <br/>
+      <p>
+      <Button color='teal' size='tiny' value='stress' name='stress'  circular onClick={event => this.onFormButtonClick(event)}>Stress</Button>
+      <div>{this.props.stress ? this.renderNewStressMemoryForm() : '😰'}</div>
+      or
+      <Button color='teal' size='tiny' value='anxiety' name='anxiety'  circular onClick={event => this.onFormButtonClick(event)}>Anxiety?</Button>
+      <div>{this.props.anxiety ? this.renderNewAnxietyMemoryForm() : '🤢' }</div>
+      </p>
+      </Grid.Column>
+  </Grid.Row>
+
+    <Grid.Row columns={1}>
+      <Grid.Column>
+      <Button color='teal' circular size='huge'>
               Send this memory to space!
             </Button>
       </Grid.Column>
@@ -115,6 +155,8 @@ const mapStateToProps = state => {
         memory: state.memory,
         emotion: state.emotion,
         thought: state.thought,
+        stress: state.stress,
+        anxiety:state.anxiety,
         logged_in: state.logged_in
     };
 };
