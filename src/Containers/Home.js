@@ -2,43 +2,81 @@ import React from 'react'
 import { Grid, Image, Button, Header } from 'semantic-ui-react'
 
 const Home = () => (
-  <Grid divided='vertically'>
+  <Grid style={{height: '100vh'}}>
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
-      <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE HOME
-        </Header>
-        <Header as='h3' color='blue' textAlign='center'>
-          keep your head in the cloud
-        </Header>
       </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
+  </Grid.Row>
+  
+    <Grid.Row columns={4} >
+      <Grid.Column width={2}>
+      spacing column
+      </Grid.Column>
+      <Grid.Column width={3}>
+      <Button color='teal' fluid size='small' circular>
+             + <br/> Emotion
+            </Button>
+      </Grid.Column>
+      <Grid.Column width={9}>
       <Button color='teal' fluid size='large'>
               SIGN UP FOR FREE
             </Button>
       </Grid.Column>
+      <Grid.Column width={2}>
+      spacing column
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={4}>
+      <Grid.Column width={2}>
+      spacing column
+      </Grid.Column>
+      <Grid.Column width={3}>
+      <Button color='teal' fluid size='small' circular>
+      + <br/> Thought
+            </Button>
+      </Grid.Column>
+      <Grid.Column width={9}>
+      <Button color='teal' fluid size='large'>
+              SIGN UP FOR FREE
+            </Button>
+      </Grid.Column>
+      <Grid.Column width={2}>
+      spacing column
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={4}>
+      <Grid.Column width={2}>
+      spacing column
+      </Grid.Column>
+      <Grid.Column width={3}>
+      <Button color='teal' fluid size='small' circular>
+      + <br/> Activity
+            </Button>
+      </Grid.Column>
+      <Grid.Column width={9}>
+      <Button color='teal' fluid size='large'>
+              SIGN UP FOR FREE
+            </Button>
+      </Grid.Column>
+      <Grid.Column width={2}>
+      spacing column
+      </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large'>
-              GET THE APP NOW
+      <Button color='teal' circular size='large'>
+              Send this memory to space!
             </Button>
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={2}>
+  <Grid.Row columns={1}>
       <Grid.Column>
-      <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
       </Grid.Column>
-      <Grid.Column>
-      <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
+  </Grid.Row>
   </Grid>
 )
 
