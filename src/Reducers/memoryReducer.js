@@ -48,10 +48,11 @@ function memoryReducer(state = initialState, action) {
     switch (action.type) {
         case  GET_ALL_EMOTIONS:
         return {...state, emotions: [...state.emotions, ...action.payload]}
-        case  GET_ALL_MEMORIES:
-        return {...state, memories: [...state.memories, ...action.payload]}
+        // case  GET_ALL_MEMORIES:
+        // return {...state, memories: [...state.memories, ...action.payload]}
         case  GET_ALL_USER_MEMORIES:
-        return {...state, memories: [...state.memories, ...action.payload.memories]}
+        console.log("hit get all user memories!")
+        return {...state, memories: [...action.payload.memories]}
         case  GET_ALL_THOUGHT_MEMORIES:
         return {...state, thoughtMemories: [...state.thoughtMemories, ...action.payload]}
         case  GET_ALL_EMOTION_MEMORIES:
