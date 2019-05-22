@@ -26,6 +26,7 @@ class Memories extends React.Component {
     // };
 
     componentDidMount() {
+        console.log("is jwt setn yet?", localStorage.getItem('jwt'))
         this.props.getAllUserMemories()
     }
 
@@ -222,12 +223,6 @@ handleMultiEditChange = (event, memoryId) => {
               ADD A NEW MEMORY
             </Button>
             {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
-            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              GO TO EMOTIONS
-            </Button>
-            <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              GO TO THOUGHTS
-            </Button>
             <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
             <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
             <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : null}</div>

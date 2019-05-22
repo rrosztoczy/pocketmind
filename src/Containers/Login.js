@@ -27,6 +27,7 @@ class Login extends React.Component {
 
 
   render() {
+    console.log("about to redirect from login!")
   return this.props.loggedIn ? (
     <Redirect to="/profile"/>
   ) : (<div className='login-form'>
