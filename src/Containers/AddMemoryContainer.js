@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Header } from 'semantic-ui-react'
+import { Grid, Button, Header, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
@@ -7,6 +7,7 @@ import NewStressMemoryForm from '../Components/NewStressMemoryForm'
 import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
 import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
+import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
@@ -82,7 +83,7 @@ render() {
       {/* render 8 width column or buttons 5 buttons */}
       {!this.props.emotionOptions ?
       <Grid.Column width={8}>
-        <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null} </div>
+        <Header>Show small emotions chart here...</Header>
       </Grid.Column> :
       <>
         <Grid.Column width={2}>
@@ -118,24 +119,24 @@ render() {
       </Grid.Column>
       {!this.props.thoughtOptions ?
       <Grid.Column width={8}>
-        {/* <div>{this.props.thought ? this.renderNewEmotionMemoryForm() : null} </div> */}
+        <Header>Show small thoughts chart here...</Header>
       </Grid.Column> :
       <>
         <Grid.Column width={2}>
         <Header>Journal</Header>
-        <Button circular color='pink' size='massive' basic icon="book"/>
+        <Button circular color='brown' size='massive' basic icon="book"/>
         </Grid.Column>
         <Grid.Column width={2}>
         <Header>Idea</Header>
-        <Button circular color='blue' size='massive' basic icon="lightbulb outline"/>
+        <Button circular color='yellow' size='massive' basic icon="lightbulb outline"/>
         </Grid.Column>
         <Grid.Column width={2}>
         <Header>Gratitude</Header>
-        <Button circular color='violet' size='massive' basic icon="gem outline"/>
+        <Button circular color='green' size='massive' basic icon="gem outline"/>
         </Grid.Column>
         <Grid.Column width={2}>
         <Header>Balance</Header>
-        <Button circular color='yellow' size='massive' basic icon="law"/>
+        <Button circular color='blue' size='massive' basic icon="law"/>
         </Grid.Column>
       </>
       }
@@ -143,33 +144,71 @@ render() {
       </Grid.Column>
     </Grid.Row>
 
+
     <Grid.Row columns={4}>
       <Grid.Column width={2}>
       </Grid.Column>
       <Grid.Column width={4}>
-      {/* <ActivityOptionsSegment/> */}
-      {/* <Button color='teal' fluid size='small' circular onClick={event => this.onFormButtonClick(event)}>
-      + <br/> Activity
-            </Button> */}
+      <ActivityOptionsSegment/>
+      {/* icons: sun (activity, weather or mood), book (journal), fork (nots ure but awesome), idea (lightbultb), dna, cloud upload, address book (social), 
+  briefcase (work), coffee (break), bath (idk lol), different variations of commnet, mobile (soical media etc), headphones (entertainment), clock, hourglass, 
+  adjust (mood), pencil alternate (thought), handshake, thumbs up, heartbeat, heart, medikit, beer, cloud, cog, circle, home, info circle, start, trophy, icycle, car or plane for travel, bed for relax  */}
       </Grid.Column>
+      {!this.props.activityOptions ?
       <Grid.Column width={8}>
-      {/* <div>{this.props.stressandanxiety ? this.renderNewStressAndAnxietyMemoryForm() : <Header>Do you have any stress or anxiety?</Header>}</div> */}
-      </Grid.Column>
+        <Header>Show small activities chart here...</Header>
+      </Grid.Column> :
+      <>
+        <Grid.Column width={2}>
+        <Header>Work</Header>
+        <Button circular color='teal' size='massive' basic icon="coffee"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Physical</Header>
+        <Button circular color='orange' size='massive' basic icon="heartbeat"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Social</Header>
+        <Button circular color='purple' size='massive' basic icon="users"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Entertainment</Header>
+        <Button circular color='yellow' size='massive' basic icon="bar"/>
+        </Grid.Column>
+      </>
+      }
       <Grid.Column width={2}>
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1}>
+      <Grid.Column >
       </Grid.Column>
     </Grid.Row>
 
    
 
-  {/* icons: sun (activity, weather or mood), book (journal), fork (nots ure but awesome), idea (lightbultb), dna, cloud upload, address book (social), 
-  briefcase (work), coffee (break), bath (idk lol), different variations of commnet, mobile (soical media etc), headphones (entertainment), clock, hourglass, 
-  adjust (mood), pencil alternate (thought), handshake, thumbs up, heartbeat, heart, medikit, beer, cloud, cog, circle, home, info circle, start, trophy, icycle, car or plane for travel, bed for relax  */}
 
+  <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+  </Grid.Row>
+
+  <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+  </Grid.Row>
+
+  <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+  </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='orange' basic tertiary circular size='huge'>
-              <h1>LOG MEMORY</h1>
+      <Button animated color='pink' basic tertiary circular size='huge'>
+              <Button.Content visible><h1>LOG MEMORY</h1></Button.Content>
+              <Button.Content hidden><Icon name='arrow right' /></Button.Content>
             </Button>
       </Grid.Column>
     </Grid.Row>
@@ -193,6 +232,7 @@ const mapStateToProps = state => {
         memory: state.memory,
         thoughtOptions: state.thoughtOptions,
         emotionOptions: state.emotionOptions,
+        activityOptions: state.activityOptions,
         emotion: state.emotion,
         thought: state.thought,
         stress: state.stress,

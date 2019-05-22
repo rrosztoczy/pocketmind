@@ -21,7 +21,7 @@ class FeelingOptionsSegment extends React.Component {
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
             Feel
-            <Header.Subheader><Icon name="heart"/></Header.Subheader>
+            <Header.Subheader><Icon size="large" name="heart"/></Header.Subheader>
           </Header>
         </Segment>
       </Reveal.Content>

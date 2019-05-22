@@ -32,6 +32,7 @@ const initialState = {
     emotion: false,
     mood: false,
     energy: false,
+    activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
     thought: false,
