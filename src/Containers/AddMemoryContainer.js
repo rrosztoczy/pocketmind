@@ -80,15 +80,29 @@ render() {
       </Grid.Column>
       {/* <Button circular icon='settings' /> */}
       {/* render 8 width column or buttons 5 buttons */}
+      {!this.props.emotionOptions ?
       <Grid.Column width={8}>
-      <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null} </div>
-             {/* Emotion icons:
-        feeling and intensity = heart | energy = lightning? | mood = adjust or sun | stress = heartbeat | anxiety = x */}
-      {/* On rednering new emotion form, first render add new emotion data container that has the five circles */}
-        {/* Have each circle potentially have reveal*/}
-        {/* First... what are the circles? Some type of react component? */}
-
-      </Grid.Column>
+        <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null} </div>
+      </Grid.Column> :
+      <>
+        <Grid.Column width={2}>
+        <Header>Emotion</Header>
+        <Button circular color='pink' size='massive' basic icon="heart outline"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Mood</Header>
+        <Button circular color='blue' size='massive' basic icon="adjust"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Energy</Header>
+        <Button circular color='yellow' size='massive' basic icon="lightning"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Stress/Anxiety</Header>
+        <Button circular color='violet' size='massive' basic icon="cloud"/>
+        </Grid.Column>
+      </>
+      }
       <Grid.Column width={2}>
       </Grid.Column>
     </Grid.Row>
@@ -157,6 +171,7 @@ const mapStateToProps = state => {
     console.log("new state", state)
     return {
         memory: state.memory,
+        emotionOptions: state.emotionOptions,
         emotion: state.emotion,
         thought: state.thought,
         stress: state.stress,
