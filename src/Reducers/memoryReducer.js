@@ -30,6 +30,11 @@ const initialState = {
     new: false,
     edit: false,
     emotion: false,
+    mood: false,
+    energy: false,
+    activityOptions: false,
+    emotionOptions: false,
+    thoughtOptions: false,
     thought: false,
     stress: false,
     anxiety: false,
@@ -101,7 +106,7 @@ function memoryReducer(state = initialState, action) {
         return {...state, memory: {...state.memory, thoughtMemoriesAttributes: [...state.memory.thoughtMemoriesAttributes, action.payload]}}
         case  CREATE_USER:
         console.log('creating user! hit create')
-        return {...state, user: {...state.user, ...action.payload}}
+        return {...state, user: {...state.user, ...action.payload}, loggedIn: true}
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}

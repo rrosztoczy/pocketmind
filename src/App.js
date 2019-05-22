@@ -6,15 +6,13 @@ import Home from './Containers/Home'
 import LandingPage from './Containers/LandingPage'
 import Login from './Containers/Login'
 import Signup from './Containers/Signup'
-import Blog from './Containers/Blog'
-import About from './Containers/About'
+import Blog from './Containers/Future/Blog'
+import About from './Containers/Future/About'
 import Memories from './Containers/Memories'
 import ThoughtMemories from './Containers/ThoughtMemories'
 import EmotionMemories from './Containers/EmotionMemories'
-import LeftBrain from './Containers/LeftBrain'
-import RightBrain from './Containers/RightBrain'
-import Tools from './Containers/Tools'
-import AccountSettings from './Containers/AccountSettings'
+import Tools from './Containers/Future/Tools'
+import AccountSettings from './Containers/Future/AccountSettings'
 // import logo from './logo.svg';
 import './App.css'
 import { connect } from 'react-redux';
@@ -49,9 +47,7 @@ class App extends Component {
           <Route path='/home' render={(props) => <Home/>}/>
           <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' component={withAuth(ThoughtMemories)}/>   
-          <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/>   
-          <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
-          <Route path='/right-brain' render={(props) => <RightBrain/>}/>      
+          <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/>      
           <Route path='/tools' render={(props) => <Tools/>}/>           
           <Route path='/account-settings' render={() =>  <AccountSettings />}/>
           <Route path='/' render={(routeProps) => <LandingPage {...routeProps} />}/>

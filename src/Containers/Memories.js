@@ -45,14 +45,6 @@ class Memories extends React.Component {
         return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
     }
 
-    renderNewEmotionMemoryForm() {
-        return <NewEmotionMemoryForm submitEmotionMemory={this.submitEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    renderNewThoughtMemoryForm() {
-        return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
     renderNewStressMemoryForm() {
         return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
     }
