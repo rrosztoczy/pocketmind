@@ -116,9 +116,29 @@ render() {
       + <br/> Thought
             </Button> */}
       </Grid.Column>
+      {!this.props.thoughtOptions ?
       <Grid.Column width={8}>
-      <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : <Header>Super cool animation or chart or sick thing here</Header>}</div>
-      </Grid.Column>
+        {/* <div>{this.props.thought ? this.renderNewEmotionMemoryForm() : null} </div> */}
+      </Grid.Column> :
+      <>
+        <Grid.Column width={2}>
+        <Header>Journal</Header>
+        <Button circular color='pink' size='massive' basic icon="book"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Idea</Header>
+        <Button circular color='blue' size='massive' basic icon="lightbulb outline"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Gratitude</Header>
+        <Button circular color='violet' size='massive' basic icon="gem outline"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Balance</Header>
+        <Button circular color='yellow' size='massive' basic icon="law"/>
+        </Grid.Column>
+      </>
+      }
       <Grid.Column width={2}>
       </Grid.Column>
     </Grid.Row>
@@ -171,6 +191,7 @@ const mapStateToProps = state => {
     console.log("new state", state)
     return {
         memory: state.memory,
+        thoughtOptions: state.thoughtOptions,
         emotionOptions: state.emotionOptions,
         emotion: state.emotion,
         thought: state.thought,

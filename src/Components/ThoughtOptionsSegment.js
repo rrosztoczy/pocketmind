@@ -29,7 +29,7 @@ class ThoughtOptionsSegment extends React.Component {
       <Reveal.Content hidden>
       <Segment circular style={largeSquare} inverted color='teal' tertiary>
       <p>how do you feel?</p>
-        <Button compact circular size="massive" inverted name='thought' value='thought' onClick={this.onFormButtonClick} icon></Button>
+        <Button compact circular size="massive" inverted name='thoughtOptions' value='thoughtOptions' onClick={this.onFormButtonClick} icon></Button>
         </Segment>
       </Reveal.Content>
     </Reveal>
@@ -42,6 +42,7 @@ const mapStateToProps = state => {
     return {
         memory: state.memory,
         emotions: state.emotions,
+        thoughtOptions: state.thoughtOptions,
         emotion: state.emotion,
         thought: state.thought,
         stress: state.stress,

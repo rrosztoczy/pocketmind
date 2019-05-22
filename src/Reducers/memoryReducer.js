@@ -33,6 +33,7 @@ const initialState = {
     mood: false,
     energy: false,
     emotionOptions: false,
+    thoughtOptions: false,
     thought: false,
     stress: false,
     anxiety: false,
