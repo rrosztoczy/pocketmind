@@ -1,13 +1,13 @@
 import React from 'react'
 import { Grid, Image, Button, Header } from 'semantic-ui-react'
 
-const RightBrain = () => (
+const Tools = () => (
   <Grid divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
+      {/* <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/> */}
       <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE IN THE RIGHT BRAIN
+          YOU ARE IN YOUR TOOLS
         </Header>
       </Grid.Column>
     </Grid.Row>
@@ -39,4 +39,4 @@ const RightBrain = () => (
   </Grid>
 )
 
-export default RightBrain
+export default Tools
