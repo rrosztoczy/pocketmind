@@ -5,6 +5,8 @@ import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
 import NewStressMemoryForm from '../Components/NewStressMemoryForm'
 import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
+import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
+import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
@@ -49,13 +51,19 @@ render() {
     <Grid.Row columns={4} >
       <Grid.Column width={2}>
       </Grid.Column>
-      <Grid.Column width={3}>
-      <Button color='teal' fluid size='small' value='emotion' name='emotion' circular onClick={event => this.onFormButtonClick(event)}>
+      <Grid.Column width={4}>
+      <FeelingOptionsSegment/>
+      {/* <Button color='teal' fluid size='small' value='emotion' name='emotion' circular onClick={event => this.onFormButtonClick(event)}>
              + <br/> Emotion
-            </Button>
+            </Button> */}
       </Grid.Column>
-      <Grid.Column width={9}>
+      <Grid.Column width={8}>
       <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : <Header>How are you feeling?</Header>}</div>
+             {/* Emotion icons:
+        feeling and intensity = heart | energy = lightning? | mood = adjust or sun | stress = heartbeat | anxiety = x */}
+      {/* On rednering new emotion form, first render add new emotion data container that has the five circles */}
+        {/* Have each circle potentially have reveal*/}
+        {/* First... what are the circles? Some type of react component? */}
       </Grid.Column>
       <Grid.Column width={2}>
       </Grid.Column>
@@ -64,12 +72,13 @@ render() {
     <Grid.Row columns={4}>
       <Grid.Column width={2}>
       </Grid.Column>
-      <Grid.Column width={3}>
-      <Button color='teal' fluid size='small' value='thought' name='thought'  circular onClick={event => this.onFormButtonClick(event)}>
+      <Grid.Column width={4}>
+      <ThoughtOptionsSegment/>
+      {/* <Button color='teal' fluid size='small' value='thought' name='thought'  circular onClick={event => this.onFormButtonClick(event)}>
       + <br/> Thought
-            </Button>
+            </Button> */}
       </Grid.Column>
-      <Grid.Column width={9}>
+      <Grid.Column width={8}>
       <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : <Header>What are you thinking?</Header>}</div>
       </Grid.Column>
       <Grid.Column width={2}>
@@ -79,12 +88,13 @@ render() {
     <Grid.Row columns={4}>
       <Grid.Column width={2}>
       </Grid.Column>
-      <Grid.Column width={3}>
+      <Grid.Column width={4}>
+      {/* <ActivityOptionsSegment/> */}
       {/* <Button color='teal' fluid size='small' circular onClick={event => this.onFormButtonClick(event)}>
       + <br/> Activity
             </Button> */}
       </Grid.Column>
-      <Grid.Column width={9}>
+      <Grid.Column width={8}>
       {/* <div>{this.props.stressandanxiety ? this.renderNewStressAndAnxietyMemoryForm() : <Header>Do you have any stress or anxiety?</Header>}</div> */}
       </Grid.Column>
       <Grid.Column width={2}>
@@ -114,7 +124,19 @@ render() {
       Do you feel any 
       </Grid.Column>
   </Grid.Row>
+
+  {/* icons: sun (activity, weather or mood), book (journal), fork (nots ure but awesome), idea (lightbultb), dna, cloud upload, address book (social), 
+  briefcase (work), coffee (break), bath (idk lol), different variations of commnet, mobile (soical media etc), headphones (entertainment), clock, hourglass, 
+  adjust (mood), pencil alternate (thought), handshake, thumbs up, heartbeat, heart, medikit, beer, cloud, cog, circle, home, info circle, start, trophy, icycle, car or plane for travel, bed for relax  */}
         
+ 
+
+             
+        {/* Thought icons: record journal = book | question  = question circle?  | record idea = lightbulb | record quote = quote | Shielf for mental journal | alarm = worry */}
+
+              {/* Activity icons: type = bicycle or football, beer or martini, bed,, work, travel, learn */}
+
+        {/* Other things Iike: the rotate and movement reveals ... maybe use to reveal an input form for each icon circle*/}
 
     <Grid.Row centered columns={4}>
     <Grid.Column width={6}>
