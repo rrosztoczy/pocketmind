@@ -48,7 +48,6 @@ render() {
   
     <Grid.Row columns={4} >
       <Grid.Column width={2}>
-      spacing column
       </Grid.Column>
       <Grid.Column width={3}>
       <Button color='teal' fluid size='small' value='emotion' name='emotion' circular onClick={event => this.onFormButtonClick(event)}>
@@ -59,13 +58,11 @@ render() {
       <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : <Header>How are you feeling?</Header>}</div>
       </Grid.Column>
       <Grid.Column width={2}>
-      spacing column
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={4}>
       <Grid.Column width={2}>
-      spacing column
       </Grid.Column>
       <Grid.Column width={3}>
       <Button color='teal' fluid size='small' value='thought' name='thought'  circular onClick={event => this.onFormButtonClick(event)}>
@@ -76,13 +73,11 @@ render() {
       <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : <Header>What are you thinking?</Header>}</div>
       </Grid.Column>
       <Grid.Column width={2}>
-      spacing column
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={4}>
       <Grid.Column width={2}>
-      spacing column
       </Grid.Column>
       <Grid.Column width={3}>
       {/* <Button color='teal' fluid size='small' circular onClick={event => this.onFormButtonClick(event)}>
@@ -93,13 +88,11 @@ render() {
       {/* <div>{this.props.stressandanxiety ? this.renderNewStressAndAnxietyMemoryForm() : <Header>Do you have any stress or anxiety?</Header>}</div> */}
       </Grid.Column>
       <Grid.Column width={2}>
-      spacing column
       </Grid.Column>
     </Grid.Row>
 
     {/* <Grid.Row columns={5}>
       <Grid.Column width={6}>
-      spacing column
       </Grid.Column>
       <Grid.Column width={1}>
       😰
@@ -111,24 +104,33 @@ render() {
       😨
       </Grid.Column>
       <Grid.Column width={6}>
-      spacing column
       </Grid.Column>
     </Grid.Row> */}
 
    
-        
-
     <Grid.Row columns={1}>
       <Grid.Column>
       {/* Have a button here for form rendering */}
-      Do you feel any <br/>
-      <p>
-      <Button color='teal' size='tiny' value='stress' name='stress'  circular onClick={event => this.onFormButtonClick(event)}>Stress</Button>
+      Do you feel any 
+      </Grid.Column>
+  </Grid.Row>
+        
+
+    <Grid.Row centered columns={4}>
+    <Grid.Column width={6}>
+      </Grid.Column>
+      <Grid.Column textAlign='center' width={2}>
+      <Button fluid color='teal' size='tiny' value='stress' name='stress'  circular onClick={event => this.onFormButtonClick(event)}>Stress</Button>
       <div>{this.props.stress ? this.renderNewStressMemoryForm() : '😰'}</div>
+      </Grid.Column>
+      {/* <Grid.Column textAlign='center' width={2}>
       or
-      <Button color='teal' size='tiny' value='anxiety' name='anxiety'  circular onClick={event => this.onFormButtonClick(event)}>Anxiety?</Button>
+      </Grid.Column> */}
+      <Grid.Column textAlign='center' width={2}>
+      <Button fluid color='teal' size='tiny' value='anxiety' name='anxiety'  circular onClick={event => this.onFormButtonClick(event)}>Anxiety</Button>
       <div>{this.props.anxiety ? this.renderNewAnxietyMemoryForm() : '🤢' }</div>
-      </p>
+      </Grid.Column>
+      <Grid.Column width={6}>
       </Grid.Column>
   </Grid.Row>
 
