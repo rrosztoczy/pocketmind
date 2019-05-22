@@ -49,7 +49,7 @@ class App extends Component {
           <Route path='/home' render={(props) => <Home/>}/>
           <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' render={(props) => <ThoughtMemories/>}/>   
-          <Route path='/emotionmemories' render={(props) => <EmotionMemories/>}/>   
+          <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/>   
           <Route path='/left-brain' render={(props) => <LeftBrain/>}/>      
           <Route path='/right-brain' render={(props) => <RightBrain/>}/>      
           <Route path='/tools' render={(props) => <Tools/>}/>           

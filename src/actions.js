@@ -175,7 +175,7 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
         }
       })
         .then(response => response.json())
-        .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.user)))
+        .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.email)))
     }
   }
   

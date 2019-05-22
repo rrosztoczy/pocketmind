@@ -7,7 +7,6 @@ const adapter = (url) => {
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       }
 
-      console.log(localStorage.getItem('jwt'), "is the issue")
 
     const getAll = async (dispatch, action) => {
         (async () => {

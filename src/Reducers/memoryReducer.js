@@ -55,8 +55,8 @@ function memoryReducer(state = initialState, action) {
         return {...state, memories: [...action.payload.memories]}
         case  GET_ALL_THOUGHT_MEMORIES:
         return {...state, thoughtMemories: [...state.thoughtMemories, ...action.payload]}
-        case  GET_ALL_EMOTION_MEMORIES:
-        return {...state, emotionMemories: [...state.emotionMemories, ...action.payload]}
+        // case  GET_ALL_EMOTION_MEMORIES:
+        // return {...state, emotionMemories: [...state.emotionMemories, ...action.payload]}
         case  DESTROY_MEMORY:
         console.log('destroying memory! hit destroy')
         return {...state, memories: state.memories.filter(memory => memory.id != action.payload)}
@@ -107,6 +107,7 @@ function memoryReducer(state = initialState, action) {
           return {...state, [action.payload]: !state[action.payload]}
           // *****************************************************************Auth***********************************************************
           case 'SET_CURRENT_USER':
+          console.log("setting current user")
           //action.payload { username: 'Chandler Bing', bio: 'my user bio', avatar: 'some image url' }
           return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
         case 'AUTHENTICATING_USER': //tells the app we're fetching

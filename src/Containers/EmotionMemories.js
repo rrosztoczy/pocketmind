@@ -6,7 +6,7 @@ import * as actions from '../actions'
 class EmotionMemories extends React.Component {
 
     componentDidMount() {
-        this.props.getAllEmotionMemories()
+        this.props.getAllUserMemories()
     }
 
     onEditButtonClick = (event) => {
@@ -35,19 +35,22 @@ class EmotionMemories extends React.Component {
     }
 
     renderEmotionMemories() {
-        const sortedEmotionMemories = [...this.props.emotionMemories].sort(function(a,b) {
+        console.log("props is", this.props.memories)
+        const userEmotionMemories = []
+        this.props.memories.forEach(memory => memory.emotionMemories.forEach(emotionMemory => userEmotionMemories.push(emotionMemory)))
+        const sortedEmotionMemories = [...userEmotionMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedEmotionMemories.map(emotionMemory => {
             return (<Grid.Row key={emotionMemory.id} columns={5}>
               <Grid.Column>
-              <p>{emotionMemory.memory.id}</p>
+              <p>{emotionMemory.memoryId}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{emotionMemory.created_at}</p>
+              <p>{emotionMemory.createdAt}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{emotionMemory.emotion.emotion}</p>
+              <p>{emotionMemory.emotion}</p>
               </Grid.Column>
               <Grid.Column>
               <p>{emotionMemory.pleasure}</p>
@@ -161,6 +164,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
 
     const mapStateToProps = state => {
         return {
+            memories: state.memories,
             emotionMemories: state.emotionMemories,
             editEmotionMemories: state.editEmotionMemories
         };
