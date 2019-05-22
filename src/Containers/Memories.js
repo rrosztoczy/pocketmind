@@ -26,6 +26,7 @@ class Memories extends React.Component {
     // };
 
     componentDidMount() {
+        console.log("is jwt setn yet?", localStorage.getItem('jwt'))
         this.props.getAllUserMemories()
     }
 

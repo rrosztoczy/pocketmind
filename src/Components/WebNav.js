@@ -18,8 +18,8 @@ export default class WebNav extends Component {
 
           <Menu.Menu position='right'>
           <Menu.Item as={NavLink} name='POCKET MIND' to='/landing-page' active={activeItem === 'POCKET MIND'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='ABOUT' to='/about' active={activeItem === 'ABOUT'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='BLOG' to='/blog' active={activeItem === 'BLOG'} onClick={this.handleItemClick} />
+          {/* <Menu.Item as={NavLink} name='ABOUT' to='/about' active={activeItem === 'ABOUT'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='BLOG' to='/blog' active={activeItem === 'BLOG'} onClick={this.handleItemClick} /> */}
           <Menu.Item as={NavLink} name='LOG IN' to='/login' active={activeItem === 'LOG IN'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='SIGN UP FREE' to='/signup' active={activeItem === 'SIGN UP FREE'} onClick={this.handleItemClick} />
           </Menu.Menu>

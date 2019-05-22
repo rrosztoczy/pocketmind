@@ -64,6 +64,7 @@ export function getAllMemories() {
 }
 
 export function getAllUserMemories() {
+    console.log("getting user memories")
     return dispatch => profileAdapter.getProfile(dispatch, GET_ALL_USER_MEMORIES)
   }
 
@@ -162,6 +163,7 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
   }
   
   export const fetchCurrentUser = () => {
+      console.log('fetching')
     // takes the token in localStorage and finds out who it belongs to
     return (dispatch) => {
       dispatch(authenticatingUser()) //tells the app we are fetching
