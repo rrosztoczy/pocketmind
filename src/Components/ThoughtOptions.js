@@ -15,19 +15,19 @@ class ThoughtOptions extends React.Component {
     </Grid.Column>
       <Grid.Column width={2}>
       <Header>Journal</Header>
-      <Button circular color='brown' size='massive' basic icon="book" value='journal' onClick={this.props.toggleForm({target: {value: 'journal'}})}/>
+      <Button circular color='brown' size='massive' basic icon="book" value='journal' onClick={() => this.props.toggleForm({target: {value: 'journal'}})}/>
       </Grid.Column>
       <Grid.Column width={2}>
       <Header>Idea</Header>
-      <Button circular color='yellow' size='massive' basic icon="lightbulb outline" value='idea'  onClick={this.props.toggleForm({target: {value: 'idea'}})}/>
+      <Button circular color='yellow' size='massive' basic icon="lightbulb outline" value='idea'  onClick={() => this.props.toggleForm({target: {value: 'idea'}})}/>
       </Grid.Column>
       <Grid.Column width={2}>
       <Header>Gratitude</Header>
-      <Button circular color='green' size='massive' basic icon="gem outline" value='gratitude' onClick={this.props.toggleForm({target: {value: 'gratitude'}})}/>
+      <Button circular color='green' size='massive' basic icon="gem outline" value='gratitude' onClick={() => this.props.toggleForm({target: {value: 'gratitude'}})}/>
       </Grid.Column>
       <Grid.Column width={2}>
       <Header>Balance</Header>
-      <Button circular color='blue' size='massive' basic icon="law"  value='balance' onClick={this.props.toggleForm({target: {value: 'balance'}})}/>
+      <Button circular color='blue' size='massive' basic icon="law"  value='balance' onClick={() => this.props.toggleForm({target: {value: 'balance'}})}/>
       </Grid.Column>
     <Grid.Column width={4}>
     </Grid.Column>
