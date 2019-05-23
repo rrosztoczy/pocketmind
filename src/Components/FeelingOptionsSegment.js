@@ -14,13 +14,17 @@ class FeelingOptionsSegment extends React.Component {
    this.props.toggleForm(event)
   }
 
+  queuedEmotionMemories = () => {
+   return this.props.memory.emotionMemoriesAttributes.length
+  }
+
   render() {
     return (
     <Reveal animated='rotate left'>
       <Reveal.Content visible>
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
-            Feel {this.props.queuedEmotionMemories > 0 ? "(" + this.props.queuedEmotionMemories + ")" : null}
+            Feel {this.queuedEmotionMemories() > 0 ? "(" + this.queuedEmotionMemories() + ")" : null}
             <Header.Subheader><Icon size="large" name="heart"/></Header.Subheader>
           </Header>
         </Segment>
@@ -41,7 +45,6 @@ const mapStateToProps = state => {
   return {
       memory: state.memory,
       emotions: state.emotions,
-      queuedEmotionMemories: state.queuedEmotionMemories,
       emotionOptions: state.emotionOptions,
       emotion: state.emotion,
       mood: state.mood,

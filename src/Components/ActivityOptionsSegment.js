@@ -14,13 +14,17 @@ class ActivityOptionsSegment extends React.Component {
    this.props.toggleForm(event)
   }
 
+  queuedActivityMemories = () => {
+    return this.props.memory.activityMemoriesAttributes.length
+   }
+
   render() {
     return (
     <Reveal animated='rotate left'>
       <Reveal.Content visible>
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
-            Do  {this.props.queuedActivityMemories > 0 ? "(" + this.props.queuedActivityMemories + ")" : null}
+            Do  {this.queuedActivityMemories() > 0 ? "(" + this.queuedActivityMemories() + ")" : null}
             <Header.Subheader><Icon size="large" name="child"/></Header.Subheader>
           </Header>
         </Segment>
@@ -42,7 +46,6 @@ const mapStateToProps = state => {
       memory: state.memory,
       emotions: state.emotions,
       activityOptions: state.activityOptions,
-      queuedActivityMemories: state.queuedActivityMemories,
       emotion: state.emotion,
       mood: state.mood,
       energy: state.energy,

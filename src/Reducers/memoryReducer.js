@@ -26,11 +26,9 @@ const initialState = {
     emotionMemories: [],
     memory: {    
         emotionMemoriesAttributes: [],
-        thoughtMemoriesAttributes: []
+        thoughtMemoriesAttributes: [],
+        activityMemoriesAttributes: []
       },
-    queuedEmotionMemories: 0,
-    queuedThoughtMemories: 0,
-    queuedActivityMemories: 0,
     new: false,
     edit: false,
     emotion: false,
@@ -80,8 +78,9 @@ function memoryReducer(state = initialState, action) {
         console.log('creating memory! hit create')
         return {...state, memories: [...state.memories, action.payload], memory: {    
           emotionMemoriesAttributes: [],
-          thoughtMemoriesAttributes: []
-        }, queuedEmotionMemories: 0, queuedThoughtMemories: 0, queuedActivityMemories: 0 }
+          thoughtMemoriesAttributes: [],
+          activityMemoriesAttributes: []
+        }}
         case  UPDATE_MEMORY:
         console.log('updating memory! hit update')
         const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.id)

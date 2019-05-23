@@ -15,6 +15,7 @@ class NewEmotionMemoryForm extends React.Component {
     }
     // TODO: Set state to have the data for a new emotion memory
 
+
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addEmotionMemory(this.state)

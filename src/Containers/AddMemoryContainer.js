@@ -267,18 +267,22 @@ render() {
   }
 
 
-
+// Remove to emotion memories component
   handleSubmitEmotion = (event) => {
     this.props.addEmotionMemory(this.state)
     this.props.toggleForm({target: {value: 'emotionOptions'}})
-    this.props.incrementCounter({counter: 'queuedEmotionMemories'})
 }
+
+
+//   Remove to htought memories ocm
 
 handleSubmitThought = (event) => {
     this.props.addThoughtMemory(this.state)
     this.props.toggleForm({target: {value: 'thought'}})
     this.props.incrementCounter({counter: 'queuedThoughtMemories'})
 }
+
+//   Remove to activity memories ocm
 
 handleSubmitActivity = (event) => {
     this.props.addActivityMemory(this.state)

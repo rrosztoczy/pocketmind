@@ -13,6 +13,10 @@ class ThoughtOptionsSegment extends React.Component {
         console.log(event.target, event.target.value)
         this.props.toggleForm(event)
        }
+
+       queuedThoughtMemories = () => {
+        return this.props.memory.thoughtMemoriesAttributes.length
+       }
      
 
     render() {
@@ -21,7 +25,7 @@ class ThoughtOptionsSegment extends React.Component {
       <Reveal.Content visible>
         <Segment circular style={square}>
           <Header as='h2'>
-            Think {this.props.queuedThoughtMemories > 0 ? "(" + this.props.queuedThoughtMemories + ")" : null}
+            Think {this.queuedThoughtMemories() > 0 ? "(" + this.queuedThoughtMemories() + ")" : null}
             <Header.Subheader><Icon size="large" name="lightbulb"/></Header.Subheader>
           </Header>
         </Segment>
@@ -43,7 +47,6 @@ const mapStateToProps = state => {
         memory: state.memory,
         emotions: state.emotions,
         thoughtOptions: state.thoughtOptions,
-        queuedThoughtMemories: state.queuedThoughtMemories,
         emotion: state.emotion,
         thought: state.thought,
         stress: state.stress,
