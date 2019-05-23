@@ -33,11 +33,6 @@ state = {
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={1}>
-      <Grid.Column>
-            {this.props.editThoughtMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-      </Grid.Column>
-    </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
@@ -48,8 +43,6 @@ state = {
     </Grid.Row>
     <ThoughtOptions/>
     {/* Conditionally render memory container based on selection, default with journal */}
-    {this.renderThoughtMemoryHeaders()}
-    {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>
   )
 }
