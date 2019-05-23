@@ -15,7 +15,7 @@ class EmotionMemories extends React.Component {
     }
 
     renderEmotionMemoryHeaders() {
-        return (<Grid.Row columns={5}>
+        return (<Grid.Row columns={7}>
             <Grid.Column>
             <p>Go to Memory</p>
             </Grid.Column>
@@ -26,10 +26,16 @@ class EmotionMemories extends React.Component {
             <p>Emotion</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Pleasure</p>
+            <p>Mood</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Intensity</p>
+            <p>Energy</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Stress</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Anxiety</p>
             </Grid.Column>
           </Grid.Row>)
     }
@@ -42,7 +48,7 @@ class EmotionMemories extends React.Component {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedEmotionMemories.map(emotionMemory => {
-            return (<Grid.Row key={emotionMemory.id} columns={5}>
+            return (<Grid.Row key={emotionMemory.id} columns={7}>
               <Grid.Column>
               <p>{emotionMemory.memoryId}</p>
               </Grid.Column>
@@ -58,6 +64,12 @@ class EmotionMemories extends React.Component {
               <Grid.Column>
               <p>{emotionMemory.intensity}</p>
               </Grid.Column>
+              <Grid.Column>
+              <p>{emotionMemory.stressLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{emotionMemory.anxietyLevel}</p>
+              </Grid.Column>
             </Grid.Row>)
         })
     }
@@ -66,9 +78,15 @@ state = {
     editedEmotionMemories: {}
 }
 
+emotionMemories = () => {
+    let emotionMemories = []
+    this.props.memories.forEach(memory => memory.emotionMemories.forEach(emotionMemory => emotionMemories.push(emotionMemory)))
+    return emotionMemories
+}
+
 handleMultiEditChange = (event, emotionMemoryId) => {
     event.persist()
-    this.state.editedEmotionMemories[emotionMemoryId] ? this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]: {...prevState.editedEmotionMemories[emotionMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second Emotion memories!', this.state)) : this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]: {...this.props.emotionMemories.find(emotionMemory => emotionMemory.id === emotionMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
+    this.state.editedEmotionMemories[emotionMemoryId] ? this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]: {...prevState.editedEmotionMemories[emotionMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second Emotion memories!', this.state)) : this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]: {...this.emotionMemories().find(emotionMemory => emotionMemory.id === emotionMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
 
     renderEditForms() {
@@ -79,7 +97,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedEmotionMemories.map(emotionMemory => {
-            return (<Grid.Row key={emotionMemory.id} columns={5}>
+            return (<Grid.Row key={emotionMemory.id} columns={7}>
               <Grid.Column>
               <p>{emotionMemory.memory_id}</p>
               </Grid.Column>
@@ -95,6 +113,12 @@ handleMultiEditChange = (event, emotionMemoryId) => {
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].intensity ? this.state.editedEmotionMemories[emotionMemory.id].intensity : emotionMemory.intensity}  name='intensity' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
+              </Grid.Column>
+              <Grid.Column>
+              <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].stressLevel ? this.state.editedEmotionMemories[emotionMemory.id].stressLevel : emotionMemory.stressLevel}  name='stressLevel' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
+              </Grid.Column>
+              <Grid.Column>
+              <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].anxietyLevel ? this.state.editedEmotionMemories[emotionMemory.id].anxietyLevel : emotionMemory.anxietyLevel}  name='anxietyLevel' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               <Button onClick={() => this.destroyEmotionMemory(emotionMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
@@ -167,7 +191,6 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     const mapStateToProps = state => {
         return {
             memories: state.memories,
-            emotionMemories: state.emotionMemories,
             editEmotionMemories: state.editEmotionMemories
         };
     };

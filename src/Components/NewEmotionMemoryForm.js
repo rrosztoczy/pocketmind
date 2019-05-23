@@ -1,57 +1,95 @@
 
 import React from 'react'
-import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react'
+import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import FeelingOptionsSegment from './FeelingOptionsSegment'
 import EmotionSelector from './EmotionSelector'
 import * as actions from '../actions'
 
 class NewEmotionMemoryForm extends React.Component {
 
-
     state = {
-            emotion_id: "",
-            intensity: 5,
-            pleasure: 5 
-    }
-    // TODO: Set state to have the data for a new emotion memory
-
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        this.props.addEmotionMemory(this.state)
-        this.props.toggleForm({target: {value: 'emotion'}})
+        emotionId: "",
+        intensity: 5,
+        pleasure: 5,
+        stressLevel: 5,
+        anxietyLevel: 5
     }
 
     handleChange = (event) => { 
         this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state, "event value", event.target))
     }
-
+    
     handleSelect = (event) => {
         event.persist();
-        this.setState({emotion_id: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
+        this.setState({emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
     }
 
+  handleSubmitEmotion = (event) => {
+    this.props.addEmotionMemory(this.state)
+    this.props.toggleForm({target: {value: 'emotionOptions'}})
+}
+
+
     render() {
-      return (
-        <Form onSubmit={(event) => this.handleSubmit(event)}>
-          <Form.Group widths='equal'>
-          <EmotionSelector onChange={this.handleSelect} emotions={this.props.emotions} fluid label='Emotion' placeholder='Emotion' name="emotion_id" value={this.state.emotion_id ? this.state.emotion_id : ""} />
-            {/* Figure out selection value */}
-            <Form.Input onChange={this.handleChange} fluid label='Intensity' placeholder='Intensity' name="intensity" value={this.state.intensity ? this.state.intensity : ""} />
-          </Form.Group>
-          <Form.Group widths='equal'>
-          <Form.Input onChange={this.handleChange} fluid label='Pleasure' placeholder='Pleasure' name="pleasure" value={this.state.pleasure ? this.state.pleasure : ""} />
-          </Form.Group>
-          <Form.Button >Remember</Form.Button>
-        </Form>
-      )
-    }
+        return (
+<>
+  <Grid.Row>
+      <Grid.Column width={3}>
+      </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Emotion</Header>
+        <Button circular color='pink' size='massive' basic icon="heart outline"/>
+        <EmotionSelector onChange={this.handleSelect} emotions={this.props.emotions} fluid label='Emotion' placeholder='Emotion' name="emotionId" value={this.state.emotionId ? this.state.emotionId : ""} />
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Mood</Header>
+        <Button circular color='blue' size='massive' basic icon="adjust"/>
+        <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="pleasure" value={this.state.pleasure ? this.state.pleasure : ""} />
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Energy</Header>
+        <Button circular color='yellow' size='massive' basic icon="lightning"/>
+        <Input focus placeholder='1-10...' style={{width: '100%'}} onChange={this.handleChange} name="intensity" value={this.state.intensity ? this.state.intensity : ""} />
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Stress</Header>
+        <Button circular color='violet' size='massive' basic icon="heartbeat"/>
+        <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="stressLevel" value={this.state.stressLevel ? this.state.stressLevel : ""}/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+        <Header>Anxiety</Header>
+        <Button circular color='violet' size='massive' basic icon="cloud"/>
+        <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="anxietyLevel" value={this.state.anxietyLevel ? this.state.anxietyLevel : ""}/>
+        </Grid.Column>
+        <Grid.Column width={3}>
+      </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        <Grid.Column width={3}>
+        </Grid.Column>
+        <Grid.Column width={10}>
+        <Button circular color='orange' size='massive' basic onClick={this.handleSubmitEmotion} >Submit</Button>
+        </Grid.Column>
+        <Grid.Column width={3}>
+        </Grid.Column>
+        </Grid.Row>
+      </>
+)
+}
 }
 
 const mapStateToProps = state => {
+    console.log("new state", state)
     return {
-        emotions: state.emotions
-    }
-}
+        memory: state.memory,
+        emotionOptions: state.emotionOptions,
+        emotions: state.emotions,
+        emotion: state.emotion,
+        logged_in: state.logged_in
+    };
+};
+
+
 
 export default connect(mapStateToProps, actions)(NewEmotionMemoryForm)

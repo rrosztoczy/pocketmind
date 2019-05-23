@@ -1,43 +1,36 @@
 
 import React from 'react'
-import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react'
+import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
+import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
 
-class NewStressMemoryForm extends React.Component {
+class NewEmotionMemoryForm extends React.Component {
 
     state = {
-        stressLevel: 5
+        emotionId: "",
+        intensity: 5,
+        pleasure: 5,
+        stressLevel: 5,
+        anxietyLevel: 5
     }
 
-    handleChange = (event) => this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state))
-
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        this.props.addStressToMemory(this.state)
-        this.props.toggleForm({target: {value: 'stress'}})
+    handleChange = (event) => { 
+        this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state, "event value", event.target))
+    }
+    
+    handleSelect = (event) => {
+        event.persist();
+        this.setState({emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
     }
 
-    render() {
-      return (
-        <Form onSubmit={(event) => this.handleSubmit(event)}>
-          <Form.Group widths='equal'>
-            <Form.Input onChange={this.handleChange} fluid label='Stress Level' placeholder='Stress Level' name="stressLevel" value={this.state.stressLevel ? this.state.stressLevel : ""} />
-          </Form.Group>
-          <Form.Button >Submit</Form.Button>
-        </Form>
-      )
-    }
+  handleSubmitEmotion = (event) => {
+    this.props.addEmotionMemory(this.state)
+    this.props.toggleForm({target: {value: 'emotionOptions'}})
 }
 
-// const mapDispatchToProps = dispatch => {
-//     console.log('about to send finction')
-//     return {
-//         addStressMemory: newStressMemory => dispatch({type: 'ADD_STRESS_MEMORY', payload: newStressMemory })
-//     };
-// };
-// Took out mapdispatch...addd dispatch in place of addStresetc to handlesubmit
 
-
-export default connect(null, actions)(NewStressMemoryForm)
+    render() {
+        return (
+<>

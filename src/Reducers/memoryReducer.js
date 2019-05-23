@@ -34,12 +34,16 @@ const initialState = {
     emotion: false,
     mood: false,
     energy: false,
+    journal: false,
+    idea: false,
+    gratitude: false,
+    balance: false,
     activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
+    newThoughtMemoryFormContainer: false,
+    newActivityMemoryFormContainer: false,
     thought: false,
-    stress: false,
-    anxiety: false,
     editThoughtMemories: false,
     editEmotionMemories: false,
     authenticatingUser: "",
@@ -99,12 +103,6 @@ function memoryReducer(state = initialState, action) {
         case 'ADD_MEMORY':
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, action.payload]}
-        case 'ADD_STRESS_TO_MEMORY':
-          console.log('adding stress! hit add')
-          return {...state, memory: {...state.memory, ...action.payload}}
-        case 'ADD_ANXIETY_TO_MEMORY':
-        console.log('adding anxiety! hit add')
-          return {...state, memory: {...state.memory, ...action.payload}}
         case 'ADD_EMOTION_MEMORY':
         console.log('adding emotion! hit add')
         return {...state, memory: {...state.memory, emotionMemoriesAttributes: [...state.memory.emotionMemoriesAttributes, action.payload]}}
