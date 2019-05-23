@@ -75,9 +75,13 @@ function memoryReducer(state = initialState, action) {
         case  DESTROY_EMOTION_MEMORY:
         console.log('destroying emotion memory! hit destroy')
         return {...state, emotionMemories: state.emotionMemories.filter(emotionMemory => emotionMemory.id != action.payload)}
+        // Refactor into discrete actions
         case  CREATE_MEMORY:
         console.log('creating memory! hit create')
-        return {...state, memories: [...state.memories, action.payload]}
+        return {...state, memories: [...state.memories, action.payload], memory: {    
+          emotionMemoriesAttributes: [],
+          thoughtMemoriesAttributes: []
+        }, queuedEmotionMemories: 0, queuedThoughtMemories: 0, queuedActivityMemories: 0 }
         case  UPDATE_MEMORY:
         console.log('updating memory! hit update')
         const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.id)

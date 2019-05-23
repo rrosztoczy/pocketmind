@@ -3,8 +3,8 @@ import { Header, Segment, Reveal, Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const square = { width: 130, height: 130 }
-const largeSquare = { width: 135, height: 135 }
+const square = { width: 140, height: 140 }
+const largeSquare = { width: 145, height: 145 }
 
 class FeelingOptionsSegment extends React.Component {
 
@@ -20,7 +20,7 @@ class FeelingOptionsSegment extends React.Component {
       <Reveal.Content visible>
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
-            Feel
+            Feel {this.props.queuedEmotionMemories > 0 ? "(" + this.props.queuedEmotionMemories + ")" : null}
             <Header.Subheader><Icon size="large" name="heart"/></Header.Subheader>
           </Header>
         </Segment>
@@ -41,6 +41,7 @@ const mapStateToProps = state => {
   return {
       memory: state.memory,
       emotions: state.emotions,
+      queuedEmotionMemories: state.queuedEmotionMemories,
       emotionOptions: state.emotionOptions,
       emotion: state.emotion,
       mood: state.mood,

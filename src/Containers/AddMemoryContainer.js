@@ -242,7 +242,7 @@ render() {
 
     <Grid.Row color='orange' columns={1}>
       <Grid.Column>
-      <Button animated color='orange' inverted basic circular size='huge'>
+      <Button animated color='orange' inverted basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} >
               <Button.Content visible><h1>LOG MEMORY</h1></Button.Content>
               <Button.Content hidden><Icon name='arrow right' /></Button.Content>
             </Button>
@@ -294,6 +294,16 @@ handleSelect = (event) => {
     event.persist();
     this.setState({emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
 }
+
+createMemory(event, memory) {
+    // transform arrays of has_many records to hashes for ruby
+    // console.log("About to create memory!", memory)
+    // const formattedMemory = this.formatNestedAttributes(memory)
+    event.persist()
+    this.props.createMemory(memory)
+    this.props.toggleForm(event)
+}
+
 
 }
 

@@ -3,8 +3,8 @@ import { Header, Segment, Reveal, Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const square = { width: 130, height: 130 }
-const largeSquare = { width: 135, height: 135 }
+const square = { width: 140, height: 140 }
+const largeSquare = { width: 145, height: 145 }
 
 class ThoughtOptionsSegment extends React.Component {
 
@@ -21,7 +21,7 @@ class ThoughtOptionsSegment extends React.Component {
       <Reveal.Content visible>
         <Segment circular style={square}>
           <Header as='h2'>
-            Think
+            Think {this.props.queuedThoughtMemories > 0 ? "(" + this.props.queuedThoughtMemories + ")" : null}
             <Header.Subheader><Icon size="large" name="lightbulb"/></Header.Subheader>
           </Header>
         </Segment>
@@ -43,6 +43,7 @@ const mapStateToProps = state => {
         memory: state.memory,
         emotions: state.emotions,
         thoughtOptions: state.thoughtOptions,
+        queuedThoughtMemories: state.queuedThoughtMemories,
         emotion: state.emotion,
         thought: state.thought,
         stress: state.stress,
