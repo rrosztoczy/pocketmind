@@ -6,6 +6,9 @@ import EmotionDefault from '../Components/EmotionDefault'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryFormContainer from '../Containers/NewThoughtMemoryFormContainer'
 import NewJournalForm from '../Components/NewJournalForm'
+import NewIdeaForm from '../Components/NewIdeaForm'
+import NewGratitudeForm from '../Components/NewGratitudeForm'
+import NewBalanceForm from '../Components/NewBalanceForm'
 import ThoughtDefault from '../Components/ThoughtDefault'
 import ThoughtOptions from '../Components/ThoughtOptions'
 import * as actions from '../actions'
@@ -168,9 +171,9 @@ const mapStateToProps = state => {
         stress: state.stress,
         anxiety:state.anxiety,
         journal: state.journal,
-        journal: state.idea,
-        journal: state.gratitude,
-        journal: state.balance,
+        idea: state.idea,
+        gratitude: state.gratitude,
+        balance: state.balance,
         logged_in: state.logged_in
     };
 };
