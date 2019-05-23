@@ -19,15 +19,14 @@ class NewJournalForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addThoughtMemory(this.state)
-        this.props.toggleForm({target: {value: 'journal'}})
+        this.props.toggleForm({target: {value: 'gratitude'}})
     }
 
     render() {
       return (
         <Form onSubmit={(event) => this.handleSubmit(event)}>
-            <Form.Input onChange={this.handleChange} fluid label='Topic' placeholder='I think so because...' name="reason" value={this.state.reason ? this.state.reason : ""} />
-            <Form.Input onChange={this.handleChange} fluid label='Title' placeholder='[blank] makes me think that' name="thoughtObject" value={this.state.thoughtObject ? this.state.thoughtObject : ""} />
-            <Form.TextArea onChange={this.handleChange} label='Content' placeholder='What are you thinking?' name="thoughtContent" value={this.state.thoughtContent} />
+            <Form.Input onChange={this.handleChange} fluid label='Topic' placeholder='I am grateful for...' name="thought_object" value={this.state.thought_object ? this.state.thought_object : ""} />
+            <Form.Input onChange={this.handleChange} fluid label='Reason' placeholder='Because.' name="reason" value={this.state.reason ? this.state.reason : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
         </Form>

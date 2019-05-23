@@ -27,9 +27,9 @@ class NewThoughtMemoryFormContainer extends React.Component {
       return (
           <div>
         {this.props.journal ? <NewJournalForm/> : null}
+        {/* // {this.props.journal ? <NewJournalForm/> : null}
         // {this.props.journal ? <NewJournalForm/> : null}
-        // {this.props.journal ? <NewJournalForm/> : null}
-        // {this.props.journal ? <NewJournalForm/> : null}
+        // {this.props.journal ? <NewJournalForm/> : null} */}
         </div>
       )
     }

@@ -5,6 +5,7 @@ import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import EmotionDefault from '../Components/EmotionDefault'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryFormContainer from '../Containers/NewThoughtMemoryFormContainer'
+import NewJournalForm from '../Components/NewJournalForm'
 import ThoughtDefault from '../Components/ThoughtDefault'
 import ThoughtOptions from '../Components/ThoughtOptions'
 import * as actions from '../actions'
@@ -33,7 +34,30 @@ render() {
   {!this.props.emotionOptions ? <EmotionDefault/> : <NewEmotionMemoryForm/> }
   {!this.props.thoughtOptions ? <ThoughtDefault/> : <ThoughtOptions /> }
   {/* New thought form is container for other forms */}
-  {!this.props.newThoughtMemoryFormContainer ? null : <NewThoughtMemoryFormContainer/> }
+  {!this.props.journal ? null : 
+    <Grid.Row columns={1}>
+      <Grid.Column>
+       <NewJournalForm/> 
+       </Grid.Column>
+  </Grid.Row>}
+  {!this.props.idea ? null : 
+    <Grid.Row columns={1}>
+      <Grid.Column>
+       <NewIdeaForm/> 
+       </Grid.Column>
+  </Grid.Row>}
+  {!this.props.gratitude ? null : 
+    <Grid.Row columns={1}>
+      <Grid.Column>
+       <NewGratitudeForm/> 
+       </Grid.Column>
+  </Grid.Row>}
+  {!this.props.balance ? null : 
+    <Grid.Row columns={1}>
+      <Grid.Column>
+       <NewBalanceForm/> 
+       </Grid.Column>
+  </Grid.Row>}
   {/* {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptions /> }
   {!this.props.NewActivityMemoryFormContainer ? null : <NewActivityMemoryFormContainer/> } */}
 
@@ -143,6 +167,10 @@ const mapStateToProps = state => {
         thought: state.thought,
         stress: state.stress,
         anxiety:state.anxiety,
+        journal: state.journal,
+        journal: state.idea,
+        journal: state.gratitude,
+        journal: state.balance,
         logged_in: state.logged_in
     };
 };
