@@ -1,16 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
-// Remove into redux
-// import adapter from '../adapter.js'
-import NewMemoryForm from '../Components/NewMemoryForm'
-import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
-import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
-import NewStressMemoryForm from '../Components/NewStressMemoryForm'
-import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import * as actions from '../actions'
-// const memoryEndpoint = "http://localhost:3000/api/v1/memories"
-// const memoryAdapter = adapter(memoryEndpoint)
 
 class Memories extends React.Component {
 
@@ -18,12 +9,6 @@ class Memories extends React.Component {
         event.preventDefault()
         console.log("creating memory!", this.state)
     }
-
-    // getMemories = async () => {
-    //      // TODO: change to dispatch after reviewing fetch
-
-        // this.setState({memories: memoriesFromApi}, () => console.log("state:", this.state))
-    // };
 
     componentDidMount() {
         console.log("is jwt setn yet?", localStorage.getItem('jwt'))
@@ -39,30 +24,6 @@ class Memories extends React.Component {
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
-    }
-
-    renderNewMemoryForm() {
-        return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
-    }
-
-    renderNewStressMemoryForm() {
-        return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    renderNewAnxietyMemoryForm() {
-        return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
-
-    renderNewEmotionMemoryForm() {
-        return <NewEmotionMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
-    }
-
-    renderNewThoughtMemoryForm() {
-        return <NewThoughtMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
-    }
-
-    renderNewMemoryForm() {
-        return <NewMemoryForm submitMemory={this.submitMemory} onFormButtonClick ={this.onFormButtonClick} />
     }
 
     destroyMemory(memoryId) {
@@ -82,13 +43,13 @@ class Memories extends React.Component {
             <p>Emotions</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Thoughts</p>
-            </Grid.Column>
-            <Grid.Column>
             <p>Stress Level</p>
             </Grid.Column>
             <Grid.Column>
             <p>Anxiety Level</p>
+            </Grid.Column>
+            <Grid.Column>
+            <p>Thoughts</p>
             </Grid.Column>
           </Grid.Row>)
     }
@@ -110,27 +71,18 @@ class Memories extends React.Component {
               <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
               </Grid.Column>
               <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.stressLevel}</p>) : "No emotion memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.anxietyLevel}</p>) : "No emotion memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
               <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.stressLevel}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.anxietyLevel}</p>
               </Grid.Column>
             </Grid.Row>)
         })
 
     }
-
-
-
-// TODO: Set state to have the data for a new emotion memory
-
-// handleSubmitEdit = (event) => {
-//     event.preventDefault()
-//     this.props.dispatch({type: 'EDIT_MEMORY', payload: this.state })
-// }
 
 state = {
     editedMemories: {}
@@ -165,13 +117,13 @@ handleMultiEditChange = (event, memoryId) => {
               <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
               </Grid.Column>
               <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.stressLevel}</p>) : "No emotion memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.anxietyLevel}</p>) : "No emotion memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
               <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].stressLevel ? this.state.editedMemories[memory.id].stressLevel : memory.stressLevel}  name='stressLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
-              </Grid.Column>
-              <Grid.Column>
-              <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].anxietyLevel ? this.state.editedMemories[memory.id].anxietyLevel : memory.anxietyLevel}  name='anxietyLevel' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
               <Grid.Column>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
@@ -223,15 +175,7 @@ handleMultiEditChange = (event, memoryId) => {
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' fluid size='large' value='new' name='new' onClick={event => this.onFormButtonClick(event)}>
-              ADD A NEW MEMORY
-            </Button>
             {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
-            <div>{this.props.new ? this.renderNewMemoryForm() : null}</div>
-            <div>{this.props.emotion ? this.renderNewEmotionMemoryForm() : null}</div>
-            <div>{this.props.thought ? this.renderNewThoughtMemoryForm() : null}</div>
-            <div>{this.props.stress ? this.renderNewStressMemoryForm() : null}</div>
-            <div>{this.props.anxiety ? this.renderNewAnxietyMemoryForm() : null}</div>
       </Grid.Column>
     </Grid.Row>
 
@@ -254,23 +198,9 @@ handleMultiEditChange = (event, memoryId) => {
         return {
             memories: state.memories,
             edit: state.edit,
-            new: state.new,
             emotions: state.emotions,
-            emotion: state.emotion,
-            thought: state.thought,
-            stress: state.stress,
-            anxiety: state.anxiety,
             logged_in: state.logged_in
         };
     };
      
-    // const mapDispatchToProps = dispatch => {
-    //     console.log('about to send function')
-    //     return {
-    //         // addMemory: () => dispatch({type: 'NEW_MEMORY', payload: {}}),
-   
-    //         // getAllMemories: (dispatch) => {  memoryAdapter.getAll(dispatch) }
-    //     };
-    // };
-
 export default connect(mapStateToProps, actions)(Memories);
