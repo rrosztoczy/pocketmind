@@ -5,24 +5,15 @@ import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
 import NewStressMemoryForm from '../Components/NewStressMemoryForm'
 import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
-import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
 import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
 import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
+import EmotionDefault from '../Components/EmotionDefault'
+import ThoughtDefault from '../Components/ThoughtDefault'
 import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
 
-    state = {
-        // Emotion form
-        emotionId: "",
-        intensity: 5,
-        pleasure: 5,
-        stressLevel: 5,
-        anxietyLevel: 5,
-        emotionMemoryAttributesCount: 0
-        // Thought form
-    }
 
     submitMemory = (event) => {
         event.preventDefault()
@@ -80,91 +71,17 @@ render() {
   </Grid.Row>
 
   {!this.props.emotionOptions ?
-    <Grid.Row>
-      <Grid.Column width={3}>
-      </Grid.Column>
-      <Grid.Column textAlign='center' width={3}>
-      <FeelingOptionsSegment/>
-      {/* On hover of feel or think, animate out the cool placeholder in the middle, and extend the options for that thing */}
-      {/* On click feel, have feel move to side, emotion button where feel is, other four replace the 8 grid */}
-      {/* On button click, have the button gray out and a circle of options appear around it */}
-      {/* <Button color='teal' fluid size='small' value='emotion' name='emotion' circular onClick={event => this.onFormButtonClick(event)}>
-             + <br/> Emotion
-            </Button> */}
-      </Grid.Column>
-      {/* <Button circular icon='settings' /> */}
-      {/* render 8 width column or buttons 5 buttons */}
+    <EmotionDefault/> :
 
-      <Grid.Column width={8}>
-        <Header>Show small emotions chart here...</Header>
-      </Grid.Column>
-      <Grid.Column width={2}>
-      </Grid.Column>
-    </Grid.Row> :
-<>
-  <Grid.Row>
-      <Grid.Column width={3}>
-      </Grid.Column>
-      {/* On hover of feel or think, animate out the cool placeholder in the middle, and extend the options for that thing */}
-      {/* On click feel, have feel move to side, emotion button where feel is, other four replace the 8 grid */}
-      {/* On button click, have the button gray out and a circle of options appear around it */}
-      {/* <Button color='teal' fluid size='small' value='emotion' name='emotion' circular onClick={event => this.onFormButtonClick(event)}>
-             + <br/> Emotion
-            </Button> */}
-        <Grid.Column width={2}>
-        <Header>Emotion</Header>
-        <Button circular color='pink' size='massive' basic icon="heart outline"/>
-        <EmotionSelector onChange={this.handleSelect} emotions={this.props.emotions} fluid label='Emotion' placeholder='Emotion' name="emotionId" value={this.state.emotionId ? this.state.emotionId : ""} />
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Mood</Header>
-        <Button circular color='blue' size='massive' basic icon="adjust"/>
-        <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="pleasure" value={this.state.pleasure ? this.state.pleasure : ""} />
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Energy</Header>
-        <Button circular color='yellow' size='massive' basic icon="lightning"/>
-        <Input focus placeholder='1-10...' style={{width: '100%'}} onChange={this.handleChange} name="intensity" value={this.state.intensity ? this.state.intensity : ""} />
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Stress</Header>
-        <Button circular color='violet' size='massive' basic icon="heartbeat"/>
-        <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="stressLevel" value={this.state.stressLevel ? this.state.stressLevel : ""}/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Anxiety</Header>
-        <Button circular color='violet' size='massive' basic icon="cloud"/>
-        <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="anxietyLevel" value={this.state.anxietyLevel ? this.state.anxietyLevel : ""}/>
-        </Grid.Column>
-        <Grid.Column width={3}>
-      </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-        <Grid.Column width={3}>
-        </Grid.Column>
-        <Grid.Column width={10}>
-        <Button circular color='orange' size='massive' basic onClick={this.handleSubmitEmotion} >Submit</Button>
-        </Grid.Column>
-        <Grid.Column width={3}>
-        </Grid.Column>
-        </Grid.Row>
-      </>
   }
 
-    <Grid.Row columns={4}>
-      <Grid.Column width={3}>
-      </Grid.Column>
-      <Grid.Column width={3}>
-      <ThoughtOptionsSegment/>
-      {/* <Button color='teal' fluid size='small' value='thought' name='thought'  circular onClick={event => this.onFormButtonClick(event)}>
-      + <br/> Thought
-            </Button> */}
-      </Grid.Column>
+
       {!this.props.thoughtOptions ?
-      <Grid.Column width={8}>
-        <Header>Show small thoughts chart here...</Header>
-      </Grid.Column> :
+      <ThoughtDefault/> :
       <>
+      <Grid.Row>
+      <Grid.Column width={4}>
+      </Grid.Column>
         <Grid.Column width={2}>
         <Header>Journal</Header>
         <Button circular color='brown' size='massive' basic icon="book"/>
@@ -181,12 +98,11 @@ render() {
         <Header>Balance</Header>
         <Button circular color='blue' size='massive' basic icon="law"/>
         </Grid.Column>
-      </>
-      }
-      <Grid.Column width={2}>
+      <Grid.Column width={4}>
       </Grid.Column>
     </Grid.Row>
-
+    </>
+}
 
     <Grid.Row columns={4}>
       <Grid.Column width={3}>
