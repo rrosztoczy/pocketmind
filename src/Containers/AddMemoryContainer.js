@@ -24,8 +24,6 @@ class AddMemoryContainer extends React.Component {
    }
 
 render() {
-
-
     return (
   <Grid style={{height: '100vh'}}>
     <Grid.Row columns={1}>
@@ -121,7 +119,6 @@ render() {
 handleSubmitActivity = (event) => {
     this.props.addActivityMemory(this.state)
     this.props.toggleForm({target: {value: 'activity'}})
-    this.props.incrementCounter({counter: 'queuedActivityMemories'})
 }
 
 

@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 class ThoughtOptions extends React.Component {
+
+
   render() {
     return (
     <>
@@ -13,7 +15,7 @@ class ThoughtOptions extends React.Component {
     </Grid.Column>
       <Grid.Column width={2}>
       <Header>Journal</Header>
-      <Button circular color='brown' size='massive' basic icon="book" value='journal' onClick={this.props.toggleForm({target: {value:'journal'}})}/>
+      <Button circular color='brown' size='massive' basic icon="book" value='journal' onClick={this.props.toggleForm({target: {value: 'journal'}})}/>
       </Grid.Column>
       <Grid.Column width={2}>
       <Header>Idea</Header>
@@ -35,15 +37,5 @@ class ThoughtOptions extends React.Component {
 }
 }
 
-const mapStateToProps = state => {
-  console.log("new state", state)
-  return {
-      journal: state.journal,
-      idea: state.idea,
-      gratitude: state.gratitude,
-      balance: state.balance,
-      logged_in: state.logged_in
-  };
-};
 
-export default connect(mapStateToProps, actions)(ThoughtOptions)
+export default connect(null, actions)(ThoughtOptions)
