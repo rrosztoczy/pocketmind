@@ -28,7 +28,7 @@ class ThoughtOptionsSegment extends React.Component {
       </Reveal.Content>
       <Reveal.Content hidden>
       <Segment circular style={largeSquare} inverted color='teal' tertiary>
-      <p>how do you feel?</p>
+      <p>What's on your mind?</p>
         <Button compact circular size="massive" inverted name='thoughtOptions' value='thoughtOptions' onClick={this.onFormButtonClick} icon></Button>
         </Segment>
       </Reveal.Content>

@@ -14,6 +14,7 @@ import {
     DESTROY_MEMORY,
     DESTROY_EMOTION_MEMORY,
     DESTROY_THOUGHT_MEMORY,
+    INCREMENT_COUNTER,
     CREATE_USER
 } from '../actions'
 
@@ -27,6 +28,9 @@ const initialState = {
         emotionMemoriesAttributes: [],
         thoughtMemoriesAttributes: []
       },
+    queuedEmotionMemories: 0,
+    queuedThoughtMemories: 0,
+    queuedActivityMemories: 0,
     new: false,
     edit: false,
     emotion: false,
@@ -107,6 +111,9 @@ function memoryReducer(state = initialState, action) {
         case  CREATE_USER:
         console.log('creating user! hit create')
         return {...state, user: {...state.user, ...action.payload}, loggedIn: true}
+        case INCREMENT_COUNTER:
+        console.log("INCREMENTING!")
+        return {...state, [action.payload]: ++state[action.payload]}
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}
