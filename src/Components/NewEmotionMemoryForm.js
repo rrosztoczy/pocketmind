@@ -2,8 +2,8 @@
 import React from 'react'
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
-import EmotionSelector from '../Components/EmotionSelector'
+import FeelingOptionsSegment from './FeelingOptionsSegment'
+import EmotionSelector from './EmotionSelector'
 import * as actions from '../actions'
 
 class NewEmotionMemoryForm extends React.Component {

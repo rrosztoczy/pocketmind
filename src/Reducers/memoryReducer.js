@@ -37,6 +37,8 @@ const initialState = {
     activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
+    newThoughtMemoryFormContainer: false,
+    newActivityMemoryFormContainer: false,
     thought: false,
     editThoughtMemories: false,
     editEmotionMemories: false,

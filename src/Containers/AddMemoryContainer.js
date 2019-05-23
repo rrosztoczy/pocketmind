@@ -1,13 +1,12 @@
 import React from 'react'
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
 import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import EmotionDefault from '../Components/EmotionDefault'
-import NewEmotionMemoryForm from '../Components/EmotionOptions'
+import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
+import NewThoughtMemoryFormContainer from '../Containers/NewThoughtMemoryFormContainer'
 import ThoughtDefault from '../Components/ThoughtDefault'
 import ThoughtOptions from '../Components/ThoughtOptions'
-import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
@@ -24,41 +23,7 @@ class AddMemoryContainer extends React.Component {
        this.props.toggleForm(event)
    }
 
-    // renderNewEmotionMemoryForm() {
-    //     return <NewEmotionMemoryForm submitEmotionMemory={this.submitEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
-    // }
-
-    // renderNewThoughtMemoryForm() {
-    //     return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
-    // }
-
-    // renderNewStressMemoryForm() {
-    //     return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
-    // }
-
-    // renderNewAnxietyMemoryForm() {
-    //     return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
-    // }
-
 render() {
-
-//     <Grid.Row centered columns={4}>
-//     <Grid.Column width={6}>
-//       </Grid.Column>
-//       <Grid.Column textAlign='center' width={2}>
-//       <Button fluid color='teal' size='tiny' value='stress' name='stress'  circular onClick={event => this.onFormButtonClick(event)}>Stress</Button>
-//       <div>{this.props.stress ? this.renderNewStressMemoryForm() : '😰'}</div>
-//       </Grid.Column>
-//       {/* <Grid.Column textAlign='center' width={2}>
-//       or
-//       </Grid.Column> */}
-//       <Grid.Column textAlign='center' width={2}>
-//       <Button fluid color='teal' size='tiny' value='anxiety' name='anxiety'  circular onClick={event => this.onFormButtonClick(event)}>Anxiety</Button>
-//       <div>{this.props.anxiety ? this.renderNewAnxietyMemoryForm() : '🤢' }</div>
-//       </Grid.Column>
-//       <Grid.Column width={6}>
-//       </Grid.Column>
-//   </Grid.Row>
 
 
     return (
@@ -68,11 +33,11 @@ render() {
       </Grid.Column>
   </Grid.Row>
   {!this.props.emotionOptions ? <EmotionDefault/> : <NewEmotionMemoryForm/> }
-
-
   {!this.props.thoughtOptions ? <ThoughtDefault/> : <ThoughtOptions /> }
   {/* New thought form is container for other forms */}
-  {!this.props.thoughtForm ? <NewThoughtMemoryForm/> : null /> }
+  {!this.props.newThoughtMemoryFormContainer ? null : <NewThoughtMemoryFormContainer/> }
+  {/* {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptions /> }
+  {!this.props.NewActivityMemoryFormContainer ? null : <NewActivityMemoryFormContainer/> } */}
 
     <Grid.Row columns={4}>
       <Grid.Column width={3}>
@@ -114,10 +79,6 @@ render() {
       <Grid.Column >
       </Grid.Column>
     </Grid.Row>
-
-   
-
-
 
 
   <Grid.Row columns={1}>
@@ -165,9 +126,6 @@ handleSubmitActivity = (event) => {
 
 
 createMemory(event, memory) {
-    // transform arrays of has_many records to hashes for ruby
-    // console.log("About to create memory!", memory)
-    // const formattedMemory = this.formatNestedAttributes(memory)
     event.persist()
     this.props.createMemory(memory)
     this.props.toggleForm(event)
