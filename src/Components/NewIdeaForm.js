@@ -9,8 +9,7 @@ class NewJournalForm extends React.Component {
 
     state = {
         thoughtContent: "",
-        thoughtObject: "",
-        reason: ""
+        topic: ""
 }
     // TODO: Set state to have the data for a new thought memory
 
@@ -25,8 +24,8 @@ class NewJournalForm extends React.Component {
     render() {
       return (
         <Form onSubmit={(event) => this.handleSubmit(event)}>
-            <Form.Input onChange={this.handleChange} fluid label='Topic' placeholder='I think so because...' name="reason" value={this.state.reason ? this.state.reason : ""} />
-            <Form.Input onChange={this.handleChange} fluid label='Idea' placeholder='[blank] makes me think that' name="thoughtObject" value={this.state.thoughtObject ? this.state.thoughtObject : ""} />
+            <Form.Input onChange={this.handleChange} fluid label='Topic' placeholder='I think so because...' name="topic" value={this.state.topic ? this.state.topic : ""} />
+            <Form.Input onChange={this.handleChange} fluid label='Idea' placeholder='[blank] makes me think that' name="thoughtContent" value={this.state.thoughtContent ? this.state.thoughtContent : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
         </Form>

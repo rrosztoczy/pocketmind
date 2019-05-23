@@ -10,8 +10,7 @@ class NewThoughtMemoryFormContainer extends React.Component {
 
     state = {
         thoughtContent: "",
-        thoughtObject: "",
-        reason: ""
+        topic: ""
 }
     // TODO: Set state to have the data for a new thought memory
 

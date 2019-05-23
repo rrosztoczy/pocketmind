@@ -17,7 +17,7 @@ class ThoughtMemories extends React.Component {
     }
 
     renderThoughtMemoryHeaders() {
-        return (<Grid.Row columns={7}>
+        return (<Grid.Row columns={8}>
             <Grid.Column>
             <p>Go to Memory</p>
             </Grid.Column>
@@ -28,16 +28,19 @@ class ThoughtMemories extends React.Component {
             <p>Thought Type</p>
             </Grid.Column>
             <Grid.Column>
+            <p>Thought Topic</p>
+            </Grid.Column>
+            <Grid.Column>
             <p>Thought Content</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Thought Object</p>
+            <p>Automatic Thought</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Thought Reason</p>
+            <p>Cognitive Bias</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Time Orientation</p>
+            <p>Rational Response</p>
             </Grid.Column>
           </Grid.Row>)
     }
@@ -49,7 +52,7 @@ class ThoughtMemories extends React.Component {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedThoughtMemories.map(thoughtMemory => {
-            return (<Grid.Row key={thoughtMemory.id} columns={7}>
+            return (<Grid.Row columns={8} key={thoughtMemory.id} >
               <Grid.Column>
               <p>{thoughtMemory.memoryId}</p>
               </Grid.Column>
@@ -60,16 +63,19 @@ class ThoughtMemories extends React.Component {
               <p>{thoughtMemory.thoughtType}</p>
               </Grid.Column>
               <Grid.Column>
+              <p>{thoughtMemory.topic}</p>
+              </Grid.Column>
+              <Grid.Column>
               <p>{thoughtMemory.thoughtContent}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.thoughtObject}</p>
+              <p>{thoughtMemory.automaticThought}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.reason}</p>
+              <p>{thoughtMemory.cognitiveBias}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.timeOrientation}</p>
+              <p>{thoughtMemory.rationalThought}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -94,7 +100,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedThoughtMemories.map(thoughtMemory => {
-            return (<Grid.Row key={thoughtMemory.id} columns={7}>
+            return (<Grid.Row key={thoughtMemory.id} columns={8}>
               <Grid.Column>
               <p>{thoughtMemory.memoryId}</p>
               </Grid.Column>
@@ -106,16 +112,19 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
               </Grid.Column>
               {/* Edit emotions and thoughts in their own sections */}
               <Grid.Column>
+              <Grid.Column>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].topic ? this.state.editedThoughtMemories[thoughtMemory.id].topic : thoughtMemory.topic}  name='topic' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              </Grid.Column>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].thoughtContent ? this.state.editedThoughtMemories[thoughtMemory.id].thoughtContent : thoughtMemory.thoughtContent}  name='thoughtContent' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].thoughtObject ? this.state.editedThoughtMemories[thoughtMemory.id].thoughtObject : thoughtMemory.thoughtObject}  name='thoughtObject' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].automaticThought ? this.state.editedThoughtMemories[thoughtMemory.id].automaticThought : thoughtMemory.automaticThought}  name='automaticThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].reason ? this.state.editedThoughtMemories[thoughtMemory.id].reason : thoughtMemory.reason}  name='reason' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias ? this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias : thoughtMemory.cognitiveBias}  name='cognitiveBias' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].timeOrientation ? this.state.editedThoughtMemories[thoughtMemory.id].timeOrientation : thoughtMemory.timeOrientation}  name='timeOrientation' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].rationalThought ? this.state.editedThoughtMemories[thoughtMemory.id].rationalThought : thoughtMemory.rationalThought}  name='rationalThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               <Button onClick={() => this.destroyThoughtMemory(thoughtMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)

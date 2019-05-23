@@ -8,9 +8,9 @@ class NewJournalForm extends React.Component {
 
 
     state = {
-        thoughtContent: "",
-        thoughtObject: "",
-        reason: ""
+        automaticThought: "",
+        cognitiveBias: "",
+        rationalResponse: "",
 }
     // TODO: Set state to have the data for a new thought memory
 
@@ -26,7 +26,7 @@ class NewJournalForm extends React.Component {
       return (
         <Form onSubmit={(event) => this.handleSubmit(event)}>
             <Form.TextArea onChange={this.handleChange} fluid label='Automatic Thought' placeholder='What are your incessant thoughts?' name="automaticThought" value={this.state.automaticThought ? this.state.automaticThought : ""} />
-            <Form.Input onChange={this.handleChange} fluid label='Bias or Issue' placeholder='Ex. overgeneralization, disqualifying the positive...' name="thoughtObject" value={this.state.thoughtObject ? this.state.thoughtObject : ""} />
+            <Form.Input onChange={this.handleChange} fluid label='Bias or Issue' placeholder='Ex. overgeneralization, disqualifying the positive...' name="cognitiveBias" value={this.state.cognitiveBias ? this.state.cognitiveBias : ""} />
             <Form.TextArea onChange={this.handleChange} label='Rational Response' placeholder='How would you respond to these thoughts?' name="rationalResponse" value={this.state.rationalResponse ? this.state.rationalResponse : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
