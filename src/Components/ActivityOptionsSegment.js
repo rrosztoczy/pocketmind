@@ -3,8 +3,8 @@ import { Header, Segment, Reveal, Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const square = { width: 130, height: 130 }
-const largeSquare = { width: 135, height: 135 }
+const square = { width: 140, height: 140 }
+const largeSquare = { width: 145, height: 145 }
 
 class ActivityOptionsSegment extends React.Component {
 
@@ -14,13 +14,17 @@ class ActivityOptionsSegment extends React.Component {
    this.props.toggleForm(event)
   }
 
+  queuedActivityMemories = () => {
+    return this.props.memory.activityMemoriesAttributes.length
+   }
+
   render() {
     return (
     <Reveal animated='rotate left'>
       <Reveal.Content visible>
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
-            Do
+            Do  {this.queuedActivityMemories() > 0 ? "(" + this.queuedActivityMemories() + ")" : null}
             <Header.Subheader><Icon size="large" name="child"/></Header.Subheader>
           </Header>
         </Segment>

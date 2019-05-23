@@ -31,11 +31,16 @@ export const DESTROY_MEMORY = 'DESTROY_MEMORY'
 export const DESTROY_THOUGHT_MEMORY = 'DESTROY_THOUGHT_MEMORY'
 export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
 export const CREATE_USER = 'CREATE_USER'
+export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
 
 // action creators
 export function toggleForm(event) {
     console.log('button is', event.target.value)
     return { type: TOGGLE_FORM, payload: event.target.value}
+}
+
+export function incrementCounter(event) {
+    return { type: INCREMENT_COUNTER, payload: event.counter}
 }
 
 export function addEmotionMemory(payload) {

@@ -14,6 +14,7 @@ import {
     DESTROY_MEMORY,
     DESTROY_EMOTION_MEMORY,
     DESTROY_THOUGHT_MEMORY,
+    INCREMENT_COUNTER,
     CREATE_USER
 } from '../actions'
 
@@ -25,7 +26,8 @@ const initialState = {
     emotionMemories: [],
     memory: {    
         emotionMemoriesAttributes: [],
-        thoughtMemoriesAttributes: []
+        thoughtMemoriesAttributes: [],
+        activityMemoriesAttributes: []
       },
     new: false,
     edit: false,
@@ -71,9 +73,14 @@ function memoryReducer(state = initialState, action) {
         case  DESTROY_EMOTION_MEMORY:
         console.log('destroying emotion memory! hit destroy')
         return {...state, emotionMemories: state.emotionMemories.filter(emotionMemory => emotionMemory.id != action.payload)}
+        // Refactor into discrete actions
         case  CREATE_MEMORY:
         console.log('creating memory! hit create')
-        return {...state, memories: [...state.memories, action.payload]}
+        return {...state, memories: [...state.memories, action.payload], memory: {    
+          emotionMemoriesAttributes: [],
+          thoughtMemoriesAttributes: [],
+          activityMemoriesAttributes: []
+        }}
         case  UPDATE_MEMORY:
         console.log('updating memory! hit update')
         const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.id)
@@ -107,6 +114,9 @@ function memoryReducer(state = initialState, action) {
         case  CREATE_USER:
         console.log('creating user! hit create')
         return {...state, user: {...state.user, ...action.payload}, loggedIn: true}
+        case INCREMENT_COUNTER:
+        console.log("INCREMENTING!")
+        return {...state, [action.payload]: ++state[action.payload]}
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}

@@ -3,8 +3,8 @@ import { Header, Segment, Reveal, Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const square = { width: 130, height: 130 }
-const largeSquare = { width: 135, height: 135 }
+const square = { width: 140, height: 140 }
+const largeSquare = { width: 145, height: 145 }
 
 class ThoughtOptionsSegment extends React.Component {
 
@@ -12,6 +12,10 @@ class ThoughtOptionsSegment extends React.Component {
         event.persist()
         console.log(event.target, event.target.value)
         this.props.toggleForm(event)
+       }
+
+       queuedThoughtMemories = () => {
+        return this.props.memory.thoughtMemoriesAttributes.length
        }
      
 
@@ -21,14 +25,14 @@ class ThoughtOptionsSegment extends React.Component {
       <Reveal.Content visible>
         <Segment circular style={square}>
           <Header as='h2'>
-            Think
+            Think {this.queuedThoughtMemories() > 0 ? "(" + this.queuedThoughtMemories() + ")" : null}
             <Header.Subheader><Icon size="large" name="lightbulb"/></Header.Subheader>
           </Header>
         </Segment>
       </Reveal.Content>
       <Reveal.Content hidden>
       <Segment circular style={largeSquare} inverted color='teal' tertiary>
-      <p>how do you feel?</p>
+      <p>What's on your mind?</p>
         <Button compact circular size="massive" inverted name='thoughtOptions' value='thoughtOptions' onClick={this.onFormButtonClick} icon></Button>
         </Segment>
       </Reveal.Content>
