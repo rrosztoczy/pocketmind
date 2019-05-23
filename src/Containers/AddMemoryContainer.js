@@ -6,6 +6,7 @@ import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import EmotionDefault from '../Components/EmotionDefault'
 import NewEmotionMemoryForm from '../Components/EmotionOptions'
 import ThoughtDefault from '../Components/ThoughtDefault'
+import ThoughtOptions from '../Components/ThoughtOptions'
 import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
 
@@ -66,40 +67,12 @@ render() {
       <Grid.Column>
       </Grid.Column>
   </Grid.Row>
-
-  {!this.props.emotionOptions ?
-    <EmotionDefault/> : <NewEmotionMemoryForm/>
-
-  }
+  {!this.props.emotionOptions ? <EmotionDefault/> : <NewEmotionMemoryForm/> }
 
 
-      {!this.props.thoughtOptions ?
-      <ThoughtDefault/> :
-      <>
-      <Grid.Row>
-      <Grid.Column width={4}>
-      </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Journal</Header>
-        <Button circular color='brown' size='massive' basic icon="book"/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Idea</Header>
-        <Button circular color='yellow' size='massive' basic icon="lightbulb outline"/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Gratitude</Header>
-        <Button circular color='green' size='massive' basic icon="gem outline"/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Balance</Header>
-        <Button circular color='blue' size='massive' basic icon="law"/>
-        </Grid.Column>
-      <Grid.Column width={4}>
-      </Grid.Column>
-    </Grid.Row>
-    </>
-}
+  {!this.props.thoughtOptions ? <ThoughtDefault/> : <ThoughtOptions /> }
+  {/* New thought form is container for other forms */}
+  {!this.props.thoughtForm ? <NewThoughtMemoryForm/> : null /> }
 
     <Grid.Row columns={4}>
       <Grid.Column width={3}>
@@ -181,13 +154,6 @@ render() {
 
 
 
-//   Remove to htought memories ocm
-
-handleSubmitThought = (event) => {
-    this.props.addThoughtMemory(this.state)
-    this.props.toggleForm({target: {value: 'thought'}})
-    this.props.incrementCounter({counter: 'queuedThoughtMemories'})
-}
 
 //   Remove to activity memories ocm
 
@@ -197,14 +163,6 @@ handleSubmitActivity = (event) => {
     this.props.incrementCounter({counter: 'queuedActivityMemories'})
 }
 
-handleChange = (event) => { 
-    this.setState({[event.target.name]: event.target.value}, () => console.log("Form State", this.state, "event value", event.target))
-}
-
-handleSelect = (event) => {
-    event.persist();
-    this.setState({emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
-}
 
 createMemory(event, memory) {
     // transform arrays of has_many records to hashes for ruby
