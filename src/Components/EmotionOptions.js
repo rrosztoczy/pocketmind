@@ -25,6 +25,12 @@ class NewEmotionMemoryForm extends React.Component {
         this.setState({emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
     }
 
+  handleSubmitEmotion = (event) => {
+    this.props.addEmotionMemory(this.state)
+    this.props.toggleForm({target: {value: 'emotionOptions'}})
+}
+
+
     render() {
         return (
 <>

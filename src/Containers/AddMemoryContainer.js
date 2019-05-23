@@ -1,13 +1,10 @@
 import React from 'react'
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
-import NewThoughtMemoryForm from '../Components/NewThoughtMemoryForm'
-import NewStressMemoryForm from '../Components/NewStressMemoryForm'
-import NewAnxietyMemoryForm from '../Components/NewAnxietyMemoryForm'
 import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
 import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import EmotionDefault from '../Components/EmotionDefault'
+import NewEmotionMemoryForm from '../Components/EmotionOptions'
 import ThoughtDefault from '../Components/ThoughtDefault'
 import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
@@ -26,21 +23,21 @@ class AddMemoryContainer extends React.Component {
        this.props.toggleForm(event)
    }
 
-    renderNewEmotionMemoryForm() {
-        return <NewEmotionMemoryForm submitEmotionMemory={this.submitEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
+    // renderNewEmotionMemoryForm() {
+    //     return <NewEmotionMemoryForm submitEmotionMemory={this.submitEmotionMemory} handleSubmitNew={this.handleSubmitNew} />
+    // }
 
-    renderNewThoughtMemoryForm() {
-        return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
+    // renderNewThoughtMemoryForm() {
+    //     return <NewThoughtMemoryForm submitThoughtMemory={this.submitThoughtMemory} handleSubmitNew={this.handleSubmitNew} />
+    // }
 
-    renderNewStressMemoryForm() {
-        return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
+    // renderNewStressMemoryForm() {
+    //     return <NewStressMemoryForm submitStressMemory={this.submitStressMemory} handleSubmitNew={this.handleSubmitNew} />
+    // }
 
-    renderNewAnxietyMemoryForm() {
-        return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
-    }
+    // renderNewAnxietyMemoryForm() {
+    //     return <NewAnxietyMemoryForm submitAnxietyMemory={this.submitAnxietyMemory} handleSubmitNew={this.handleSubmitNew} />
+    // }
 
 render() {
 
@@ -71,7 +68,7 @@ render() {
   </Grid.Row>
 
   {!this.props.emotionOptions ?
-    <EmotionDefault/> :
+    <EmotionDefault/> : <NewEmotionMemoryForm/>
 
   }
 
@@ -182,12 +179,6 @@ render() {
   )
   }
 
-
-// Remove to emotion memories component
-  handleSubmitEmotion = (event) => {
-    this.props.addEmotionMemory(this.state)
-    this.props.toggleForm({target: {value: 'emotionOptions'}})
-}
 
 
 //   Remove to htought memories ocm
