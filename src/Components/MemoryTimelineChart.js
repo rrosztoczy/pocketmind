@@ -1,23 +1,14 @@
 
-import React, { Component } from 'react'
-import Chart from "chart.js";
+import React, { Component } from 'react';
 import * as actions from '../actions';
-import { connect } from 'net';
+import { connect } from 'react-redux';
+import Chart from "chart.js";
 
 class MemoryTimelineChart extends Component {
     chartRef = React.createRef();
 
-    // shouldComponentUpdate(nextProps) {
-    // }
-
-    // componentDidMount() {
-    //     this.renderChart()
-    // }
-    // componentDidUpdate() {
-    //     this.renderChart()
-    // }
-
-        renderChart() {
+    componentDidMount() {
+            // console.log(chartRef)
             const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
@@ -29,11 +20,50 @@ class MemoryTimelineChart extends Component {
             const stressLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.stressLevel)
             const anxietyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.anxietyLevel)
             // map data for chart axes and overlays
-            const emotionMemoryDates = emotionMemoryData.map(emotionMemory => emotionMemory.createdAt)
-            const thoughtMemoryDates = thoughtMemoryData.map(thoughtMemory => thoughtMemory.createdAt)
+            const emotionMemoryDates = emotionMemoriesData.map(emotionMemory => emotionMemory.createdAt)
+            const thoughtMemoryDates = thoughtMemoriesData.map(thoughtMemory => thoughtMemory.createdAt)
             // Create x/y points for a time axis by creating array of hash with x: new Date(date) and y: the appropriate data set
             const moodChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: moodLevel[i]}))
-            console.log(moodChartData)
+            console.log('rendering chart', moodChartData)
+    }
+    componentDidUpdate() {
+        const myChartRef = this.chartRef.current.getContext("2d");
+        // map data for chart to arrays
+        const memoryData = this.props.memories
+        const emotionMemoriesData = []
+        const thoughtMemoriesData = []
+        memoryData.forEach(memory => {
+            return memory.emotionMemories[0] ? emotionMemoriesData.push(memory.emotionMemories[0]) : null
+        })
+        memoryData.forEach(memory => {
+            return memory.thoughtMemories[0] ? thoughtMemoriesData.push(memory.thoughtMemories[0]) : null
+        })
+        console.log(emotionMemoriesData)
+        // const thoughtMemoriesData = memoryData.map(memory => memory.thoughtMemories[0])
+        const emotions = emotionMemoriesData.map(emotionMemory => emotionMemory.emotion)
+        const moodLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.pleasure)
+        const energyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.intensity)
+        const stressLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.stressLevel)
+        const anxietyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.anxietyLevel)
+        // map data for chart axes and overlays
+        const emotionMemoryDates = emotionMemoriesData.map(emotionMemory => emotionMemory.createdAt)
+        const thoughtMemoryDates = thoughtMemoriesData.map(thoughtMemory => thoughtMemory.createdAt)
+        // Create x/y points for a time axis by creating array of hash with x: new Date(date) and y: the appropriate data set
+        const emotionChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: emotions[i]}))
+        const moodChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: moodLevel[i]}))
+        const energyChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: energyLevel[i]}))
+        const stressChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: stressLevel[i]}))
+        const anxietyChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: anxietyLevel[i]}))
+        // console.log('rendering mood chart', moodChartData)
+        // console.log('rendering energy chart', energyChartData)
+        // console.log('rendering stress chart', stressChartData)
+        // console.log('rendering anxiety chart', anxietyChartData)
+        // console.log('rendering emotions chart', emotionChartData)
+    }
+
+        renderChart() {
+
+        }
             // map data for labels
 
             // **************************************Optimization****************************************************************
@@ -41,61 +71,23 @@ class MemoryTimelineChart extends Component {
             // TODO: I want to display multiple data points for thoughts if they exist
             // TODO: I want to display multiple data points for activities if they exist
             // *******************************************************************************************************************
-
-
-    //         const moodLevel = memoryData.map(memory => memory.website.root_url)
-    //         console.log("roots", trumpetRootUrls)
-    //         const labels = [... new Set(trumpetRootUrls)]
-    //         let counts = {};
-    //         trumpetRootUrls.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-    //         console.log("line counts", counts)
-    //         const chartData = labels.map(label => counts[label])
-    //         console.log("chart data", chartData)
-    //         const prettyColors = ["rgb(255, 99, 131)", "rgb(55, 162, 235)", "rgb(255, 205, 86)", "#FF9026", "#4BC1C0",  "#4BC1C0"]
-    //         const opaquePrettyColors = ["rgb(255, 99, 131, 0.3)", "rgb(55, 162, 235, 0.3)", "rgb(255, 205, 86, 0.3)", "rgb(255, 126, 4, 0.3)", "rgb(75, 193, 192, 0.3)", "rgb(75, 193, 192, 0.3)"]
-    //         new Chart(myChartRef, {
-    //             type: "bar",
-    //             data: {
-    //                 //Bring in data
-    //                 labels: labels,
-    //                 datasets: [
-    //                     {
-    //                         label: labels,
-    //                         data: chartData,
-    //                         backgroundColor: opaquePrettyColors,
-    //                         borderColor: prettyColors,
-    //                         borderWidth: 1
-    //                     }
-    //                 ]
-    //             },
-    //             options: {
-    //                 scales: {
-    //                     yAxes: [{
-    //                         ticks: {
-    //                             beginAtZero: true
-    //                         }
-    //                     }]
-    //                 }
-    //             }
-    //         });
-    //     }
-    // render() {
-    //     return (
-    //         <div>
-    //             <canvas
-    //                 id="myBarChart"
-    //                 ref={this.chartRef}
-    //             />
-    //         </div>
-    //     )
-    // }
+    render() {
+        this.renderChart()
+        return (
+            <div>
+                <canvas
+                    id="myBarChart"
+                    ref={this.chartRef}
+                />
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = state => {
-    console.log("new state", state)
     return {
-        memories: ,
+        memories: state.memories
     }
-};
+}
 
 export default connect(mapStateToProps, actions)(MemoryTimelineChart)

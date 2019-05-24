@@ -11,8 +11,7 @@ import About from './Containers/Future/About'
 import Memories from './Containers/Memories'
 import ThoughtMemories from './Containers/ThoughtMemories'
 import EmotionMemories from './Containers/EmotionMemories'
-import Tools from './Containers/Future/Tools'
-import AccountSettings from './Containers/Future/AccountSettings'
+import MemoryTimeline from './Containers/MemoryTimeline'
 // import logo from './logo.svg';
 import './App.css'
 import { connect } from 'react-redux';
@@ -47,9 +46,8 @@ class App extends Component {
           <Route path='/home' render={(props) => <Home/>}/>
           <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' component={withAuth(ThoughtMemories)}/>   
-          <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/>      
-          <Route path='/tools' render={(props) => <Tools/>}/>           
-          <Route path='/account-settings' render={() =>  <AccountSettings />}/>
+          <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/> 
+          <Route path='/timeline' component={withAuth(MemoryTimeline)}/>         
           <Route path='/' render={(routeProps) => <LandingPage {...routeProps} />}/>
         </Switch>
       </div>
