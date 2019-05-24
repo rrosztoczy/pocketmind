@@ -60,14 +60,14 @@ class ThoughtMemoryBalanceContainer extends React.Component {
     }
 
 
-state = {
-    editedThoughtMemories: {}
-}
+    state = {
+        editedThoughtMemories: {}
+    }
 
 handleMultiEditChange = (event, thoughtMemoryId) => {
     event.persist()
     console.log('hanlding change!')
-    this.state.editedThoughtMemories[thoughtMemoryId] ? this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...prevState.editedThoughtMemories[thoughtMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second thought memories!', this.state)) : this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...this.props.thoughtMemories.find(thoughtMemory => thoughtMemory.id === thoughtMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
+    this.state.editedThoughtMemories[thoughtMemoryId] ? this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...prevState.editedThoughtMemories[thoughtMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second thought memories!', this.state)) : this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...this.filteredUserThoughtMemories().find(thoughtMemory => thoughtMemory.id === thoughtMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
 
 filteredUserThoughtMemories() {
@@ -140,7 +140,7 @@ filteredUserThoughtMemories() {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header as='h1' color='blue' textAlign='center'>
-          JOURNAL
+        Journal
         </Header>
       </Grid.Column>
     </Grid.Row>
@@ -154,7 +154,7 @@ filteredUserThoughtMemories() {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header color='teal' size='huge'>
-              Thought Memories
+              Gratitude
             </Header>
       </Grid.Column>
     </Grid.Row>

@@ -6,6 +6,9 @@ import * as actions from '../actions'
 class ThoughtMemoryContainer extends React.Component {
 
 
+    state = {
+        editedThoughtMemories: {}
+    }
     componentDidMount() {
       this.props.getAllUserMemories()
     }
@@ -70,7 +73,7 @@ class ThoughtMemoryContainer extends React.Component {
 handleMultiEditChange = (event, thoughtMemoryId) => {
     event.persist()
     console.log('hanlding change!')
-    this.state.editedThoughtMemories[thoughtMemoryId] ? this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...prevState.editedThoughtMemories[thoughtMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second thought memories!', this.state)) : this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...this.props.thoughtMemories.find(thoughtMemory => thoughtMemory.id === thoughtMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
+    this.state.editedThoughtMemories[thoughtMemoryId] ? this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...prevState.editedThoughtMemories[thoughtMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second thought memories!', this.state)) : this.setState((prevState) => ({editedThoughtMemories: {...prevState.editedThoughtMemories, [thoughtMemoryId]: {...this.filteredUserThoughtMemories().find(thoughtMemory => thoughtMemory.id === thoughtMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
 
     renderEditForms() {
@@ -128,7 +131,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE IN YOUR THOUGHT MEMORIES
+          Journal
         </Header>
       </Grid.Column>
     </Grid.Row>
@@ -142,7 +145,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header color='teal' size='huge'>
-              Gratitude Journal
+              Journal
             </Header>
       </Grid.Column>
     </Grid.Row>
