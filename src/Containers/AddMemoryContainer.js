@@ -15,6 +15,10 @@ import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
 
+  componentDidMount() {
+    this.props.getAllUserMemories();
+  }
+
 
     submitMemory = (event) => {
         event.preventDefault()

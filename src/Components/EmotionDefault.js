@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
 import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
+import ByDayStressAnxiety from '../ChartComponents/ByDayStressAnxiety';
 
 const EmotionDefault = () => (
     <Grid.Row>
@@ -13,7 +14,7 @@ const EmotionDefault = () => (
       <FeelingOptionsSegment/>
       </Grid.Column>
     <Grid.Column width={8}>
-        <Header>Show small emotions chart here...</Header>
+       <ByDayStressAnxiety/>
       </Grid.Column>
       <Grid.Column width={2}>
       </Grid.Column>
