@@ -8,6 +8,7 @@ class NewJournalForm extends React.Component {
 
 
     state = {
+        thoughtType: "gratitude",
         thoughtContent: "",
         topic: ""
 }

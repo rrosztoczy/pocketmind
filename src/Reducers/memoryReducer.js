@@ -15,6 +15,7 @@ import {
     DESTROY_EMOTION_MEMORY,
     DESTROY_THOUGHT_MEMORY,
     INCREMENT_COUNTER,
+    UPDATE_THOUGHT_SELECTION,
     CREATE_USER
 } from '../actions'
 
@@ -38,6 +39,7 @@ const initialState = {
     idea: false,
     gratitude: false,
     balance: false,
+    thoughtSelection: 'journal',
     activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
@@ -118,6 +120,9 @@ function memoryReducer(state = initialState, action) {
         case TOGGLE_FORM:
           console.log("toggling!")
           return {...state, [action.payload]: !state[action.payload]}
+          case UPDATE_THOUGHT_SELECTION:
+          console.log("UPDATING THOUGHT SELECTION!")
+          return {...state, thoughtSelection: action.payload}
           // *****************************************************************Auth***********************************************************
           case 'SET_CURRENT_USER':
           console.log("setting current user")

@@ -8,9 +8,10 @@ class NewJournalForm extends React.Component {
 
 
     state = {
+        thoughtType: 'balance',
         automaticThought: "",
         cognitiveBias: "",
-        rationalResponse: "",
+        rationalThought: ""
 }
     // TODO: Set state to have the data for a new thought memory
 
@@ -19,7 +20,7 @@ class NewJournalForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addThoughtMemory(this.state)
-        this.props.toggleForm({target: {value: 'thought'}})
+        this.props.toggleForm({target: {value: 'balance'}})
     }
 
     render() {
@@ -27,7 +28,7 @@ class NewJournalForm extends React.Component {
         <Form onSubmit={(event) => this.handleSubmit(event)}>
             <Form.TextArea onChange={this.handleChange} fluid label='Automatic Thought' placeholder='What are your incessant thoughts?' name="automaticThought" value={this.state.automaticThought ? this.state.automaticThought : ""} />
             <Form.Input onChange={this.handleChange} fluid label='Bias or Issue' placeholder='Ex. overgeneralization, disqualifying the positive...' name="cognitiveBias" value={this.state.cognitiveBias ? this.state.cognitiveBias : ""} />
-            <Form.TextArea onChange={this.handleChange} label='Rational Response' placeholder='How would you respond to these thoughts?' name="rationalResponse" value={this.state.rationalResponse ? this.state.rationalResponse : ""} />
+            <Form.TextArea onChange={this.handleChange} label='Rational Response' placeholder='How would you respond to these thoughts?' name="rationalThought" value={this.state.rationalThought ? this.state.rationalThought : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
         </Form>
