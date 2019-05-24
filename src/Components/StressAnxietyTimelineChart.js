@@ -4,8 +4,8 @@ import * as actions from '../actions';
 import { connect } from 'react-redux';
 import Chart from "chart.js";
 
-class MemoryTimelineChart extends Component {
-    // chartRef = React.createRef();
+class StressAnxietyTimelineChart extends Component {
+    chartRef = React.createRef();
 
     componentDidMount() {
         this.renderChart()
@@ -14,8 +14,8 @@ class MemoryTimelineChart extends Component {
         this.renderChart()
     }
 
-        renderChart = () => {
-            const myChartRef = this.refs.chartRef.getContext("2d");
+        renderChart() {
+            const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
             const emotionMemoriesData = []
@@ -28,16 +28,13 @@ class MemoryTimelineChart extends Component {
             })
             console.log(emotionMemoriesData)
             // const thoughtMemoriesData = memoryData.map(memory => memory.thoughtMemories[0])
-            const emotions = emotionMemoriesData.map(emotionMemory => emotionMemory.emotion)
-            const moodLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.pleasure)
-            const energyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.intensity)
+            const stressLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.stressLevel)
+            const anxietyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.anxietyLevel)
             // map data for chart axes and overlays
             const emotionMemoryDates = emotionMemoriesData.map(emotionMemory => emotionMemory.createdAt)
             const thoughtMemoryDates = thoughtMemoriesData.map(thoughtMemory => thoughtMemory.createdAt)
-            // Create x/y points for a time axis by creating array of hash with x: new Date(date) and y: the appropriate data set
-            const emotionChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: emotions[i]}))
-            const moodChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: moodLevel[i]}))
-            const energyChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: energyLevel[i]}))
+            const stressChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: stressLevel[i]}))
+            const anxietyChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: anxietyLevel[i]}))
             // console.log('rendering mood chart', moodChartData)
             // console.log('rendering energy chart', energyChartData)
             // console.log('rendering stress chart', stressChartData)
@@ -47,18 +44,18 @@ class MemoryTimelineChart extends Component {
                 // labels: formattedDateTime,
                 datasets: [
                     {
-                        label: "Mood",
-                        borderColor: "#80b6f4",
-                        backgroundColor: "#80b6f4",
-                        pointBorderColor: "#80b6f4",
-                        pointBackgroundColor: "#80b6f4",
-                        pointHoverBackgroundColor: "#80b6f4",
-                        pointHoverBorderColor: "#80b6f4",
+                        label: "Stress",
+                        borderColor: "rgb(255, 99, 131)",
+                        backgroundColor: "rgb(255, 99, 131)",
+                        pointBorderColor: "rgb(255, 99, 131)",
+                        pointBackgroundColor: "rgb(255, 99, 131)",
+                        pointHoverBackgroundColor: "rgb(255, 99, 131)",
+                        pointHoverBorderColor: "rgb(255, 99, 131)",
                         fill: false,
-                        data: moodChartData
+                        data: stressChartData
                     },
                     {
-                        label: "Energy",
+                        label: "Anxiety",
                         borderColor: "rgb(255, 205, 86)",
                         backgroundColor: "rgb(255, 205, 86)",
                         pointBorderColor: "rgb(255, 205, 86)",
@@ -66,7 +63,7 @@ class MemoryTimelineChart extends Component {
                         pointHoverBackgroundColor: "rgb(255, 205, 86)",
                         pointHoverBorderColor: "rgb(255, 205, 86)",
                         fill: false,
-                        data: energyChartData
+                        data: anxietyChartData
                     }
                 ]
         }
@@ -128,13 +125,12 @@ class MemoryTimelineChart extends Component {
             // TODO: I want to display multiple data points for activities if they exist
             // *******************************************************************************************************************
     render() {
-        window.addEventListener("resize", this.renderChart)
         // this.renderChart()
         return (
             <div>
                 <canvas
                     id="myChart"
-                    ref='chartRef'
+                    ref={this.chartRef}
                 />
             </div>
         )
@@ -147,4 +143,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, actions)(MemoryTimelineChart)
+export default connect(mapStateToProps, actions)(StressAnxietyTimelineChart)
