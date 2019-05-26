@@ -11,6 +11,7 @@ import About from './Containers/Future/About'
 import Memories from './Containers/Memories'
 import ThoughtMemories from './Containers/ThoughtMemories'
 import EmotionMemories from './Containers/EmotionMemories'
+import ActivityMemories from './Containers/ActivityMemories'
 import MemoryTimeline from './Containers/MemoryTimeline'
 // import logo from './logo.svg';
 import './App.css'
@@ -47,6 +48,7 @@ class App extends Component {
           <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' component={withAuth(ThoughtMemories)}/>   
           <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/> 
+          <Route path='/activitymemories' component={withAuth(ActivityMemories)}/> 
           <Route path='/timeline' component={withAuth(MemoryTimeline)}/>         
           <Route path='/' render={(routeProps) => <LandingPage {...routeProps} />}/>
         </Switch>

@@ -44,7 +44,10 @@ class ActivityMemoryContainer extends React.Component {
 
     filteredUserActivityMemories() {
         let userActivityMemories = []
-        this.props.memories.forEach(memory => memory.activityMemories.forEach(activityMemory => userActivityMemories.push(activityMemory)))
+        this.props.memories.forEach(memory => {
+            if (memory.activityMemories) {
+            memory.activityMemories.forEach(activityMemory => userActivityMemories.push(activityMemory))
+        }})
         let filteredUserActivityMemories = userActivityMemories.filter(activityMemory => activityMemory.activityType===this.props.activitySelection)
         console.log(filteredUserActivityMemories)
         let sortedFilteredUserActivityMemories = [...filteredUserActivityMemories].sort(function(a,b) {

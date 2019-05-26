@@ -19,6 +19,7 @@ export default class AppNav extends Component {
           <Menu.Item as={NavLink} name='MEMORIES' to='/profile' active={activeItem === 'MEMORIES'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='THOUGHT MEMORIES' to='/thoughtmemories' active={activeItem === 'THOUGHT MEMORIES'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='EMOTION MEMORIES' to='/emotionmemories' active={activeItem === 'EMOTION MEMORIES'} onClick={this.handleItemClick} />
+          <Menu.Item as={NavLink} name='ACTIVITY MEMORIES' to='/activitymemories' active={activeItem === 'ACTIVITY MEMORIES'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='TIMELINE' to='/timeline' active={activeItem === 'TIMELINE'} onClick={this.handleItemClick} />
           {/* <Menu.Item as={NavLink} name='LEFT BRAIN' to='/left-brain' active={activeItem === 'LEFT BRAIN'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='RIGHT BRAIN' to='/right-brain' active={activeItem === 'RIGHT BRAIN'} onClick={this.handleItemClick} />
