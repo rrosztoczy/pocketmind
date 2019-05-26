@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import * as actions from '../actions'
 
-class BalanceContainer extends React.Component {
+class WorkContainer extends React.Component {
 
 
     componentDidMount() {
@@ -16,8 +16,8 @@ class BalanceContainer extends React.Component {
         this.props.toggleForm(event)
     }
 
-    renderThoughtMemoryHeaders() {
-        return (<Grid.Row columns={5}>
+    renderActivityMemoryHeaders() {
+        return (<Grid.Row columns={4}>
             <Grid.Column>
             <p>Go to Memory</p>
             </Grid.Column>
@@ -25,25 +25,22 @@ class BalanceContainer extends React.Component {
             <p>Time</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Automatic Thought</p>
+            <p>Activity Topic</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Cognitive Bias</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Rational Response</p>
+            <p>Activity Content</p>
             </Grid.Column>
           </Grid.Row>)
     }
 
-    renderThoughtMemories() {
+    renderActivityMemories() {
       const userThoughtMemories = []
       this.props.memories.forEach(memory => memory.thoughtMemories.forEach(thoughtMemory => userThoughtMemories.push(thoughtMemory)))
         const sortedThoughtMemories = [...userThoughtMemories].sort(function(a,b) {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedThoughtMemories.map(thoughtMemory => {
-            return (<Grid.Row columns={5} key={thoughtMemory.id} >
+            return (<Grid.Row columns={4} key={thoughtMemory.id} >
               <Grid.Column>
               <p>{thoughtMemory.memoryId}</p>
               </Grid.Column>
@@ -51,13 +48,10 @@ class BalanceContainer extends React.Component {
               <p>{thoughtMemory.createdAt}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.automaticThought}</p>
+              <p>{thoughtMemory.topic}</p>
               </Grid.Column>
               <Grid.Column>
-              <p>{thoughtMemory.cognitiveBias}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{thoughtMemory.rationalThought}</p>
+              <p>{thoughtMemory.thoughtContent}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -82,22 +76,19 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedThoughtMemories.map(thoughtMemory => {
-            return (<Grid.Row key={thoughtMemory.id} columns={5}>
+            return (<Grid.Row key={thoughtMemory.id} columns={4}>
               <Grid.Column>
               <p>{thoughtMemory.memoryId}</p>
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].createdAt ? this.state.editedThoughtMemories[thoughtMemory.id].createdAt : thoughtMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
+              {/* Edit emotions and thoughts in their own sections */}
               <Grid.Column>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].automaticThought ? this.state.editedThoughtMemories[thoughtMemory.id].automaticThought : thoughtMemory.automaticThought}  name='automaticThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Grid.Column>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].topic ? this.state.editedThoughtMemories[thoughtMemory.id].topic : thoughtMemory.topic}  name='topic' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
-              <Grid.Column>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias ? this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias : thoughtMemory.cognitiveBias}  name='cognitiveBias' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
-              </Grid.Column>
-              <Grid.Column>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].rationalThought ? this.state.editedThoughtMemories[thoughtMemory.id].rationalThought : thoughtMemory.rationalThought}  name='rationalThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
-              <Button onClick={() => this.destroyThoughtMemory(thoughtMemory.id)} icon='trash alternate outline'/>
+              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].thoughtContent ? this.state.editedThoughtMemories[thoughtMemory.id].thoughtContent : thoughtMemory.thoughtContent}  name='thoughtContent' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -138,7 +129,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header as='h1' color='blue' textAlign='center'>
-          JOURNAL
+          YOU ARE IN YOUR THOUGHT MEMORIES
         </Header>
       </Grid.Column>
     </Grid.Row>
@@ -152,7 +143,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header color='teal' size='huge'>
-              Thought Memories
+              Gratitude Journal
             </Header>
       </Grid.Column>
     </Grid.Row>
@@ -172,4 +163,4 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     };
      
 
-export default connect(mapStateToProps, actions)(BalanceContainer);
+export default connect(mapStateToProps, actions)(WorkContainer);
