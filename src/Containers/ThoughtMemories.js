@@ -8,6 +8,7 @@ import GratitudeContainer from './GratitudeContainer'
 import BalanceContainer from './BalanceContainer'
 import ThoughtMemoryContainer from './ThoughtMemoryContainer'
 import ThoughtMemoryBalanceContainer from './ThoughtMemoryBalanceContainer'
+import ThoughtMemoriesByType from '../ChartComponents/ThoughtMemoriesByType'
 import * as actions from '../actions'
 
 class ThoughtMemories extends React.Component {
@@ -50,17 +51,7 @@ renderThoughtList() {
   <Grid divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE IN YOUR THOUGHT MEMORIES
-        </Header>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header color='teal' size='huge'>
-              Thought Memories
-            </Header>
+      <ThoughtMemoriesByType />
       </Grid.Column>
     </Grid.Row>
     <ThoughtOptionSort/>

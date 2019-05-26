@@ -30,6 +30,10 @@ class NewEmotionMemoryForm extends React.Component {
     this.props.toggleForm({target: {value: 'emotionOptions'}})
 }
 
+handleCancelEmotion = (event) => {
+    this.props.toggleForm({target: {value: 'emotionOptions'}})
+}
+
 
     render() {
         return (
@@ -70,6 +74,7 @@ class NewEmotionMemoryForm extends React.Component {
         </Grid.Column>
         <Grid.Column width={10}>
         <Button circular color='orange' size='massive' basic onClick={this.handleSubmitEmotion} >Submit</Button>
+        <Button circular color='red' size='massive' basic onClick={this.handleCancelEmotion} >Cancel</Button>
         </Grid.Column>
         <Grid.Column width={3}>
         </Grid.Column>

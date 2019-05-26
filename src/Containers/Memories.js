@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 import * as actions from '../actions'
+import MemoriesByType from '../ChartComponents/MemoriesByType';
 
 class Memories extends React.Component {
 
@@ -167,23 +168,13 @@ handleMultiEditChange = (event, memoryId) => {
   <Grid divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE IN YOUR MEMORIES
-        </Header>
+      <MemoriesByType/>
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>
             {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header color='teal' size='huge'>
-              Memories
-            </Header>
       </Grid.Column>
     </Grid.Row>
     {this.renderMemoryHeaders()}

@@ -20,7 +20,13 @@ class NewJournalForm extends React.Component {
         event.preventDefault()
         this.props.addThoughtMemory(this.state)
         this.props.toggleForm({target: {value: 'idea'}})
+        this.props.toggleForm({target: {value: 'thoughtOptions'}})
     }
+
+    handleCancel = (event) => {
+      this.props.toggleForm({target: {value: 'idea'}})
+      this.props.toggleForm({target: {value: 'thoughtOptions'}})
+  }
 
     render() {
       return (
@@ -29,6 +35,7 @@ class NewJournalForm extends React.Component {
             <Form.Input onChange={this.handleChange} fluid label='Idea' placeholder='[blank] makes me think that' name="thoughtContent" value={this.state.thoughtContent ? this.state.thoughtContent : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
+          <Form.Button onClick={this.handleCancel} >Cancel</Form.Button>
         </Form>
       )
     }

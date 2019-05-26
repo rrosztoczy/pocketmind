@@ -27,10 +27,11 @@ class MemoryTimeline extends Component {
               </Grid.Column>
               <Grid.Column width={8}>
               <Grid.Row>
-                <Header>Thought data based on datapoint click</Header>
+              {/* For now... thought and activity charts? if time? */}
+                {/* <Header>Thought data based on datapoint click</Header> */}
               </Grid.Row>
               <Grid.Row>
-              <Header>Thought data based on datapoint click</Header>
+              {/* <Header>Thought data based on datapoint click</Header> */}
                 </Grid.Row>
               </Grid.Column>
             </Grid>
