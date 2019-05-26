@@ -11,6 +11,8 @@ import NewGratitudeForm from '../Components/NewGratitudeForm'
 import NewBalanceForm from '../Components/NewBalanceForm'
 import ThoughtDefault from '../Components/ThoughtDefault'
 import ThoughtOptions from '../Components/ThoughtOptions'
+import ActivityDefault from '../Components/ActivityDefault'
+import ActivityOptionSort from '../Components/ActivityOptionSort'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
@@ -67,16 +69,17 @@ render() {
   </Grid.Row>}
   {/* {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptions /> }
   {!this.props.NewActivityMemoryFormContainer ? null : <NewActivityMemoryFormContainer/> } */}
+  {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptionSort /> }
 
-    <Grid.Row columns={4}>
+    {/* <Grid.Row columns={4}>
       <Grid.Column width={3}>
       </Grid.Column>
-      <Grid.Column width={3}>
-      <ActivityOptionsSegment/>
+      <Grid.Column width={3}> */}
+      {/* <ActivityOptionsSegment/> */}
       {/* icons: sun (activity, weather or mood), book (journal), fork (nots ure but awesome), idea (lightbultb), dna, cloud upload, address book (social), 
   briefcase (work), coffee (break), bath (idk lol), different variations of commnet, mobile (soical media etc), headphones (entertainment), clock, hourglass, 
   adjust (mood), pencil alternate (thought), handshake, thumbs up, heartbeat, heart, medikit, beer, cloud, cog, circle, home, info circle, start, trophy, icycle, car or plane for travel, bed for relax  */}
-      </Grid.Column>
+      {/* </Grid.Column>
       {!this.props.activityOptions ?
       <Grid.Column width={8}>
         <Header>Show small activities chart here...</Header>
@@ -98,11 +101,11 @@ render() {
         <Header>Entertainment</Header>
         <Button circular color='yellow' size='massive' basic icon="bar"/>
         </Grid.Column>
-      </>
+      </> */}
       }
-      <Grid.Column width={2}>
+      {/* <Grid.Column width={2}>
       </Grid.Column>
-    </Grid.Row>
+    </Grid.Row> */}
 
     <Grid.Row columns={1}>
       <Grid.Column >

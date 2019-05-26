@@ -20,17 +20,13 @@ class ActivityMemoriesByType extends Component {
             const memoryData = this.props.memories
             const activityMemoriesData = []
             memoryData.forEach(memory => {
+                if (memory.activityMemories) {
                 return memory.activityMemories[0] ? activityMemoriesData.push(memory.activityMemories[0]) : null
+            }
             })
             const activityTypeData = activityMemoriesData.map(activityMemory => activityMemory.activityType)
             // One array of distinct types
             const distinctActivityTypes = [...new Set(activityTypeData.filter(type => type != null))]
-            // emotions
-            const emotionMemoriesData = []
-            memoryData.forEach(memory => {
-                return memory.emotionMemories[0] ? emotionMemoriesData.push(memory.emotionMemories[0]) : null
-            })
-            const emotionTypeData = emotionMemoriesData.map(emotionMemory => emotionMemory.emotion)
             // One array of distinct types
             const totalActivityMemories = [...activityTypeData].filter(activityType => activityType != null).length;
 
