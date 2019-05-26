@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
-import * as actions from '../actions'
+import * as actions from '../../actions'
 
-class GratitudeContainer extends React.Component {
+class JournalContainer extends React.Component {
 
 
     componentDidMount() {
@@ -163,4 +163,4 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     };
      
 
-export default connect(mapStateToProps, actions)(GratitudeContainer);
+export default connect(mapStateToProps, actions)(JournalContainer);
