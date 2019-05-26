@@ -6,16 +6,20 @@ import {
     GET_ALL_EMOTIONS,
     GET_ALL_THOUGHT_MEMORIES,
     GET_ALL_EMOTION_MEMORIES,
+    GET_ALL_ACTIVITY_MEMORIES,
     GET_MEMORY,
     CREATE_MEMORY,
     UPDATE_MEMORY,
     UPDATE_EMOTION_MEMORY,
     UPDATE_THOUGHT_MEMORY,
+    UPDATE_ACTIVITY_MEMORY,
     DESTROY_MEMORY,
     DESTROY_EMOTION_MEMORY,
     DESTROY_THOUGHT_MEMORY,
+    DESTROY_ACTIVITY_MEMORY,
     INCREMENT_COUNTER,
     UPDATE_THOUGHT_SELECTION,
+    UPDATE_ACTIVITY_SELECTION,
     CREATE_USER
 } from '../actions'
 
@@ -25,6 +29,7 @@ const initialState = {
     emotions: [],
     thoughtMemories: [],
     emotionMemories: [],
+    activityMemories: [],
     memory: {    
         emotionMemoriesAttributes: [],
         thoughtMemoriesAttributes: [],
@@ -39,15 +44,23 @@ const initialState = {
     idea: false,
     gratitude: false,
     balance: false,
+    work: false,
+    physical: false,
+    social: false,
+    entertainment: false,
     thoughtSelection: 'journal',
+    activitySelection: 'work',
     activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
+    activityOptions: false,
     newThoughtMemoryFormContainer: false,
     newActivityMemoryFormContainer: false,
     thought: false,
+    activity: false,
     editThoughtMemories: false,
     editEmotionMemories: false,
+    editActivityMemories: false,
     authenticatingUser: "",
     loggedIn: false,
     failedLogin: false,
@@ -80,6 +93,10 @@ function memoryReducer(state = initialState, action) {
         console.log('destroying emotion memory! hit destroy')
         return {...state, emotionMemories: state.emotionMemories.filter(emotionMemory => emotionMemory.id != action.payload)}
         // Refactor into discrete actions
+        case  DESTROY_ACTIVITY_MEMORY:
+        console.log('destroying ACTIVITY memory! hit destroy')
+        return {...state, activityMemories: state.activityMemories.filter(activityMemory => activityMemory.id != action.payload)}
+        // Refactor into discrete actions
         case  CREATE_MEMORY:
         console.log('creating memory! hit create')
         return {...state, memories: [...state.memories, action.payload], memory: {    
@@ -92,6 +109,11 @@ function memoryReducer(state = initialState, action) {
         const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.id)
         console.log('memory id is', action.payload.id,' and index is', memoryForUpdateIndex)
         return {...state, memories: [...state.memories.slice(0, memoryForUpdateIndex), action.payload, ...state.memories.slice(memoryForUpdateIndex + 1)]}
+        case  UPDATE_ACTIVITY_MEMORY:
+        console.log('updating ACTIVITY memory! hit update')
+        const activityMemoryForUpdateIndex = state.activityMemories.findIndex(activityMemory => activityMemory.id === action.payload.id)
+        console.log('memory id is', action.payload.id,' and index is', activityMemoryForUpdateIndex)
+        return {...state, activityMemories: [...state.activityMemories.slice(0, activityMemoryForUpdateIndex), action.payload, ...state.activityMemories.slice(activityMemoryForUpdateIndex + 1)]}
         case  UPDATE_THOUGHT_MEMORY:
         console.log('updating thought memory! hit update')
         const thoughtMemoryForUpdateIndex = state.thoughtMemories.findIndex(thoughtMemory => thoughtMemory.id === action.payload.id)
@@ -111,6 +133,9 @@ function memoryReducer(state = initialState, action) {
         case 'ADD_THOUGHT_MEMORY':
         console.log('adding thought! hit add')
         return {...state, memory: {...state.memory, thoughtMemoriesAttributes: [...state.memory.thoughtMemoriesAttributes, action.payload]}}
+        case 'ADD_ACTIVITY_MEMORY':
+        console.log('adding thought! hit add')
+        return {...state, memory: {...state.memory, activityMemoriesAttributes: [...state.memory.activityMemoriesAttributes, action.payload]}}
         case  CREATE_USER:
         console.log('creating user! hit create')
         return {...state, user: {...state.user, ...action.payload}, loggedIn: true}
@@ -123,6 +148,9 @@ function memoryReducer(state = initialState, action) {
           case UPDATE_THOUGHT_SELECTION:
           console.log("UPDATING THOUGHT SELECTION!")
           return {...state, thoughtSelection: action.payload}
+          case UPDATE_ACTIVITY_SELECTION:
+          console.log("UPDATING ACTIVITY SELECTION!")
+          return {...state, activitySelection: action.payload}
           // *****************************************************************Auth***********************************************************
           case 'SET_CURRENT_USER':
           console.log("setting current user")
