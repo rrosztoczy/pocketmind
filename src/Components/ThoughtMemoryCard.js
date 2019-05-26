@@ -3,8 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react'
 import * as actions from '../actions'
-
-class NewJournalForm extends React.Component {
+// TODO:uild this out post FI
+class ThoughtMemoryCard extends React.Component {
 
 
     state = {
@@ -20,13 +20,7 @@ class NewJournalForm extends React.Component {
         event.preventDefault()
         this.props.addThoughtMemory(this.state)
         this.props.toggleForm({target: {value: 'journal'}})
-        this.props.toggleForm({target: {value: 'thoughtOptions'}})
     }
-
-    handleCancel = (event) => {
-      this.props.toggleForm({target: {value: 'journal'}})
-      this.props.toggleForm({target: {value: 'thoughtOptions'}})
-  }
 
     render() {
       return (
@@ -35,10 +29,9 @@ class NewJournalForm extends React.Component {
             <Form.TextArea onChange={this.handleChange} label='Content' placeholder='What are you thinking?' name="thoughtContent" value={this.state.thoughtContent} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
-          <Form.Button onClick={this.handleCancel} >Cancel</Form.Button>
         </Form>
       )
     }
 }
 
-export default connect(null, actions)(NewJournalForm)
+export default connect(null, actions)(ThoughtMemoryCard)

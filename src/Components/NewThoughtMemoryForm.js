@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import * as actions from '../actions'
 
 class NewThoughtMemoryForm extends React.Component {
@@ -22,6 +22,10 @@ class NewThoughtMemoryForm extends React.Component {
         this.props.toggleForm({target: {value: 'thought'}})
     }
 
+    handleCancelThought = (event) => {
+      this.props.toggleForm({target: {value: 'thought'}})
+    }
+
     render() {
       return (
         <Form onSubmit={(event) => this.handleSubmit(event)}>
@@ -31,6 +35,7 @@ class NewThoughtMemoryForm extends React.Component {
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
         </Form>
+        <Button onClick={this.handleCancelThought}>Cancel</Button>
       )
     }
 }

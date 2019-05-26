@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import EmotionMemoriesByType from '../ChartComponents/EmotionMemoriesByType'
 import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
@@ -162,9 +163,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
   <Grid divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Header as='h1' color='blue' textAlign='center'>
-          YOU ARE IN YOUR EMOTION MEMORIES
-        </Header>
+      <EmotionMemoriesByType />
       </Grid.Column>
     </Grid.Row>
 
@@ -174,13 +173,6 @@ handleMultiEditChange = (event, emotionMemoryId) => {
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header color='teal' size='huge'>
-              Emotion Memories
-            </Header>
-      </Grid.Column>
-    </Grid.Row>
     {this.renderEmotionMemoryHeaders()}
     {this.props.editEmotionMemories ? this.renderEditForms() : this.renderEmotionMemories()}
   </Grid>

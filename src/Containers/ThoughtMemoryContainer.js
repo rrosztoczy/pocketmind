@@ -128,13 +128,6 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header as='h1' color='blue' textAlign='center'>
-          Journal
-        </Header>
-      </Grid.Column>
-    </Grid.Row>
 
     <Grid.Row columns={1}>
       <Grid.Column>

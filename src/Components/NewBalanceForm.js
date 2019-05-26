@@ -21,7 +21,14 @@ class NewJournalForm extends React.Component {
         event.preventDefault()
         this.props.addThoughtMemory(this.state)
         this.props.toggleForm({target: {value: 'balance'}})
+        this.props.toggleForm({target: {value: 'thoughtOptions'}})
     }
+
+
+    handleCancel = (event) => {
+      this.props.toggleForm({target: {value: 'balance'}})
+      this.props.toggleForm({target: {value: 'thoughtOptions'}})
+  }
 
     render() {
       return (
@@ -31,6 +38,7 @@ class NewJournalForm extends React.Component {
             <Form.TextArea onChange={this.handleChange} label='Rational Response' placeholder='How would you respond to these thoughts?' name="rationalThought" value={this.state.rationalThought ? this.state.rationalThought : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button >Submit</Form.Button>
+          <Form.Button onClick={this.handleCancel} >Cancel</Form.Button>
         </Form>
       )
     }
