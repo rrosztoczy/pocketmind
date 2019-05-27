@@ -15,6 +15,7 @@ class EmotionMemoriesByType extends Component {
     }
 
         renderChart() {
+            console.log('rendering chart')
             const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
@@ -101,9 +102,8 @@ class EmotionMemoriesByType extends Component {
             // TODO: I want to display multiple data points for activities if they exist
             // *******************************************************************************************************************
     render() {
-        // this.renderChart()
         return (
-            <div style={{width: '33%'}}>
+            <div style={{width: '50%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

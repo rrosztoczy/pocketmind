@@ -22,7 +22,6 @@ class AddMemoryContainer extends React.Component {
     this.props.getAllUserMemories();
   }
 
-
     submitMemory = (event) => {
         event.preventDefault()
         console.log("creating memory!", this.state)
@@ -36,8 +35,8 @@ class AddMemoryContainer extends React.Component {
 
 render() {
     return (
-  <Grid style={{height: '100vh'}}>
-    <Grid.Row columns={1}>
+  <Grid style={{height: '100vh'}} ui centered>
+    <Grid.Row centered columns={1}>
       <Grid.Column>
       </Grid.Column>
   </Grid.Row>
@@ -46,7 +45,7 @@ render() {
   {/* New thought form is container for other forms */}
   {!this.props.journal ? null : 
     <Grid.Row columns={1}>
-      <Grid.Column>
+      <Grid.Column centered>
        <NewJournalForm/> 
        </Grid.Column>
   </Grid.Row>}
@@ -78,47 +77,6 @@ render() {
        </Grid.Column>
   </Grid.Row> : null}
 
-    {/* <Grid.Row columns={4}>
-      <Grid.Column width={3}>
-      </Grid.Column>
-      <Grid.Column width={3}> */}
-      {/* <ActivityOptionsSegment/> */}
-      {/* icons: sun (activity, weather or mood), book (journal), fork (nots ure but awesome), idea (lightbultb), dna, cloud upload, address book (social), 
-  briefcase (work), coffee (break), bath (idk lol), different variations of commnet, mobile (soical media etc), headphones (entertainment), clock, hourglass, 
-  adjust (mood), pencil alternate (thought), handshake, thumbs up, heartbeat, heart, medikit, beer, cloud, cog, circle, home, info circle, start, trophy, icycle, car or plane for travel, bed for relax  */}
-      {/* </Grid.Column>
-      {!this.props.activityOptions ?
-      <Grid.Column width={8}>
-        <Header>Show small activities chart here...</Header>
-      </Grid.Column> :
-      <>
-        <Grid.Column width={2}>
-        <Header>Work</Header>
-        <Button circular color='teal' size='massive' basic icon="coffee"/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Physical</Header>
-        <Button circular color='orange' size='massive' basic icon="heartbeat"/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Social</Header>
-        <Button circular color='purple' size='massive' basic icon="users"/>
-        </Grid.Column>
-        <Grid.Column width={2}>
-        <Header>Entertainment</Header>
-        <Button circular color='yellow' size='massive' basic icon="bar"/>
-        </Grid.Column>
-      </> */}
-      }
-      {/* <Grid.Column width={2}>
-      </Grid.Column>
-    </Grid.Row> */}
-
-    <Grid.Row columns={1}>
-      <Grid.Column >
-      </Grid.Column>
-    </Grid.Row>
-
 
   <Grid.Row columns={1}>
       <Grid.Column>
@@ -126,9 +84,9 @@ render() {
   </Grid.Row>
 
 
-    <Grid.Row color='orange' columns={1}>
+    <Grid.Row columns={1}>
       <Grid.Column>
-      <Button animated color='orange' inverted basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} >
+      <Button animated color='orange' basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} >
               <Button.Content visible><h1>LOG MEMORY</h1></Button.Content>
               <Button.Content hidden><Icon name='arrow right' /></Button.Content>
             </Button>

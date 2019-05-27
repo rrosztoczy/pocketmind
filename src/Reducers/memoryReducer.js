@@ -50,6 +50,7 @@ const initialState = {
     social: false,
     entertainment: false,
     thoughtSelection: 'journal',
+    thoughtFormSelection: null,
     activitySelection: 'work',
     activityFormSelection: null,
     activityOptions: false,
@@ -75,7 +76,8 @@ function memoryReducer(state = initialState, action) {
     console.log('about ot hit case!')
     switch (action.type) {
         case  GET_ALL_EMOTIONS:
-        return {...state, emotions: [...state.emotions, ...action.payload]}
+        console.log('emotion payload:', action.payload)
+        return {...state, emotions: [...state.emotions, ...action.payload.filter(emotion => emotion.id > 64)]}
         // case  GET_ALL_MEMORIES:
         // return {...state, memories: [...state.memories, ...action.payload]}
         case  GET_ALL_USER_MEMORIES:

@@ -1,7 +1,11 @@
 
 import React from 'react'
-import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import { Grid, Button, Header, Icon, Input, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import JournalSelector from '../SelectComponents/JournalSelector'
+import IdeaSelector from '../SelectComponents/IdeaSelector'
+import GratitudeSelector from '../SelectComponents/GratitudeSelector'
+import BalanceSelector from '../SelectComponents/BalanceSelector'
 import * as actions from '../actions'
 
 class ThoughtOptionSort extends React.Component {
@@ -14,20 +18,16 @@ class ThoughtOptionSort extends React.Component {
     <Grid.Column width={4}>
     </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Journal</Header>
-      <Button circular color='brown' size='massive' basic icon="book" value='journal' onClick={() => this.props.updateThoughtSelection({target: {value: 'journal'}})}/>
+      {this.props.thoughtSelection === 'journal' ? <Segment><Header>Journal</Header><JournalSelector/></Segment> :  <><Header>Journal</Header><JournalSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Idea</Header>
-      <Button circular color='yellow' size='massive' basic icon="lightbulb outline" value='idea'  onClick={() => this.props.updateThoughtSelection({target: {value: 'idea'}})}/>
+      {this.props.thoughtSelection === 'idea' ? <Segment><Header>Idea</Header><IdeaSelector/></Segment> :  <><Header>Idea</Header><IdeaSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Gratitude</Header>
-      <Button circular color='green' size='massive' basic icon="gem outline" value='gratitude' onClick={() => this.props.updateThoughtSelection({target: {value: 'gratitude'}})}/>
+      {this.props.thoughtSelection === 'gratitude' ? <Segment><Header>Gratitude</Header><GratitudeSelector/></Segment> :  <><Header>Gratitude</Header><GratitudeSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Balance</Header>
-      <Button circular color='blue' size='massive' basic icon="law"  value='balance' onClick={() => this.props.updateThoughtSelection({target: {value: 'balance'}})}/>
+      {this.props.thoughtSelection === 'balance' ? <Segment><Header>Balance</Header><BalanceSelector/></Segment> :  <><Header>Balance</Header><BalanceSelector/></>}
       </Grid.Column>
     <Grid.Column width={4}>
     </Grid.Column>
@@ -37,5 +37,11 @@ class ThoughtOptionSort extends React.Component {
 }
 }
 
+const mapStateToProps = state => {
+  return {
+    thoughtSelection: state.thoughtSelection
+  }
+}
 
-export default connect(null, actions)(ThoughtOptionSort)
+
+export default connect(mapStateToProps, actions)(ThoughtOptionSort)

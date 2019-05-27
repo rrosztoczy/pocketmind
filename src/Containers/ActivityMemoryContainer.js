@@ -9,9 +9,9 @@ class ActivityMemoryContainer extends React.Component {
     state = {
         editedActivityMemories: {}
     }
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
     onEditButtonClick = (event) => {

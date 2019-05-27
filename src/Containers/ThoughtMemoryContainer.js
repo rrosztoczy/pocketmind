@@ -9,9 +9,9 @@ class ThoughtMemoryContainer extends React.Component {
     state = {
         editedThoughtMemories: {}
     }
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
     onEditButtonClick = (event) => {
@@ -128,15 +128,6 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={1}>
-      <Grid.Column width={12}>
-      <Header color='teal' size='huge'>
-              Journal
-            </Header>
-      </Grid.Column>
-    </Grid.Row>
-
-
     {this.renderThoughtMemoryHeaders()}
     {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>

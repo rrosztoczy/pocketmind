@@ -100,7 +100,7 @@ class ActivityMemoriesByType extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '33%'}}>
+            <div style={{width: '50%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

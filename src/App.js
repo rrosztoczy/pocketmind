@@ -44,7 +44,7 @@ class App extends Component {
           <Route path='/signup' render={(routeProps) => <Signup  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
-          <Route path='/home' render={(props) => <Home/>}/>
+          <Route path='/home' component={withAuth(Home)}/>
           <Route path='/profile' component={withAuth(Memories)}/>
           <Route path='/thoughtmemories' component={withAuth(ThoughtMemories)}/>   
           <Route path='/emotionmemories' component={withAuth(EmotionMemories)}/> 

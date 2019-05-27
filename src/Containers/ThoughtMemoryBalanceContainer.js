@@ -6,9 +6,9 @@ import * as actions from '../actions'
 class ThoughtMemoryBalanceContainer extends React.Component {
 
 
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
     onEditButtonClick = (event) => {
@@ -136,14 +136,6 @@ filteredUserThoughtMemories() {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={2}>
-      <Grid.Column width={12}>
-      <Header color='teal' size='massive'>
-              Gratitude
-            </Header>
-      </Grid.Column>
-    </Grid.Row>
-
     {this.renderThoughtMemoryHeaders()}
     {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>

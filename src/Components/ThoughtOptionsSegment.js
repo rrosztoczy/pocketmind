@@ -21,7 +21,7 @@ class ThoughtOptionsSegment extends React.Component {
 
     render() {
     return(
-    <Reveal animated='rotate left'>
+    <Reveal animated='rotate right'>
       <Reveal.Content visible>
         <Segment circular style={square}>
           <Header as='h2'>
