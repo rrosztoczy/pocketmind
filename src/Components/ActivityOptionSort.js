@@ -1,8 +1,13 @@
 
 import React from 'react'
-import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import { Grid, Button, Header, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import WorkSelector from '../SelectComponents/WorkSelector.js'
+import PhysicalSelector from '../SelectComponents/PhysicalSelector.js'
+import SocialSelector from '../SelectComponents/SocialSelector.js'
+import EntertainmentSelector from '../SelectComponents/EntertainmentSelector.js'
 import * as actions from '../actions'
+
 
 class ActivityOptionSort extends React.Component {
 
@@ -14,20 +19,16 @@ class ActivityOptionSort extends React.Component {
     <Grid.Column width={4}>
     </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Work</Header>
-      <Button circular color='brown' size='massive' basic icon="coffee" value='work' onClick={() => this.props.updateActivitySelection({target: {value: 'work'}})}/>
+      {this.props.activitySelection === 'work' ? <Segment><Header>Work</Header><WorkSelector/></Segment> :  <><Header>Work</Header><WorkSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Physical</Header>
-      <Button circular color='yellow' size='massive' basic icon="heartbeat" value='physical'  onClick={() => this.props.updateActivitySelection({target: {value: 'physical'}})}/>
+      {this.props.activitySelection === 'physical' ? <Segment><Header>Physical</Header><PhysicalSelector/></Segment> :  <><Header>Physical</Header><PhysicalSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Social</Header>
-      <Button circular color='green' size='massive' basic icon="users" value='social' onClick={() => this.props.updateActivitySelection({target: {value: 'social'}})}/>
+      {this.props.activitySelection === 'social' ? <Segment><Header>Social</Header><SocialSelector/></Segment> :  <><Header>Social</Header><SocialSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>
-      <Header>Entertainment</Header>
-      <Button circular color='blue' size='massive' basic icon="bar"  value='entertainment' onClick={() => this.props.updateActivitySelection({target: {value: 'entertainment'}})}/>
+      {this.props.activitySelection === 'entertainment' ? <Segment><Header>Entertainment</Header><EntertainmentSelector/></Segment> :  <><Header>Entertainment</Header><EntertainmentSelector/></>}
       </Grid.Column>
     <Grid.Column width={4}>
     </Grid.Column>
@@ -37,5 +38,11 @@ class ActivityOptionSort extends React.Component {
 }
 }
 
+const mapStateToProps = state => {
+  return {
+  activitySelection: state.activitySelection
+}
+}
 
-export default connect(null, actions)(ActivityOptionSort)
+
+export default connect(mapStateToProps, actions)(ActivityOptionSort)

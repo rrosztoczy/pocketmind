@@ -9,9 +9,9 @@ class ThoughtMemoryContainer extends React.Component {
     state = {
         editedThoughtMemories: {}
     }
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
     onEditButtonClick = (event) => {

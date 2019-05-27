@@ -11,10 +11,16 @@ class Memories extends React.Component {
         console.log("creating memory!", this.state)
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        // Only update if bricks change
+        return nextProps.memories.length != this.props.memories.length;
+      }
+
     componentDidMount() {
         console.log("is jwt setn yet?", localStorage.getItem('jwt'))
         this.props.getAllUserMemories()
     }
+
 
     onFormButtonClick = (event) => {
          // change to dispatch?

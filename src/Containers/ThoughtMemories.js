@@ -10,9 +10,9 @@ import * as actions from '../actions'
 class ThoughtMemories extends React.Component {
 
 
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
 state = {

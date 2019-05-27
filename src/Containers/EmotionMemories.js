@@ -6,9 +6,9 @@ import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
 
-    componentDidMount() {
-        this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //     this.props.getAllUserMemories()
+    // }
 
     onEditButtonClick = (event) => {
         event.persist()
@@ -159,7 +159,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={2}>
+    <Grid.Row>
       <Grid.Column>
       <EmotionMemoriesByType />
       </Grid.Column>

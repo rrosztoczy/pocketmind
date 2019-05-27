@@ -15,6 +15,7 @@ class ThoughtMemoriesByType extends Component {
     }
 
         renderChart() {
+            console.log('rendreing chart')
             const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
@@ -104,7 +105,7 @@ class ThoughtMemoriesByType extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '33%'}}>
+            <div style={{width: '50%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

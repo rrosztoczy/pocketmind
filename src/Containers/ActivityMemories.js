@@ -9,9 +9,9 @@ import * as actions from '../actions'
 class ActivityMemories extends React.Component {
 
 
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
 state = {

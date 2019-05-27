@@ -7,9 +7,9 @@ import Chart from "chart.js";
 class StressAnxietyTimelineChart extends Component {
     chartRef = React.createRef();
 
-    componentDidMount() {
-        this.renderChart()
-    }
+    // componentDidMount() {
+    //     this.renderChart()
+    // }
     componentDidUpdate() {
         this.renderChart()
     }

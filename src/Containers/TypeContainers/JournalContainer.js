@@ -6,9 +6,9 @@ import * as actions from '../../actions'
 class JournalContainer extends React.Component {
 
 
-    componentDidMount() {
-      this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //   this.props.getAllUserMemories()
+    // }
 
 
     onEditButtonClick = (event) => {

@@ -7,9 +7,9 @@ import Chart from "chart.js";
 class MoodEnergyTimelineChart extends Component {
     // chartRef = React.createRef();
 
-    componentDidMount() {
-        this.renderChart()
-    }
+    // componentDidMount() {
+    //     this.renderChart()
+    // }
     componentDidUpdate() {
         this.renderChart()
     }
