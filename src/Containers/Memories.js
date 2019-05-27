@@ -11,15 +11,15 @@ class Memories extends React.Component {
         console.log("creating memory!", this.state)
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        // Only update if bricks change
-        return nextProps.memories.length != this.props.memories.length;
-      }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     // Only update if bricks change
+    //     return nextProps.memories.length != this.props.memories.length;
+    //   }
 
-    componentDidMount() {
-        console.log("is jwt setn yet?", localStorage.getItem('jwt'))
-        this.props.getAllUserMemories()
-    }
+    // componentDidMount() {
+    //     console.log("is jwt setn yet?", localStorage.getItem('jwt'))
+    //     this.props.getAllUserMemories()
+    // }
 
 
     onFormButtonClick = (event) => {
@@ -39,7 +39,7 @@ class Memories extends React.Component {
     }
 
     renderMemoryHeaders() {
-        return (<Grid.Row columns={6}>
+        return (<Grid.Row columns={7}>
             <Grid.Column>
             <p>Time</p>
             </Grid.Column>
@@ -58,6 +58,9 @@ class Memories extends React.Component {
             <Grid.Column>
             <p>Activities</p>
             </Grid.Column>
+            <Grid.Column>
+            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
+            </Grid.Column>
           </Grid.Row>)
     }
 
@@ -67,7 +70,7 @@ class Memories extends React.Component {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedMemories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={6}>
+            return (<Grid.Row key={memory.id} columns={7}>
               <Grid.Column>
               <p>{memory.createdAt}</p>
               </Grid.Column>
@@ -85,6 +88,9 @@ class Memories extends React.Component {
               </Grid.Column>
               <Grid.Column>
               <p>{memory.activityMemories ? memory.activityMemories.map((activityMemory, index) => <p>{index+1}. {activityMemory.activityName}</p>) : "No activity memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.id}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -112,7 +118,7 @@ handleMultiEditChange = (event, memoryId) => {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedMemories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={6}>
+            return (<Grid.Row key={memory.id} columns={7}>
               <Grid.Column>
               <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].createdAt ? this.state.editedMemories[memory.id].createdAt : memory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
@@ -131,21 +137,14 @@ handleMultiEditChange = (event, memoryId) => {
               </Grid.Column>
               <Grid.Column>
               <p>{memory.activityMemories ? memory.activityMemories.map((activityMemory, index) => <p>{index+1}. {activityMemory.activityName}</p>) : "No activity memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
 
     }
-//     <Grid.Row columns={1}>
-//     <Grid.Column>
-//     {/* Fetch memories, put them in a container in this bottom grid... */}
-//     {/* First thing is first - fetch them and put them in state here... then get into redux */}
-// {/* Memory list here */}
-//     </Grid.Column>
-//   </Grid.Row>
-
-
     renderEditButton() {
         return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
         Edit
@@ -161,23 +160,17 @@ handleMultiEditChange = (event, memoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
+        return (<Button color='teal' size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
         Submit
-      </Button>
+      </Button>)
     }
 
     render() {
-        console.log("props", this.props)
-        return(
+        return (
   <Grid divided='vertically'>
-    <Grid.Row columns={2}>
-      <Grid.Column width={12}>
+    <Grid.Row centered>
       <MemoriesByType/>
-      </Grid.Column>
-      <Grid.Column width={4}>
-            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
-      </Grid.Column>
-    </Grid.Row>
+      </Grid.Row>
     {this.renderMemoryHeaders()}
     {this.props.edit ? this.renderEditForms() : this.renderMemories()}
   </Grid>

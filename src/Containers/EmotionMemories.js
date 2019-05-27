@@ -6,10 +6,6 @@ import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
 
-    // componentDidMount() {
-    //     this.props.getAllUserMemories()
-    // }
-
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
@@ -159,12 +155,9 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row>
-      <Grid.Column>
+    <Grid.Row centered>
       <EmotionMemoriesByType />
-      </Grid.Column>
     </Grid.Row>
-
     {this.renderEmotionMemoryHeaders()}
     {this.props.editEmotionMemories ? this.renderEditForms() : this.renderEmotionMemories()}
   </Grid>
