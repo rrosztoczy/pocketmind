@@ -50,6 +50,7 @@ const initialState = {
     social: false,
     entertainment: false,
     thoughtSelection: 'journal',
+    thoughtFormSelection: null,
     activitySelection: 'work',
     activityFormSelection: null,
     activityOptions: false,
