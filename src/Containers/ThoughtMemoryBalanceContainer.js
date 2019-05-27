@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import ThoughtMemoriesBalanceList from '../ListComponents/ThoughtMemoryBalanceList'
 import * as actions from '../actions'
 
 class ThoughtMemoryBalanceContainer extends React.Component {
@@ -38,23 +39,7 @@ class ThoughtMemoryBalanceContainer extends React.Component {
 
     renderThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return (<Grid.Row columns={4} key={thoughtMemory.id} >
-              <Grid.Column width={2}>
-              <p>{thoughtMemory.createdAt}</p>
-              </Grid.Column>
-              <Grid.Column width={5}>
-              <p>{thoughtMemory.automaticThought}</p>
-              </Grid.Column>
-              <Grid.Column width={2}>
-              <p>{thoughtMemory.cognitiveBias}</p>
-              </Grid.Column>
-              <Grid.Column width={5}>
-              <p>{thoughtMemory.rationalThought}</p>
-              </Grid.Column>
-              <Grid.Column width={2}>
-              <p>{thoughtMemory.id}</p>
-              </Grid.Column>
-            </Grid.Row>)
+            return <ThoughtMemoriesBalanceList thoughtMemory={thoughtMemory}/>
         })
 
     }

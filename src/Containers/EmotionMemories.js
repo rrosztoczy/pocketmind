@@ -2,13 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import EmotionMemoriesByType from '../ChartComponents/EmotionMemoriesByType'
+import EmotionMemoryList from '../ListComponents/EmotionMemoryList'
 import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
-
-    // componentDidMount() {
-    //     this.props.getAllUserMemories()
-    // }
 
     onEditButtonClick = (event) => {
         event.persist()
@@ -49,29 +46,7 @@ class EmotionMemories extends React.Component {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedEmotionMemories.map(emotionMemory => {
-            return (<Grid.Row key={emotionMemory.id} columns={7}>
-              <Grid.Column>
-              <p>{emotionMemory.createdAt}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{emotionMemory.emotion}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{emotionMemory.pleasure}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{emotionMemory.intensity}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{emotionMemory.stressLevel}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{emotionMemory.anxietyLevel}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{emotionMemory.id}</p>
-              </Grid.Column>
-            </Grid.Row>)
+            return <EmotionMemoryList emotionMemory={emotionMemory}/>
         })
     }
 
@@ -159,12 +134,9 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row>
-      <Grid.Column>
+    <Grid.Row centered>
       <EmotionMemoriesByType />
-      </Grid.Column>
     </Grid.Row>
-
     {this.renderEmotionMemoryHeaders()}
     {this.props.editEmotionMemories ? this.renderEditForms() : this.renderEmotionMemories()}
   </Grid>

@@ -14,26 +14,21 @@ class MemoryTimeline extends Component {
         // TODO: This chart will be daily averages... with a daily bar range if possible
         // TODO: Underneath each of these put a thought/activity record table
         return (
-            <Grid celled>
-              <Grid.Column width={16}>
-              <Grid.Row>
+            <Grid divided='vertically'>
+                 <Grid.Row centered>
+              </Grid.Row>
+              <Grid.Row centered>
               <h3>Mood and Energy Levels</h3>
+              </Grid.Row>
+              <Grid.Row centered>
               <MoodEnergyTimelineChart/>
               </Grid.Row>
-              <Grid.Row>
+              <Grid.Row centered>
               <h3>Stress and Anxiety Levels</h3>
+              </Grid.Row>
+              <Grid.Row centered>
               <StressAnxietyTimelineChart/>
               </Grid.Row>
-              </Grid.Column>
-              {/* <Grid.Column width={8}>
-              <Grid.Row>
-             For now... thought and activity charts? if time? 
-               <Header>Thought data based on datapoint click</Header> 
-              </Grid.Row>
-              <Grid.Row>
-             <Header>Thought data based on datapoint click</Header>
-                </Grid.Row>
-              </Grid.Column> */}
             </Grid>
         )
     }

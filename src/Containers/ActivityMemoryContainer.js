@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import ActivityMemoryList from '../ListComponents/ActivityMemoryList'
 import * as actions from '../actions'
 
 class ActivityMemoryContainer extends React.Component {
@@ -61,26 +62,7 @@ class ActivityMemoryContainer extends React.Component {
 
     renderActivityMemories() {
         return this.filteredUserActivityMemories().map(activityMemory => {
-            return (<Grid.Row columns={6} key={activityMemory.id} >
-              <Grid.Column>
-              <p>{activityMemory.createdAt}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{activityMemory.activityName}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{activityMemory.activityDescription}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{activityMemory.activityStartTime}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{activityMemory.activityEndTime}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{activityMemory.memoryId}</p>
-              </Grid.Column>
-            </Grid.Row>)
+            return <ActivityMemoryList activityMemory={activityMemory}/>
         })
 
     }

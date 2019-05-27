@@ -103,7 +103,7 @@ class EmotionMemoriesByType extends Component {
             // *******************************************************************************************************************
     render() {
         return (
-            <div style={{width: '50%'}}>
+            <div style={{width: '66%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}
