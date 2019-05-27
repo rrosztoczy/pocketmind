@@ -35,8 +35,8 @@ class AddMemoryContainer extends React.Component {
 
 render() {
     return (
-  <Grid style={{height: '100vh'}}>
-    <Grid.Row columns={1}>
+  <Grid style={{height: '100vh'}} ui centered>
+    <Grid.Row centered columns={1}>
       <Grid.Column>
       </Grid.Column>
   </Grid.Row>
@@ -45,7 +45,7 @@ render() {
   {/* New thought form is container for other forms */}
   {!this.props.journal ? null : 
     <Grid.Row columns={1}>
-      <Grid.Column>
+      <Grid.Column centered>
        <NewJournalForm/> 
        </Grid.Column>
   </Grid.Row>}

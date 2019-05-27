@@ -4,17 +4,8 @@ import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import ActivityMemoriesByType from '../ChartComponents/ActivityMemoriesByType'
 
 const ActivityDefault = () => (
-    <Grid.Row>
-      <Grid.Column width={6}>
-      </Grid.Column>
-      <Grid.Column textAlign='center' width={4}>
+    <Grid.Row centered>
       <ActivityOptionsSegment/>
-      </Grid.Column>
- {/* <Grid.Column width={8}>
- <ActivityMemoriesByType/>
-      </Grid.Column> */}
-      <Grid.Column width={6}>
-      </Grid.Column>
     </Grid.Row>
 
 )
