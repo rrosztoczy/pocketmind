@@ -20,6 +20,7 @@ import {
     INCREMENT_COUNTER,
     UPDATE_THOUGHT_SELECTION,
     UPDATE_ACTIVITY_SELECTION,
+    UPDATE_ACTIVITY_FORM_SELECTION,
     CREATE_USER
 } from '../actions'
 
@@ -50,6 +51,7 @@ const initialState = {
     entertainment: false,
     thoughtSelection: 'journal',
     activitySelection: 'work',
+    activityFormSelection: null,
     activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
@@ -151,6 +153,9 @@ function memoryReducer(state = initialState, action) {
           case UPDATE_ACTIVITY_SELECTION:
           console.log("UPDATING ACTIVITY SELECTION!")
           return {...state, activitySelection: action.payload}
+          case UPDATE_ACTIVITY_FORM_SELECTION:
+          console.log("UPDATING ACTIVITY FORM SELECTION!")
+          return {...state, activityFormSelection: action.payload}
           // *****************************************************************Auth***********************************************************
           case 'SET_CURRENT_USER':
           console.log("setting current user")

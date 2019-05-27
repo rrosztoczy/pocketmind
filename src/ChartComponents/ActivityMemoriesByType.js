@@ -15,6 +15,7 @@ class ActivityMemoriesByType extends Component {
     }
 
         renderChart() {
+            console.log('rendering!')
             const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
@@ -27,14 +28,15 @@ class ActivityMemoriesByType extends Component {
             const activityTypeData = activityMemoriesData.map(activityMemory => activityMemory.activityType)
             // One array of distinct types
             const distinctActivityTypes = [...new Set(activityTypeData.filter(type => type != null))]
+            console.log('types', distinctActivityTypes)
             // One array of distinct types
             const totalActivityMemories = [...activityTypeData].filter(activityType => activityType != null).length;
 
             let activityCountByType = []
             distinctActivityTypes.forEach(activityType => {
                 let counter = 0
-                activityTypeData.forEach(activityMemoryactivityType => {
-                    if (activityMemoryactivityType === activityType) {
+                activityTypeData.forEach(activityMemoryActivityType => {
+                    if (activityMemoryActivityType === activityType) {
                         ++counter
                     }
                 })
@@ -66,7 +68,7 @@ class ActivityMemoriesByType extends Component {
             },
             title: {
                 display: true,
-                text: 'Total Thought Count by Type'
+                text: 'Activities by Type'
             },
             scales: {
                 yAxes: [{
@@ -98,7 +100,7 @@ class ActivityMemoriesByType extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '33%'}}>
+            <div >
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

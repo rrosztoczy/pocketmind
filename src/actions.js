@@ -38,7 +38,8 @@ export const DESTROY_ACTIVITY_MEMORY = 'DESTROY_ACTIVITY_MEMORY'
 export const CREATE_USER = 'CREATE_USER'
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
 export const UPDATE_THOUGHT_SELECTION = 'UPDATE_THOUGHT_SELECTION'
-export const UPDATE_ACTIVITY_SELECTION = 'UPDATE_THOUGHT_SELECTION'
+export const UPDATE_ACTIVITY_SELECTION = 'UPDATE_ACTIVITY_SELECTION'
+export const UPDATE_ACTIVITY_FORM_SELECTION = 'UPDATE_ACTIVITY_FORM_SELECTION'
 
 // action creators
 export function toggleForm(event) {
@@ -54,6 +55,11 @@ export function updateThoughtSelection(event) {
 export function updateActivitySelection(event) {
   console.log('updating', event.target.value)
   return { type: UPDATE_ACTIVITY_SELECTION, payload: event.target.value}
+}
+
+export function updateActivityFormSelection(event) {
+  console.log('updating', event.target.value)
+  return { type: UPDATE_ACTIVITY_FORM_SELECTION, payload: event.target.value}
 }
 
 export function incrementCounter(event) {

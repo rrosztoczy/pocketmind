@@ -9,10 +9,11 @@ import NewJournalForm from '../Components/NewJournalForm'
 import NewIdeaForm from '../Components/NewIdeaForm'
 import NewGratitudeForm from '../Components/NewGratitudeForm'
 import NewBalanceForm from '../Components/NewBalanceForm'
+import NewActivityForm from '../Components/NewActivityForm'
 import ThoughtDefault from '../Components/ThoughtDefault'
 import ThoughtOptions from '../Components/ThoughtOptions'
 import ActivityDefault from '../Components/ActivityDefault'
-import ActivityOptionSort from '../Components/ActivityOptionSort'
+import ActivityOptions from '../Components/ActivityOptions'
 import * as actions from '../actions'
 
 class AddMemoryContainer extends React.Component {
@@ -69,7 +70,13 @@ render() {
   </Grid.Row>}
   {/* {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptions /> }
   {!this.props.NewActivityMemoryFormContainer ? null : <NewActivityMemoryFormContainer/> } */}
-  {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptionSort /> }
+  {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptions /> }
+  {this.props.activityFormSelection != null ? 
+  <Grid.Row columns={1}>
+      <Grid.Column>
+       <NewActivityForm/> 
+       </Grid.Column>
+  </Grid.Row> : null}
 
     {/* <Grid.Row columns={4}>
       <Grid.Column width={3}>
@@ -172,6 +179,7 @@ const mapStateToProps = state => {
         thoughtOptions: state.thoughtOptions,
         emotionOptions: state.emotionOptions,
         activityOptions: state.activityOptions,
+        activityFormSelection: state.activityFormSelection,
         emotions: state.emotions,
         emotion: state.emotion,
         thought: state.thought,
