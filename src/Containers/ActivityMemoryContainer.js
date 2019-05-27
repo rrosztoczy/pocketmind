@@ -44,7 +44,10 @@ class ActivityMemoryContainer extends React.Component {
 
     filteredUserActivityMemories() {
         let userActivityMemories = []
-        this.props.memories.forEach(memory => memory.activityMemories.forEach(activityMemory => userActivityMemories.push(activityMemory)))
+        this.props.memories.forEach(memory => {
+            if (memory.activityMemories) {
+            memory.activityMemories.forEach(activityMemory => userActivityMemories.push(activityMemory))
+        }})
         let filteredUserActivityMemories = userActivityMemories.filter(activityMemory => activityMemory.activityType===this.props.activitySelection)
         console.log(filteredUserActivityMemories)
         let sortedFilteredUserActivityMemories = [...filteredUserActivityMemories].sort(function(a,b) {
@@ -90,7 +93,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
 
     renderEditForms() {
         return this.filteredUserActivityMemories().map(activityMemory => {
-            return (<Grid.Row key={activityMemory.id} columns={4}>
+            return (<Grid.Row key={activityMemory.id} columns={6}>
               <Grid.Column>
               <p>{activityMemory.memoryId}</p>
               </Grid.Column>
@@ -109,6 +112,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedActivityMemories[activityMemory.id] && this.state.editedActivityMemories[activityMemory.id].activityEndTime ? this.state.editedActivityMemories[activityMemory.id].activityEndTime : activityMemory.activityEndTime}  name='activityEndTime' onChange={event => this.handleMultiEditChange(event, activityMemory.id)}/>
+              <Button onClick={() => this.destroyActivityMemory(activityMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -153,13 +157,6 @@ handleMultiEditChange = (event, activityMemoryId) => {
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header color='teal' size='huge'>
-              Journal
-            </Header>
-      </Grid.Column>
-    </Grid.Row>
     {this.renderActivityMemoryHeaders()}
     {this.props.editActivityMemories ? this.renderEditForms() : this.renderActivityMemories()}
   </Grid>
@@ -170,7 +167,8 @@ handleMultiEditChange = (event, activityMemoryId) => {
     const mapStateToProps = state => {
         return {
             memories: state.memories,
-            ActivitySelection: state.activitySelection,
+            activitySelection: state.activitySelection,
+            ActivityFormSelection: state.activitySelection,
             editActivityMemories: state.editActivityMemories
         };
     };

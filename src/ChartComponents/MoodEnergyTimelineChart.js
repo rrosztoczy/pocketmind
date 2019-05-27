@@ -115,7 +115,7 @@ class MoodEnergyTimelineChart extends Component {
             }
         
         const myChart = new Chart(myChartRef, {
-            type: 'scatter',
+            type: 'line',
             data: chartData,
             options: options
         })
@@ -131,7 +131,7 @@ class MoodEnergyTimelineChart extends Component {
         window.addEventListener("resize", this.renderChart)
         // this.renderChart()
         return (
-            <div>
+            <div style={{width: '70%'}}>
                 <canvas
                     id="myChart"
                     ref='chartRef'

@@ -7,10 +7,12 @@ const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
 const emotionMemoryEndpoint = "http://localhost:3000/api/v1/emotion_memories"
+const activityMemoryEndpoint = "http://localhost:3000/api/v1/activity_memories"
 const emotionAdapter = adapter(emotionEndpoint)
 const memoryAdapter = adapter(memoryEndpoint)
 const thoughtMemoryAdapter = adapter(thoughtMemoryEndpoint)
 const emotionMemoryAdapter = adapter(emotionMemoryEndpoint)
+const activityMemoryAdapter = adapter(activityMemoryEndpoint)
 const userAdapter = adapter(userEndpoint)
 const profileAdapter = adapter(profileEndpoint)
 
@@ -22,17 +24,22 @@ export const GET_ALL_USER_MEMORIES = 'GET_ALL_USER_MEMORIES'
 export const GET_ALL_EMOTIONS = 'GET_ALL_EMOTIONS'
 export const GET_ALL_THOUGHT_MEMORIES = 'GET_ALL_THOUGHT_MEMORIES'
 export const GET_ALL_EMOTION_MEMORIES = 'GET_ALL_EMOTION_MEMORIES'
+export const GET_ALL_ACTIVITY_MEMORIES = 'GET_ALL_EMOTION_MEMORIES'
 export const GET_MEMORY = 'GET_MEMORY'
 export const CREATE_MEMORY = 'CREATE_MEMORY'
 export const UPDATE_MEMORY = 'UPDATE_MEMORY'
 export const UPDATE_EMOTION_MEMORY = 'UPDATE_EMOTION_MEMORY'
 export const UPDATE_THOUGHT_MEMORY = 'UPDATE_THOUGHT_MEMORY'
+export const UPDATE_ACTIVITY_MEMORY = 'UPDATE_ACTIVITY_MEMORY'
 export const DESTROY_MEMORY = 'DESTROY_MEMORY'
 export const DESTROY_THOUGHT_MEMORY = 'DESTROY_THOUGHT_MEMORY'
 export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
+export const DESTROY_ACTIVITY_MEMORY = 'DESTROY_ACTIVITY_MEMORY'
 export const CREATE_USER = 'CREATE_USER'
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
 export const UPDATE_THOUGHT_SELECTION = 'UPDATE_THOUGHT_SELECTION'
+export const UPDATE_ACTIVITY_SELECTION = 'UPDATE_ACTIVITY_SELECTION'
+export const UPDATE_ACTIVITY_FORM_SELECTION = 'UPDATE_ACTIVITY_FORM_SELECTION'
 
 // action creators
 export function toggleForm(event) {
@@ -45,6 +52,16 @@ export function updateThoughtSelection(event) {
   return { type: UPDATE_THOUGHT_SELECTION, payload: event.target.value}
 }
 
+export function updateActivitySelection(event) {
+  console.log('updating', event.target.value)
+  return { type: UPDATE_ACTIVITY_SELECTION, payload: event.target.value}
+}
+
+export function updateActivityFormSelection(event) {
+  console.log('updating', event.target.value)
+  return { type: UPDATE_ACTIVITY_FORM_SELECTION, payload: event.target.value}
+}
+
 export function incrementCounter(event) {
     return { type: INCREMENT_COUNTER, payload: event.counter}
 }
@@ -55,6 +72,10 @@ export function addEmotionMemory(payload) {
 
 export function addThoughtMemory(payload) {
     return {type: 'ADD_THOUGHT_MEMORY', payload: payload}
+}
+
+export function addActivityMemory(payload) {
+  return {type: 'ADD_ACTIVITY_MEMORY', payload: payload}
 }
 
 export function addStressToMemory(payload) {
@@ -125,6 +146,13 @@ export function getAllEmotionMemories() {
 
   export function destroyEmotionMemory(emotionMemoryId) {
     return dispatch => emotionMemoryAdapter.destroy(dispatch, DESTROY_EMOTION_MEMORY, emotionMemoryId)
+}
+export function updateActivityMemory(activityMemoryId, activityMemory) {
+  return dispatch => activityMemoryAdapter.update(dispatch, UPDATE_ACTIVITY_MEMORY, activityMemoryId, activityMemory)
+}
+
+export function destroyActivityMemory(activityMemoryId) {
+  return dispatch => activityMemoryAdapter.destroy(dispatch, DESTROY_ACTIVITY_MEMORY, activityMemoryId)
 }
 
 // User and Auth Actions

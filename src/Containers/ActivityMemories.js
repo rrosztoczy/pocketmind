@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
-import ActivityOptionSort from '../Components/ThoughtOptionSort'
+import ActivityOptionSort from '../Components/ActivityOptionSort'
 import ActivityMemoryContainer from './ActivityMemoryContainer'
 import ActivityMemoriesByType from '../ChartComponents/ActivityMemoriesByType'
 import * as actions from '../actions'
