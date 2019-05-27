@@ -112,7 +112,7 @@ class StressAnxietyTimelineChart extends Component {
             }
         
         const myChart = new Chart(myChartRef, {
-            type: 'scatter',
+            type: 'line',
             data: chartData,
             options: options
         })
@@ -127,7 +127,7 @@ class StressAnxietyTimelineChart extends Component {
     render() {
         // this.renderChart()
         return (
-            <div>
+            <div style={{width: '70%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}
