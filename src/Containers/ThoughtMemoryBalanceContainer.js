@@ -17,42 +17,42 @@ class ThoughtMemoryBalanceContainer extends React.Component {
     }
 
     renderThoughtMemoryHeaders() {
-        return (<Grid.Row columns={5}>
-            <Grid.Column>
-            <p>Go to Memory</p>
-            </Grid.Column>
-            <Grid.Column>
+        return (<Grid.Row columns={4}>
+            <Grid.Column width={2}>
             <p>Time</p>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width={5}>
             <p>Automatic Thought</p>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width={2}>
             <p>Cognitive Bias</p>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width={5}>
             <p>Rational Response</p>
             </Grid.Column>
+            <Grid.Column width={2}>
+            {this.props.editThoughtMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
+      </Grid.Column>
           </Grid.Row>)
     }
 
     renderThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return (<Grid.Row columns={5} key={thoughtMemory.id} >
-              <Grid.Column>
-              <p>{thoughtMemory.memoryId}</p>
-              </Grid.Column>
-              <Grid.Column>
+            return (<Grid.Row columns={4} key={thoughtMemory.id} >
+              <Grid.Column width={2}>
               <p>{thoughtMemory.createdAt}</p>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column width={5}>
               <p>{thoughtMemory.automaticThought}</p>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column width={2}>
               <p>{thoughtMemory.cognitiveBias}</p>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column width={5}>
               <p>{thoughtMemory.rationalThought}</p>
+              </Grid.Column>
+              <Grid.Column width={2}>
+              <p>{thoughtMemory.id}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -84,21 +84,20 @@ filteredUserThoughtMemories() {
 
     renderEditForms() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return (<Grid.Row key={thoughtMemory.id} columns={5}>
-              <Grid.Column>
-              <p>{thoughtMemory.memoryId}</p>
-              </Grid.Column>
-              <Grid.Column>
+            return (<Grid.Row key={thoughtMemory.id} columns={4}>
+              <Grid.Column width={2}>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].createdAt ? this.state.editedThoughtMemories[thoughtMemory.id].createdAt : thoughtMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column width={5}>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].automaticThought ? this.state.editedThoughtMemories[thoughtMemory.id].automaticThought : thoughtMemory.automaticThought}  name='automaticThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column width={2}>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias ? this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias : thoughtMemory.cognitiveBias}  name='cognitiveBias' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column width={5}>
               <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].rationalThought ? this.state.editedThoughtMemories[thoughtMemory.id].rationalThought : thoughtMemory.rationalThought}  name='rationalThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              </Grid.Column>
+              <Grid.Column width={2}>
               <Button onClick={() => this.destroyThoughtMemory(thoughtMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
@@ -113,8 +112,8 @@ filteredUserThoughtMemories() {
 
 
     renderEditButton() {
-        return <Button color='teal' fluid size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>
-        EDIT THOUGHT MEMORY DATA
+        return <Button color='teal' size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>
+        Edit
       </Button>
     }
 
@@ -128,8 +127,8 @@ filteredUserThoughtMemories() {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
-        SUBMIT EDITS
+        return <Button color='teal' size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
+        Submit
       </Button>
     }
 
@@ -137,27 +136,14 @@ filteredUserThoughtMemories() {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header as='h1' color='blue' textAlign='center'>
-        Journal
-        </Header>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-            {this.props.editThoughtMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Header color='teal' size='huge'>
+    <Grid.Row columns={2}>
+      <Grid.Column width={12}>
+      <Header color='teal' size='massive'>
               Gratitude
             </Header>
       </Grid.Column>
     </Grid.Row>
+
     {this.renderThoughtMemoryHeaders()}
     {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>
