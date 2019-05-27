@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 import * as actions from '../actions'
 import MemoriesByType from '../ChartComponents/MemoriesByType';
+import MemoriesList from '../ListComponents/MemoryList'
 
 class Memories extends React.Component {
 
@@ -70,29 +71,7 @@ class Memories extends React.Component {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedMemories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={7}>
-              <Grid.Column>
-              <p>{memory.createdAt}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.emotion}</p>) : "No emotion memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.stressLevel}</p>) : "No emotion memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.emotionMemories ? memory.emotionMemories.map((emotionMemory, index) => <p>{index+1}. {emotionMemory.anxietyLevel}</p>) : "No emotion memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.activityMemories ? memory.activityMemories.map((activityMemory, index) => <p>{index+1}. {activityMemory.activityName}</p>) : "No activity memories"}</p>
-              </Grid.Column>
-              <Grid.Column>
-              <p>{memory.id}</p>
-              </Grid.Column>
-            </Grid.Row>)
+            return <MemoriesList memory={memory}/>
         })
 
     }
