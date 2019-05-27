@@ -2,28 +2,31 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
 
-const ActivityMemoriesHeader = ({ editActivityMemories, renderEditButton, renderSubmitEditButton }) => {
+const MemoriesHeader = ({ edit, renderEditButton, renderSubmitEditButton }) => {
     
-return (<Grid.Row columns={6}>
+return (<Grid.Row columns={7}>
     <Grid.Column>
     <p>Time</p>
     </Grid.Column>
     <Grid.Column>
-    <p>Name</p>
+    <p>Emotions</p>
     </Grid.Column>
     <Grid.Column>
-    <p>Description</p>
+    <p>Stress Level</p>
     </Grid.Column>
     <Grid.Column>
-    <p>Start</p>
+    <p>Anxiety Level</p>
     </Grid.Column>
     <Grid.Column>
-    <p>End</p>
+    <p>Thoughts</p>
     </Grid.Column>
     <Grid.Column>
-    {editActivityMemories ? renderSubmitEditButton() : renderEditButton()}
+    <p>Activities</p>
+    </Grid.Column>
+    <Grid.Column>
+    {edit ? renderSubmitEditButton() : renderEditButton()}
     </Grid.Column>
   </Grid.Row>)
         }
      
-export default ActivityMemoriesHeader;
+export default MemoriesHeader;

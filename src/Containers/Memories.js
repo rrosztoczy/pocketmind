@@ -4,29 +4,29 @@ import { Grid, Image, Button, Header, Icon, Input } from 'semantic-ui-react'
 import * as actions from '../actions'
 import MemoriesByType from '../ChartComponents/MemoriesByType';
 import MemoriesList from '../ListComponents/MemoryList'
+import MemoriesHeader from '../HeaderComponents/MemoriesHeader'
 
 class Memories extends React.Component {
+
+    state = {
+        editedMemories: {}
+    }
 
     submitMemory = (event) => {
         event.preventDefault()
         console.log("creating memory!", this.state)
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     // Only update if bricks change
-    //     return nextProps.memories.length != this.props.memories.length;
-    //   }
-
-    // componentDidMount() {
-    //     console.log("is jwt setn yet?", localStorage.getItem('jwt'))
-    //     this.props.getAllUserMemories()
-    // }
-
-
     onFormButtonClick = (event) => {
          // change to dispatch?
         event.persist()
         this.props.toggleForm(event)
+    }
+
+    handleMultiEditChange = (event, memoryId) => {
+        event.persist()
+        console.log('hanlding change!')
+        this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...this.props.memories.find(memory => memory.id === memoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
     }
 
     onEditButtonClick = (event) => {
@@ -39,32 +39,6 @@ class Memories extends React.Component {
         this.props.destroyMemory(memoryId)
     }
 
-    renderMemoryHeaders() {
-        return (<Grid.Row columns={7}>
-            <Grid.Column>
-            <p>Time</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Emotions</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Stress Level</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Anxiety Level</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Thoughts</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Activities</p>
-            </Grid.Column>
-            <Grid.Column>
-            {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
-            </Grid.Column>
-          </Grid.Row>)
-    }
-
     renderMemories() {
         // memory id[for now] | time of memory | emotions | thoughts | stress level | anxiety level 
         const sortedMemories = [...this.props.memories].sort(function(a,b) {
@@ -75,21 +49,6 @@ class Memories extends React.Component {
         })
 
     }
-
-state = {
-    editedMemories: {}
-}
-
-handleMultiEditChange = (event, memoryId) => {
-    // TODO: How to think about form state vs. app state when whole app is a form
-    // Current issue... when out of input into another it rerenders it as the old value
-    event.persist()
-    console.log('hanlding change!')
-    // currently overwriting the full id dont want to waht to use the old one...
-    // if there is an id hash, copy it and add the new key or update it
-    // if no id hash, add it
-    this.state.editedMemories[memoryId] ? this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...prevState.editedMemories[memoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second memories!', this.state)) : this.setState((prevState) => ({editedMemories: {...prevState.editedMemories, [memoryId]: {...this.props.memories.find(memory => memory.id === memoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
-}
 
     renderEditForms() {
         // Need to toggle input jsx filled with value form state, fully controlled
@@ -150,7 +109,7 @@ handleMultiEditChange = (event, memoryId) => {
     <Grid.Row centered>
       <MemoriesByType/>
       </Grid.Row>
-    {this.renderMemoryHeaders()}
+      <MemoriesHeader edit={this.props.edit} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
     {this.props.edit ? this.renderEditForms() : this.renderMemories()}
   </Grid>
   )
