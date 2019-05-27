@@ -22,22 +22,22 @@ class ActivityMemoryContainer extends React.Component {
     renderActivityMemoryHeaders() {
         return (<Grid.Row columns={6}>
             <Grid.Column>
-            <p>Go to Memory</p>
-            </Grid.Column>
-            <Grid.Column>
             <p>Time</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Activity Name</p>
+            <p>Name</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Activity Description</p>
+            <p>Description</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Activity Start</p>
+            <p>Start</p>
             </Grid.Column>
             <Grid.Column>
-            <p>Activity End</p>
+            <p>End</p>
+            </Grid.Column>
+            <Grid.Column>
+            {this.props.editActivityMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
             </Grid.Column>
           </Grid.Row>)
     }
@@ -63,9 +63,6 @@ class ActivityMemoryContainer extends React.Component {
         return this.filteredUserActivityMemories().map(activityMemory => {
             return (<Grid.Row columns={6} key={activityMemory.id} >
               <Grid.Column>
-              <p>{activityMemory.memoryId}</p>
-              </Grid.Column>
-              <Grid.Column>
               <p>{activityMemory.createdAt}</p>
               </Grid.Column>
               <Grid.Column>
@@ -79,6 +76,9 @@ class ActivityMemoryContainer extends React.Component {
               </Grid.Column>
               <Grid.Column>
               <p>{activityMemory.activityEndTime}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{activityMemory.memoryId}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -95,9 +95,6 @@ handleMultiEditChange = (event, activityMemoryId) => {
         return this.filteredUserActivityMemories().map(activityMemory => {
             return (<Grid.Row key={activityMemory.id} columns={6}>
               <Grid.Column>
-              <p>{activityMemory.memoryId}</p>
-              </Grid.Column>
-              <Grid.Column>
               <Input focus value={this.state.editedActivityMemories[activityMemory.id] && this.state.editedActivityMemories[activityMemory.id].createdAt ? this.state.editedActivityMemories[activityMemory.id].createdAt : activityMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, activityMemory.id)}/>
               </Grid.Column>
               {/* Edit emotions and Activitys in their own sections */}
@@ -112,6 +109,8 @@ handleMultiEditChange = (event, activityMemoryId) => {
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedActivityMemories[activityMemory.id] && this.state.editedActivityMemories[activityMemory.id].activityEndTime ? this.state.editedActivityMemories[activityMemory.id].activityEndTime : activityMemory.activityEndTime}  name='activityEndTime' onChange={event => this.handleMultiEditChange(event, activityMemory.id)}/>
+              </Grid.Column>
+              <Grid.Column>
               <Button onClick={() => this.destroyActivityMemory(activityMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
@@ -126,8 +125,8 @@ handleMultiEditChange = (event, activityMemoryId) => {
 
 
     renderEditButton() {
-        return <Button color='teal' fluid size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.onEditButtonClick(event)}>
-        EDIT Activity MEMORY DATA
+        return <Button color='teal' size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.onEditButtonClick(event)}>
+        Edit
       </Button>
     }
 
@@ -141,8 +140,8 @@ handleMultiEditChange = (event, activityMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.handleSubmitEdit(event)}>
-        SUBMIT EDITS
+        return <Button color='teal' size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.handleSubmitEdit(event)}>
+        Submit
       </Button>
     }
 
@@ -150,13 +149,6 @@ handleMultiEditChange = (event, activityMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-            {this.props.editActivityMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-      </Grid.Column>
-    </Grid.Row>
-
     {this.renderActivityMemoryHeaders()}
     {this.props.editActivityMemories ? this.renderEditForms() : this.renderActivityMemories()}
   </Grid>

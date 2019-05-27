@@ -18,9 +18,6 @@ class EmotionMemories extends React.Component {
     renderEmotionMemoryHeaders() {
         return (<Grid.Row columns={7}>
             <Grid.Column>
-            <p>Go to Memory</p>
-            </Grid.Column>
-            <Grid.Column>
             <p>Time</p>
             </Grid.Column>
             <Grid.Column>
@@ -38,6 +35,9 @@ class EmotionMemories extends React.Component {
             <Grid.Column>
             <p>Anxiety</p>
             </Grid.Column>
+            <Grid.Column>
+            {this.props.editEmotionMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
+            </Grid.Column>
           </Grid.Row>)
     }
 
@@ -50,9 +50,6 @@ class EmotionMemories extends React.Component {
         });
         return sortedEmotionMemories.map(emotionMemory => {
             return (<Grid.Row key={emotionMemory.id} columns={7}>
-              <Grid.Column>
-              <p>{emotionMemory.memoryId}</p>
-              </Grid.Column>
               <Grid.Column>
               <p>{emotionMemory.createdAt}</p>
               </Grid.Column>
@@ -70,6 +67,9 @@ class EmotionMemories extends React.Component {
               </Grid.Column>
               <Grid.Column>
               <p>{emotionMemory.anxietyLevel}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{emotionMemory.id}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -100,13 +100,9 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         return sortedEmotionMemories.map(emotionMemory => {
             return (<Grid.Row key={emotionMemory.id} columns={7}>
               <Grid.Column>
-              <p>{emotionMemory.memory_id}</p>
-              </Grid.Column>
-              <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].createdAt ? this.state.editedEmotionMemories[emotionMemory.id].createdAt : emotionMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              {/* update this to be the drop down select */}
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion : emotionMemory.emotion}  name='emotion' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
@@ -120,6 +116,8 @@ handleMultiEditChange = (event, emotionMemoryId) => {
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].anxietyLevel ? this.state.editedEmotionMemories[emotionMemory.id].anxietyLevel : emotionMemory.anxietyLevel}  name='anxietyLevel' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
+              </Grid.Column>
+              <Grid.Column>
               <Button onClick={() => this.destroyEmotionMemory(emotionMemory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
@@ -137,8 +135,8 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderEditButton() {
-        return <Button color='teal' fluid size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
-        EDIT EMOTION MEMORY DATA
+        return <Button color='teal' size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
+        Edit
       </Button>
     }
 
@@ -152,8 +150,8 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
-        SUBMIT EDITS
+        return <Button color='teal' size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
+        Submit
       </Button>
     }
 
@@ -161,15 +159,9 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={1}>
+    <Grid.Row columns={2}>
       <Grid.Column>
       <EmotionMemoriesByType />
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-            {this.props.editEmotionMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
       </Grid.Column>
     </Grid.Row>
 

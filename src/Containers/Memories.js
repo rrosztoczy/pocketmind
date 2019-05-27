@@ -142,7 +142,7 @@ handleMultiEditChange = (event, memoryId) => {
 
     renderEditButton() {
         return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
-        Edit Memories
+        Edit
       </Button>
     }
 
@@ -155,8 +155,8 @@ handleMultiEditChange = (event, memoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
-        SUBMIT EDITS
+        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>
+        Submit
       </Button>
     }
 
@@ -164,14 +164,11 @@ handleMultiEditChange = (event, memoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row columns={1}>
-      <Grid.Column>
+    <Grid.Row columns={2}>
+      <Grid.Column width={12}>
       <MemoriesByType/>
       </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
+      <Grid.Column width={4}>
             {this.props.edit ? this.renderSubmitEditButton() : this.renderEditButton()}
       </Grid.Column>
     </Grid.Row>
