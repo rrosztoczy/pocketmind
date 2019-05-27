@@ -35,9 +35,6 @@ class Memories extends React.Component {
     renderMemoryHeaders() {
         return (<Grid.Row columns={6}>
             <Grid.Column>
-            <p>Memory Id</p>
-            </Grid.Column>
-            <Grid.Column>
             <p>Time</p>
             </Grid.Column>
             <Grid.Column>
@@ -52,6 +49,9 @@ class Memories extends React.Component {
             <Grid.Column>
             <p>Thoughts</p>
             </Grid.Column>
+            <Grid.Column>
+            <p>Activities</p>
+            </Grid.Column>
           </Grid.Row>)
     }
 
@@ -62,9 +62,6 @@ class Memories extends React.Component {
         });
         return sortedMemories.map(memory => {
             return (<Grid.Row key={memory.id} columns={6}>
-              <Grid.Column>
-              <p>[this is memory]{memory.id}</p>
-              </Grid.Column>
               <Grid.Column>
               <p>{memory.createdAt}</p>
               </Grid.Column>
@@ -79,6 +76,9 @@ class Memories extends React.Component {
               </Grid.Column>
               <Grid.Column>
               <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
+              </Grid.Column>
+              <Grid.Column>
+              <p>{memory.activityMemories ? memory.activityMemories.map((activityMemory, index) => <p>{index+1}. {activityMemory.activityName}</p>) : "No activity memories"}</p>
               </Grid.Column>
             </Grid.Row>)
         })
@@ -106,10 +106,7 @@ handleMultiEditChange = (event, memoryId) => {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedMemories.map(memory => {
-            return (<Grid.Row key={memory.id} columns={7}>
-              <Grid.Column>
-              <p>Editing{memory.id}</p>
-              </Grid.Column>
+            return (<Grid.Row key={memory.id} columns={6}>
               <Grid.Column>
               <Input focus value={this.state.editedMemories[memory.id] && this.state.editedMemories[memory.id].createdAt ? this.state.editedMemories[memory.id].createdAt : memory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, memory.id)}/>
               </Grid.Column>
@@ -127,6 +124,7 @@ handleMultiEditChange = (event, memoryId) => {
               <p>{memory.thoughtMemories ? memory.thoughtMemories.map((thoughtMemory, index) => <p>{index+1}. {thoughtMemory.thoughtContent}</p>) : "No thought memories"}</p>
               </Grid.Column>
               <Grid.Column>
+              <p>{memory.activityMemories ? memory.activityMemories.map((activityMemory, index) => <p>{index+1}. {activityMemory.activityName}</p>) : "No activity memories"}</p>
               <Button onClick={() => this.destroyMemory(memory.id)} icon='trash alternate outline'/>
               </Grid.Column>
             </Grid.Row>)
@@ -143,8 +141,8 @@ handleMultiEditChange = (event, memoryId) => {
 
 
     renderEditButton() {
-        return <Button color='teal' fluid size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
-        EDIT MEMORY DATA
+        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>
+        Edit Memories
       </Button>
     }
 
