@@ -51,9 +51,7 @@ handleSubmitEdit = (event) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    <Grid.Row centered>
-      <ThoughtMemoriesByType />
-    </Grid.Row>
+    <Grid.Row centered><ThoughtMemoriesByType /></Grid.Row>
     <ThoughtOptionSort/>
     {this.renderThoughtMemoriesHeader()}
     {this.renderThoughtMemoryList()}

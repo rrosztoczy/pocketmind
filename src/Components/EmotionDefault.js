@@ -7,9 +7,7 @@ import * as actions from '../actions'
 import ByDayStressAnxiety from '../ChartComponents/ByDayStressAnxiety';
 
 const EmotionDefault = () => (
-    <Grid.Row centered>
-      <FeelingOptionsSegment/>
-    </Grid.Row>
+  
 
 )
 

@@ -2,7 +2,8 @@ import React from 'react'
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
-import EmotionDefault from '../Components/EmotionDefault'
+import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
+import FeelingOptionsSegment from '../Components/FeelingOptionsSegment'
 import NewEmotionMemoryForm from '../Components/NewEmotionMemoryForm'
 import NewThoughtMemoryFormContainer from '../Containers/NewThoughtMemoryFormContainer'
 import NewJournalForm from '../Components/NewJournalForm'
@@ -10,9 +11,7 @@ import NewIdeaForm from '../Components/NewIdeaForm'
 import NewGratitudeForm from '../Components/NewGratitudeForm'
 import NewBalanceForm from '../Components/NewBalanceForm'
 import NewActivityForm from '../Components/NewActivityForm'
-import ThoughtDefault from '../Components/ThoughtDefault'
 import ThoughtOptionSort from '../Components/ThoughtOptionSort'
-import ActivityDefault from '../Components/ActivityDefault'
 import ActivityOptionSort from '../Components/ActivityOptionSort'
 import * as actions from '../actions'
 
@@ -65,13 +64,13 @@ renderThoughtForm() {
 }
 
 render() {
-    return (<Grid style={{height: '100vh'}} centered>
-    <Grid.Row></Grid.Row>
-    {!this.props.emotionOptions ? <EmotionDefault/> : <NewEmotionMemoryForm/> }
-    {!this.props.thoughtOptions ? <ThoughtDefault/> : <ThoughtOptionSort/>}
-    {!this.props.thoughtOptions ? null : this.renderThoughtForm()}
-    {!this.props.activityOptions ? <ActivityDefault/> : <ActivityOptionSort/> }
-    {!this.props.activityOptions ? null : <NewActivityForm/> }
+    return (<Grid style={{height: '100vh'}}>
+    <Grid.Row centered></Grid.Row>
+    <Grid.Row centered>{!this.props.emotionOptions ? <FeelingOptionsSegment/> : <NewEmotionMemoryForm/> }</Grid.Row>
+    {!this.props.thoughtOptions ? <Grid.Row centered><ThoughtOptionsSegment/></Grid.Row> : <ThoughtOptionSort/>}
+    {!this.props.thoughtOptions ? null : <Grid.Row centered>{this.renderThoughtForm()}</Grid.Row>}
+    {!this.props.activityOptions ? <Grid.Row centered><ActivityOptionsSegment/></Grid.Row> : <ActivityOptionSort/> }
+    {!this.props.activityOptions ? null : <Grid.Row centered><NewActivityForm/></Grid.Row> }
     <Grid.Row></Grid.Row>
     <Grid.Row centered>
        <Button animated color='orange' basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
