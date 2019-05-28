@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Menu, Image } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import { updateThoughtSelection, updateActivitySelection } from '../actions'
 
-export default class AppNav extends Component {
+class AppNav extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleThoughtMenuClick = (e, { name }) => {
-    updateThoughtSelection({target: {value: 'journal'}})
+    this.props.updateThoughtSelection({target: {value: 'journal'}})
     this.handleItemClick(e, { name })
   }
 
   handleActivityMenuClick = (e, { name }) => {
-    updateActivitySelection({target: {value: 'work'}})
+    this.props.updateActivitySelection({target: {value: 'work'}})
     this.handleItemClick(e, { name })
   }
 
@@ -48,3 +49,5 @@ export default class AppNav extends Component {
 )
 }
 }
+
+export default connect(null, { updateThoughtSelection, updateActivitySelection })(AppNav)
