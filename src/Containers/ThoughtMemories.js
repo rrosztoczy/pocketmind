@@ -44,6 +44,9 @@ handleSubmitEdit = (event) => {
   this.onEditButtonClick(event)
 }
 
+// TODO: Set type of thought memory based on button pressed in the form generator
+
+
     render() {
         console.log("props", this.props)
         return(

@@ -12,7 +12,6 @@ class ThoughtMemoryContainer extends React.Component {
         editedThoughtMemories: {}
     }
 
-   
 
     filteredUserThoughtMemories() {
         let userThoughtMemories = []
