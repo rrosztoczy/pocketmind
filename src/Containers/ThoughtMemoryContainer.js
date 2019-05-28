@@ -12,10 +12,7 @@ class ThoughtMemoryContainer extends React.Component {
         editedThoughtMemories: {}
     }
 
-    onEditButtonClick = (event) => {
-        event.persist()
-        this.props.toggleForm(event)
-    }
+   
 
     filteredUserThoughtMemories() {
         let userThoughtMemories = []

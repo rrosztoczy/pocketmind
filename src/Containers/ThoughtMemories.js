@@ -32,6 +32,17 @@ renderThoughtMemoryList() {
   return this.props.thoughtSelection === 'balance' ? <ThoughtMemoryBalanceContainer/> : <ThoughtMemoryContainer/>
 }
 
+onEditButtonClick = (event) => {
+  event.persist()
+  this.props.toggleForm(event)
+}
+
+handleSubmitEdit = (event) => {
+  const editedThoughtMemoryArray = Object.keys(this.state.editedThoughtMemories)
+  editedThoughtMemoryArray.forEach(editedThoughtMemoryId => this.props.updateThoughtMemory(editedThoughtMemoryId, this.state.editedThoughtMemories[editedThoughtMemoryId]))
+  this.props.getAllUserMemories()
+  this.onEditButtonClick(event)
+}
 
     render() {
         console.log("props", this.props)
