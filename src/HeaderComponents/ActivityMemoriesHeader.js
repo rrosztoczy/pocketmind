@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 const ActivityMemoriesHeader = ({ editActivityMemories, renderEditButton, renderSubmitEditButton }) => {
     
-return (<Grid.Row columns={6}>
+return (<Grid.Row verticalAlign='middle' columns={6}>
     <Grid.Column>
     <p>Time</p>
     </Grid.Column>

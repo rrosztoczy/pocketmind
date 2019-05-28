@@ -69,15 +69,9 @@ handleCancelEmotion = (event) => {
         <Grid.Column width={3}>
       </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-        <Grid.Column width={3}>
-        </Grid.Column>
-        <Grid.Column width={10}>
+        <Grid.Row centered>
         <Button circular color='orange' size='massive' basic onClick={this.handleSubmitEmotion} >Submit</Button>
         <Button circular color='red' size='massive' basic onClick={this.handleCancelEmotion} >Cancel</Button>
-        </Grid.Column>
-        <Grid.Column width={3}>
-        </Grid.Column>
         </Grid.Row>
       </>
 )

@@ -20,11 +20,10 @@ class ThoughtMemoryBalanceContainer extends React.Component {
 
     renderThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return <ThoughtMemoriesBalanceList thoughtMemory={thoughtMemory}/>
+            return <ThoughtMemoriesBalanceList key={"tm" + thoughtMemory.id} thoughtMemory={thoughtMemory}/>
         })
 
     }
-
 
     state = {
         editedThoughtMemories: {}
@@ -78,7 +77,7 @@ filteredUserThoughtMemories() {
 
 
     renderEditButton() {
-        return <Button color='teal' size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>
+        return <Button color='teal' size='small' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>
         Edit
       </Button>
     }
@@ -93,20 +92,14 @@ filteredUserThoughtMemories() {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' size='small' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
         Submit
       </Button>
     }
 
     render() {
-        console.log("props", this.props)
-        return(
-  <Grid divided='vertically'>
-    <ThoughtMemoriesBalanceHeader editThoughtMemories={this.props.editThoughtMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
-    {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
-  </Grid>
-  )
-}
+        return this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()
+    }
 }
 
     const mapStateToProps = state => {

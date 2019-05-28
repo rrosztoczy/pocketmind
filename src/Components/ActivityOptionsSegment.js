@@ -25,7 +25,6 @@ class ActivityOptionsSegment extends React.Component {
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
             Do  {this.queuedActivityMemories() > 0 ? "(" + this.queuedActivityMemories() + ")" : null}
-            <Header.Subheader><Icon size="large" name="child"/></Header.Subheader>
           </Header>
         </Segment>
       </Reveal.Content>

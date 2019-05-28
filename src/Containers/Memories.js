@@ -23,10 +23,6 @@ class Memories extends React.Component {
         this.props.toggleForm(event)
     }
 
-    destroyMemory(memoryId) {
-        this.props.destroyMemory(memoryId)
-    }
-
     handleMultiEditChange = (event, memoryId) => {
         event.persist()
         this.state.editedMemories[memoryId] 
@@ -46,19 +42,19 @@ class Memories extends React.Component {
 
     renderMemories() {
         return this.sortMemories().map(memory => {
-            return <MemoriesList memory={memory}/>
+            return <MemoriesList key={"m" + memory.id} memory={memory}/>
         })
 
     }
 
     renderEditForms() {
         return this.sortMemories().map(memory => {
-            return <MemoriesEdit memory={memory} editedMemories={this.state.editedMemories} handleMultiEditChange={(event, memoryId) => {this.handleMultiEditChange(event, memoryId)}}/>
+            return <MemoriesEdit memory={memory} editedMemories={this.state.editedMemories} destroyMemory={(memoryId) => {this.props.destroyMemory(memoryId)}} handleMultiEditChange={(event, memoryId) => {this.handleMultiEditChange(event, memoryId)}}/>
         })
 
     }
     renderEditButton() {
-        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>Edit</Button>
+        return <Button color='teal' size='small' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>Edit</Button>
     }
 
     handleSubmitEdit = (event) => {
@@ -68,7 +64,7 @@ class Memories extends React.Component {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>Submit</Button>
+        return <Button color='teal' size='small' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>Submit</Button>
     }
 
     render() {

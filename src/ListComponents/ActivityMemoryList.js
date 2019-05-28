@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
+import { formatDateTime } from '../actions'
 
 const ActivityMemoriesList = ({ activityMemory }) => {
     
 return (<Grid.Row columns={6} key={activityMemory.id} >
     <Grid.Column>
-    <p>{activityMemory.createdAt}</p>
+    <p>{formatDateTime(activityMemory.createdAt)}</p>
     </Grid.Column>
     <Grid.Column>
     <p>{activityMemory.activityName}</p>

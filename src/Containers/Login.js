@@ -51,9 +51,6 @@ class Login extends React.Component {
             </Button>
           {/* </Segment> */}
         </Form>
-        <Message>
-          New to us? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Sign up</Button>
-        </Message>
       </Grid.Column>
     </Grid>
   </div>

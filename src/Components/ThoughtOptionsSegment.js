@@ -21,12 +21,11 @@ class ThoughtOptionsSegment extends React.Component {
 
     render() {
     return(
-    <Reveal animated='rotate right'>
+    <Reveal animated='rotate'>
       <Reveal.Content visible>
         <Segment circular style={square}>
           <Header as='h2'>
             Think {this.queuedThoughtMemories() > 0 ? "(" + this.queuedThoughtMemories() + ")" : null}
-            <Header.Subheader><Icon size="large" name="lightbulb"/></Header.Subheader>
           </Header>
         </Segment>
       </Reveal.Content>

@@ -21,7 +21,7 @@ class EmotionMemories extends React.Component {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
         return sortedEmotionMemories.map(emotionMemory => {
-            return <EmotionMemoryList emotionMemory={emotionMemory}/>
+            return <EmotionMemoryList key={"em" + emotionMemory.id} emotionMemory={emotionMemory}/>
         })
     }
 
@@ -53,6 +53,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].createdAt ? this.state.editedEmotionMemories[emotionMemory.id].createdAt : emotionMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
+              {/* This should be the select box */}
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion : emotionMemory.emotion}  name='emotion' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
@@ -85,7 +86,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderEditButton() {
-        return <Button color='teal' size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
+        return <Button color='teal' size='small' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
         Edit
       </Button>
     }
@@ -100,7 +101,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' size='small' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
         Submit
       </Button>
     }

@@ -25,7 +25,6 @@ class FeelingOptionsSegment extends React.Component {
         <Segment textAlign='center' circular style={square}>
           <Header as='h2'>
             Feel {this.queuedEmotionMemories() > 0 ? "(" + this.queuedEmotionMemories() + ")" : null}
-            <Header.Subheader><Icon size="large" name="heart"/></Header.Subheader>
           </Header>
         </Segment>
       </Reveal.Content>

@@ -5,6 +5,8 @@ import ThoughtOptionSort from '../Components/ThoughtOptionSort'
 import ThoughtMemoryContainer from './ThoughtMemoryContainer'
 import ThoughtMemoryBalanceContainer from './ThoughtMemoryBalanceContainer'
 import ThoughtMemoriesByType from '../ChartComponents/ThoughtMemoriesByType'
+import ThoughtMemoriesHeader from '../HeaderComponents/ThoughtMemoriesHeader'
+import ThoughtMemoriesBalanceHeader from '../HeaderComponents/ThoughtMemoriesBalanceHeader'
 import * as actions from '../actions'
 
 class ThoughtMemories extends React.Component {
@@ -13,15 +15,37 @@ state = {
     editedThoughtMemories: {}
 }
 
-renderThoughtList() {
-  console.log('rendered list!')
-  switch (this.props.thoughtSelection) {
-    case  'balance':
-    return <ThoughtMemoryBalanceContainer/>
-    default: 
-    return <ThoughtMemoryContainer/>
-    }
+renderEditButton() {
+  return <Button color='teal' size='small' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>Edit</Button>
 }
+
+renderSubmitEditButton() {
+  return <Button color='teal' size='small' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>Submit</Button>
+}
+
+
+renderThoughtMemoriesHeader() {
+  return this.props.thoughtSelection === 'balance' ? <ThoughtMemoriesBalanceHeader editThoughtMemories={this.props.editThoughtMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/> : <ThoughtMemoriesHeader editThoughtMemories={this.props.editThoughtMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
+}
+
+renderThoughtMemoryList() {
+  return this.props.thoughtSelection === 'balance' ? <ThoughtMemoryBalanceContainer/> : <ThoughtMemoryContainer/>
+}
+
+onEditButtonClick = (event) => {
+  event.persist()
+  this.props.toggleForm(event)
+}
+
+handleSubmitEdit = (event) => {
+  const editedThoughtMemoryArray = Object.keys(this.state.editedThoughtMemories)
+  editedThoughtMemoryArray.forEach(editedThoughtMemoryId => this.props.updateThoughtMemory(editedThoughtMemoryId, this.state.editedThoughtMemories[editedThoughtMemoryId]))
+  this.props.getAllUserMemories()
+  this.onEditButtonClick(event)
+}
+
+// TODO: Set type of thought memory based on button pressed in the form generator
+
 
     render() {
         console.log("props", this.props)
@@ -31,7 +55,8 @@ renderThoughtList() {
       <ThoughtMemoriesByType />
     </Grid.Row>
     <ThoughtOptionSort/>
-    {this.renderThoughtList()}
+    {this.renderThoughtMemoriesHeader()}
+    {this.renderThoughtMemoryList()}
   </Grid>
   )
 }

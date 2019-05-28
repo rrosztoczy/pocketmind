@@ -11,15 +11,7 @@ class ThoughtMemoryContainer extends React.Component {
     state = {
         editedThoughtMemories: {}
     }
-    // componentDidMount() {
-    //   this.props.getAllUserMemories()
-    // }
 
-
-    onEditButtonClick = (event) => {
-        event.persist()
-        this.props.toggleForm(event)
-    }
 
     filteredUserThoughtMemories() {
         let userThoughtMemories = []
@@ -37,7 +29,7 @@ class ThoughtMemoryContainer extends React.Component {
 
     renderThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return <ThoughtMemoriesList thoughtMemory={thoughtMemory}/>
+            return <ThoughtMemoriesList key={"tm" + thoughtMemory.id} thoughtMemory={thoughtMemory}/>
         })
 
     }
@@ -75,12 +67,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     } 
 
 
-    renderEditButton() {
-        return <Button color='teal' size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.onEditButtonClick(event)}>
-        Edit
-      </Button>
-    }
-
+ 
     handleSubmitEdit = (event) => {
         // Need to go thorugh state and hit update_memory for each memory that was changed
         console.log("state", this.state)
@@ -91,20 +78,14 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' size='small' value='editThoughtMemories' name='editThoughtMemories' onClick={event => this.handleSubmitEdit(event)}>
         Submit
       </Button>
     }
 
     render() {
-        console.log("props", this.props)
-        return(
-  <Grid divided='vertically'>
-    <ThoughtMemoriesHeader editThoughtMemories={this.props.editThoughtMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
-    {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
-  </Grid>
-  )
-}
+        return this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()
+    }
 }
 
     const mapStateToProps = state => {

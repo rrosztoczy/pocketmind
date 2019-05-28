@@ -37,7 +37,7 @@ class ActivityMemoryContainer extends React.Component {
 
     renderActivityMemories() {
         return this.filteredUserActivityMemories().map(activityMemory => {
-            return <ActivityMemoryList activityMemory={activityMemory} />
+            return <ActivityMemoryList key={"am" + activityMemory.id} activityMemory={activityMemory} />
         })
 
     }
@@ -82,7 +82,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
 
 
     renderEditButton = () => {
-        return <Button color='teal' size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.onEditButtonClick(event)}>
+        return <Button color='teal' size='small' value='editActivityMemories' name='editActivityMemories' onClick={event => this.onEditButtonClick(event)}>
         Edit
       </Button>
     }
@@ -97,7 +97,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
     }
 
     renderSubmitEditButton = () => {
-        return <Button color='teal' size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' size='small' value='editActivityMemories' name='editActivityMemories' onClick={event => this.handleSubmitEdit(event)}>
         Submit
       </Button>
     }
