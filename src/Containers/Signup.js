@@ -54,9 +54,6 @@ class Signup extends React.Component {
                   sign up
                 </Button>
             </Form>
-            <Message>
-              already have an account? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>log in</Button>
-            </Message>
           </Grid.Column>
         </Grid>
       </div>
