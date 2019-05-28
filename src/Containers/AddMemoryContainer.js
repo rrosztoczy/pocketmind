@@ -19,6 +19,7 @@ class AddMemoryContainer extends React.Component {
 
   componentDidMount() {
     this.props.getAllUserMemories();
+    this.props.getAllEmotions()
   }
 
     submitMemory = (event) => {
