@@ -102,7 +102,7 @@ class StressAnxietyTimelineChart extends Component {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "Mood Level"
+                        labelString: "Level"
                     }
                 }]
             },
@@ -112,7 +112,7 @@ class StressAnxietyTimelineChart extends Component {
             }
         
         const myChart = new Chart(myChartRef, {
-            type: 'line',
+            type: 'scatter',
             data: chartData,
             options: options
         })
@@ -127,7 +127,7 @@ class StressAnxietyTimelineChart extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '70%'}}>
+            <div style={{width: '66%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

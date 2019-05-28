@@ -73,7 +73,7 @@ class ThoughtMemoriesByType extends Component {
             },
             title: {
                 display: true,
-                text: 'Total Thought Count by Type'
+                text: 'Thoughts by Type'
             },
             scales: {
                 yAxes: [{
