@@ -17,7 +17,7 @@ class ThoughtOptionSort extends React.Component {
     <Grid.Row>
     <Grid.Column width={4}>
     </Grid.Column>
-      <Grid.Column column width={2}>
+      <Grid.Column width={2}>
       {this.props.thoughtSelection === 'journal' ? <Segment><Header>Journal</Header><JournalSelector/></Segment> :  <><Header>Journal</Header><JournalSelector/></>}
       </Grid.Column>
       <Grid.Column width={2}>

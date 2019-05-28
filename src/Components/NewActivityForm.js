@@ -8,9 +8,13 @@ class NewActivityForm extends React.Component {
 
 
     state = {
-        activityType: this.props.activityFormSelection,
+        activityType: this.props.activitySelection,
         activityName: "",
         activityDescription: ""
+}
+
+static getDerivedStateFromProps(nextProps, prevState) {
+  return {...prevState, activityType: nextProps.activitySelection}
 }
     // TODO: Set state to have the data for a new thought memory
 
@@ -42,9 +46,9 @@ class NewActivityForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log("new state", state)
+    console.log("new state form hehe", state)
     return {
-        activityFormSelection: state.activityFormSelection
+        activitySelection: state.activitySelection
     };
   };
 
