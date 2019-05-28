@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import ThoughtMemoriesBalanceList from '../ListComponents/ThoughtMemoryBalanceList'
+import ThoughtMemoriesBalanceHeader from '../HeaderComponents/ThoughtMemoriesBalanceHeader'
 import * as actions from '../actions'
 
 class ThoughtMemoryBalanceContainer extends React.Component {
@@ -15,26 +16,6 @@ class ThoughtMemoryBalanceContainer extends React.Component {
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
-    }
-
-    renderThoughtMemoryHeaders() {
-        return (<Grid.Row columns={4}>
-            <Grid.Column width={2}>
-            <p>Time</p>
-            </Grid.Column>
-            <Grid.Column width={5}>
-            <p>Automatic Thought</p>
-            </Grid.Column>
-            <Grid.Column width={2}>
-            <p>Cognitive Bias</p>
-            </Grid.Column>
-            <Grid.Column width={5}>
-            <p>Rational Response</p>
-            </Grid.Column>
-            <Grid.Column width={2}>
-            {this.props.editThoughtMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-      </Grid.Column>
-          </Grid.Row>)
     }
 
     renderThoughtMemories() {
@@ -121,7 +102,7 @@ filteredUserThoughtMemories() {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    {this.renderThoughtMemoryHeaders()}
+    <ThoughtMemoriesBalanceHeader editThoughtMemories={this.props.editThoughtMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
     {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>
   )

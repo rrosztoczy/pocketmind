@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import EmotionMemoriesByType from '../ChartComponents/EmotionMemoriesByType'
 import EmotionMemoryList from '../ListComponents/EmotionMemoryList'
+import EmotionMemoriesHeader from '../HeaderComponents/EmotionMemoriesHeader'
 import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
@@ -10,32 +11,6 @@ class EmotionMemories extends React.Component {
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
-    }
-
-    renderEmotionMemoryHeaders() {
-        return (<Grid.Row columns={7}>
-            <Grid.Column>
-            <p>Time</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Emotion</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Mood</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Energy</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Stress</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Anxiety</p>
-            </Grid.Column>
-            <Grid.Column>
-            {this.props.editEmotionMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-            </Grid.Column>
-          </Grid.Row>)
     }
 
     renderEmotionMemories() {
@@ -137,7 +112,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     <Grid.Row centered>
       <EmotionMemoriesByType />
     </Grid.Row>
-    {this.renderEmotionMemoryHeaders()}
+    <EmotionMemoriesHeader editEmotionMemories={this.props.editEmotionMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
     {this.props.editEmotionMemories ? this.renderEditForms() : this.renderEmotionMemories()}
   </Grid>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import ActivityMemoryList from '../ListComponents/ActivityMemoryList'
+import ActivityMemoriesHeader from '../HeaderComponents/ActivityMemoriesHeader'
 import * as actions from '../actions'
 
 class ActivityMemoryContainer extends React.Component {
@@ -10,37 +11,11 @@ class ActivityMemoryContainer extends React.Component {
     state = {
         editedActivityMemories: {}
     }
-    // componentDidMount() {
-    //   this.props.getAllUserMemories()
-    // }
 
 
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
-    }
-
-    renderActivityMemoryHeaders() {
-        return (<Grid.Row columns={6}>
-            <Grid.Column>
-            <p>Time</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Name</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Description</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>Start</p>
-            </Grid.Column>
-            <Grid.Column>
-            <p>End</p>
-            </Grid.Column>
-            <Grid.Column>
-            {this.props.editActivityMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-            </Grid.Column>
-          </Grid.Row>)
     }
 
     filteredUserActivityMemories() {
@@ -62,7 +37,7 @@ class ActivityMemoryContainer extends React.Component {
 
     renderActivityMemories() {
         return this.filteredUserActivityMemories().map(activityMemory => {
-            return <ActivityMemoryList activityMemory={activityMemory}/>
+            return <ActivityMemoryList activityMemory={activityMemory} />
         })
 
     }
@@ -106,7 +81,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
     } 
 
 
-    renderEditButton() {
+    renderEditButton = () => {
         return <Button color='teal' size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.onEditButtonClick(event)}>
         Edit
       </Button>
@@ -121,7 +96,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
         this.onEditButtonClick(event)
     }
 
-    renderSubmitEditButton() {
+    renderSubmitEditButton = () => {
         return <Button color='teal' size='large' value='editActivityMemories' name='editActivityMemories' onClick={event => this.handleSubmitEdit(event)}>
         Submit
       </Button>
@@ -131,7 +106,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    {this.renderActivityMemoryHeaders()}
+    <ActivityMemoriesHeader editActivityMemories={this.props.editActivityMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
     {this.props.editActivityMemories ? this.renderEditForms() : this.renderActivityMemories()}
   </Grid>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import ThoughtMemoriesList from '../ListComponents/ThoughtMemoryList'
+import ThoughtMemoriesHeader from '../HeaderComponents/ThoughtMemoriesHeader'
 import * as actions from '../actions'
 
 class ThoughtMemoryContainer extends React.Component {
@@ -18,23 +19,6 @@ class ThoughtMemoryContainer extends React.Component {
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
-    }
-
-    renderThoughtMemoryHeaders() {
-        return (<Grid.Row columns={4}>
-            <Grid.Column width={3}>
-            <p>Time</p>
-            </Grid.Column>
-            <Grid.Column  width={4}>
-            <p>Thought Topic</p>
-            </Grid.Column>
-            <Grid.Column  width={7}>
-            <p>Thought Content</p>
-            </Grid.Column>
-            <Grid.Column width={2}>
-            {this.props.editThoughtMemories ? this.renderSubmitEditButton() : this.renderEditButton()}
-            </Grid.Column>
-          </Grid.Row>)
     }
 
     filteredUserThoughtMemories() {
@@ -116,7 +100,7 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
         console.log("props", this.props)
         return(
   <Grid divided='vertically'>
-    {this.renderThoughtMemoryHeaders()}
+    <ThoughtMemoriesHeader editThoughtMemories={this.props.editThoughtMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
     {this.props.editThoughtMemories ? this.renderEditForms() : this.renderThoughtMemories()}
   </Grid>
   )
