@@ -86,7 +86,7 @@ render() {
 
     <Grid.Row centered>
        <Button animated color='orange' basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
-          <Button.Content visible><h1>LOG MEMORY</h1></Button.Content>
+          <Button.Content visible><h1>REMEMBER</h1></Button.Content>
           <Button.Content hidden><Icon name='arrow right' /></Button.Content>
         </Button>
     </Grid.Row>

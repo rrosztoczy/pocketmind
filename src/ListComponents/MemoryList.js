@@ -1,13 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
+import { formatDateTime } from '../actions'
+
 
 const MemoriesList = ({ memory }) => {
+
+ 
+      
     
 return (
     <Grid.Row key={memory.id} columns={7}>
         <Grid.Column>
-        <p>{memory.createdAt}</p>
+        <p>{formatDateTime(memory.createdAt)}</p>
         </Grid.Column>
         <Grid.Column>
         {memory.emotionMemories != [] ? memory.emotionMemories.map((emotionMemory, index) => <p>{emotionMemory.emotion}</p>) : <p>No associated emotions</p>}

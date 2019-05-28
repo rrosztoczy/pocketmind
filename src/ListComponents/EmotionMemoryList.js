@@ -4,12 +4,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
+import { formatDateTime } from '../actions'
 
 const EmotionMemoriesList = ({ emotionMemory }) => {
     
 return (<Grid.Row key={emotionMemory.id} columns={7}>
     <Grid.Column>
-    <p>{emotionMemory.createdAt}</p>
+    <p>{formatDateTime(emotionMemory.createdAt)}</p>
     </Grid.Column>
     <Grid.Column>
     <p>{emotionMemory.emotion}</p>
