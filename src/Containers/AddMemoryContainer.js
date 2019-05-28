@@ -85,7 +85,7 @@ render() {
 
 
     <Grid.Row centered>
-       <Button animated color='orange' basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} >
+       <Button animated color='orange' basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
           <Button.Content visible><h1>LOG MEMORY</h1></Button.Content>
           <Button.Content hidden><Icon name='arrow right' /></Button.Content>
         </Button>
@@ -120,9 +120,9 @@ handleSubmitActivity = (event) => {
 
 
 createMemory(event, memory) {
-    event.persist()
-    this.props.createMemory(memory)
-    this.props.toggleForm(event)
+  event.persist()
+  this.props.createMemory(memory)
+  this.props.toggleForm(event)
 }
 
 
