@@ -85,7 +85,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderEditButton() {
-        return <Button color='teal' size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
+        return <Button color='teal' size='small' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.onEditButtonClick(event)}>
         Edit
       </Button>
     }
@@ -100,7 +100,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
+        return <Button color='teal' size='small' value='editEmotionMemories' name='editEmotionMemories' onClick={event => this.handleSubmitEdit(event)}>
         Submit
       </Button>
     }

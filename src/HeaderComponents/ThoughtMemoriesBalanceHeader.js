@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 const ThoughtMemoriesBalanceHeader = ({ editThoughtMemories, renderEditButton, renderSubmitEditButton }) => {
     
-return (<Grid.Row columns={4}>
+return (<Grid.Row verticalAlign='middle'  columns={4}>
     <Grid.Column width={2}>
     <p>Time</p>
     </Grid.Column>

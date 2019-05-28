@@ -32,10 +32,15 @@ class MemoriesByType extends Component {
                 return memory.emotionMemories[0] ? emotionMemoriesData.push(memory.emotionMemories[0]) : null
             })
             const emotionTypeData = emotionMemoriesData.map(emotionMemory => emotionMemory.emotion)
+            const activityMemoriesData = []
+            memoryData.forEach(memory => {
+                return memory.activityMemories[0] ? activityMemoriesData.push(memory.activityMemories[0]) : null
+            })
+            const activityTypeData = activityMemoriesData.map(activityMemory => activityMemory.activityType)
             // One array of distinct types
             const totalEmotionMemories = [...emotionTypeData].filter(emotion => emotion != null).length;
             const totalThoughtMemories = [...thoughtTypeData].filter(thoughtType => thoughtType != null).length;
-            const totalActivityMemories = 3
+            const totalActivityMemories = [...activityTypeData].filter(activityType => activityType != null).length;
 
             // One array of count by type
             // map data for chart axes and overlays

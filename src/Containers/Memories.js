@@ -54,7 +54,7 @@ class Memories extends React.Component {
 
     }
     renderEditButton() {
-        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>Edit</Button>
+        return <Button color='teal' size='small' value='edit' name='edit' onClick={event => this.onEditButtonClick(event)}>Edit</Button>
     }
 
     handleSubmitEdit = (event) => {
@@ -64,7 +64,7 @@ class Memories extends React.Component {
     }
 
     renderSubmitEditButton() {
-        return <Button color='teal' size='large' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>Submit</Button>
+        return <Button color='teal' size='small' value='edit' name='edit' onClick={event => this.handleSubmitEdit(event)}>Submit</Button>
     }
 
     render() {
