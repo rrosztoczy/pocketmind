@@ -23,10 +23,6 @@ class Memories extends React.Component {
         this.props.toggleForm(event)
     }
 
-    destroyMemory(memoryId) {
-        this.props.destroyMemory(memoryId)
-    }
-
     handleMultiEditChange = (event, memoryId) => {
         event.persist()
         this.state.editedMemories[memoryId] 
@@ -53,7 +49,7 @@ class Memories extends React.Component {
 
     renderEditForms() {
         return this.sortMemories().map(memory => {
-            return <MemoriesEdit memory={memory} editedMemories={this.state.editedMemories} handleMultiEditChange={(event, memoryId) => {this.handleMultiEditChange(event, memoryId)}}/>
+            return <MemoriesEdit memory={memory} editedMemories={this.state.editedMemories} destroyMemory={(memoryId) => {this.props.destroyMemory(memoryId)}} handleMultiEditChange={(event, memoryId) => {this.handleMultiEditChange(event, memoryId)}}/>
         })
 
     }

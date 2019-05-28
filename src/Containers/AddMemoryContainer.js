@@ -35,7 +35,7 @@ class AddMemoryContainer extends React.Component {
 
 render() {
     return (
-  <Grid style={{height: '100vh'}} ui centered>
+  <Grid style={{height: '100vh'}} centered>
     <Grid.Row centered columns={1}>
       <Grid.Column>
       </Grid.Column>

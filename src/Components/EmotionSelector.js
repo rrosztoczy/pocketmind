@@ -11,7 +11,7 @@ componentDidMount() {
 }
     
 render() {
-    const emotionOptions = this.props.emotions.map((emotion) => ({key: emotion.id, value: emotion.id, flag: emotion.emotion, text: emotion.emotion}))
+    const emotionOptions = this.props.emotions.map((emotion) => ({key: emotion.id, value: emotion.id, text: emotion.emotion}))
     return (
         <Dropdown
         onChange={this.props.onChange}
