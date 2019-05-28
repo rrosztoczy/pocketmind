@@ -4,7 +4,12 @@ import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-class ActivityOptionSort extends React.Component {
+class ActivityOptions extends React.Component {
+
+  handleCancelActivity = (event) => {
+    this.props.toggleForm({target: {value: 'activityOptions'}})
+}
+
 
 
   render() {
@@ -32,6 +37,9 @@ class ActivityOptionSort extends React.Component {
     <Grid.Column width={4}>
     </Grid.Column>
   </Grid.Row>
+  <Grid.Row centered>
+  <Button circular color='red' size='massive' basic onClick={this.handleCancelActivity} >Cancel</Button>
+  </Grid.Row>
   </>
   )
 }
@@ -44,4 +52,4 @@ const mapStateToProps = state => {
     };
   };
 
-export default connect(mapStateToProps, actions)(ActivityOptionSort)
+export default connect(mapStateToProps, actions)(ActivityOptions)
