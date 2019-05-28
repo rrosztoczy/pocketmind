@@ -20,11 +20,10 @@ class ThoughtMemoryBalanceContainer extends React.Component {
 
     renderThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return <ThoughtMemoriesBalanceList thoughtMemory={thoughtMemory}/>
+            return <ThoughtMemoriesBalanceList key={"tm" + thoughtMemory.id} thoughtMemory={thoughtMemory}/>
         })
 
     }
-
 
     state = {
         editedThoughtMemories: {}

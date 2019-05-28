@@ -37,7 +37,7 @@ class ActivityMemoryContainer extends React.Component {
 
     renderActivityMemories() {
         return this.filteredUserActivityMemories().map(activityMemory => {
-            return <ActivityMemoryList activityMemory={activityMemory} />
+            return <ActivityMemoryList key={"am" + activityMemory.id} activityMemory={activityMemory} />
         })
 
     }

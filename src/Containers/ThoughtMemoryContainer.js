@@ -29,7 +29,7 @@ class ThoughtMemoryContainer extends React.Component {
 
     renderThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
-            return <ThoughtMemoriesList thoughtMemory={thoughtMemory}/>
+            return <ThoughtMemoriesList key={"tm" + thoughtMemory.id} thoughtMemory={thoughtMemory}/>
         })
 
     }

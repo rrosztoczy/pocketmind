@@ -42,7 +42,7 @@ class Memories extends React.Component {
 
     renderMemories() {
         return this.sortMemories().map(memory => {
-            return <MemoriesList memory={memory}/>
+            return <MemoriesList key={"m" + memory.id} memory={memory}/>
         })
 
     }
