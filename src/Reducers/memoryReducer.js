@@ -159,6 +159,7 @@ function memoryReducer(state = initialState, action) {
           console.log("UPDATING ACTIVITY FORM SELECTION!")
           return {...state, activityFormSelection: action.payload}
           // *****************************************************************Auth***********************************************************
+          // TODO: Evaluate set current user....
           case 'SET_CURRENT_USER':
           console.log("setting current user")
           //action.payload { username: 'Chandler Bing', bio: 'my user bio', avatar: 'some image url' }

@@ -48,23 +48,23 @@ class MoodEnergyTimelineChart extends Component {
                 datasets: [
                     {
                         label: "Mood",
+                        borderColor: "#8e5ea2",
+                        backgroundColor: "#8e5ea2",
+                        pointBorderColor: "#8e5ea2",
+                        pointBackgroundColor: "#8e5ea2",
+                        pointHoverBackgroundColor: "#8e5ea2",
+                        pointHoverBorderColor: "#8e5ea2",
+                        fill: false,
+                        data: moodChartData
+                    },
+                    {
+                        label: "Energy",
                         borderColor: "#80b6f4",
                         backgroundColor: "#80b6f4",
                         pointBorderColor: "#80b6f4",
                         pointBackgroundColor: "#80b6f4",
                         pointHoverBackgroundColor: "#80b6f4",
                         pointHoverBorderColor: "#80b6f4",
-                        fill: false,
-                        data: moodChartData
-                    },
-                    {
-                        label: "Energy",
-                        borderColor: "rgb(255, 205, 86)",
-                        backgroundColor: "rgb(255, 205, 86)",
-                        pointBorderColor: "rgb(255, 205, 86)",
-                        pointBackgroundColor: "rgb(255, 205, 86)",
-                        pointHoverBackgroundColor: "rgb(255, 205, 86)",
-                        pointHoverBorderColor: "rgb(255, 205, 86)",
                         fill: false,
                         data: energyChartData
                     }
@@ -105,7 +105,7 @@ class MoodEnergyTimelineChart extends Component {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "Mood Level"
+                        labelString: "Level"
                     }
                 }]
             },
@@ -115,7 +115,7 @@ class MoodEnergyTimelineChart extends Component {
             }
         
         const myChart = new Chart(myChartRef, {
-            type: 'line',
+            type: 'scatter',
             data: chartData,
             options: options
         })
@@ -131,7 +131,7 @@ class MoodEnergyTimelineChart extends Component {
         window.addEventListener("resize", this.renderChart)
         // this.renderChart()
         return (
-            <div style={{width: '70%'}}>
+            <div style={{width: '66%'}}>
                 <canvas
                     id="myChart"
                     ref='chartRef'

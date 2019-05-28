@@ -72,7 +72,7 @@ class EmotionMemoriesByType extends Component {
             },
             title: {
                 display: true,
-                text: 'Total Thought Count by Type'
+                text: 'Emotions by Type'
             },
             scales: {
                 yAxes: [{
