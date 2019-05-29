@@ -13,6 +13,7 @@ class ThoughtOptionSort extends React.Component {
 
   render() {
     return (
+      <>
     <Grid.Row>
     <Grid.Column width={4}>
     </Grid.Column>
@@ -31,6 +32,7 @@ class ThoughtOptionSort extends React.Component {
     <Grid.Column width={4}>
     </Grid.Column>
   </Grid.Row>
+  </>
   )
 }
 }

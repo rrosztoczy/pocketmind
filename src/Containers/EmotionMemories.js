@@ -4,6 +4,7 @@ import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
 import EmotionMemoriesByType from '../ChartComponents/EmotionMemoriesByType'
 import EmotionMemoryList from '../ListComponents/EmotionMemoryList'
 import EmotionMemoriesHeader from '../HeaderComponents/EmotionMemoriesHeader'
+import EmotionSelector from '../Components/EmotionSelector'
 import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
@@ -29,6 +30,7 @@ state = {
     editedEmotionMemories: {}
 }
 
+
 emotionMemories = () => {
     let emotionMemories = []
     this.props.memories.forEach(memory => memory.emotionMemories.forEach(emotionMemory => emotionMemories.push(emotionMemory)))
@@ -39,6 +41,12 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     event.persist()
     this.state.editedEmotionMemories[emotionMemoryId] ? this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]: {...prevState.editedEmotionMemories[emotionMemoryId], [event.target.name]: event.target.value}}}), () => console.log('editing second Emotion memories!', this.state)) : this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]: {...this.emotionMemories().find(emotionMemory => emotionMemory.id === emotionMemoryId), [event.target.name]: event.target.value}}}), () => console.log('editing first memories!', this.state))
 }
+
+handleMultiEditSelectChange = (event, emotionMemoryId) => {
+    event.persist()
+    this.state.editedEmotionMemories[emotionMemoryId] ? this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]:  {...prevState.editedEmotionMemories[emotionMemoryId], emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}}}), () => console.log('editing second Emotion memories!', this.state)) : this.setState((prevState) => ({editedEmotionMemories: {...prevState.editedEmotionMemories, [emotionMemoryId]:  {...this.emotionMemories().find(emotionMemory => emotionMemory.id === emotionMemoryId), emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}}}), () => console.log('editing first memories target!', this.state, event.target))
+}
+
 
     renderEditForms() {
         console.log('rendering edit forms!')
@@ -53,8 +61,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].createdAt ? this.state.editedEmotionMemories[emotionMemory.id].createdAt : emotionMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
-              {/* This should be the select box */}
-              <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion : emotionMemory.emotion}  name='emotion' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
+              <EmotionSelector onChange={this.handleSelect} emotions={this.props.emotions} fluid label='Emotion' placeholder='Emotion' name="emotion" value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].emotion ? this.state.editedEmotionMemories[emotionMemory.id].emotion : emotionMemory.emotion}  name='emotion' onChange={event => this.handleMultiEditSelectChange(event, emotionMemory.id)}/>
               </Grid.Column>
               <Grid.Column>
               <Input focus value={this.state.editedEmotionMemories[emotionMemory.id] && this.state.editedEmotionMemories[emotionMemory.id].pleasure ? this.state.editedEmotionMemories[emotionMemory.id].pleasure : emotionMemory.pleasure}  name='pleasure' onChange={event => this.handleMultiEditChange(event, emotionMemory.id)}/>
@@ -96,7 +103,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
         console.log("state", this.state)
         const editedEmotionMemoryArray = Object.keys(this.state.editedEmotionMemories)
         editedEmotionMemoryArray.forEach(editedEmotionMemoryId => this.props.updateEmotionMemory(editedEmotionMemoryId, this.state.editedEmotionMemories[editedEmotionMemoryId]))
-        this.props.getAllUserMemories()
+        // this.props.getAllUserMemories()
         this.onEditButtonClick(event)
     }
 
@@ -123,6 +130,7 @@ handleMultiEditChange = (event, emotionMemoryId) => {
     const mapStateToProps = state => {
         return {
             memories: state.memories,
+            emotions: state.emotions,
             editEmotionMemories: state.editEmotionMemories
         };
     };

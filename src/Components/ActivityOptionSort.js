@@ -15,7 +15,6 @@ class ActivityOptionSort extends React.Component {
   render() {
     return (
     <>
-    <Grid.Row>
     <Grid.Column width={4}>
     </Grid.Column>
       <Grid.Column width={2}>
@@ -32,7 +31,6 @@ class ActivityOptionSort extends React.Component {
       </Grid.Column>
     <Grid.Column width={4}>
     </Grid.Column>
-  </Grid.Row>
   </>
   )
 }

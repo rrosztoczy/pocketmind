@@ -15,15 +15,9 @@ state = {
     render() {
         return (
   <Grid divided='vertically'>
-  {/* <Grid.row centered> */}
-  <Grid.Row centered>
-      <ActivityMemoriesByType />
-      {/* </Grid.row> */}
-      </Grid.Row>
-    <ActivityOptionSort/>
-    <Grid.Row centered>
-    <ActivityMemoryContainer/>
-    </Grid.Row>
+  <Grid.Row centered><ActivityMemoriesByType /></Grid.Row>
+  <ActivityOptionSort/>
+  <Grid.Row centered><ActivityMemoryContainer/></Grid.Row>
   </Grid>
   )
 }

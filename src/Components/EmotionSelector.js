@@ -6,12 +6,8 @@ import * as actions from '../actions'
 
 class EmotionSelector extends React.Component {
 
-componentDidMount() {
-    this.props.getAllEmotions()
-}
-    
 render() {
-    const emotionOptions = this.props.emotions.map((emotion) => ({key: emotion.id, value: emotion.id, text: emotion.emotion}))
+    const emotionOptions = this.props.emotions.map((emotion) => ({key: `em${emotion.id}`, value: emotion.id, text: emotion.emotion}))
     return (
         <Dropdown
         onChange={this.props.onChange}
