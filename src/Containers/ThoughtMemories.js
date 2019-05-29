@@ -41,7 +41,7 @@ renderThoughtMemoriesHeader() {
 }
 
 renderThoughtMemoryList() {
-  return this.props.thoughtSelection === 'balance' ? <ThoughtMemoryBalanceContainer handleMultiEditChange={(event, thoughtMemoryId) => this.handleMultiEditChange(event, thoughtMemoryId)}/> : <ThoughtMemoryContainer handleMultiEditChange={(event, thoughtMemoryId) => this.handleMultiEditChange(event, thoughtMemoryId)} editedThoughtMemories={this.state.editedThoughtMemories}/>
+  return this.props.thoughtSelection === 'balance' ? <ThoughtMemoryBalanceContainer handleMultiEditChange={(event, thoughtMemoryId) => this.handleMultiEditChange(event, thoughtMemoryId)} editedThoughtMemories={this.state.editedThoughtMemories}/> : <ThoughtMemoryContainer handleMultiEditChange={(event, thoughtMemoryId) => this.handleMultiEditChange(event, thoughtMemoryId)} editedThoughtMemories={this.state.editedThoughtMemories}/>
 }
 
 onEditButtonClick = (event) => {

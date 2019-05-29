@@ -36,6 +36,7 @@ class ActivityMemoryContainer extends React.Component {
     // TODO: Set type of Activity memory based on button pressed in the form generator
 
     renderActivityMemories() {
+        console.log("activity props during ac mem render", this.props.memories)
         return this.filteredUserActivityMemories().map(activityMemory => {
             return <ActivityMemoryList key={"am" + activityMemory.id} activityMemory={activityMemory} />
         })
@@ -89,7 +90,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
 
     handleSubmitEdit = (event) => {
         // Need to go thorugh state and hit update_memory for each memory that was changed
-        console.log("state", this.state)
+        console.log("activity props before submitstate", this.props.memories)
         const editedActivityMemoryArray = Object.keys(this.state.editedActivityMemories)
         editedActivityMemoryArray.forEach(editedActivityMemoryId => this.props.updateActivityMemory(editedActivityMemoryId, this.state.editedActivityMemories[editedActivityMemoryId]))
         this.props.getAllUserMemories()
