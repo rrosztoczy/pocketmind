@@ -12,8 +12,10 @@ export default class WebNav extends Component {
   const { activeItem } = this.state
 
   return (
-      <div style={{backgroundColor: '#ADD5F7'}}>
+      <div >
         <Menu pointing secondary>
+        <Image style={{width: '40px', height: '40px'}} src='Pocket-White.png'/>
+        <Menu.Item  />
           <Menu.Menu position='right'>
           <Menu.Item as={NavLink} name='POCKET MIND' to='/landing-page' active={activeItem === 'POCKET MIND'} onClick={this.handleItemClick} />
           {/* <Menu.Item as={NavLink} name='ABOUT' to='/about' active={activeItem === 'ABOUT'} onClick={this.handleItemClick} />

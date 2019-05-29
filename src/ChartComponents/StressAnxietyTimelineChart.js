@@ -149,7 +149,7 @@ class StressAnxietyTimelineChart extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '66%'}}>
+            <div style={{width: '45%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

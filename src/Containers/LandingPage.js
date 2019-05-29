@@ -11,6 +11,11 @@ const LandingPage = () => (
   <div className="cloudthree"></div>
   <div class="skyfour"/>
   <div class="spacing"/>
+  <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+    <Grid.Row centered>
+      <Image style={{width: '200px', height: '200px'}} src='Pocket-White.png'/>
+      </Grid.Row>
+      </Grid>
   <Grid padded relaxed stackable>
       <Grid.Row columns={1}>
       <Grid.Column>

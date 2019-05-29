@@ -8,6 +8,7 @@ class AvgEmotionData extends Component {
     chartRef = React.createRef();
 
     componentDidMount() {
+        // this.props.getAllUserMemories()
         this.renderChart()
     }
     componentDidUpdate() {
@@ -30,10 +31,10 @@ class AvgEmotionData extends Component {
 
             const sumArray = (sum, currentValue) => sum + currentValue;
 
-            const moodLevelAvg = moodLevelData.reduce(sumArray)/moodLevelData.length
-            const energyLevelAvg = energyLevelData.reduce(sumArray)/energyLevelData.length
-            const stressLevelAvg = stressLevelData.reduce(sumArray)/stressLevelData.length
-            const anxietyLevelAvg = anxietyLevelData.reduce(sumArray)/anxietyLevelData.length
+            const moodLevelAvg = moodLevelData.length > 0 ? moodLevelData.reduce(sumArray)/moodLevelData.length : 0
+            const energyLevelAvg = energyLevelData.length > 0 ? energyLevelData.reduce(sumArray)/energyLevelData.length : 0
+            const stressLevelAvg = stressLevelData.length > 0  ? stressLevelData.reduce(sumArray)/stressLevelData.length : 0
+            const anxietyLevelAvg = anxietyLevelData.length > 0  ? anxietyLevelData.reduce(sumArray)/anxietyLevelData.length : 0
 
        
             // One array of count by type
@@ -51,14 +52,7 @@ class AvgEmotionData extends Component {
         }
 
         const options = {
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    boxWidth: 80,
-                    fontColor: 'black'
-                }
-            },
+            
             title: {
                 display: true,
                 text: 'Averages'
@@ -92,7 +86,7 @@ class AvgEmotionData extends Component {
             // *******************************************************************************************************************
     render() {
         return (
-            <div style={{width: '66%'}}>
+            <div style={{width: '40%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

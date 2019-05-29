@@ -14,7 +14,7 @@ class MemoryTimeline extends Component {
         // TODO: This chart will be daily averages... with a daily bar range if possible
         // TODO: Underneath each of these put a thought/activity record table
         return (
-            <Grid divided='vertically'>
+            <Grid style={{height: '100%'}} celled>
                  <Grid.Row centered>
               </Grid.Row>
               <Grid.Row centered>

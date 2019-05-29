@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router'
 import * as actions from '../actions'
@@ -44,6 +44,11 @@ class Signup extends React.Component {
   </div>
   <div class="skyfour"/>
   <div class="spacing"/>
+  <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+    <Grid.Row centered>
+      <Image style={{width: '200px', height: '200px'}} src='Pocket-White.png'/>
+      </Grid.Row>
+      </Grid>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='blue' textAlign='center'>

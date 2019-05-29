@@ -155,7 +155,7 @@ class MoodEnergyTimelineChart extends Component {
         window.addEventListener("resize", this.renderChart)
         // this.renderChart()
         return (
-            <div style={{width: '66%'}}>
+            <div style={{width: '45%'}}>
                 <canvas
                     id="myChart"
                     ref='chartRef'

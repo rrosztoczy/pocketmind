@@ -38,6 +38,11 @@ class Login extends React.Component {
   </div>
   <div class="skyfour"/>
   <div class="spacing"/>
+  <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+    <Grid.Row centered>
+      <Image style={{width: '200px', height: '200px'}} src='Pocket-White.png'/>
+      </Grid.Row>
+      </Grid>
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
     {/* <Grid.Row>
     </Grid.Row> */}
@@ -60,7 +65,9 @@ class Login extends React.Component {
           {/* </Segment> */}
         </Form>
       </Grid.Column>
+
     </Grid>
+
     <div className="mountain">
     <div className="mountain-top">
       <div className="mountain-cap-1"></div>

@@ -105,7 +105,7 @@ class MemoriesByType extends Component {
    
         console.log('rendering')
         return (
-            <div style={{width: '50%'}}>
+            <div style={{width: '40%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}
