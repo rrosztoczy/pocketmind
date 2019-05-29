@@ -22,7 +22,9 @@ class NewEmotionMemoryForm extends React.Component {
     
     handleSelect = (event) => {
         event.persist();
+        if (this.props.emotions.find(emotion => emotion.emotion === event.target.innerText)) {
         this.setState({emotionId: this.props.emotions.find(emotion => emotion.emotion === event.target.innerText).id}, () => console.log('event', event.target))
+    }
     }
 
   handleSubmitEmotion = (event) => {
