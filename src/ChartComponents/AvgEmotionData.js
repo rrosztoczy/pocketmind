@@ -4,10 +4,11 @@ import * as actions from '../actions';
 import { connect } from 'react-redux';
 import Chart from "chart.js";
 
-class ActivityMemoriesByType extends Component {
+class AvgEmotionData extends Component {
     chartRef = React.createRef();
 
     componentDidMount() {
+        // this.props.getAllUserMemories()
         this.renderChart()
     }
     componentDidUpdate() {
@@ -15,60 +16,46 @@ class ActivityMemoriesByType extends Component {
     }
 
         renderChart() {
-            console.log('rendering!')
+            console.log('rendering chart')
             const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
-            const activityMemoriesData = []
+            const emotionMemoriesData = []
             memoryData.forEach(memory => {
-                if (memory.activityMemories) {
-                return memory.activityMemories[0] ? activityMemoriesData.push(memory.activityMemories[0]) : null
-            }
+                return memory.emotionMemories[0] ? emotionMemoriesData.push(memory.emotionMemories[0]) : null
             })
-            const activityTypeData = activityMemoriesData.map(activityMemory => activityMemory.activityType)
-            // One array of distinct types
-            const distinctActivityTypes = [...new Set(activityTypeData.filter(type => type != null))]
-            console.log('types', distinctActivityTypes)
-            // One array of distinct types
-            const totalActivityMemories = [...activityTypeData].filter(activityType => activityType != null).length;
+            const moodLevelData = emotionMemoriesData.map(emotionMemory => emotionMemory.pleasure)
+            const energyLevelData = emotionMemoriesData.map(emotionMemory => emotionMemory.intensity)
+            const stressLevelData = emotionMemoriesData.map(emotionMemory => emotionMemory.stressLevel)
+            const anxietyLevelData = emotionMemoriesData.map(emotionMemory => emotionMemory.anxietyLevel)
 
-            let activityCountByType = []
-            distinctActivityTypes.forEach(activityType => {
-                let counter = 0
-                activityTypeData.forEach(activityMemoryActivityType => {
-                    if (activityMemoryActivityType === activityType) {
-                        ++counter
-                    }
-                })
-                activityCountByType.push(counter)
-            })
+            const sumArray = (sum, currentValue) => sum + currentValue;
 
+            const moodLevelAvg = moodLevelData.length > 0 ? moodLevelData.reduce(sumArray)/moodLevelData.length : 0
+            const energyLevelAvg = energyLevelData.length > 0 ? energyLevelData.reduce(sumArray)/energyLevelData.length : 0
+            const stressLevelAvg = stressLevelData.length > 0  ? stressLevelData.reduce(sumArray)/stressLevelData.length : 0
+            const anxietyLevelAvg = anxietyLevelData.length > 0  ? anxietyLevelData.reduce(sumArray)/anxietyLevelData.length : 0
+
+       
             // One array of count by type
             // map data for chart axes and overlays
 
 
             const chartData = {
-                labels: distinctActivityTypes,
+                labels: ['Mood', 'Energy', 'Stress', 'Anxiety'],
                 datasets: [
                     {
                         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-                        data: activityCountByType
+                        data: [moodLevelAvg, energyLevelAvg, stressLevelAvg, anxietyLevelAvg]
                     }
                 ]
         }
 
         const options = {
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    boxWidth: 80,
-                    fontColor: 'black'
-                }
-            },
+            
             title: {
                 display: true,
-                text: 'Activities by Type'
+                text: 'Averages'
             },
             scales: {
                 yAxes: [{
@@ -85,7 +72,7 @@ class ActivityMemoriesByType extends Component {
             }
         
         const myChart = new Chart(myChartRef, {
-            type: 'doughnut',
+            type: 'bar',
             data: chartData,
             options: options
         })
@@ -98,7 +85,6 @@ class ActivityMemoriesByType extends Component {
             // TODO: I want to display multiple data points for activities if they exist
             // *******************************************************************************************************************
     render() {
-        // this.renderChart()
         return (
             <div style={{width: '40%'}}>
                 <canvas
@@ -116,4 +102,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, actions)(ActivityMemoriesByType)
+export default connect(mapStateToProps, actions)(AvgEmotionData)

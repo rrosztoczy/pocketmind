@@ -66,10 +66,10 @@ handleCancelEmotion = (event) => {
         <Input focus placeholder='1-10...' style={{width: '100%'}}  style={{width: '100%'}} onChange={this.handleChange} name="anxietyLevel" value={this.state.anxietyLevel ? this.state.anxietyLevel : ""}/>
         </Grid.Column>
         <Grid.Column width={3}>
-      </Grid.Column>
+         </Grid.Column>
         <Grid.Row centered>
-        <Button circular color='orange' size='massive' basic onClick={this.handleSubmitEmotion} >Submit</Button>
-        <Button circular color='red' size='massive' basic onClick={this.handleCancelEmotion} >Cancel</Button>
+        <Button size='medium' color="purple" basic onClick={this.handleSubmitEmotion} >Submit</Button>
+        <Button size='medium' basic onClick={this.handleCancelEmotion} >Cancel</Button>
         </Grid.Row>
       </>
 )

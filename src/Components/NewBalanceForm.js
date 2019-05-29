@@ -32,13 +32,15 @@ class NewJournalForm extends React.Component {
 
     render() {
       return (
-        <Form onSubmit={(event) => this.handleSubmit(event)}>
+        <Form style={{width: '50%'}} onSubmit={(event) => this.handleSubmit(event)}>
             <Form.TextArea onChange={this.handleChange} fluid label='Automatic Thought' placeholder='What are your incessant thoughts?' name="automaticThought" value={this.state.automaticThought ? this.state.automaticThought : ""} />
             <Form.Input onChange={this.handleChange} fluid label='Bias or Issue' placeholder='Ex. overgeneralization, disqualifying the positive...' name="cognitiveBias" value={this.state.cognitiveBias ? this.state.cognitiveBias : ""} />
             <Form.TextArea onChange={this.handleChange} label='Rational Response' placeholder='How would you respond to these thoughts?' name="rationalThought" value={this.state.rationalThought ? this.state.rationalThought : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
-          <Form.Button >Submit</Form.Button>
-          <Form.Button onClick={this.handleCancel} >Cancel</Form.Button>
+          <Form.Group>
+          <Form.Button color="teal" basic  size="medium" >Submit</Form.Button>
+          <Form.Button basic  size="medium"  onClick={this.handleCancel} >Cancel</Form.Button>
+          </Form.Group>
         </Form>
       )
     }

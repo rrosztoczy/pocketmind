@@ -14,6 +14,7 @@ import NewActivityForm from '../Components/NewActivityForm'
 import ThoughtOptionSort from '../Components/ThoughtOptionSort'
 import ActivityOptionSort from '../Components/ActivityOptionSort'
 import * as actions from '../actions'
+import '../index.css';
 
 class AddMemoryContainer extends React.Component {
 
@@ -61,24 +62,60 @@ renderThoughtForm() {
 }
 
 render() {
-    return (<Grid style={{height: '100vh'}}>
-    <Grid.Row centered></Grid.Row>
-    <Grid.Row centered>{!this.props.emotionOptions ? <FeelingOptionsSegment/> : <NewEmotionMemoryForm/> }</Grid.Row>
+    return (<>
+    <div class="skythree"></div>
+    <div class="cloudfour">
+    <div class="cloud-left"></div>
+    <div class="cloud-right"></div>
+    <div class="cloud-bottom"></div>
+    <div class="eye-left"><div class="pupil"></div></div>
+    <div class="eye-right"><div class="pupil"></div></div>
+    <div class="mouth"></div>
+    </div>
+    <div class="spacingtwo"></div>
+    <Grid style={{height: '100vh'}}>
+    {!this.props.emotionOptions ? <Grid.Row centered><FeelingOptionsSegment/></Grid.Row> : <NewEmotionMemoryForm/> }
     {!this.props.thoughtOptions ? <Grid.Row centered><ThoughtOptionsSegment/></Grid.Row> : <ThoughtOptionSort/>}
     {!this.props.thoughtOptions ? null : <Grid.Row centered>{this.renderThoughtForm()}</Grid.Row>}
     {!this.props.activityOptions ? <Grid.Row centered><ActivityOptionsSegment/></Grid.Row> : <ActivityOptionSort/> }
     {!this.props.activityOptions ? null : <Grid.Row centered><NewActivityForm/></Grid.Row> }
-    <Grid.Row></Grid.Row>
     <Grid.Row centered>
-       <Button animated color='orange' basic circular size='huge' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
-          <Button.Content visible><h1>REMEMBER</h1></Button.Content>
+       <Button animated color='blue' basic circular size='massive' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
+          <Button.Content visible><Icon size="large" name="cloud upload" /></Button.Content>
           <Button.Content hidden><Icon name='arrow right' /></Button.Content>
         </Button>
     </Grid.Row>
     <Grid.Row></Grid.Row>
     <Grid.Row></Grid.Row>
     <Grid.Row></Grid.Row>
-  </Grid>)
+    <Grid.Row></Grid.Row>
+    <Grid.Row></Grid.Row>
+    <Grid.Row></Grid.Row>
+  </Grid>
+  <div class="box">
+      <div class="sun">
+        <div class="face">
+          <div class="pupil-left"></div>
+          <div class="pupil-right"></div>
+          <div class="smile"></div>
+        </div>
+        
+        <div class="ray">
+          <div class="beam r1"></div>
+          <div class="beam r2"></div>
+          <div class="beam r3"></div>
+          <div class="beam r4"></div>
+          <div class="beam r5"></div>
+          <div class="beam r6"></div>
+          <div class="beam r7"></div>
+          <div class="beam r8"></div>
+          <div class="beam r9"></div>
+          <div class="beam r10"></div>
+        </div>
+      </div>
+    </div>
+    </>
+  )
 }
 
 

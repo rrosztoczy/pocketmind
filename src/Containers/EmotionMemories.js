@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
-import EmotionMemoriesByType from '../ChartComponents/EmotionMemoriesByType'
+import AvgEmotionData from '../ChartComponents/AvgEmotionData'
 import EmotionMemoryList from '../ListComponents/EmotionMemoryList'
 import EmotionMemoriesHeader from '../HeaderComponents/EmotionMemoriesHeader'
 import EmotionSelector from '../Components/EmotionSelector'
@@ -122,7 +122,7 @@ handleMultiEditSelectChange = (event, emotionMemoryId) => {
         return(
   <Grid divided='vertically'>
     <Grid.Row centered>
-      <EmotionMemoriesByType />
+      <AvgEmotionData />
     </Grid.Row>
     <EmotionMemoriesHeader editEmotionMemories={this.props.editEmotionMemories} renderEditButton={() => this.renderEditButton()} renderSubmitEditButton={() => this.renderSubmitEditButton()}/>
     {this.props.editEmotionMemories ? this.renderEditForms() : this.renderEmotionMemories()}

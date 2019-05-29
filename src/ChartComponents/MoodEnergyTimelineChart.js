@@ -20,27 +20,36 @@ class MoodEnergyTimelineChart extends Component {
             const memoryData = this.props.memories
             const emotionMemoriesData = []
             const thoughtMemoriesData = []
+            const activityMemoriesData = []
             memoryData.forEach(memory => {
                 return memory.emotionMemories[0] ? emotionMemoriesData.push(memory.emotionMemories[0]) : null
             })
             memoryData.forEach(memory => {
                 return memory.thoughtMemories[0] ? thoughtMemoriesData.push(memory.thoughtMemories[0]) : null
             })
+            memoryData.forEach(memory => {
+                return memory.activityMemories[0] ? activityMemoriesData.push(memory.activityMemories[0]) : null
+            })
             console.log(emotionMemoriesData)
             // const thoughtMemoriesData = memoryData.map(memory => memory.thoughtMemories[0])
             const emotions = emotionMemoriesData.map(emotionMemory => emotionMemory.emotion)
+            const thoughts = thoughtMemoriesData.map(thoughtMemory => thoughtMemory.topic)
+            const activities = activityMemoriesData.map(activityMemory => activityMemory.activityName)
             const moodLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.pleasure)
             const energyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.intensity)
             // map data for chart axes and overlays
             const emotionMemoryDates = emotionMemoriesData.map(emotionMemory => emotionMemory.createdAt)
             const thoughtMemoryDates = thoughtMemoriesData.map(thoughtMemory => thoughtMemory.createdAt)
             // Create x/y points for a time axis by creating array of hash with x: new Date(date) and y: the appropriate data set
+            const relatedMemoryIds = emotionMemoriesData.map(emotionMemory => emotionMemory.memoryId)
+            console.log('emotion memorys', emotionMemoriesData)
+            console.log('memory ids', relatedMemoryIds)
             const emotionChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: emotions[i]}))
             const moodChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: moodLevel[i]}))
             const energyChartData = emotionMemoryDates.map((emotionMemoryDate, i) => ({x: new Date(emotionMemoryDate), y: energyLevel[i]}))
-            // console.log('rendering mood chart', moodChartData)
-            // console.log('rendering energy chart', energyChartData)
-            // console.log('rendering stress chart', stressChartData)
+            console.log('rendering emotion data', emotions)
+            console.log('rendering thought data', thoughts)
+            console.log('rendering activity data', activities)
             // console.log('rendering anxiety chart', anxietyChartData)
             // console.log('rendering emotions chart', emotionChartData)
             const chartData = {
@@ -72,6 +81,21 @@ class MoodEnergyTimelineChart extends Component {
         }
 
         const options = {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        let emotionsLabel = ["\nEmotion: " + emotions[tooltipItem.index]]
+                        let thoughtsLabel = ["\nThought: " + thoughts[tooltipItem.index]]
+                        let activitiesLabel = ["\nActivity: " + activities[tooltipItem.index]]
+                        emotionsLabel.push(thoughtsLabel)
+                        emotionsLabel.push(activitiesLabel)
+                        return emotionsLabel
+                    }
+                },
+                hover: {
+                mode: 'nearest',
+                intersect: true
+                }},
             legend: {
                 display: true,
                 position: 'top',
@@ -131,7 +155,7 @@ class MoodEnergyTimelineChart extends Component {
         window.addEventListener("resize", this.renderChart)
         // this.renderChart()
         return (
-            <div style={{width: '66%'}}>
+            <div style={{width: '45%'}}>
                 <canvas
                     id="myChart"
                     ref='chartRef'

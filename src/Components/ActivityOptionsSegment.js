@@ -29,7 +29,7 @@ class ActivityOptionsSegment extends React.Component {
         </Segment>
       </Reveal.Content>
       <Reveal.Content hidden>
-      <Segment circular style={largeSquare} inverted color='blue' value='activity' tertiary>
+      <Segment circular style={largeSquare} inverted color='orange' value='activity' tertiary>
         <p>What are you up to?</p>
         <Button compact circular size="massive" inverted name='activityOptions' value='activityOptions' onClick={this.onFormButtonClick} icon></Button>
         </Segment>

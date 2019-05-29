@@ -34,12 +34,14 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
     render() {
       return (
-        <Form onSubmit={(event) => this.handleSubmit(event)}>
+        <Form style={{width: '50%'}} onSubmit={(event) => this.handleSubmit(event)}>
             <Form.Input onChange={this.handleChange} fluid label='Name' placeholder='What have you been up to?' name="activityName" value={this.state.activityName ? this.state.activityName : ""} />
-            <Form.TextArea onChange={this.handleChange} label='Description' placeholder='Enter a description here' name="activityDescription" value={this.state.activityDescription} />
+            <Form.TextArea onChange={this.handleChange} fluid label='Description' placeholder='Enter a description here' name="activityDescription" value={this.state.activityDescription} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
-          <Form.Button >Submit</Form.Button>
-          <Form.Button onClick={this.handleCancel} >Cancel</Form.Button>
+          <Form.Group>
+          <Form.Button color="orange" basic size="medium">Submit</Form.Button>
+          <Form.Button basic size="medium" onClick={this.handleCancel} >Cancel</Form.Button>
+          </Form.Group>
         </Form>
       )
     }

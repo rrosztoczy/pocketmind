@@ -20,14 +20,21 @@ class StressAnxietyTimelineChart extends Component {
             const memoryData = this.props.memories
             const emotionMemoriesData = []
             const thoughtMemoriesData = []
+            const activityMemoriesData = []
             memoryData.forEach(memory => {
                 return memory.emotionMemories[0] ? emotionMemoriesData.push(memory.emotionMemories[0]) : null
             })
             memoryData.forEach(memory => {
                 return memory.thoughtMemories[0] ? thoughtMemoriesData.push(memory.thoughtMemories[0]) : null
             })
+            memoryData.forEach(memory => {
+                return memory.activityMemories[0] ? activityMemoriesData.push(memory.activityMemories[0]) : null
+            })
             console.log(emotionMemoriesData)
             // const thoughtMemoriesData = memoryData.map(memory => memory.thoughtMemories[0])
+            const emotions = emotionMemoriesData.map(emotionMemory => emotionMemory.emotion)
+            const thoughts = thoughtMemoriesData.map(thoughtMemory => thoughtMemory.topic)
+            const activities = activityMemoriesData.map(activityMemory => activityMemory.activityName)
             const stressLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.stressLevel)
             const anxietyLevel = emotionMemoriesData.map(emotionMemory => emotionMemory.anxietyLevel)
             // map data for chart axes and overlays
@@ -69,6 +76,21 @@ class StressAnxietyTimelineChart extends Component {
         }
 
         const options = {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        let emotionsLabel = ["\nEmotion: " + emotions[tooltipItem.index]]
+                        let thoughtsLabel = ["\nThought: " + thoughts[tooltipItem.index]]
+                        let activitiesLabel = ["\nActivity: " + activities[tooltipItem.index]]
+                        emotionsLabel.push(thoughtsLabel)
+                        emotionsLabel.push(activitiesLabel)
+                        return emotionsLabel
+                    }
+                },
+                hover: {
+                mode: 'nearest',
+                intersect: true
+                }},
             legend: {
                 display: true,
                 position: 'top',
@@ -127,7 +149,7 @@ class StressAnxietyTimelineChart extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '66%'}}>
+            <div style={{width: '45%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}
