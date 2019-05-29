@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router'
 import * as actions from '../actions'
+import '../index.css';
 
 class Signup extends React.Component {
 
@@ -56,6 +57,30 @@ class Signup extends React.Component {
             </Form>
           </Grid.Column>
         </Grid>
+        <div className="bg">
+  <div className="mountain">
+    <div className="mountain-top">
+      <div className="mountain-cap-1"></div>
+      <div className="mountain-cap-2"></div>
+      <div className="mountain-cap-3"></div>
+    </div>
+  </div>
+  <div className="mountain-two">
+    <div className="mountain-top">
+      <div className="mountain-cap-1"></div>
+      <div className="mountain-cap-2"></div>
+      <div className="mountain-cap-3"></div>
+    </div>
+  </div>
+   <div className="mountain-three">
+    <div className="mountain-top">
+      <div className="mountain-cap-1"></div>
+      <div className="mountain-cap-2"></div>
+      <div className="mountain-cap-3"></div>
+    </div>
+  </div>
+  <div className="cloud"></div>
+</div>
       </div>
     )
   }
