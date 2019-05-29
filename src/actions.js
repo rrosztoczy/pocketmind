@@ -221,7 +221,7 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
   }
   
   export const fetchCurrentUser = () => {
-      console.log('fetching')
+      console.log('fetching user')
     // takes the token in localStorage and finds out who it belongs to
     return (dispatch) => {
       dispatch(authenticatingUser()) //tells the app we are fetching

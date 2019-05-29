@@ -25,15 +25,6 @@ class App extends Component {
 
   state = {logged_in: false}
 
-  // fake login for design
-  // handleLoginSubmit = () => {
-  //  this.setState({logged_in: true}, () => console.log('logged in!', this.state))
-  // }
-
-  // handleLogout = () => {
-  //   this.setState({logged_in: false}, () => console.log('logged in!', this.state))
-  //  }
-
   render() {
 
     return (
@@ -45,7 +36,7 @@ class App extends Component {
           <Route path='/blog' render={(routeProps) => <Blog {...routeProps} />}/>
           <Route path='/about' render={(routeProps) => <About {...routeProps} />}/>
           <Route path='/home' component={withAuth(Home)}/>
-          <Route path='/profile' component={withAuth(Memories)}/>
+          <Route path='/memories' component={withAuth(Memories)}/>
           <Route path='/thoughts' component={withAuth(ThoughtMemories)}/>   
           <Route path='/emotions' component={withAuth(EmotionMemories)}/> 
           <Route path='/activities' component={withAuth(ActivityMemories)}/> 
@@ -57,7 +48,6 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("new state", state)
   return {
       loggedIn: state.loggedIn
   };
