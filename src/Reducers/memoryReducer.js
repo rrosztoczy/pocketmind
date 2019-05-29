@@ -1,12 +1,8 @@
 import {
     TOGGLE_FORM,
     // Asynch types
-    GET_ALL_MEMORIES,
     GET_ALL_USER_MEMORIES,
     GET_ALL_EMOTIONS,
-    GET_ALL_THOUGHT_MEMORIES,
-    GET_ALL_EMOTION_MEMORIES,
-    GET_ALL_ACTIVITY_MEMORIES,
     GET_MEMORY,
     CREATE_MEMORY,
     UPDATE_MEMORY,
@@ -20,7 +16,6 @@ import {
     INCREMENT_COUNTER,
     UPDATE_THOUGHT_SELECTION,
     UPDATE_ACTIVITY_SELECTION,
-    UPDATE_ACTIVITY_FORM_SELECTION,
     CREATE_USER
 } from '../actions'
 
@@ -50,9 +45,7 @@ const initialState = {
     social: false,
     entertainment: false,
     thoughtSelection: 'journal',
-    thoughtFormSelection: null,
     activitySelection: 'work',
-    activityFormSelection: null,
     activityOptions: false,
     emotionOptions: false,
     thoughtOptions: false,
@@ -78,15 +71,9 @@ function memoryReducer(state = initialState, action) {
         case  GET_ALL_EMOTIONS:
         console.log('emotion payload:', action.payload)
         return {...state, emotions: [...state.emotions, ...action.payload.filter(emotion => emotion.id > 64)]}
-        // case  GET_ALL_MEMORIES:
-        // return {...state, memories: [...state.memories, ...action.payload]}
         case  GET_ALL_USER_MEMORIES:
         console.log("hit get all user memories!")
         return {...state, memories: [...action.payload.memories]}
-        case  GET_ALL_THOUGHT_MEMORIES:
-        return {...state, thoughtMemories: [...state.thoughtMemories, ...action.payload]}
-        // case  GET_ALL_EMOTION_MEMORIES:
-        // return {...state, emotionMemories: [...state.emotionMemories, ...action.payload]}
         case  DESTROY_MEMORY:
         console.log('destroying memory! hit destroy')
         return {...state, memories: state.memories.filter(memory => memory.id != action.payload)}
@@ -155,9 +142,6 @@ function memoryReducer(state = initialState, action) {
           case UPDATE_ACTIVITY_SELECTION:
           console.log("UPDATING ACTIVITY SELECTION!")
           return {...state, activitySelection: action.payload}
-          case UPDATE_ACTIVITY_FORM_SELECTION:
-          console.log("UPDATING ACTIVITY FORM SELECTION!")
-          return {...state, activityFormSelection: action.payload}
           // *****************************************************************Auth***********************************************************
           // TODO: Evaluate set current user....
           case 'SET_CURRENT_USER':

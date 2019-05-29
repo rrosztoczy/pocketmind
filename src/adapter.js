@@ -15,7 +15,7 @@ const adapter = (url) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
               }        
-            console.log("in the async")
+            console.log("in the all async")
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, { headers: headers })
@@ -32,7 +32,7 @@ const adapter = (url) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
               }
-            console.log("in the async action is ", action)
+            console.log("in the async profile action is ", action)
             // Should i do a loading or something on this?
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, { headers: headers })
@@ -94,7 +94,7 @@ const adapter = (url) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
               }
-        
+              console.log("in the update async")
             const postConfig = {
                 method: "PATCH",
                 headers: headers,
