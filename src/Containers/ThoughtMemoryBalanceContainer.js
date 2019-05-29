@@ -51,16 +51,16 @@ filteredUserThoughtMemories() {
         return this.filteredUserThoughtMemories().map(thoughtMemory => {
             return (<Grid.Row key={thoughtMemory.id} columns={4}>
               <Grid.Column width={2}>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].createdAt ? this.state.editedThoughtMemories[thoughtMemory.id].createdAt : thoughtMemory.createdAt} name='createdAt' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.props.editedThoughtMemories[thoughtMemory.id] && this.props.editedThoughtMemories[thoughtMemory.id].createdAt ? this.props.editedThoughtMemories[thoughtMemory.id].createdAt : thoughtMemory.createdAt} name='createdAt' onChange={event => this.props.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column width={5}>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].automaticThought ? this.state.editedThoughtMemories[thoughtMemory.id].automaticThought : thoughtMemory.automaticThought}  name='automaticThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.props.editedThoughtMemories[thoughtMemory.id] && this.props.editedThoughtMemories[thoughtMemory.id].automaticThought ? this.props.editedThoughtMemories[thoughtMemory.id].automaticThought : thoughtMemory.automaticThought}  name='automaticThought' onChange={event => this.props.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column width={2}>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias ? this.state.editedThoughtMemories[thoughtMemory.id].cognitiveBias : thoughtMemory.cognitiveBias}  name='cognitiveBias' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.props.editedThoughtMemories[thoughtMemory.id] && this.props.editedThoughtMemories[thoughtMemory.id].cognitiveBias ? this.props.editedThoughtMemories[thoughtMemory.id].cognitiveBias : thoughtMemory.cognitiveBias}  name='cognitiveBias' onChange={event => this.props.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column width={5}>
-              <Input focus value={this.state.editedThoughtMemories[thoughtMemory.id] && this.state.editedThoughtMemories[thoughtMemory.id].rationalThought ? this.state.editedThoughtMemories[thoughtMemory.id].rationalThought : thoughtMemory.rationalThought}  name='rationalThought' onChange={event => this.handleMultiEditChange(event, thoughtMemory.id)}/>
+              <Input focus value={this.props.editedThoughtMemories[thoughtMemory.id] && this.props.editedThoughtMemories[thoughtMemory.id].rationalThought ? this.props.editedThoughtMemories[thoughtMemory.id].rationalThought : thoughtMemory.rationalThought}  name='rationalThought' onChange={event => this.props.handleMultiEditChange(event, thoughtMemory.id)}/>
               </Grid.Column>
               <Grid.Column width={2}>
               <Button onClick={() => this.destroyThoughtMemory(thoughtMemory.id)} icon='trash alternate outline'/>

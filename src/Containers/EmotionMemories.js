@@ -15,7 +15,7 @@ class EmotionMemories extends React.Component {
     }
 
     renderEmotionMemories() {
-        console.log("props is", this.props.memories)
+        console.log("props for rendering emotion memory list is is", this.props.memories)
         const userEmotionMemories = []
         this.props.memories.forEach(memory => memory.emotionMemories.forEach(emotionMemory => userEmotionMemories.push(emotionMemory)))
         const sortedEmotionMemories = [...userEmotionMemories].sort(function(a,b) {
@@ -102,9 +102,13 @@ handleMultiEditSelectChange = (event, emotionMemoryId) => {
         // Need to go thorugh state and hit update_memory for each memory that was changed
         console.log("state", this.state)
         const editedEmotionMemoryArray = Object.keys(this.state.editedEmotionMemories)
+        console.log('step one done')
         editedEmotionMemoryArray.forEach(editedEmotionMemoryId => this.props.updateEmotionMemory(editedEmotionMemoryId, this.state.editedEmotionMemories[editedEmotionMemoryId]))
-        // this.props.getAllUserMemories()
+        console.log('step two done')
+        this.props.getAllUserMemories()
+        console.log('step three done')
         this.onEditButtonClick(event)
+        console.log('step four done')
     }
 
     renderSubmitEditButton() {
