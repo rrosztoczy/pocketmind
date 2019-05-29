@@ -72,8 +72,8 @@ render() {
     <div class="eye-right"><div class="pupil"></div></div>
     <div class="mouth"></div>
     </div>
+    <div class="spacingtwo"></div>
     <Grid style={{height: '100vh'}}>
-    <Grid.Row centered></Grid.Row>
     <Grid.Row centered>{!this.props.emotionOptions ? <FeelingOptionsSegment/> : <NewEmotionMemoryForm/> }</Grid.Row>
     {!this.props.thoughtOptions ? <Grid.Row centered><ThoughtOptionsSegment/></Grid.Row> : <ThoughtOptionSort/>}
     {!this.props.thoughtOptions ? null : <Grid.Row centered>{this.renderThoughtForm()}</Grid.Row>}
@@ -85,6 +85,7 @@ render() {
           <Button.Content hidden><Icon name='arrow right' /></Button.Content>
         </Button>
     </Grid.Row>
+    <Grid.Row></Grid.Row>
     <Grid.Row></Grid.Row>
     <Grid.Row></Grid.Row>
     <Grid.Row></Grid.Row>

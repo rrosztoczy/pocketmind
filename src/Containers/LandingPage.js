@@ -8,6 +8,7 @@ const LandingPage = () => (
   <div class="skytwo">
   <div class="cloudtwo" />
   </div>
+  <div className="cloudthree"></div>
   <div class="skyfour"/>
   <div class="spacing"/>
   <Grid padded relaxed stackable>
@@ -81,7 +82,6 @@ const LandingPage = () => (
       <div className="mountain-cap-3"></div>
     </div>
   </div>
-  <div className="cloudthree"></div>
 </div>
 </>
 )

@@ -69,6 +69,10 @@ code {
   height: 50px;
 }
 
+.spacingtwo {
+  height: 10px;
+}
+
 .bg{
 	  overflow:hidden;
 		background:white;
@@ -126,7 +130,7 @@ code {
 	border-radius: 100px / 50px;
 }
 .cloudthree { 
-  bottom: 100px;
+  top: 75px;
   -webkit-animation: cloud 50s infinite linear;
           animation: cloud 50s infinite linear;
 }
@@ -139,14 +143,14 @@ code {
     0%   { left: -100px; }
     100% { left: 1000px; } 
 }
-.cloud:before {
+.cloudthree:before {
   content: '';
-  left: 50px;
+  left: 40px;
 }
-.cloud:after {
+.cloudthree:after {
   content: '';
-  left: 25px;
-  top: -10px;
+  left: 10px;
+  top: -20px;
 }
 
 
