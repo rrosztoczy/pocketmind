@@ -7,10 +7,10 @@ import { Provider } from 'react-redux';
 // import { composeWithDevTools } from 'redux-devtools-extension'; must also add around middleware below
 import thunk from 'redux-thunk';
 import memoryReducer from './Reducers/memoryReducer.js';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
+import './index.css';
 
 const store = createStore(memoryReducer, applyMiddleware(thunk)); 
 console.log(store.getState)

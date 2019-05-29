@@ -1,9 +1,21 @@
 import React from 'react'
 import { Grid, Image, Button, Header } from 'semantic-ui-react'
+import '../index.css';
 
 const LandingPage = () => (
+  <>
   <Grid padded relaxed stackable>
       <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1}>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row columns={1} divided>
       <Grid.Column>
       </Grid.Column>
     </Grid.Row>
@@ -45,27 +57,37 @@ const LandingPage = () => (
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={1} divided>
-      <Grid.Column>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1} divided>
-      <Grid.Column>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
-      </Grid.Column>
-    </Grid.Row>
 
     <Grid.Row columns={1} divided>
       <Grid.Column>
       </Grid.Column>
     </Grid.Row>
   </Grid>
+      <div className="bg">
+  <div className="mountain">
+    <div className="mountain-top">
+      <div className="mountain-cap-1"></div>
+      <div className="mountain-cap-2"></div>
+      <div className="mountain-cap-3"></div>
+    </div>
+  </div>
+  <div className="mountain-two">
+    <div className="mountain-top">
+      <div className="mountain-cap-1"></div>
+      <div className="mountain-cap-2"></div>
+      <div className="mountain-cap-3"></div>
+    </div>
+  </div>
+   <div className="mountain-three">
+    <div className="mountain-top">
+      <div className="mountain-cap-1"></div>
+      <div className="mountain-cap-2"></div>
+      <div className="mountain-cap-3"></div>
+    </div>
+  </div>
+  <div className="cloud"></div>
+</div>
+</>
 )
 
 export default LandingPage
