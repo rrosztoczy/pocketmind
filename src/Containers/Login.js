@@ -36,8 +36,7 @@ class Login extends React.Component {
   <div class="skytwo">
   <div class="cloudtwo" />
   </div>
-  <div class="skythree"/>
-  <div class="spacing"/>
+  <div class="skyfour"/>
   <div class="spacing"/>
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
     {/* <Grid.Row>

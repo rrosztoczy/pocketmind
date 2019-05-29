@@ -8,7 +8,7 @@ const LandingPage = () => (
   <div class="skytwo">
   <div class="cloudtwo" />
   </div>
-  <div class="skythree"/>
+  <div class="skyfour"/>
   <div class="spacing"/>
   <Grid padded relaxed stackable>
       <Grid.Row columns={1}>

@@ -30,7 +30,7 @@ class FeelingOptionsSegment extends React.Component {
       </Reveal.Content>
       <Reveal.Content hidden>
       <Segment circular style={largeSquare} inverted color='purple' value='emotion' tertiary>
-        <p>how do you feel?</p>
+        <p>How do you feel?</p>
         <Button compact circular size="massive" inverted name='emotionOptions' value='emotionOptions' onClick={this.onFormButtonClick} icon></Button>
         </Segment>
       </Reveal.Content>
