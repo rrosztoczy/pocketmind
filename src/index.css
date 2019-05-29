@@ -141,12 +141,12 @@ code {
 }
 @-webkit-keyframes cloud {
     0%   { left: -100px; }
-    100% { left: 1000px; } 
+    100% { left: 1500px; } 
 }
 @keyframes cloud {
    
     0%   { left: -100px; }
-    100% { left: 1000px; } 
+    100% { left: 1500px; } 
 }
 .cloudthree:before {
   content: '';
