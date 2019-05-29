@@ -74,7 +74,7 @@ render() {
     </div>
     <div class="spacingtwo"></div>
     <Grid style={{height: '100vh'}}>
-    <Grid.Row centered>{!this.props.emotionOptions ? <FeelingOptionsSegment/> : <NewEmotionMemoryForm/> }</Grid.Row>
+    {!this.props.emotionOptions ? <Grid.Row centered><FeelingOptionsSegment/></Grid.Row> : <NewEmotionMemoryForm/> }
     {!this.props.thoughtOptions ? <Grid.Row centered><ThoughtOptionsSegment/></Grid.Row> : <ThoughtOptionSort/>}
     {!this.props.thoughtOptions ? null : <Grid.Row centered>{this.renderThoughtForm()}</Grid.Row>}
     {!this.props.activityOptions ? <Grid.Row centered><ActivityOptionsSegment/></Grid.Row> : <ActivityOptionSort/> }
