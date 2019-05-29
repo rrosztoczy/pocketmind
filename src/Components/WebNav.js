@@ -12,7 +12,7 @@ export default class WebNav extends Component {
   const { activeItem } = this.state
 
   return (
-      <div>
+      <div style={{backgroundColor: '#ADD5F7'}}>
         <Menu pointing secondary>
           <Image src={require('../pmlogo.jpeg')} as='a' href='/landing-page' style={{width: '50px', height: 'auto', margin: '10px'}} floated="left" circular/>
 

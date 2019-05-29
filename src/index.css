@@ -12,6 +12,37 @@ code {
     monospace;
 }
 
+.sky {
+  background:#ADD5F7;
+    height: 200px;
+}
+.cloudtwo {
+  margin:0px auto 0px auto;
+  width: 300px;
+  height: 100px;
+  border-radius: 100px;
+  position: relative;
+  background: #ffffff;
+}
+.cloudtwo:before,.cloudtwo:after{
+  content: '';
+  border-radius: 100px;
+  position: absolute;
+  background: #ffffff;
+}
+.cloudtwo:before{
+  width: 100px;
+  height: 100px;
+  top: -50px;
+  left: 45px;
+}
+.cloudtwo:after{
+  width: 160px;
+  height: 160px;
+  top: -70px;
+  right: 45px;
+}
+
 .bg{
 	  overflow:hidden;
 		background:white;

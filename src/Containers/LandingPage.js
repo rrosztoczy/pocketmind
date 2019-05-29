@@ -4,18 +4,11 @@ import '../index.css';
 
 const LandingPage = () => (
   <>
+  <div class="sky" height='200px'>
+  <div class="cloudtwo" />
+  </div>
   <Grid padded relaxed stackable>
       <Grid.Row columns={1}>
-      <Grid.Column>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1}>
-      <Grid.Column>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row columns={1} divided>
       <Grid.Column>
       </Grid.Column>
     </Grid.Row>
