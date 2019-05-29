@@ -105,7 +105,7 @@ class ThoughtMemoriesByType extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '40%'}}>
+            <div style={{width: '30%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

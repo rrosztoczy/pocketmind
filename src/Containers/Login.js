@@ -51,7 +51,7 @@ class Login extends React.Component {
       <Header as='h1' color='blue' textAlign='center'>
             POCKET MIND
         </Header>
-        <Header as='h3' color='blue' textAlign='center'>
+        <Header as='h3' color='blue' secondary  textAlign='center'>
           keep your head in the cloud
         </Header>
         <Form size='large'>

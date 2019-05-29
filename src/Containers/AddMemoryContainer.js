@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Header, Icon, Input } from 'semantic-ui-react'
+import { Grid, Button, Icon, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import ActivityOptionsSegment from '../Components/ActivityOptionsSegment'
 import ThoughtOptionsSegment from '../Components/ThoughtOptionsSegment'
@@ -63,7 +63,7 @@ renderThoughtForm() {
 
 render() {
     return (<>
-    <div class="skythree"></div>
+    <div class="skyfive"></div>
     <div class="cloudfour">
     <div class="cloud-left"></div>
     <div class="cloud-right"></div>
@@ -79,9 +79,16 @@ render() {
     {!this.props.thoughtOptions ? null : <Grid.Row centered>{this.renderThoughtForm()}</Grid.Row>}
     {!this.props.activityOptions ? <Grid.Row centered><ActivityOptionsSegment/></Grid.Row> : <ActivityOptionSort/> }
     {!this.props.activityOptions ? null : <Grid.Row centered><NewActivityForm/></Grid.Row> }
+    <Grid.Row></Grid.Row>
     <Grid.Row centered>
-       <Button animated color='blue' basic circular size='massive' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
-          <Button.Content visible><Icon size="large" name="cloud upload" /></Button.Content>
+       <div class="wrap">
+         <img src="http://image.flaticon.com/icons/svg/3/3907.svg" id="arrow" class="animated bounce"/>
+       </div>
+    </Grid.Row>
+    <Grid.Row centered>
+    
+       <Button animated color='blue' inverted basic circular size='massive' onClick={(event) => this.createMemory(event, {memory: this.props.memory})} onMouseDown={e => e.preventDefault()}>
+          <Button.Content visible><Image src='Pocket-Gradient.png' size="tiny"/></Button.Content>
           <Button.Content hidden><Icon name='arrow right' /></Button.Content>
         </Button>
     </Grid.Row>
