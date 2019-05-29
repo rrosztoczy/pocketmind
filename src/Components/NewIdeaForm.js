@@ -30,12 +30,14 @@ class NewJournalForm extends React.Component {
 
     render() {
       return (
-        <Form onSubmit={(event) => this.handleSubmit(event)}>
+        <Form style={{width: '50%'}} onSubmit={(event) => this.handleSubmit(event)}>
             <Form.Input onChange={this.handleChange} fluid label='Topic' placeholder='I think so because...' name="topic" value={this.state.topic ? this.state.topic : ""} />
             <Form.Input onChange={this.handleChange} fluid label='Idea' placeholder='[blank] makes me think that' name="thoughtContent" value={this.state.thoughtContent ? this.state.thoughtContent : ""} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
-          <Form.Button >Submit</Form.Button>
-          <Form.Button onClick={this.handleCancel} >Cancel</Form.Button>
+          <Form.Group>
+          <Form.Button color="teal" basic  size="medium">Submit</Form.Button>
+          <Form.Button basic  size="medium"  onClick={this.handleCancel} >Cancel</Form.Button>
+          </Form.Group>
         </Form>
       )
     }
