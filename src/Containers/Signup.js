@@ -30,29 +30,35 @@ class Signup extends React.Component {
           You can do same with CSS, the main idea is that all the elements up to the `Grid`
           below must have a height of 100%.
         */}
-        <style>{`
+        {/* <style>{`
           body > div,
           body > div > div,
           body > div > div > div.login-form {
             height: 100%;
           }
         `}
-        </style>
-
+        </style> */}
+        <div class="sky"/>
+  <div class="skytwo">
+  <div class="cloudtwo" />
+  </div>
+  <div class="skythree"/>
+  <div class="spacing"/>
+  <div class="spacing"/>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='blue' textAlign='center'>
             {/* Add logo */}
-              sign up now
+              Sign up now
             </Header>
             <Form size='large'>
                 <Form.Input fluid name="first_name" placeholder='First name' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => this.handleFormChange(e)} />
-                <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
-                <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
+                <Form.Input fluid name="email" placeholder='Email' onChange={(e) => this.handleFormChange(e)} />
+                <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='Password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-                <Button color='teal' fluid size='large' onClick={() => this.handleSignUp(this.state)}>
-                  sign up
+                <Button color='blue' basic circular fluid size='large' onClick={() => this.handleSignUp(this.state)}>
+                  Sign up
                 </Button>
             </Form>
           </Grid.Column>
@@ -79,7 +85,7 @@ class Signup extends React.Component {
       <div className="mountain-cap-3"></div>
     </div>
   </div>
-  <div className="cloud"></div>
+  <div className="cloudthree"></div>
 </div>
       </div>
     )

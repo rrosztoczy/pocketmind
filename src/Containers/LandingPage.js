@@ -4,9 +4,12 @@ import '../index.css';
 
 const LandingPage = () => (
   <>
-  <div class="sky" height='200px'>
+  <div class="sky"/>
+  <div class="skytwo">
   <div class="cloudtwo" />
   </div>
+  <div class="skythree"/>
+  <div class="spacing"/>
   <Grid padded relaxed stackable>
       <Grid.Row columns={1}>
       <Grid.Column>
@@ -16,7 +19,7 @@ const LandingPage = () => (
     <Grid.Row columns={1}>
       <Grid.Column>
       <Header size='huge' color='blue' textAlign='center'>
-          pocket mind
+          POCKET MIND
         </Header>
         <Header size='medium' color='blue' textAlign='center'>
           keep your head in the cloud
@@ -36,19 +39,19 @@ const LandingPage = () => (
 
     <Grid.Row columns={1}>
       <Grid.Column>
-      <Button color='teal' size='massive' circular>
+      <Button color='blue' basic size='massive' circular>
               SIGN UP FOR FREE
             </Button>
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={1}>
+    {/* <Grid.Row columns={1}>
       <Grid.Column>
       <Button color='teal' size='massive' circular>
               GET THE APP NOW
             </Button>
       </Grid.Column>
-    </Grid.Row>
+    </Grid.Row> */}
 
 
     <Grid.Row columns={1} divided>
@@ -78,7 +81,7 @@ const LandingPage = () => (
       <div className="mountain-cap-3"></div>
     </div>
   </div>
-  <div className="cloud"></div>
+  <div className="cloudthree"></div>
 </div>
 </>
 )

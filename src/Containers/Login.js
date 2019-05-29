@@ -32,12 +32,20 @@ class Login extends React.Component {
   return this.props.loggedIn ? (
     <Redirect to="/home"/>
   ) : (<div className='login-form'>
-
+    <div class="sky"/>
+  <div class="skytwo">
+  <div class="cloudtwo" />
+  </div>
+  <div class="skythree"/>
+  <div class="spacing"/>
+  <div class="spacing"/>
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+    {/* <Grid.Row>
+    </Grid.Row> */}
       <Grid.Column style={{ maxWidth: 450 }}>
-      <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/>
+      {/* <Image src={require('../pmlogo.jpeg')} size="small" verticalAlign='middle'/> */}
       <Header as='h1' color='blue' textAlign='center'>
-          pocket mind
+            POCKET MIND
         </Header>
         <Header as='h3' color='blue' textAlign='center'>
           keep your head in the cloud
@@ -47,7 +55,7 @@ class Login extends React.Component {
             <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="password" placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={this.handleLoginSubmit}>
+            <Button color='blue' circular basic fluid size='large' onClick={this.handleLoginSubmit}>
               Login
             </Button>
           {/* </Segment> */}
@@ -75,7 +83,7 @@ class Login extends React.Component {
       <div className="mountain-cap-3"></div>
     </div>
   </div>
-  <div className="cloud"></div>
+  <div className="cloudthree"></div>
   </div>
 )
 }
