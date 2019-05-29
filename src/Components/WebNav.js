@@ -14,7 +14,7 @@ export default class WebNav extends Component {
   return (
       <div >
         <Menu pointing secondary>
-        <Image style={{width: '40px', height: '40px'}} src='Pocket-White.png'/>
+        <Image style={{width: '280px', height: '40px'}} src='Primary-Logo_01.png'/>
         <Menu.Item  />
           <Menu.Menu position='right'>
           <Menu.Item as={NavLink} name='POCKET MIND' to='/landing-page' active={activeItem === 'POCKET MIND'} onClick={this.handleItemClick} />

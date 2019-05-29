@@ -26,7 +26,7 @@ class AppNav extends Component {
   return (
       <div>
         <Menu pointing secondary>
-        <Image style={{width: '40px', height: '40px'}} src='Pocket-White.png'/>
+        <Image style={{width: '40px', height: '40px'}} src='Pocket-Gradient.png'/>
         <Menu.Item  />
           <Menu.Item as={NavLink} name='HOME' to='/home' active={activeItem === 'HOME'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='TIMELINE' to='/timeline' active={activeItem === 'TIMELINE'} onClick={this.handleItemClick} />
