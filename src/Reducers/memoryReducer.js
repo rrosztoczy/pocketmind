@@ -154,7 +154,7 @@ function memoryReducer(state = initialState, action) {
           return { ...state, authenticatingUser: false }
           case 'LOGOUT':
           localStorage.removeItem('jwt')
-          return { ...state, loggedIn: false }
+          return initialState
         case 'FAILED_LOGIN': //for error handling
           return {
             ...state,
