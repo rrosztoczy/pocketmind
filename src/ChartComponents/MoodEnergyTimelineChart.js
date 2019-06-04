@@ -5,17 +5,14 @@ import { connect } from 'react-redux';
 import Chart from "chart.js";
 
 class MoodEnergyTimelineChart extends Component {
-    // chartRef = React.createRef();
+    chartRef = React.createRef();
 
-    // componentDidMount() {
-    //     this.renderChart()
-    // }
     componentDidUpdate() {
         this.renderChart()
     }
 
         renderChart = () => {
-            const myChartRef = this.refs.chartRef.getContext("2d");
+            const myChartRef = this.chartRef.current.getContext("2d");
             // map data for chart to arrays
             const memoryData = this.props.memories
             const emotionMemoriesData = []
@@ -152,13 +149,11 @@ class MoodEnergyTimelineChart extends Component {
             // TODO: I want to display multiple data points for activities if they exist
             // *******************************************************************************************************************
     render() {
-        window.addEventListener("resize", this.renderChart)
-        // this.renderChart()
         return (
             <div style={{width: '45%'}}>
                 <canvas
                     id="myChart"
-                    ref='chartRef'
+                    ref={this.chartRef}
                 />
             </div>
         )
