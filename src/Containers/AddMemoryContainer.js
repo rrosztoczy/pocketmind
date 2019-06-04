@@ -18,6 +18,10 @@ import '../index.css';
 
 class AddMemoryContainer extends React.Component {
 
+  componentDidMount() {
+    this.props.getAllEmotions()
+  }
+
 
     submitMemory = (event) => {
         event.preventDefault()
