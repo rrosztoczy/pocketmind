@@ -20,10 +20,9 @@ class Login extends React.Component {
     })
   }
 
-  handleLoginSubmit = (e) => { //semantic forms preventDefault for you
-    // e.preventDefault()
-    this.props.loginUser(this.state.email, this.state.password) //comes from mapDispatchToProps
-    this.setState({ email: '', password: '' }) //reset form to initial state
+  handleLoginSubmit = (e) => {
+    this.props.loginUser(this.state.email, this.state.password) 
+    this.setState({ email: '', password: '' })
   }
 
 
