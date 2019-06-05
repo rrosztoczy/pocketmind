@@ -57,7 +57,7 @@ const initialState = {
     editThoughtMemories: false,
     editEmotionMemories: false,
     editActivityMemories: false,
-    authenticatingUser: "",
+    authenticatingUser: false,
     loggedIn: false,
     failedLogin: false,
     error: null,
@@ -70,7 +70,7 @@ function memoryReducer(state = initialState, action) {
     switch (action.type) {
         case  GET_ALL_EMOTIONS:
         console.log('emotion payload:', action.payload)
-        return {...state, emotions: [...state.emotions, ...action.payload.filter(emotion => emotion.id > 64)]}
+        return {...state, emotions: action.payload.filter(emotion => emotion.id > 64)}
         case  GET_ALL_USER_MEMORIES:
         console.log("hit get all user memories!")
         return {...state, memories: [...action.payload.memories]}
@@ -145,12 +145,13 @@ function memoryReducer(state = initialState, action) {
           // *****************************************************************Auth***********************************************************
           // TODO: Evaluate set current user....
           case 'SET_CURRENT_USER':
-          console.log("setting current user")
-          //action.payload { username: 'Chandler Bing', bio: 'my user bio', avatar: 'some image url' }
+          console.log("setting current user", 'email is', action.payload)
           return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
         case 'AUTHENTICATING_USER': //tells the app we're fetching
+        console.log('authenticating user')
           return { ...state, authenticatingUser: true }
         case 'AUTHENTICATED_USER':
+            console.log('authenticated user')
           return { ...state, authenticatingUser: false }
           case 'LOGOUT':
           localStorage.removeItem('jwt')

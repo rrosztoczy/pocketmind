@@ -9,11 +9,15 @@ const withAuth = (WrappedComponent) => {
     componentDidMount() {
       console.log('%c INSIDE COMPONENT DID MOUNT FOR AUTH HOC', 'color: purple')
       // POTENTIAL SECURITY FLAW!!! my tokens don't expire
-      if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
+      if (localStorage.getItem('jwt') && !this.props.loggedIn) {
+        console.log('cdm jwt and logged in')
+        this.props.fetchCurrentUser()
+      } 
       // if i have a token but don't know who it belongs to, ask the server for that user's data
     }
     
     componentDidUpdate() {
+      console.log('auth comp did update')
       this.props.getAllUserMemories();
       this.props.getAllEmotions()
     }
@@ -22,6 +26,7 @@ const withAuth = (WrappedComponent) => {
 
       console.log('%c INSIDE RENDER FOR HOC', 'color: green')
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
+        console.log('render jwt and logged in')
         return <WrappedComponent />
       } else if (localStorage.getItem('jwt') && (this.props.authenticatingUser || !this.props.loggedIn)) {
         return <Loader active inline="centered" />

@@ -186,7 +186,7 @@ export function createUser(user) {
 export const /*FUNCTION*/ loginUser = (email, password) => {
     return /*FUNCTION*/ (dispatch) => { //thunk
       // console.log(process.env.REACT_APP_API_ENDPOINT)
-      dispatch({ type: 'AUTHENTICATING_USER' })
+      dispatch(authenticatingUser()) 
       // dispatch(authenticatingUser())
       // fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/login`)
       // adapter.loginUser(email, password)
@@ -214,7 +214,7 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
         })
         .then(JSONResponse => {
           localStorage.setItem('jwt', JSONResponse.jwt) 
-          dispatch({ type: 'SET_CURRENT_USER', payload: JSONResponse.user })
+          dispatch({ type: 'SET_CURRENT_USER', payload: JSONResponse.email })
         })
         .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
     }
