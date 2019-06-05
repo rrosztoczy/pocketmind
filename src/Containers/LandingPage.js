@@ -44,20 +44,9 @@ const LandingPage = () => (
     </Grid.Row>
 
     <Grid.Row columns={1}>
-      <Grid.Column>
-      <Button color='blue' basic size='massive' circular>
-              SIGN UP FOR FREE
-            </Button>
+    <Grid.Column>
       </Grid.Column>
     </Grid.Row>
-
-    {/* <Grid.Row columns={1}>
-      <Grid.Column>
-      <Button color='teal' size='massive' circular>
-              GET THE APP NOW
-            </Button>
-      </Grid.Column>
-    </Grid.Row> */}
 
 
     <Grid.Row columns={1} divided>

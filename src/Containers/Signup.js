@@ -20,10 +20,21 @@ class Signup extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.user !== null) {
+      this.props.loginUser(prevState.email, prevState.password)
+    }
+  }
+
+
+  handleSignUp = (userdata) => {
+    this.props.createUser({user: userdata})
+  }
+
 
   render() {
-    return this.props.loggedIn ? (
-      <Redirect to="/profile"/>
+    return this.props.user !== null ? (
+      <Redirect to="/home"/>
     ) : ( <div className='login-form'>
         {/*
           Heads up! The styles below are necessary for the correct render of this example.
@@ -95,14 +106,12 @@ class Signup extends React.Component {
     )
   }
 
-  handleSignUp = (userdata) => {
-    this.props.createUser({user: userdata})
-  }
+
 }
 
 const mapStateToProps = state => {
   return {
-      loggedIn: state.loggedIn
+      user: state.user
   };
 };
 

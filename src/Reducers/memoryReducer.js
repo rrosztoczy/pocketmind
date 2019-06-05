@@ -128,8 +128,8 @@ function memoryReducer(state = initialState, action) {
         console.log('adding thought! hit add')
         return {...state, memory: {...state.memory, activityMemoriesAttributes: [...state.memory.activityMemoriesAttributes, action.payload]}}
         case  CREATE_USER:
-        console.log('creating user! hit create')
-        return {...state, user: {...state.user, ...action.payload}, loggedIn: true}
+        console.log('creating user! hit create', action.payload)
+        return {...state, user: action.payload, loggedIn: true}
         case INCREMENT_COUNTER:
         console.log("INCREMENTING!")
         return {...state, [action.payload]: ++state[action.payload]}
