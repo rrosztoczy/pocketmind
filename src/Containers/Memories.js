@@ -68,6 +68,7 @@ class Memories extends React.Component {
     }
 
     render() {
+        console.log('props are', this.props)
         return (
             <Grid divided='vertically'>
                 <Grid.Row centered>
@@ -84,7 +85,8 @@ class Memories extends React.Component {
         return {
             memories: state.memories,
             edit: state.edit,
-            emotions: state.emotions
+            emotions: state.emotions,
+            user: state.user
         }
     }
      
