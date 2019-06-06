@@ -12,6 +12,14 @@ class ThoughtMemoryContainer extends React.Component {
         editedThoughtMemories: {}
     }
 
+    componentDidUpdate() {
+        if (this.props.updating === true) {
+            console.log('should get all use mems next')
+        this.props.getAllUserMemories()
+        }
+        // return this.render()
+    }
+
 
     filteredUserThoughtMemories() {
         let userThoughtMemories = []
@@ -91,7 +99,8 @@ handleMultiEditChange = (event, thoughtMemoryId) => {
         return {
             memories: state.memories,
             thoughtSelection: state.thoughtSelection,
-            editThoughtMemories: state.editThoughtMemories
+            editThoughtMemories: state.editThoughtMemories,
+            updating: state.updating
         };
     };
      

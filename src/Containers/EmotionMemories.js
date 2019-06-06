@@ -9,6 +9,15 @@ import * as actions from '../actions'
 
 class EmotionMemories extends React.Component {
 
+
+    componentDidUpdate() {
+        if (this.props.updating === true) {
+            console.log('should get all use mems next')
+        this.props.getAllUserMemories()
+        // return this.render()
+        }
+    }
+
     onEditButtonClick = (event) => {
         event.persist()
         this.props.toggleForm(event)
@@ -135,7 +144,8 @@ handleMultiEditSelectChange = (event, emotionMemoryId) => {
         return {
             memories: state.memories,
             emotions: state.emotions,
-            editEmotionMemories: state.editEmotionMemories
+            editEmotionMemories: state.editEmotionMemories,
+            updating: state.updating
         };
     };
      

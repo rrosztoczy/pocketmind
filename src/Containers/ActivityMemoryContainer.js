@@ -18,6 +18,14 @@ class ActivityMemoryContainer extends React.Component {
         this.props.toggleForm(event)
     }
 
+    componentDidUpdate() {
+        if (this.props.updating === true) {
+            console.log('should get all use mems next')
+        this.props.getAllUserMemories()
+        }
+        // return this.render()
+    }
+
     filteredUserActivityMemories() {
         let userActivityMemories = []
         this.props.memories.forEach(memory => {
@@ -93,7 +101,7 @@ handleMultiEditChange = (event, activityMemoryId) => {
         console.log("activity props before submitstate", this.props.memories)
         const editedActivityMemoryArray = Object.keys(this.state.editedActivityMemories)
         editedActivityMemoryArray.forEach(editedActivityMemoryId => this.props.updateActivityMemory(editedActivityMemoryId, this.state.editedActivityMemories[editedActivityMemoryId]))
-        this.props.getAllUserMemories()
+        console.log('about to get user mems from edit submit')
         this.onEditButtonClick(event)
     }
 
@@ -119,7 +127,8 @@ handleMultiEditChange = (event, activityMemoryId) => {
             memories: state.memories,
             activitySelection: state.activitySelection,
             ActivityFormSelection: state.activitySelection,
-            editActivityMemories: state.editActivityMemories
+            editActivityMemories: state.editActivityMemories,
+            updating: state.updating
         };
     };
      
