@@ -1,8 +1,8 @@
+// Rails API BE call adapters
 import adapter from './adapter'
 
 const userEndpoint = "http://localhost:3000/api/v1/users"
 const profileEndpoint = "http://localhost:3000/api/v1/profile"
-// const loginEndpoint = "http://localhost:3000/api/v1/memories"
 const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
 const thoughtMemoryEndpoint = "http://localhost:3000/api/v1/thought_memories"
@@ -16,26 +16,13 @@ const activityMemoryAdapter = adapter(activityMemoryEndpoint)
 const userAdapter = adapter(userEndpoint)
 const profileAdapter = adapter(profileEndpoint)
 
-
-Number.prototype.padLeft = function(base,chr){
-  var  len = (String(base || 10).length - String(this).length)+1;
-  return len > 0? new Array(len).join(chr || '0')+this : this;
-}
-
-export function formatDateTime(dateTime) {
-  var d = new Date(dateTime),
-  dformat = [(d.getMonth()+1).padLeft(),
-             d.getDate().padLeft(),
-             d.getFullYear()].join('/') +' ' +
-            [d.getHours().padLeft(),
-             d.getMinutes().padLeft(),
-             d.getSeconds().padLeft()].join(':');
-             return dformat
-          }
-
-
-// action types
+// Form and selector types
 export const TOGGLE_FORM = 'TOGGLE_Form'
+export const UPDATE_THOUGHT_SELECTION = 'UPDATE_THOUGHT_SELECTION'
+export const UPDATE_ACTIVITY_SELECTION = 'UPDATE_ACTIVITY_SELECTION'
+export const UPDATE_ACTIVITY_FORM_SELECTION = 'UPDATE_ACTIVITY_FORM_SELECTION'
+export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
+
 // Async types
 export const GET_ALL_MEMORIES = 'GET_ALL_MEMORIES'
 export const GET_ALL_USER_MEMORIES = 'GET_ALL_USER_MEMORIES'
@@ -54,43 +41,36 @@ export const DESTROY_THOUGHT_MEMORY = 'DESTROY_THOUGHT_MEMORY'
 export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
 export const DESTROY_ACTIVITY_MEMORY = 'DESTROY_ACTIVITY_MEMORY'
 export const CREATE_USER = 'CREATE_USER'
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
-export const UPDATE_THOUGHT_SELECTION = 'UPDATE_THOUGHT_SELECTION'
-export const UPDATE_ACTIVITY_SELECTION = 'UPDATE_ACTIVITY_SELECTION'
-export const UPDATE_ACTIVITY_FORM_SELECTION = 'UPDATE_ACTIVITY_FORM_SELECTION'
 export const START_UPDATE_REQUEST = 'START_UPDATE_REQUEST'
 
-// action creators
+// Form and select actions
 export function toggleForm(event) {
-    console.log('button is', event.target.value)
-    return { type: TOGGLE_FORM, payload: event.target.value}
+  return { type: TOGGLE_FORM, payload: event.target.value}
 }
 
 export function updateThoughtSelection(event) {
-  console.log('updating', event.target.value)
   return { type: UPDATE_THOUGHT_SELECTION, payload: event.target.value}
 }
 
 export function updateActivitySelection(event) {
-  console.log('updating', event.target.value)
   return { type: UPDATE_ACTIVITY_SELECTION, payload: event.target.value}
 }
 
 export function updateActivityFormSelection(event) {
-  console.log('updating', event.target.value)
   return { type: UPDATE_ACTIVITY_FORM_SELECTION, payload: event.target.value}
 }
 
 export function incrementCounter(event) {
-    return { type: INCREMENT_COUNTER, payload: event.counter}
+  return { type: INCREMENT_COUNTER, payload: event.counter}
 }
 
+// CRUD actions prior to async API calls
 export function addEmotionMemory(payload) {
-    return {type: 'ADD_EMOTION_MEMORY', payload: payload}
+  return {type: 'ADD_EMOTION_MEMORY', payload: payload}
 }
 
 export function addThoughtMemory(payload) {
-    return {type: 'ADD_THOUGHT_MEMORY', payload: payload}
+  return {type: 'ADD_THOUGHT_MEMORY', payload: payload}
 }
 
 export function addActivityMemory(payload) {
@@ -98,30 +78,17 @@ export function addActivityMemory(payload) {
 }
 
 export function addStressToMemory(payload) {
-    return {type: 'ADD_STRESS_TO_MEMORY', payload: payload}
+  return {type: 'ADD_STRESS_TO_MEMORY', payload: payload}
 }
 
 export function addAnxietyToMemory(payload) {
-    return {type: 'ADD_ANXIETY_TO_MEMORY', payload: payload}
+  return {type: 'ADD_ANXIETY_TO_MEMORY', payload: payload}
 }
  
-// export function handleSubmitEdit(event, payload) {
-//     event.preventDefault()
-//     return {type: UPDATE_MEMORY, payload: payload }
-// }
-
-// Async action creators
-export function getAllMemories() {
-  return dispatch => memoryAdapter.getAll(dispatch, GET_ALL_MEMORIES)
-}
+// CRUD Actions with async API calls
 
 export function getAllUserMemories() {
-    console.log("getting user memories")
-    return dispatch => profileAdapter.getProfile(dispatch, GET_ALL_USER_MEMORIES)
-  }
-
-export function getMemory(memoryId) {
-    return dispatch => memoryAdapter.getOne(dispatch, GET_MEMORY, memoryId)
+  return dispatch => profileAdapter.getProfile(dispatch, GET_ALL_USER_MEMORIES)
 }
 
 export function createMemory(memory) {
@@ -129,43 +96,37 @@ export function createMemory(memory) {
 }
 
 export function updateMemory(memoryId, memory) {
-    return dispatch => memoryAdapter.update(dispatch, UPDATE_MEMORY, memoryId, memory)
+  return dispatch => memoryAdapter.update(dispatch, UPDATE_MEMORY, memoryId, memory)
 }
 
 export function destroyMemory(memoryId) {
-    return dispatch => memoryAdapter.destroy(dispatch, DESTROY_MEMORY, memoryId)
+  return dispatch => memoryAdapter.destroy(dispatch, DESTROY_MEMORY, memoryId)
 }
 
-// Emotions adapter
+// Emotions API calls
 export function getAllEmotions() {
-    return dispatch => emotionAdapter.getAll(dispatch, GET_ALL_EMOTIONS)
-  }
-
-  // Thought Memories Adapter
-export function getAllThoughtMemories() {
-    return dispatch => thoughtMemoryAdapter.getAll(dispatch, GET_ALL_THOUGHT_MEMORIES)
-  }
-
-  export function updateThoughtMemory(thoughtMemoryId, thoughtMemory) {
-    return dispatch => thoughtMemoryAdapter.update(dispatch, UPDATE_THOUGHT_MEMORY, thoughtMemoryId, thoughtMemory)
+  return dispatch => emotionAdapter.getAll(dispatch, GET_ALL_EMOTIONS)
 }
 
-  export function destroyThoughtMemory(thoughtMemoryId) {
-    return dispatch => thoughtMemoryAdapter.destroy(dispatch, DESTROY_THOUGHT_MEMORY, thoughtMemoryId)
+export function updateThoughtMemory(thoughtMemoryId, thoughtMemory) {
+  return dispatch => thoughtMemoryAdapter.update(dispatch, UPDATE_THOUGHT_MEMORY, thoughtMemoryId, thoughtMemory)
 }
 
-    // Emotion Memories Adapter
-export function getAllEmotionMemories() {
-    return dispatch => emotionMemoryAdapter.getAll(dispatch, GET_ALL_EMOTION_MEMORIES)
-  }
-
-  export function updateEmotionMemory(emotionMemoryId, emotionMemory) {
-    return dispatch => emotionMemoryAdapter.update(dispatch, UPDATE_EMOTION_MEMORY, emotionMemoryId, emotionMemory)
+export function destroyThoughtMemory(thoughtMemoryId) {
+  return dispatch => thoughtMemoryAdapter.destroy(dispatch, DESTROY_THOUGHT_MEMORY, thoughtMemoryId)
 }
 
-  export function destroyEmotionMemory(emotionMemoryId) {
-    return dispatch => emotionMemoryAdapter.destroy(dispatch, DESTROY_EMOTION_MEMORY, emotionMemoryId)
+// Emotion Memories API calls
+
+export function updateEmotionMemory(emotionMemoryId, emotionMemory) {
+  return dispatch => emotionMemoryAdapter.update(dispatch, UPDATE_EMOTION_MEMORY, emotionMemoryId, emotionMemory)
 }
+
+export function destroyEmotionMemory(emotionMemoryId) {
+  return dispatch => emotionMemoryAdapter.destroy(dispatch, DESTROY_EMOTION_MEMORY, emotionMemoryId)
+}
+
+// Activity Memories API calls
 export function updateActivityMemory(activityMemoryId, activityMemory) {
   return dispatch => activityMemoryAdapter.update(dispatch, UPDATE_ACTIVITY_MEMORY, activityMemoryId, activityMemory)
 }
@@ -175,14 +136,11 @@ export function destroyActivityMemory(activityMemoryId) {
 }
 
 // User and Auth Actions
-
 export function createUser(user) {
-    return dispatch => userAdapter.create(dispatch, CREATE_USER, user)
+  return dispatch => userAdapter.create(dispatch, CREATE_USER, user)
 }
 
 // *******************************Auth*********************************************
-
-
 
 export const /*FUNCTION*/ loginUser = (email, password) => {
     return /*FUNCTION*/ (dispatch) => { //thunk
@@ -259,3 +217,4 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
   // export const authenticatingUser = () => {
   //   return { type: 'AUTHENTICATING_USER' }
   // }
+

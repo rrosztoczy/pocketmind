@@ -1,10 +1,6 @@
-
-
-
 import React from 'react'
-import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
-import { formatDateTime } from '../actions'
+import { formatDateTime } from '../formatting'
 
 const ThoughtMemoriesBalanceList = ({ thoughtMemory }) => {
     
@@ -22,7 +18,6 @@ return (<Grid.Row columns={4} key={thoughtMemory.id} >
     <p>{thoughtMemory.rationalThought}</p>
     </Grid.Column>
     <Grid.Column width={2}>
-    <p>{thoughtMemory.memoryId}</p>
     </Grid.Column>
   </Grid.Row>)
         }

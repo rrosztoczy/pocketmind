@@ -16,6 +16,7 @@ import ActivityOptionSort from '../Components/ActivityOptionSort'
 import * as actions from '../actions'
 import '../index.css';
 
+
 class AddMemoryContainer extends React.Component {
 
   componentDidMount() {

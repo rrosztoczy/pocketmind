@@ -1,12 +1,17 @@
 
 
 const adapter = (url) => {
-    const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-      }
+    // Moved headers into individual functions so the local storage call happens each time a dispatch is sent with thunk 
+    // instead of prior to a jwt token existing when the adapters are initialized. It may be possible to wait to initialize
+    // the adapters (except for the login one) after auth and prior to the rest of the actions instead for speed I decided sacrificing DRY in 
+    // order to use the adapter pattern to further abstract my async actions in a quick, definite way was worth it.
+    // const headers = {
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json',
+    //     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    //   }
 
+    // Async functions are self-invoking for Thunk/Redux
     const getAll = async (dispatch, action) => {
         (async () => {
             const headers = {
@@ -14,7 +19,6 @@ const adapter = (url) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
               }        
-            console.log("in the all async")
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, { headers: headers })
             const jsonData = await resp.json()
@@ -22,6 +26,7 @@ const adapter = (url) => {
         })();
     };
 
+    // TODO: Do I need this or can I just use get all?
     const getProfile = async (dispatch, action) => {
         (async () => {
             const headers = {
@@ -29,7 +34,6 @@ const adapter = (url) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
               }
-            console.log("in the async profile action is ", action)
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, { headers: headers })
             const jsonData = await resp.json()
@@ -63,8 +67,6 @@ const adapter = (url) => {
                 headers: headers,
                 body: JSON.stringify(postBody)
             }
-            console.log("post body", postBody)
-            console.log("json post body", postBody)
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
             const resp = await fetch(url, postConfig)
             const jsonData = await resp.json()
@@ -79,7 +81,6 @@ const adapter = (url) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
               }
-              console.log("in the update async")
             const postConfig = {
                 method: "PATCH",
                 headers: headers,
