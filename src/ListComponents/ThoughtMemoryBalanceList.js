@@ -22,7 +22,7 @@ return (<Grid.Row columns={4} key={thoughtMemory.id} >
     <p>{thoughtMemory.rationalThought}</p>
     </Grid.Column>
     <Grid.Column width={2}>
-    <p>{thoughtMemory.id}</p>
+    <p>{thoughtMemory.memoryId}</p>
     </Grid.Column>
   </Grid.Row>)
         }

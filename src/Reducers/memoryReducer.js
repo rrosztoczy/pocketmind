@@ -16,7 +16,8 @@ import {
     INCREMENT_COUNTER,
     UPDATE_THOUGHT_SELECTION,
     UPDATE_ACTIVITY_SELECTION,
-    CREATE_USER
+    CREATE_USER,
+    START_UPDATE_REQUEST
 } from '../actions'
 
 const initialState = {
@@ -54,6 +55,7 @@ const initialState = {
     newActivityMemoryFormContainer: false,
     thought: false,
     activity: false,
+    updating: false,
     editThoughtMemories: false,
     editEmotionMemories: false,
     editActivityMemories: false,
@@ -99,22 +101,23 @@ function memoryReducer(state = initialState, action) {
         console.log('updating memory! hit update')
         const memoryForUpdateIndex = state.memories.findIndex(memory => memory.id === action.payload.id)
         console.log('memory id is', action.payload.id,' and index is', memoryForUpdateIndex)
-        return {...state, memories: [...state.memories.slice(0, memoryForUpdateIndex), action.payload, ...state.memories.slice(memoryForUpdateIndex + 1)]}
+        return {...state, updating: false}
         case  UPDATE_ACTIVITY_MEMORY:
         console.log('updating ACTIVITY memory! hit update')
+
         const activityMemoryForUpdateIndex = state.activityMemories.findIndex(activityMemory => activityMemory.id === action.payload.id)
         console.log('memory id is', action.payload.id,' and index is', activityMemoryForUpdateIndex)
-        return {...state, activityMemories: [...state.activityMemories.slice(0, activityMemoryForUpdateIndex), action.payload, ...state.activityMemories.slice(activityMemoryForUpdateIndex + 1)]}
+        return {...state, updating: false}
         case  UPDATE_THOUGHT_MEMORY:
         console.log('updating thought memory! hit update')
         const thoughtMemoryForUpdateIndex = state.thoughtMemories.findIndex(thoughtMemory => thoughtMemory.id === action.payload.id)
         console.log('memory id is', action.payload.id,' and index is', thoughtMemoryForUpdateIndex)
-        return {...state, thoughtMemories: [...state.thoughtMemories.slice(0, thoughtMemoryForUpdateIndex), action.payload, ...state.thoughtMemories.slice(thoughtMemoryForUpdateIndex + 1)]}
+        return {...state, updating: false}
         case  UPDATE_EMOTION_MEMORY:
         console.log('updating emotion memory! hit update')
         const emotionMemoryForUpdateIndex = state.emotionMemories.findIndex(emotionMemory => emotionMemory.id === action.payload.id)
         console.log('memory id is', action.payload.id,' and index is', emotionMemoryForUpdateIndex)
-        return {...state, emotionMemories: [...state.emotionMemories.slice(0, emotionMemoryForUpdateIndex), action.payload, ...state.emotionMemories.slice(emotionMemoryForUpdateIndex + 1)]}
+        return {...state, updating: false}
         case 'ADD_MEMORY':
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, action.payload]}
@@ -156,6 +159,8 @@ function memoryReducer(state = initialState, action) {
           case 'LOGOUT':
           localStorage.removeItem('jwt')
           return initialState
+        case START_UPDATE_REQUEST:
+          return {...state, updating: true}
         case 'FAILED_LOGIN': //for error handling
           return {
             ...state,

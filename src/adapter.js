@@ -85,7 +85,7 @@ const adapter = (url) => {
                 headers: headers,
                 body: JSON.stringify(postBody)
             }
-            dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
+            dispatch({type: 'START_UPDATE_REQUEST'})
             const resp = await fetch(url + "/" + id, postConfig)
             const jsonData = await resp.json()
             dispatch({type: action, payload: jsonData})

@@ -16,7 +16,7 @@ return (<Grid.Row columns={3} key={thoughtMemory.id} >
     <p>{thoughtMemory.thoughtContent}</p>
     </Grid.Column>
     <Grid.Column width={2}>
-  {thoughtMemory.id}
+  {thoughtMemory.memoryId}
   </Grid.Column>
   </Grid.Row>)
         }

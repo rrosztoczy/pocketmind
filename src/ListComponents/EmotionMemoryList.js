@@ -28,7 +28,7 @@ return (<Grid.Row key={emotionMemory.id} columns={7}>
     <p>{emotionMemory.anxietyLevel}</p>
     </Grid.Column>
     <Grid.Column>
-    <p>{emotionMemory.id}</p>
+    <p>{emotionMemory.memoryId}</p>
     </Grid.Column>
   </Grid.Row>)
         }

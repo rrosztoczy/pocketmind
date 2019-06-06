@@ -8,9 +8,13 @@ import * as actions from '../actions'
 class ThoughtMemoryBalanceContainer extends React.Component {
 
 
-    // componentDidMount() {
-    //   this.props.getAllUserMemories()
-    // }
+    componentDidUpdate() {
+        if (this.props.updating === true) {
+            console.log('should get all use mems next')
+        this.props.getAllUserMemories()
+        }
+        // return this.render()
+    }
 
 
     onEditButtonClick = (event) => {
@@ -106,7 +110,8 @@ filteredUserThoughtMemories() {
         return {
             memories: state.memories,
             thoughtSelection: state.thoughtSelection,
-            editThoughtMemories: state.editThoughtMemories
+            editThoughtMemories: state.editThoughtMemories,
+            updating: state.updating
         };
     };
      
