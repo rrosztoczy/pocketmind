@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
-import { formatDateTime } from '../actions'
+import { formatDateTime } from '../formatting'
 
 
 const MemoriesList = ({ memory }) => {
@@ -30,7 +29,6 @@ return (
         {memory.activityMemories != [] ? memory.activityMemories.map((activityMemory, index) => <p>{activityMemory.activityName}</p>) : <p>No activity memories</p>}
         </Grid.Column>
         <Grid.Column>
-        <p>{memory.id}</p>
         </Grid.Column>
     </Grid.Row>)
         }

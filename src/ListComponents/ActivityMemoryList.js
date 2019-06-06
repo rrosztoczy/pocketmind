@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
-import { formatDateTime } from '../actions'
+import { formatDateTime } from '../formatting'
 
 const ActivityMemoriesList = ({ activityMemory }) => {
     
@@ -22,7 +21,6 @@ return (<Grid.Row columns={6} key={activityMemory.id} >
     <p>{activityMemory.activityEndTime}</p>
     </Grid.Column>
     <Grid.Column>
-    <p>{activityMemory.memoryId}</p>
     </Grid.Column>
   </Grid.Row>)
         }
