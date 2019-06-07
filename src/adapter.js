@@ -26,18 +26,26 @@ const adapter = (url) => {
         })();
     };
 
-    // TODO: Do I need this or can I just use get all?
-    const getProfile = async (dispatch, action) => {
+    const login = async (dispatch, action, email, password) => {
         (async () => {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-              }
+            const config = { 
+            method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: JSON.stringify({
+                    user: {
+                    email: email,
+                    password: password
+                    }
+                })
+            }
             dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
-            const resp = await fetch(url, { headers: headers })
+            const resp = await fetch(url, config)
             const jsonData = await resp.json()
-            dispatch({type: action, payload: jsonData})
+            localStorage.setItem('jwt', jsonData.jwt) 
+            dispatch({type: action, payload: jsonData.email})
         })();
     };
 
@@ -113,12 +121,12 @@ const adapter = (url) => {
 
     return {
         getAll,
-        getProfile,
+        login,
         getOne,
         create,
         update,
         destroy
-        }
+    }
 }
 
 export default adapter
