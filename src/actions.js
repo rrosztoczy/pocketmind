@@ -40,6 +40,9 @@ export const START_UPDATE_REQUEST = 'START_UPDATE_REQUEST'
 
 // Auth types
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const AUTHENTICATING_USER = 'AUTHENTICATING_USER'
+export const AUTHENTICATED_USER = 'AUTHENTICATED_USER'
+export const LOGOUT = 'LOGOUT'
 
 // Form and selector types
 export const TOGGLE_FORM = 'TOGGLE_Form'
@@ -47,30 +50,25 @@ export const UPDATE_THOUGHT_SELECTION = 'UPDATE_THOUGHT_SELECTION'
 export const UPDATE_ACTIVITY_SELECTION = 'UPDATE_ACTIVITY_SELECTION'
 export const UPDATE_ACTIVITY_FORM_SELECTION = 'UPDATE_ACTIVITY_FORM_SELECTION'
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
+export const ADD_MEMORY = 'ADD_MEMORY'
+export const ADD_EMOTION_MEMORY = 'ADD_EMOTION_MEMORY'
+export const ADD_THOUGHT_MEMORY = 'ADD_THOUGHT_MEMORY'
+export const ADD_ACTIVITY_MEMORY = 'ADD_ACTIVITY_MEMORY '
 
 // CRUD actions prior to async API calls
 export function addEmotionMemory(payload) {
-    return {type: 'ADD_EMOTION_MEMORY', payload: payload}
+    return {type: ADD_EMOTION_MEMORY, payload: payload}
 }
 
 export function addThoughtMemory(payload) {
-    return {type: 'ADD_THOUGHT_MEMORY', payload: payload}
+    return {type: ADD_THOUGHT_MEMORY, payload: payload}
 }
 
 export function addActivityMemory(payload) {
-    return {type: 'ADD_ACTIVITY_MEMORY', payload: payload}
-}
-
-export function addStressToMemory(payload) {
-    return {type: 'ADD_STRESS_TO_MEMORY', payload: payload}
-}
-
-export function addAnxietyToMemory(payload) {
-    return {type: 'ADD_ANXIETY_TO_MEMORY', payload: payload}
+    return {type: ADD_ACTIVITY_MEMORY, payload: payload}
 }
  
 // CRUD Actions with async API calls
-
 export function getAllUserMemories() {
     return dispatch => profileAdapter.getAll(dispatch, GET_ALL_USER_MEMORIES)
 }
@@ -132,15 +130,15 @@ export const fetchCurrentUser = () => {
 }
   
 export const setCurrentUser = (userData) => ({
-    type: 'SET_CURRENT_USER',
+    type: SET_CURRENT_USER,
     payload: userData
 })
     
 export const logout = () => ({
-    type: 'LOGOUT',
+    type: LOGOUT,
 })
   
-export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
+export const authenticatingUser = () => ({ type: AUTHENTICATING_USER })
 
 // Form and select actions
 export function toggleForm(event) {
