@@ -49,21 +49,6 @@ const adapter = (url) => {
         })();
     };
 
-    // TODO: Do I need this or can I just use get all?
-    const getProfile = async (dispatch, action) => {
-        (async () => {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-              }
-            dispatch({type: 'START_GETTING_ALL_DATA_REQUEST'})
-            const resp = await fetch(url, { headers: headers })
-            const jsonData = await resp.json()
-            dispatch({type: action, payload: jsonData})
-        })();
-    };
-
     const getOne = async (dispatch, action, id) => {
         (async () => {
             const headers = {
@@ -136,13 +121,12 @@ const adapter = (url) => {
 
     return {
         getAll,
-        getProfile,
         login,
         getOne,
         create,
         update,
         destroy
-        }
+    }
 }
 
 export default adapter
