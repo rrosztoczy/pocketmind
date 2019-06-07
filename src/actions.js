@@ -2,6 +2,7 @@
 import adapter from './adapter'
 
 const userEndpoint = "http://localhost:3000/api/v1/users"
+const loginEndpoint = "http://localhost:3000/api/v1/login"
 const profileEndpoint = "http://localhost:3000/api/v1/profile"
 const emotionEndpoint = "http://localhost:3000/api/v1/emotions"
 const memoryEndpoint = "http://localhost:3000/api/v1/memories"
@@ -15,6 +16,7 @@ const emotionMemoryAdapter = adapter(emotionMemoryEndpoint)
 const activityMemoryAdapter = adapter(activityMemoryEndpoint)
 const userAdapter = adapter(userEndpoint)
 const profileAdapter = adapter(profileEndpoint)
+const loginAdapter = adapter(loginEndpoint)
 
 // Form and selector types
 export const TOGGLE_FORM = 'TOGGLE_Form'
@@ -42,6 +44,9 @@ export const DESTROY_EMOTION_MEMORY = 'DESTROY_EMOTION_MEMORY'
 export const DESTROY_ACTIVITY_MEMORY = 'DESTROY_ACTIVITY_MEMORY'
 export const CREATE_USER = 'CREATE_USER'
 export const START_UPDATE_REQUEST = 'START_UPDATE_REQUEST'
+
+// Auth types
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 
 // Form and select actions
 export function toggleForm(event) {
@@ -117,7 +122,6 @@ export function destroyThoughtMemory(thoughtMemoryId) {
 }
 
 // Emotion Memories API calls
-
 export function updateEmotionMemory(emotionMemoryId, emotionMemory) {
   return dispatch => emotionMemoryAdapter.update(dispatch, UPDATE_EMOTION_MEMORY, emotionMemoryId, emotionMemory)
 }
@@ -140,61 +144,14 @@ export function createUser(user) {
   return dispatch => userAdapter.create(dispatch, CREATE_USER, user)
 }
 
-// *******************************Auth*********************************************
+export const loginUser = (email, password) => {
+    return (dispatch) => loginAdapter.login(dispatch, SET_CURRENT_USER, email, password)
+  }
 
-export const /*FUNCTION*/ loginUser = (email, password) => {
-    return /*FUNCTION*/ (dispatch) => { //thunk
-      // console.log(process.env.REACT_APP_API_ENDPOINT)
-      dispatch(authenticatingUser()) 
-      // dispatch(authenticatingUser())
-      // fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/login`)
-      // adapter.loginUser(email, password)
-      // http://localhost:3000
-    //   TODO: Switch back to the end point below
-      fetch(`http://localhost:3000//api/v1/login`, { //TODO: move this to an adapter
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          user: {
-            email: email,
-            password: password
-          }
-        })
-      })
-        .then(response => {
-          if (response.ok) {
-            return response.json()
-          } else {
-            throw response
-          }
-        })
-        .then(JSONResponse => {
-          localStorage.setItem('jwt', JSONResponse.jwt) 
-          dispatch({ type: 'SET_CURRENT_USER', payload: JSONResponse.email })
-        })
-        .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
-    }
+  export const fetchCurrentUser = () => {
+    return dispatch => profileAdapter.getProfile(dispatch, SET_CURRENT_USER)
   }
   
-  export const fetchCurrentUser = () => {
-      console.log('fetching user')
-    // takes the token in localStorage and finds out who it belongs to
-    return (dispatch) => {
-      dispatch(authenticatingUser()) //tells the app we are fetching
-    //   switch back to ${process.env.REACT_APP_API_ENDPOINT}/api/v1/profile
-      fetch(`http://localhost:3000//api/v1/profile`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      })
-        .then(response => response.json())
-        .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.email)))
-    }
-  }
   
   export const setCurrentUser = (userData) => ({
     type: 'SET_CURRENT_USER',
@@ -203,18 +160,13 @@ export const /*FUNCTION*/ loginUser = (email, password) => {
   
   export const failedLogin = (errorMsg) => ({
     type: 'FAILED_LOGIN',
-    payload: errorMsg
+    // payload: errorMsg
   })
 
     
   export const logout = () => ({
     type: 'LOGOUT',
-    // payload: errorMsg
   })
   
-  // tell our app we're currently fetching
   export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
-  // export const authenticatingUser = () => {
-  //   return { type: 'AUTHENTICATING_USER' }
-  // }
 

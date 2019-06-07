@@ -17,7 +17,8 @@ import {
     UPDATE_THOUGHT_SELECTION,
     UPDATE_ACTIVITY_SELECTION,
     CREATE_USER,
-    START_UPDATE_REQUEST
+    START_UPDATE_REQUEST,
+    SET_CURRENT_USER
 } from '../actions'
 
 const initialState = {
@@ -147,9 +148,9 @@ function memoryReducer(state = initialState, action) {
           return {...state, activitySelection: action.payload}
           // *****************************************************************Auth***********************************************************
           // TODO: Evaluate set current user....
-          case 'SET_CURRENT_USER':
+          case SET_CURRENT_USER:
           console.log("setting current user", 'email is', action.payload)
-          return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
+          return { ...state, user: action.payload.email, loggedIn: true, authenticatingUser: false }
         case 'AUTHENTICATING_USER': //tells the app we're fetching
         console.log('authenticating user')
           return { ...state, authenticatingUser: true }
