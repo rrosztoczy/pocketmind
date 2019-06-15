@@ -1,3 +1,5 @@
+// Could make sense to refactor into Auth, Memory and Form reducers
+
 import {
     TOGGLE_FORM,
     // Asynch types
