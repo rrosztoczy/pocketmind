@@ -104,7 +104,7 @@ class StressAnxietyTimelineChart extends Component {
                     type: "time",
                     time: {
                         unit: 'hour',
-                        unitStepSize: 6.0,
+                        unitStepSize: 12.0,
                         round: 'minute',
                         tooltipFormat: "h:mm:ss a",
                         displayFormats: {
@@ -149,7 +149,7 @@ class StressAnxietyTimelineChart extends Component {
     render() {
         // this.renderChart()
         return (
-            <div style={{width: '45%'}}>
+            <div style={{width: '50%'}}>
                 <canvas
                     id="myChart"
                     ref={this.chartRef}

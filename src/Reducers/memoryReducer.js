@@ -1,9 +1,10 @@
+// Could make sense to refactor into Auth, Memory and Form reducers
+
 import {
     TOGGLE_FORM,
     // Asynch types
     GET_ALL_USER_MEMORIES,
     GET_ALL_EMOTIONS,
-    GET_MEMORY,
     CREATE_MEMORY,
     UPDATE_MEMORY,
     UPDATE_EMOTION_MEMORY,
@@ -18,7 +19,14 @@ import {
     UPDATE_ACTIVITY_SELECTION,
     CREATE_USER,
     START_UPDATE_REQUEST,
-    SET_CURRENT_USER
+    SET_CURRENT_USER,
+    ADD_MEMORY,
+    ADD_ACTIVITY_MEMORY,
+    ADD_EMOTION_MEMORY,
+    ADD_THOUGHT_MEMORY,
+    AUTHENTICATING_USER,
+    AUTHENTICATED_USER,
+    LOGOUT
 } from '../actions'
 
 const initialState = {
@@ -119,16 +127,16 @@ function memoryReducer(state = initialState, action) {
         const emotionMemoryForUpdateIndex = state.emotionMemories.findIndex(emotionMemory => emotionMemory.id === action.payload.id)
         console.log('memory id is', action.payload.id,' and index is', emotionMemoryForUpdateIndex)
         return {...state, updating: false}
-        case 'ADD_MEMORY':
+        case ADD_MEMORY:
         console.log('adding memory! hit add')
         return {...state, memories: [...state.memories, action.payload]}
-        case 'ADD_EMOTION_MEMORY':
+        case ADD_EMOTION_MEMORY:
         console.log('adding emotion! hit add')
         return {...state, memory: {...state.memory, emotionMemoriesAttributes: [...state.memory.emotionMemoriesAttributes, action.payload]}}
-        case 'ADD_THOUGHT_MEMORY':
+        case ADD_THOUGHT_MEMORY:
         console.log('adding thought! hit add')
         return {...state, memory: {...state.memory, thoughtMemoriesAttributes: [...state.memory.thoughtMemoriesAttributes, action.payload]}}
-        case 'ADD_ACTIVITY_MEMORY':
+        case ADD_ACTIVITY_MEMORY:
         console.log('adding thought! hit add')
         return {...state, memory: {...state.memory, activityMemoriesAttributes: [...state.memory.activityMemoriesAttributes, action.payload]}}
         case  CREATE_USER:
@@ -146,29 +154,20 @@ function memoryReducer(state = initialState, action) {
           case UPDATE_ACTIVITY_SELECTION:
           console.log("UPDATING ACTIVITY SELECTION!")
           return {...state, activitySelection: action.payload}
-          // *****************************************************************Auth***********************************************************
-          // TODO: Evaluate set current user....
           case SET_CURRENT_USER:
           console.log("setting current user", 'email is', action.payload)
           return { ...state, user: action.payload.email, loggedIn: true, authenticatingUser: false }
-        case 'AUTHENTICATING_USER': //tells the app we're fetching
+        case AUTHENTICATING_USER: //tells the app we're fetching
         console.log('authenticating user')
           return { ...state, authenticatingUser: true }
-        case 'AUTHENTICATED_USER':
+        case AUTHENTICATED_USER:
             console.log('authenticated user')
           return { ...state, authenticatingUser: false }
-          case 'LOGOUT':
+          case LOGOUT:
           localStorage.removeItem('jwt')
           return initialState
         case START_UPDATE_REQUEST:
           return {...state, updating: true}
-        case 'FAILED_LOGIN': //for error handling
-          return {
-            ...state,
-            failedLogin: true,
-            error: action.payload,
-            authenticatingUser: false
-          }
         default: 
         console.log('hit default')
           return state;
